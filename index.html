@@ -20,54 +20,539 @@
 </head>
 
 <body>
-    <!-- =========================================================
-         OVERLAY PEMBUKA
-         Muncul saat halaman pertama kali dibuka.
-         Tombol "Buka Undangan" akan menjalankan fungsi di script.jss.
-         ========================================================= -->
+
     <div class="opening-screen" id="openingScreen">
-        <div class="opening-floral floral-top-left" aria-hidden="true"></div>
-        <div class="opening-floral floral-bottom-right" aria-hidden="true"></div>
 
-        <div class="opening-card">
-            <p class="eyebrow">The Wedding Invitation Of</p>
-            <h1>Andi <span>&amp;</span> Sari</h1>
-            <p class="opening-date">SABTU, 25 OKTOBER 2025</p>
+        <!-- =====================================================
+            KERTAS UNDANGAN
+            Semua elemen opening berada di dalam paper.
+            ===================================================== -->
+        <div class="opening-paper">
 
-            <div class="floral-wreath" aria-hidden="true">
-                <span>❀</span>
-                <span>❁</span>
-                <span>❀</span>
+            <!-- =================================================
+                FLORAL POJOK KIRI ATAS
+                SVG dibuat langsung di HTML sehingga
+                tidak membutuhkan file gambar tambahan.
+                ================================================= -->
+            <svg class="corner-floral top-left"
+                viewBox="0 0 220 300"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+
+                <!-- Batang -->
+                <path
+                    d="M30 10 C60 65 80 110 105 170"
+                    fill="none"
+                    stroke="#718c69"
+                    stroke-width="3"
+                    opacity=".65"
+                />
+
+                <!-- Daun -->
+                <ellipse
+                    cx="48"
+                    cy="48"
+                    rx="22"
+                    ry="48"
+                    transform="rotate(-38 48 48)"
+                    fill="#91ad88"
+                    opacity=".55"
+                />
+
+                <ellipse
+                    cx="75"
+                    cy="85"
+                    rx="20"
+                    ry="45"
+                    transform="rotate(38 75 85)"
+                    fill="#789773"
+                    opacity=".48"
+                />
+
+                <ellipse
+                    cx="42"
+                    cy="120"
+                    rx="18"
+                    ry="40"
+                    transform="rotate(-45 42 120)"
+                    fill="#9ab392"
+                    opacity=".48"
+                />
+
+                <ellipse
+                    cx="92"
+                    cy="145"
+                    rx="17"
+                    ry="38"
+                    transform="rotate(42 92 145)"
+                    fill="#789773"
+                    opacity=".45"
+                />
+
+                <!-- Bunga pink -->
+                <g transform="translate(150 75)">
+                    <ellipse cx="0" cy="-18" rx="13" ry="22"
+                            fill="#dfa0a0" opacity=".65"/>
+                    <ellipse cx="18" cy="-5" rx="13" ry="22"
+                            transform="rotate(55 18 -5)"
+                            fill="#d98f95" opacity=".6"/>
+                    <ellipse cx="11" cy="17" rx="13" ry="22"
+                            transform="rotate(110 11 17)"
+                            fill="#e0a5a2" opacity=".6"/>
+                    <ellipse cx="-12" cy="17" rx="13" ry="22"
+                            transform="rotate(-110 -12 17)"
+                            fill="#d99197" opacity=".58"/>
+                    <ellipse cx="-18" cy="-5" rx="13" ry="22"
+                            transform="rotate(-55 -18 -5)"
+                            fill="#e2a9a4" opacity=".58"/>
+
+                    <circle cx="0" cy="0" r="7"
+                            fill="#b98254"
+                            opacity=".7"/>
+                </g>
+
+            </svg>
+
+
+            <!-- =================================================
+                FLORAL POJOK KANAN BAWAH
+                ================================================= -->
+            <svg class="corner-floral bottom-right"
+                viewBox="0 0 250 340"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+
+                <!-- Batang -->
+                <path
+                    d="M225 330 C185 275 160 230 130 170"
+                    fill="none"
+                    stroke="#718c69"
+                    stroke-width="4"
+                    opacity=".65"
+                />
+
+                <!-- Daun -->
+                <ellipse
+                    cx="205"
+                    cy="275"
+                    rx="25"
+                    ry="58"
+                    transform="rotate(38 205 275)"
+                    fill="#789773"
+                    opacity=".55"
+                />
+
+                <ellipse
+                    cx="170"
+                    cy="245"
+                    rx="23"
+                    ry="54"
+                    transform="rotate(-42 170 245)"
+                    fill="#91ad88"
+                    opacity=".55"
+                />
+
+                <ellipse
+                    cx="205"
+                    cy="200"
+                    rx="20"
+                    ry="48"
+                    transform="rotate(35 205 200)"
+                    fill="#789773"
+                    opacity=".48"
+                />
+
+                <ellipse
+                    cx="155"
+                    cy="180"
+                    rx="19"
+                    ry="45"
+                    transform="rotate(-42 155 180)"
+                    fill="#9ab392"
+                    opacity=".5"
+                />
+
+                <ellipse
+                    cx="210"
+                    cy="135"
+                    rx="17"
+                    ry="42"
+                    transform="rotate(35 210 135)"
+                    fill="#789773"
+                    opacity=".43"
+                />
+
+                <!-- Bunga -->
+                <g transform="translate(105 265)">
+
+                    <ellipse cx="0" cy="-18"
+                            rx="14" ry="23"
+                            fill="#d99197"
+                            opacity=".65"/>
+
+                    <ellipse cx="19" cy="-6"
+                            rx="14" ry="23"
+                            transform="rotate(55 19 -6)"
+                            fill="#dfa0a0"
+                            opacity=".6"/>
+
+                    <ellipse cx="12" cy="17"
+                            rx="14" ry="23"
+                            transform="rotate(110 12 17)"
+                            fill="#d98f95"
+                            opacity=".58"/>
+
+                    <ellipse cx="-12" cy="17"
+                            rx="14" ry="23"
+                            transform="rotate(-110 -12 17)"
+                            fill="#e0a5a2"
+                            opacity=".58"/>
+
+                    <ellipse cx="-19" cy="-6"
+                            rx="14" ry="23"
+                            transform="rotate(-55 -19 -6)"
+                            fill="#d99197"
+                            opacity=".58"/>
+
+                    <circle cx="0" cy="0"
+                            r="7"
+                            fill="#b98254"
+                            opacity=".7"/>
+                </g>
+
+            </svg>
+
+
+            <!-- =================================================
+                KELOPAK BUNGA
+                ================================================= -->
+
+            <span class="petal petal-1" aria-hidden="true">🌸</span>
+            <span class="petal petal-2" aria-hidden="true">🌸</span>
+            <span class="petal petal-3" aria-hidden="true">🌸</span>
+            <span class="petal petal-4" aria-hidden="true">🌸</span>
+            <span class="petal petal-5" aria-hidden="true">🌸</span>
+
+
+            <!-- =================================================
+                KARTU PUTIH DI TENGAH
+                ================================================= -->
+
+            <div class="opening-card">
+
+                <p class="eyebrow">
+                    The Wedding Invitation Of
+                </p>
+
+
+                <!-- =================================================
+                    WREATH BUNGA
+                    Dibuat dengan SVG langsung di HTML.
+                    ================================================= -->
+
+                <div class="watercolor-wreath" aria-hidden="true">
+
+                    <svg viewBox="0 0 500 380"
+                        xmlns="http://www.w3.org/2000/svg">
+
+                        <!-- Lingkaran daun -->
+                        <path
+                            d="M90 250
+                            C40 180 85 80 175 55
+                            C245 35 325 55 390 105
+                            C455 155 455 250 390 300
+                            C320 350 210 350 130 305"
+                            fill="none"
+                            stroke="#789773"
+                            stroke-width="8"
+                            opacity=".28"
+                        />
+
+                        <!-- Daun kiri -->
+                        <g fill="#789773" opacity=".45">
+                            <ellipse cx="110" cy="210"
+                                    rx="16" ry="38"
+                                    transform="rotate(-40 110 210)"/>
+
+                            <ellipse cx="95" cy="170"
+                                    rx="15" ry="36"
+                                    transform="rotate(-55 95 170)"/>
+
+                            <ellipse cx="115" cy="130"
+                                    rx="14" ry="34"
+                                    transform="rotate(-25 115 130)"/>
+
+                            <ellipse cx="145" cy="95"
+                                    rx="14" ry="32"
+                                    transform="rotate(25 145 95)"/>
+                        </g>
+
+
+                        <!-- Daun kanan -->
+                        <g fill="#789773" opacity=".42">
+                            <ellipse cx="390" cy="210"
+                                    rx="16" ry="38"
+                                    transform="rotate(40 390 210)"/>
+
+                            <ellipse cx="405" cy="170"
+                                    rx="15" ry="36"
+                                    transform="rotate(55 405 170)"/>
+
+                            <ellipse cx="385" cy="130"
+                                    rx="14" ry="34"
+                                    transform="rotate(25 385 130)"/>
+
+                            <ellipse cx="355" cy="95"
+                                    rx="14" ry="32"
+                                    transform="rotate(-25 355 95)"/>
+                        </g>
+
+
+                        <!-- Bunga kiri atas -->
+                        <g transform="translate(145 95)">
+                            <circle r="25"
+                                    fill="#d99a9c"
+                                    opacity=".65"/>
+
+                            <circle cx="0" cy="-20"
+                                    r="18"
+                                    fill="#e4aaaa"
+                                    opacity=".6"/>
+
+                            <circle cx="20" cy="-5"
+                                    r="18"
+                                    fill="#d88f96"
+                                    opacity=".6"/>
+
+                            <circle cx="12" cy="17"
+                                    r="18"
+                                    fill="#dfa0a0"
+                                    opacity=".6"/>
+
+                            <circle cx="-12" cy="17"
+                                    r="18"
+                                    fill="#d88f96"
+                                    opacity=".6"/>
+
+                            <circle cx="-20" cy="-5"
+                                    r="18"
+                                    fill="#e4aaaa"
+                                    opacity=".6"/>
+
+                            <circle r="7"
+                                    fill="#b98254"/>
+                        </g>
+
+
+                        <!-- Bunga kanan -->
+                        <g transform="translate(370 125)">
+                            <circle r="32"
+                                    fill="#d99197"
+                                    opacity=".62"/>
+
+                            <circle cx="0" cy="-25"
+                                    r="22"
+                                    fill="#e4aaaa"
+                                    opacity=".6"/>
+
+                            <circle cx="24" cy="-7"
+                                    r="22"
+                                    fill="#d88f96"
+                                    opacity=".6"/>
+
+                            <circle cx="15" cy="22"
+                                    r="22"
+                                    fill="#dfa0a0"
+                                    opacity=".6"/>
+
+                            <circle cx="-15" cy="22"
+                                    r="22"
+                                    fill="#d88f96"
+                                    opacity=".6"/>
+
+                            <circle cx="-24" cy="-7"
+                                    r="22"
+                                    fill="#e4aaaa"
+                                    opacity=".6"/>
+
+                            <circle r="8"
+                                    fill="#b98254"/>
+                        </g>
+
+
+                        <!-- Bunga kiri bawah -->
+                        <g transform="translate(160 265)">
+                            <circle r="26"
+                                    fill="#d99197"
+                                    opacity=".6"/>
+
+                            <circle cx="0" cy="-20"
+                                    r="17"
+                                    fill="#e4aaaa"
+                                    opacity=".6"/>
+
+                            <circle cx="20" cy="-5"
+                                    r="17"
+                                    fill="#d88f96"
+                                    opacity=".6"/>
+
+                            <circle cx="12" cy="17"
+                                    r="17"
+                                    fill="#dfa0a0"
+                                    opacity=".6"/>
+
+                            <circle cx="-12" cy="17"
+                                    r="17"
+                                    fill="#d88f96"
+                                    opacity=".6"/>
+
+                            <circle cx="-20" cy="-5"
+                                    r="17"
+                                    fill="#e4aaaa"
+                                    opacity=".6"/>
+
+                            <circle r="7"
+                                    fill="#b98254"/>
+                        </g>
+
+
+                        <!-- Bunga kanan bawah -->
+                        <g transform="translate(350 265)">
+                            <circle r="20"
+                                    fill="#d99197"
+                                    opacity=".58"/>
+
+                            <circle cx="0" cy="-16"
+                                    r="14"
+                                    fill="#e4aaaa"
+                                    opacity=".55"/>
+
+                            <circle cx="16" cy="-4"
+                                    r="14"
+                                    fill="#d88f96"
+                                    opacity=".55"/>
+
+                            <circle cx="10" cy="14"
+                                    r="14"
+                                    fill="#dfa0a0"
+                                    opacity=".55"/>
+
+                            <circle cx="-10" cy="14"
+                                    r="14"
+                                    fill="#d88f96"
+                                    opacity=".55"/>
+
+                            <circle cx="-16" cy="-4"
+                                    r="14"
+                                    fill="#e4aaaa"
+                                    opacity=".55"/>
+
+                            <circle r="6"
+                                    fill="#b98254"/>
+                        </g>
+
+                    </svg>
+
+                </div>
+
+
+                <!-- =================================================
+                    NAMA PENGANTIN
+                    ================================================= -->
+
+                <h1>
+                    Andi <span>&amp;</span> Sari
+                </h1>
+
+                <p class="opening-subtitle">
+                    are getting married
+                </p>
+
+
+                <!-- Tanggal -->
+                <p class="opening-date">
+                    SABTU, 25 OKTOBER 2025
+                </p>
+
+
+                <!-- Keterangan -->
+                <p class="opening-note">
+                    Dengan penuh kebahagiaan, kami mengundang
+                    Anda untuk hadir dan menjadi bagian dari
+                    hari istimewa kami.
+                </p>
+
+
+                <!-- Tombol -->
+                <button
+                    class="btn btn-primary"
+                    id="openInvitation">
+
+                    ♡ &nbsp; Buka Undangan
+
+                </button>
+
             </div>
 
-            <p class="opening-note">Dengan penuh kebahagiaan, kami mengundang Anda untuk hadir dan menjadi bagian dari hari istimewa kami.</p>
-
-            <button class="btn btn-primary" id="openInvitation">
-                ♡ &nbsp; Buka Undangan
-            </button>
         </div>
+
+    </div>
     </div>
 
     <!-- =========================================================
          NAVBAR
          Navigasi kecil yang tetap terlihat saat halaman di-scroll.
          ========================================================= -->
-    <header class="site-header" id="siteHeader">
-        <a class="brand" href="#hero">A &amp; S</a>
 
-        <nav class="nav-links" aria-label="Navigasi undangan">
-            <a href="#couple">Mempelai</a>
-            <a href="#events">Acara</a>
-            <a href="#gallery">Galeri</a>
-            <a href="#rsvp">Ucapan</a>
+    <header class="site-header" id="siteHeader">
+
+        <!-- Logo / inisial pasangan -->
+        <a class="brand" href="#hero" aria-label="Kembali ke halaman utama">
+            <span>A</span>
+                <span>Mempelai</span>
+            </a>
+
+            <a href="#events">
+                <span>Acara</span>
+            </a>
+
+            <a href="#gallery">
+                <span>Galeri</span>
+            </a>
+
+            <a href="#rsvp">
+                <span>Ucapan</span>
+            </a>
+
         </nav>
 
-        <!-- Tombol hamburger hanya tampil di layar kecil -->
-        <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">
-            ☰
-        </button>
-    </header>
 
+        <!-- Tombol menu HP -->
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Buka menu"
+            aria-expanded="false">
+
+            ☰
+
+        </button>
+
+    </header>
+    <span class="brand-heart">&amp;</span>
+        <span>S</span>
+    </a>
+
+
+    <!-- Menu navigasi -->
+    <nav class="nav-links" id="navLinks" aria-label="Navigasi undangan">
+
+        <a href="#hero">
+            <span>Home</span>
+        </a>
+
+        <a href="#couple">
+    
     <main>
         <!-- =====================================================
              HERO / COVER
@@ -106,24 +591,163 @@
                 Dengan memohon rahmat dan ridha Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami.
             </p>
 
+            <!-- =========================================================
+            PROFIL MEMPELAI
+            Foto diambil dari folder:
+            assets/images/man.png
+            assets/images/women.png
+            ========================================================= -->
+
             <div class="couple-grid">
-                <article class="person-card">
-                    <div class="portrait portrait-man" role="img" aria-label="Ilustrasi mempelai pria">
-                        <span>AS</span>
-                    </div>
-                    <h3>Andi Prasetyo, S.T.</h3>
-                    <p>Putra pertama dari Bapak H. Ahmad<br>&amp; Ibu Hj. Fatimah</p>
-                </article>
 
-                <div class="couple-symbol" aria-hidden="true">&amp;</div>
+
+                <!-- =====================================================
+                    MEMPELAI PRIA
+                    ===================================================== -->
 
                 <article class="person-card">
-                    <div class="portrait portrait-woman" role="img" aria-label="Ilustrasi mempelai wanita">
-                        <span>SW</span>
+
+                    <!-- Foto mempelai pria -->
+                    <div class="portrait portrait-man">
+
+                        <img
+                            src="assets/images/man.png"
+                            alt="Foto Andi Prasetyo"
+                        >
+
                     </div>
-                    <h3>Sari Wulandari, S.Pd.</h3>
-                    <p>Putri kedua dari Bapak H. Budi<br>&amp; Ibu Hj. Rahayu</p>
+
+
+                    <!-- Nama -->
+                    <h3>
+                        Andi Prasetyo, S.T.
+                    </h3>
+
+
+                    <!-- Keterangan keluarga -->
+                    <p class="person-family">
+                        Putra pertama dari Bapak H. Ahmad
+                        <br>
+                        &amp; Ibu Hj. Fatimah
+                    </p>
+
+
+                    <!-- =================================================
+                        SOCIAL MEDIA ANDI
+                        Ganti username/link sesuai akun asli.
+                        ================================================= -->
+
+                    <div class="social-links">
+
+                        <!-- Instagram -->
+                        <a
+                            href="https://www.instagram.com/username_andi/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social instagram"
+                            aria-label="Instagram Andi">
+
+                            <span class="social-icon">◎</span>
+                            <span>Instagram</span>
+
+                        </a>
+
+
+                        <!-- TikTok -->
+                        <a
+                            href="https://www.tiktok.com/@username_andi"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social tiktok"
+                            aria-label="TikTok Andi">
+
+                            <span class="social-icon">♪</span>
+                            <span>TikTok</span>
+
+                        </a>
+
+                    </div>
+
                 </article>
+
+
+
+                <!-- Simbol & -->
+                <div class="couple-symbol" aria-hidden="true">
+                    &amp;
+                </div>
+
+
+
+                <!-- =====================================================
+                    MEMPELAI WANITA
+                    ===================================================== -->
+
+                <article class="person-card">
+
+                    <!-- Foto mempelai wanita -->
+                    <div class="portrait portrait-woman">
+
+                        <img
+                            src="assets/images/women.png"
+                            alt="Foto Sari Wulandari"
+                        >
+
+                    </div>
+
+
+                    <!-- Nama -->
+                    <h3>
+                        Sari Wulandari, S.Pd.
+                    </h3>
+
+
+                    <!-- Keterangan keluarga -->
+                    <p class="person-family">
+                        Putri kedua dari Bapak H. Budi
+                        <br>
+                        &amp; Ibu Hj. Rahayu
+                    </p>
+
+
+                    <!-- =================================================
+                        SOCIAL MEDIA SARI
+                        Ganti username/link sesuai akun asli.
+                        ================================================= -->
+
+                    <div class="social-links">
+
+                        <!-- Instagram -->
+                        <a
+                            href="https://www.instagram.com/username_sari/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social instagram"
+                            aria-label="Instagram Sari">
+
+                            <span class="social-icon">◎</span>
+                            <span>Instagram</span>
+
+                        </a>
+
+
+                        <!-- TikTok -->
+                        <a
+                            href="https://www.tiktok.com/@username_sari"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social tiktok"
+                            aria-label="TikTok Sari">
+
+                            <span class="social-icon">♪</span>
+                            <span>TikTok</span>
+
+                        </a>
+
+                    </div>
+
+                </article>
+
             </div>
         </section>
 
