@@ -1,533 +1,145 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
 
-    <!-- Membuat tampilan tetap nyaman di HP, tablet, dan desktop -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Undangan pernikahan Andi & Sari dengan tema rustic floral.">
-    <title>Andi &amp; Sari — Undangan Pernikahan</title>
+    <meta name="description"
+        content="Undangan pernikahan Andi & Sari dengan tema rustic floral.">
 
-    <!-- Font dari Google Fonts untuk nuansa elegan/rustic.
-         Jika ingin 100% offline, font bisa diganti dengan font sistem di CSS. -->
+    <title>Andi & Sari — Undangan Pernikahan</title>
+
+    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
-    <!-- File CSS utama -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body>
+<body class="locked">
+
+    <!-- =========================================================
+     OPENING / COVER UNDANGAN
+     ========================================================= -->
 
     <div class="opening-screen" id="openingScreen">
 
+        <!-- Bunga kiri atas -->
+        <div class="opening-flower flower-left" aria-hidden="true">
+            <span class="petal p1"></span>
+            <span class="petal p2"></span>
+            <span class="petal p3"></span>
+            <span class="petal p4"></span>
+            <span class="petal p5"></span>
+            <span class="flower-center"></span>
+        </div>
+
+        <!-- Bunga kanan bawah -->
+        <div class="opening-flower flower-right" aria-hidden="true">
+            <span class="petal p1"></span>
+            <span class="petal p2"></span>
+            <span class="petal p3"></span>
+            <span class="petal p4"></span>
+            <span class="petal p5"></span>
+            <span class="flower-center"></span>
+        </div>
+
+
         <!-- =====================================================
-            KERTAS UNDANGAN
-            Semua elemen opening berada di dalam paper.
+            KARTU UNDANGAN
             ===================================================== -->
-        <div class="opening-paper">
 
-            <!-- =================================================
-                FLORAL POJOK KIRI ATAS
-                SVG dibuat langsung di HTML sehingga
-                tidak membutuhkan file gambar tambahan.
-                ================================================= -->
-            <svg class="corner-floral top-left"
-                viewBox="0 0 220 300"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true">
+        <div class="opening-card">
 
-                <!-- Batang -->
-                <path
-                    d="M30 10 C60 65 80 110 105 170"
-                    fill="none"
-                    stroke="#718c69"
-                    stroke-width="3"
-                    opacity=".65"
-                />
+            <p class="opening-label">
+                THE WEDDING INVITATION OF
+            </p>
 
-                <!-- Daun -->
-                <ellipse
-                    cx="48"
-                    cy="48"
-                    rx="22"
-                    ry="48"
-                    transform="rotate(-38 48 48)"
-                    fill="#91ad88"
-                    opacity=".55"
-                />
-
-                <ellipse
-                    cx="75"
-                    cy="85"
-                    rx="20"
-                    ry="45"
-                    transform="rotate(38 75 85)"
-                    fill="#789773"
-                    opacity=".48"
-                />
-
-                <ellipse
-                    cx="42"
-                    cy="120"
-                    rx="18"
-                    ry="40"
-                    transform="rotate(-45 42 120)"
-                    fill="#9ab392"
-                    opacity=".48"
-                />
-
-                <ellipse
-                    cx="92"
-                    cy="145"
-                    rx="17"
-                    ry="38"
-                    transform="rotate(42 92 145)"
-                    fill="#789773"
-                    opacity=".45"
-                />
-
-                <!-- Bunga pink -->
-                <g transform="translate(150 75)">
-                    <ellipse cx="0" cy="-18" rx="13" ry="22"
-                            fill="#dfa0a0" opacity=".65"/>
-                    <ellipse cx="18" cy="-5" rx="13" ry="22"
-                            transform="rotate(55 18 -5)"
-                            fill="#d98f95" opacity=".6"/>
-                    <ellipse cx="11" cy="17" rx="13" ry="22"
-                            transform="rotate(110 11 17)"
-                            fill="#e0a5a2" opacity=".6"/>
-                    <ellipse cx="-12" cy="17" rx="13" ry="22"
-                            transform="rotate(-110 -12 17)"
-                            fill="#d99197" opacity=".58"/>
-                    <ellipse cx="-18" cy="-5" rx="13" ry="22"
-                            transform="rotate(-55 -18 -5)"
-                            fill="#e2a9a4" opacity=".58"/>
-
-                    <circle cx="0" cy="0" r="7"
-                            fill="#b98254"
-                            opacity=".7"/>
-                </g>
-
-            </svg>
-
-
-            <!-- =================================================
-                FLORAL POJOK KANAN BAWAH
-                ================================================= -->
-            <svg class="corner-floral bottom-right"
-                viewBox="0 0 250 340"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true">
-
-                <!-- Batang -->
-                <path
-                    d="M225 330 C185 275 160 230 130 170"
-                    fill="none"
-                    stroke="#718c69"
-                    stroke-width="4"
-                    opacity=".65"
-                />
-
-                <!-- Daun -->
-                <ellipse
-                    cx="205"
-                    cy="275"
-                    rx="25"
-                    ry="58"
-                    transform="rotate(38 205 275)"
-                    fill="#789773"
-                    opacity=".55"
-                />
-
-                <ellipse
-                    cx="170"
-                    cy="245"
-                    rx="23"
-                    ry="54"
-                    transform="rotate(-42 170 245)"
-                    fill="#91ad88"
-                    opacity=".55"
-                />
-
-                <ellipse
-                    cx="205"
-                    cy="200"
-                    rx="20"
-                    ry="48"
-                    transform="rotate(35 205 200)"
-                    fill="#789773"
-                    opacity=".48"
-                />
-
-                <ellipse
-                    cx="155"
-                    cy="180"
-                    rx="19"
-                    ry="45"
-                    transform="rotate(-42 155 180)"
-                    fill="#9ab392"
-                    opacity=".5"
-                />
-
-                <ellipse
-                    cx="210"
-                    cy="135"
-                    rx="17"
-                    ry="42"
-                    transform="rotate(35 210 135)"
-                    fill="#789773"
-                    opacity=".43"
-                />
-
-                <!-- Bunga -->
-                <g transform="translate(105 265)">
-
-                    <ellipse cx="0" cy="-18"
-                            rx="14" ry="23"
-                            fill="#d99197"
-                            opacity=".65"/>
-
-                    <ellipse cx="19" cy="-6"
-                            rx="14" ry="23"
-                            transform="rotate(55 19 -6)"
-                            fill="#dfa0a0"
-                            opacity=".6"/>
-
-                    <ellipse cx="12" cy="17"
-                            rx="14" ry="23"
-                            transform="rotate(110 12 17)"
-                            fill="#d98f95"
-                            opacity=".58"/>
-
-                    <ellipse cx="-12" cy="17"
-                            rx="14" ry="23"
-                            transform="rotate(-110 -12 17)"
-                            fill="#e0a5a2"
-                            opacity=".58"/>
-
-                    <ellipse cx="-19" cy="-6"
-                            rx="14" ry="23"
-                            transform="rotate(-55 -19 -6)"
-                            fill="#d99197"
-                            opacity=".58"/>
-
-                    <circle cx="0" cy="0"
-                            r="7"
-                            fill="#b98254"
-                            opacity=".7"/>
-                </g>
-
-            </svg>
-
-
-            <!-- =================================================
-                KELOPAK BUNGA
-                ================================================= -->
-
-            <span class="petal petal-1" aria-hidden="true">🌸</span>
-            <span class="petal petal-2" aria-hidden="true">🌸</span>
-            <span class="petal petal-3" aria-hidden="true">🌸</span>
-            <span class="petal petal-4" aria-hidden="true">🌸</span>
-            <span class="petal petal-5" aria-hidden="true">🌸</span>
-
-
-            <!-- =================================================
-                KARTU PUTIH DI TENGAH
-                ================================================= -->
-
-            <div class="opening-card">
-
-                <p class="eyebrow">
-                    The Wedding Invitation Of
-                </p>
-
-
-                <!-- =================================================
-                    WREATH BUNGA
-                    Dibuat dengan SVG langsung di HTML.
-                    ================================================= -->
-
-                <div class="watercolor-wreath" aria-hidden="true">
-
-                    <svg viewBox="0 0 500 380"
-                        xmlns="http://www.w3.org/2000/svg">
-
-                        <!-- Lingkaran daun -->
-                        <path
-                            d="M90 250
-                            C40 180 85 80 175 55
-                            C245 35 325 55 390 105
-                            C455 155 455 250 390 300
-                            C320 350 210 350 130 305"
-                            fill="none"
-                            stroke="#789773"
-                            stroke-width="8"
-                            opacity=".28"
-                        />
-
-                        <!-- Daun kiri -->
-                        <g fill="#789773" opacity=".45">
-                            <ellipse cx="110" cy="210"
-                                    rx="16" ry="38"
-                                    transform="rotate(-40 110 210)"/>
-
-                            <ellipse cx="95" cy="170"
-                                    rx="15" ry="36"
-                                    transform="rotate(-55 95 170)"/>
-
-                            <ellipse cx="115" cy="130"
-                                    rx="14" ry="34"
-                                    transform="rotate(-25 115 130)"/>
-
-                            <ellipse cx="145" cy="95"
-                                    rx="14" ry="32"
-                                    transform="rotate(25 145 95)"/>
-                        </g>
-
-
-                        <!-- Daun kanan -->
-                        <g fill="#789773" opacity=".42">
-                            <ellipse cx="390" cy="210"
-                                    rx="16" ry="38"
-                                    transform="rotate(40 390 210)"/>
-
-                            <ellipse cx="405" cy="170"
-                                    rx="15" ry="36"
-                                    transform="rotate(55 405 170)"/>
-
-                            <ellipse cx="385" cy="130"
-                                    rx="14" ry="34"
-                                    transform="rotate(25 385 130)"/>
-
-                            <ellipse cx="355" cy="95"
-                                    rx="14" ry="32"
-                                    transform="rotate(-25 355 95)"/>
-                        </g>
-
-
-                        <!-- Bunga kiri atas -->
-                        <g transform="translate(145 95)">
-                            <circle r="25"
-                                    fill="#d99a9c"
-                                    opacity=".65"/>
-
-                            <circle cx="0" cy="-20"
-                                    r="18"
-                                    fill="#e4aaaa"
-                                    opacity=".6"/>
-
-                            <circle cx="20" cy="-5"
-                                    r="18"
-                                    fill="#d88f96"
-                                    opacity=".6"/>
-
-                            <circle cx="12" cy="17"
-                                    r="18"
-                                    fill="#dfa0a0"
-                                    opacity=".6"/>
-
-                            <circle cx="-12" cy="17"
-                                    r="18"
-                                    fill="#d88f96"
-                                    opacity=".6"/>
-
-                            <circle cx="-20" cy="-5"
-                                    r="18"
-                                    fill="#e4aaaa"
-                                    opacity=".6"/>
-
-                            <circle r="7"
-                                    fill="#b98254"/>
-                        </g>
-
-
-                        <!-- Bunga kanan -->
-                        <g transform="translate(370 125)">
-                            <circle r="32"
-                                    fill="#d99197"
-                                    opacity=".62"/>
-
-                            <circle cx="0" cy="-25"
-                                    r="22"
-                                    fill="#e4aaaa"
-                                    opacity=".6"/>
-
-                            <circle cx="24" cy="-7"
-                                    r="22"
-                                    fill="#d88f96"
-                                    opacity=".6"/>
-
-                            <circle cx="15" cy="22"
-                                    r="22"
-                                    fill="#dfa0a0"
-                                    opacity=".6"/>
-
-                            <circle cx="-15" cy="22"
-                                    r="22"
-                                    fill="#d88f96"
-                                    opacity=".6"/>
-
-                            <circle cx="-24" cy="-7"
-                                    r="22"
-                                    fill="#e4aaaa"
-                                    opacity=".6"/>
-
-                            <circle r="8"
-                                    fill="#b98254"/>
-                        </g>
-
-
-                        <!-- Bunga kiri bawah -->
-                        <g transform="translate(160 265)">
-                            <circle r="26"
-                                    fill="#d99197"
-                                    opacity=".6"/>
-
-                            <circle cx="0" cy="-20"
-                                    r="17"
-                                    fill="#e4aaaa"
-                                    opacity=".6"/>
-
-                            <circle cx="20" cy="-5"
-                                    r="17"
-                                    fill="#d88f96"
-                                    opacity=".6"/>
-
-                            <circle cx="12" cy="17"
-                                    r="17"
-                                    fill="#dfa0a0"
-                                    opacity=".6"/>
-
-                            <circle cx="-12" cy="17"
-                                    r="17"
-                                    fill="#d88f96"
-                                    opacity=".6"/>
-
-                            <circle cx="-20" cy="-5"
-                                    r="17"
-                                    fill="#e4aaaa"
-                                    opacity=".6"/>
-
-                            <circle r="7"
-                                    fill="#b98254"/>
-                        </g>
-
-
-                        <!-- Bunga kanan bawah -->
-                        <g transform="translate(350 265)">
-                            <circle r="20"
-                                    fill="#d99197"
-                                    opacity=".58"/>
-
-                            <circle cx="0" cy="-16"
-                                    r="14"
-                                    fill="#e4aaaa"
-                                    opacity=".55"/>
-
-                            <circle cx="16" cy="-4"
-                                    r="14"
-                                    fill="#d88f96"
-                                    opacity=".55"/>
-
-                            <circle cx="10" cy="14"
-                                    r="14"
-                                    fill="#dfa0a0"
-                                    opacity=".55"/>
-
-                            <circle cx="-10" cy="14"
-                                    r="14"
-                                    fill="#d88f96"
-                                    opacity=".55"/>
-
-                            <circle cx="-16" cy="-4"
-                                    r="14"
-                                    fill="#e4aaaa"
-                                    opacity=".55"/>
-
-                            <circle r="6"
-                                    fill="#b98254"/>
-                        </g>
-
-                    </svg>
-
-                </div>
-
-
-                <!-- =================================================
-                    NAMA PENGANTIN
-                    ================================================= -->
-
-                <h1>
-                    Andi <span>&amp;</span> Sari
-                </h1>
-
-                <p class="opening-subtitle">
-                    are getting married
-                </p>
-
-
-                <!-- Tanggal -->
-                <p class="opening-date">
-                    SABTU, 25 OKTOBER 2025
-                </p>
-
-
-                <!-- Keterangan -->
-                <p class="opening-note">
-                    Dengan penuh kebahagiaan, kami mengundang
-                    Anda untuk hadir dan menjadi bagian dari
-                    hari istimewa kami.
-                </p>
-
-
-                <!-- Tombol -->
-                <button
-                    class="btn btn-primary"
-                    id="openInvitation">
-
-                    ♡ &nbsp; Buka Undangan
-
-                </button>
-
+            <div class="small-flower">
+                ✿
             </div>
+
+            <h1>
+                Andi
+                <span>&amp;</span>
+                Sari
+            </h1>
+
+            <p class="opening-subtitle">
+                are getting married
+            </p>
+
+            <div class="opening-line">
+                <span></span>
+                ❀
+                <span></span>
+            </div>
+
+            <p class="opening-date">
+                SABTU, 25 OKTOBER 2025
+            </p>
+
+            <p class="opening-note">
+                Dengan penuh kebahagiaan, kami mengundang
+                Anda untuk hadir dan menjadi bagian dari
+                hari istimewa kami.
+            </p>
+
+            <button
+                type="button"
+                class="btn btn-primary"
+                id="openInvitation">
+
+                ♡ &nbsp; Buka Undangan
+
+            </button>
 
         </div>
 
-    </div>
-    </div>
 
     <!-- =========================================================
          NAVBAR
-         Navigasi kecil yang tetap terlihat saat halaman di-scroll.
          ========================================================= -->
 
     <header class="site-header" id="siteHeader">
 
-        <!-- Logo / inisial pasangan -->
-        <a class="brand" href="#hero" aria-label="Kembali ke halaman utama">
-            <span>A</span>
-                <span>Mempelai</span>
-            </a>
+        <a
+            class="brand"
+            href="#hero"
+            aria-label="Kembali ke halaman utama">
 
-            <a href="#events">
-                <span>Acara</span>
-            </a>
+            <span class="brand-initial">A</span>
+            <span>Mempelai</span>
 
-            <a href="#gallery">
-                <span>Galeri</span>
-            </a>
+        </a>
 
-            <a href="#rsvp">
-                <span>Ucapan</span>
-            </a>
+        <nav class="nav-links" id="navLinks">
+
+            <a href="#hero">Home</a>
+
+            <a href="#couple">Mempelai</a>
+
+            <a href="#countdown">Countdown</a>
+
+            <a href="#events">Acara</a>
+
+            <a href="#location">Lokasi</a>
+
+            <a href="#save-date">Save Date</a>
+
+            <a href="#gallery">Galeri</a>
+
+            <a href="#rsvp">Ucapan</a>
 
         </nav>
 
-
-        <!-- Tombol menu HP -->
         <button
             class="menu-toggle"
             id="menuToggle"
@@ -539,130 +151,136 @@
         </button>
 
     </header>
-    <span class="brand-heart">&amp;</span>
-        <span>S</span>
-    </a>
 
 
-    <!-- Menu navigasi -->
-    <nav class="nav-links" id="navLinks" aria-label="Navigasi undangan">
+    <!-- =========================================================
+         MAIN
+         ========================================================= -->
 
-        <a href="#hero">
-            <span>Home</span>
-        </a>
-
-        <a href="#couple">
-    
     <main>
+
         <!-- =====================================================
-             HERO / COVER
-             Bagian pembuka utama setelah overlay ditutup.
+             HERO
              ===================================================== -->
+
         <section class="hero section-paper" id="hero">
-            <div class="leaf-decoration leaf-left" aria-hidden="true">❧</div>
-            <div class="leaf-decoration leaf-right" aria-hidden="true">❧</div>
 
             <div class="hero-inner">
-                <p class="eyebrow">The Wedding Invitation Of</p>
 
-                <div class="hero-frame">
-                    <div class="mini-floral">❀ ❁ ❀</div>
-                    <h1>Andi <span>&amp;</span> Sari</h1>
-                    <p class="script-text">are getting married</p>
-                    <div class="floral-line">❦</div>
+                <p class="eyebrow">
+                    The Wedding Invitation Of
+                </p>
+
+                <div class="hero-flower">
+                    ✿
                 </div>
 
-                <p class="date-pill">SABTU, 25 OKTOBER 2025</p>
-                <p class="hero-location">Jakarta Selatan</p>
+                <h1>
+                    Andi <span>&amp;</span> Sari
+                </h1>
+
+                <p class="script-text">
+                    are getting married
+                </p>
+
+                <div class="floral-line">
+                    <span></span>
+                    ❀
+                    <span></span>
+                </div>
+
+                <p class="date-pill">
+                    SABTU, 25 OKTOBER 2025
+                </p>
+
+                <p class="hero-location">
+                    Jakarta Selatan
+                </p>
+
             </div>
+
         </section>
+
 
         <!-- =====================================================
              MEMPELAI
              ===================================================== -->
-        <section class="section section-paper" id="couple">
+
+        <section
+            class="section section-paper"
+            id="couple">
+
             <div class="section-heading">
-                <p class="eyebrow">Mempelai Adalah</p>
-                <h2>Kami Yang Berbahagia</h2>
-                <span class="ornament">❀</span>
+
+                <p class="eyebrow">
+                    Mempelai
+                </p>
+
+                <h2>
+                    Kami Yang Berbahagia
+                </h2>
+
+                <span class="ornament">
+                    ✿
+                </span>
+
             </div>
 
             <p class="section-intro">
-                Dengan memohon rahmat dan ridha Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami.
+
+                Dengan memohon rahmat dan ridha Allah SWT,
+                kami bermaksud mengundang Bapak/Ibu/Saudara/i
+                untuk menghadiri pernikahan kami.
+
             </p>
 
-            <!-- =========================================================
-            PROFIL MEMPELAI
-            Foto diambil dari folder:
-            assets/images/man.png
-            assets/images/women.png
-            ========================================================= -->
 
             <div class="couple-grid">
 
-
-                <!-- =====================================================
-                    MEMPELAI PRIA
-                    ===================================================== -->
-
+                <!-- PRIA -->
                 <article class="person-card">
 
-                    <!-- Foto mempelai pria -->
                     <div class="portrait portrait-man">
 
                         <img
                             src="assets/images/man.png"
-                            alt="Foto Andi Prasetyo"
-                        >
+                            alt="Foto Andi Prasetyo">
 
                     </div>
 
-
-                    <!-- Nama -->
                     <h3>
                         Andi Prasetyo, S.T.
                     </h3>
 
-
-                    <!-- Keterangan keluarga -->
                     <p class="person-family">
+
                         Putra pertama dari Bapak H. Ahmad
                         <br>
                         &amp; Ibu Hj. Fatimah
+
                     </p>
-
-
-                    <!-- =================================================
-                        SOCIAL MEDIA ANDI
-                        Ganti username/link sesuai akun asli.
-                        ================================================= -->
 
                     <div class="social-links">
 
-                        <!-- Instagram -->
                         <a
-                            href="https://www.instagram.com/username_andi/"
+                            href="https://www.instagram.com/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="social instagram"
-                            aria-label="Instagram Andi">
+                            class="social">
 
-                            <span class="social-icon">◎</span>
-                            <span>Instagram</span>
+                            <span>◎</span>
+                            Instagram
 
                         </a>
 
-
-                        <!-- TikTok -->
                         <a
-                            href="https://www.tiktok.com/@username_andi"
+                            href="https://www.tiktok.com/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="social tiktok"
-                            aria-label="TikTok Andi">
+                            class="social">
 
-                            <span class="social-icon">♪</span>
-                            <span>TikTok</span>
+                            <span>♪</span>
+                            TikTok
 
                         </a>
 
@@ -671,76 +289,56 @@
                 </article>
 
 
-
-                <!-- Simbol & -->
-                <div class="couple-symbol" aria-hidden="true">
+                <!-- SIMBOL -->
+                <div class="couple-symbol">
                     &amp;
                 </div>
 
 
-
-                <!-- =====================================================
-                    MEMPELAI WANITA
-                    ===================================================== -->
-
+                <!-- WANITA -->
                 <article class="person-card">
 
-                    <!-- Foto mempelai wanita -->
                     <div class="portrait portrait-woman">
 
                         <img
                             src="assets/images/women.png"
-                            alt="Foto Sari Wulandari"
-                        >
+                            alt="Foto Sari Wulandari">
 
                     </div>
 
-
-                    <!-- Nama -->
                     <h3>
                         Sari Wulandari, S.Pd.
                     </h3>
 
-
-                    <!-- Keterangan keluarga -->
                     <p class="person-family">
+
                         Putri kedua dari Bapak H. Budi
                         <br>
                         &amp; Ibu Hj. Rahayu
+
                     </p>
-
-
-                    <!-- =================================================
-                        SOCIAL MEDIA SARI
-                        Ganti username/link sesuai akun asli.
-                        ================================================= -->
 
                     <div class="social-links">
 
-                        <!-- Instagram -->
                         <a
-                            href="https://www.instagram.com/username_sari/"
+                            href="https://www.instagram.com/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="social instagram"
-                            aria-label="Instagram Sari">
+                            class="social">
 
-                            <span class="social-icon">◎</span>
-                            <span>Instagram</span>
+                            <span>◎</span>
+                            Instagram
 
                         </a>
 
-
-                        <!-- TikTok -->
                         <a
-                            href="https://www.tiktok.com/@username_sari"
+                            href="https://www.tiktok.com/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="social tiktok"
-                            aria-label="TikTok Sari">
+                            class="social">
 
-                            <span class="social-icon">♪</span>
-                            <span>TikTok</span>
+                            <span>♪</span>
+                            TikTok
 
                         </a>
 
@@ -749,270 +347,636 @@
                 </article>
 
             </div>
+
         </section>
+
 
         <!-- =====================================================
              COUNTDOWN
-             Angka diisi otomatis oleh script.jss berdasarkan
-             tanggal pada variabel WEDDING_DATE.
              ===================================================== -->
-        <section class="section section-sage countdown-section" id="countdown">
+
+        <section
+            class="section section-sage countdown-section"
+            id="countdown">
+
             <div class="section-heading">
-                <p class="eyebrow">Menuju Hari Bahagia</p>
-                <h2>Menuju Hari Bahagia</h2>
-                <span class="ornament">❀</span>
+
+                <p class="eyebrow">
+                    Menuju Hari Bahagia
+                </p>
+
+                <h2>
+                    Menuju Hari Bahagia
+                </h2>
+
+                <span class="ornament">
+                    ✿
+                </span>
+
             </div>
+
 
             <div class="countdown-grid">
+
                 <div class="count-box">
+
                     <strong id="days">000</strong>
                     <span>HARI</span>
+
                 </div>
+
                 <div class="count-box">
+
                     <strong id="hours">00</strong>
                     <span>JAM</span>
+
                 </div>
+
                 <div class="count-box">
+
                     <strong id="minutes">00</strong>
                     <span>MENIT</span>
+
                 </div>
+
                 <div class="count-box">
+
                     <strong id="seconds">00</strong>
                     <span>DETIK</span>
+
                 </div>
+
             </div>
+
         </section>
+
 
         <!-- =====================================================
-             RANGKAIAN ACARA
+             ACARA
              ===================================================== -->
-        <section class="section section-paper" id="events">
+
+        <section
+            class="section section-paper"
+            id="events">
+
             <div class="section-heading">
-                <p class="eyebrow">Save The Moments</p>
-                <h2>Rangkaian Acara</h2>
-                <span class="ornament">❀</span>
+
+                <p class="eyebrow">
+                    Save The Moments
+                </p>
+
+                <h2>
+                    Rangkaian Acara
+                </h2>
+
+                <span class="ornament">
+                    ✿
+                </span>
+
             </div>
+
 
             <div class="event-list">
-                <article class="event-card event-akad">
-                    <div class="event-icon">♧</div>
-                    <div>
-                        <h3>Akad Nikah</h3>
-                        <div class="event-divider"></div>
-                        <p>◷ &nbsp; Sabtu, 25 Oktober 2025</p>
-                        <p>◷ &nbsp; Pukul 08.00 — 10.00 WIB</p>
-                        <p>⌖ &nbsp; Masjid Al-Ikhlas, Jl. Melati No. 12, Jakarta Selatan</p>
+
+                <article class="event-card">
+
+                    <div class="event-icon">
+                        ✿
                     </div>
+
+                    <div>
+
+                        <h3>
+                            Akad Nikah
+                        </h3>
+
+                        <div class="event-divider"></div>
+
+                        <p>
+                            ◷ &nbsp; Sabtu, 25 Oktober 2025
+                        </p>
+
+                        <p>
+                            ◷ &nbsp; Pukul 08.00 — 10.00 WIB
+                        </p>
+
+                        <p>
+                            ⌖ &nbsp; Masjid Al-Ikhlas,
+                            Jl. Melati No. 12,
+                            Jakarta Selatan
+                        </p>
+
+                    </div>
+
                 </article>
 
-                <article class="event-card event-reception">
-                    <div class="event-icon">♡</div>
-                    <div>
-                        <h3>Resepsi Pernikahan</h3>
-                        <div class="event-divider"></div>
-                        <p>◷ &nbsp; Sabtu, 25 Oktober 2025</p>
-                        <p>◷ &nbsp; Pukul 14.00 — 16.00 WIB</p>
-                        <p>⌖ &nbsp; Gedung Serbaguna Cempaka, Jl. Cempaka No. 42, Jakarta Selatan</p>
+
+                <article class="event-card">
+
+                    <div class="event-icon">
+                        ❀
                     </div>
+
+                    <div>
+
+                        <h3>
+                            Resepsi Pernikahan
+                        </h3>
+
+                        <div class="event-divider"></div>
+
+                        <p>
+                            ◷ &nbsp; Sabtu, 25 Oktober 2025
+                        </p>
+
+                        <p>
+                            ◷ &nbsp; Pukul 14.00 — 16.00 WIB
+                        </p>
+
+                        <p>
+                            ⌖ &nbsp; Gedung Serbaguna Cempaka,
+                            Jl. Cempaka No. 42,
+                            Jakarta Selatan
+                        </p>
+
+                    </div>
+
                 </article>
+
             </div>
+
         </section>
+
 
         <!-- =====================================================
              LOKASI
-             Peta dibuat sebagai ilustrasi CSS agar website tetap
-             statis dan tidak membutuhkan API Google Maps.
-             Tombol akan membuka Google Maps dengan alamat tujuan.
              ===================================================== -->
-        <section class="section section-paper location-section" id="location">
+
+        <section
+            class="section section-paper location-section"
+            id="location">
+
             <div class="section-heading">
-                <p class="eyebrow">Acara Lokal</p>
-                <h2>Lokasi Acara</h2>
-                <span class="ornament">❀</span>
+
+                <p class="eyebrow">
+                    Acara Lokal
+                </p>
+
+                <h2>
+                    Lokasi Acara
+                </h2>
+
+                <span class="ornament">
+                    ✿
+                </span>
+
             </div>
 
+
             <div class="map-card">
-                <div class="fake-map" aria-label="Ilustrasi peta lokasi acara">
+
+                <div
+                    class="fake-map"
+                    aria-label="Ilustrasi peta lokasi acara">
+
                     <div class="map-road road-1"></div>
                     <div class="map-road road-2"></div>
                     <div class="map-road road-3"></div>
                     <div class="map-road road-4"></div>
+
                     <div class="map-block block-1"></div>
                     <div class="map-block block-2"></div>
                     <div class="map-block block-3"></div>
                     <div class="map-block block-4"></div>
-                    <div class="map-pin">♡</div>
+
+                    <div class="map-pin">
+                        ♡
+                    </div>
+
                 </div>
 
+
                 <p class="map-address">
-                    Gedung Serbaguna Cempaka, Jl. Cempaka No. 42,<br>
+
+                    Gedung Serbaguna Cempaka,
+                    Jl. Cempaka No. 42,
+                    <br>
                     Jakarta Selatan, DKI Jakarta
+
                 </p>
 
-                <a class="btn btn-primary map-button"
-                   href="https://www.google.com/maps/search/?api=1&query=Gedung+Serbaguna+Cempaka+Jakarta+Selatan"
-                   target="_blank"
-                   rel="noopener">
+
+                <a
+                    class="btn btn-primary map-button"
+                    href="https://www.google.com/maps/search/?api=1&query=Gedung+Serbaguna+Cempaka+Jakarta+Selatan"
+                    target="_blank"
+                    rel="noopener">
+
                     ⌖ &nbsp; Buka Google Maps
+
                 </a>
+
             </div>
+
         </section>
+
 
         <!-- =====================================================
              SAVE THE DATE
              ===================================================== -->
-        <section class="section section-blush" id="save-date">
+
+        <section
+            class="section section-blush"
+            id="save-date">
+
             <div class="section-heading">
-                <p class="eyebrow">Save Your Calendar</p>
-                <h2>Save the Date</h2>
-                <span class="ornament">❀</span>
+
+                <p class="eyebrow">
+                    Save Your Calendar
+                </p>
+
+                <h2>
+                    Save the Date
+                </h2>
+
+                <span class="ornament">
+                    ✿
+                </span>
+
             </div>
+
 
             <div class="calendar-card">
-                <h3>Oktober 2025</h3>
+
+                <h3>
+                    Oktober 2025
+                </h3>
+
 
                 <div class="calendar-week">
-                    <span>Min</span><span>Sen</span><span>Sel</span><span>Rab</span>
-                    <span>Kam</span><span>Jum</span><span>Sab</span>
+
+                    <span>Min</span>
+                    <span>Sen</span>
+                    <span>Sel</span>
+                    <span>Rab</span>
+                    <span>Kam</span>
+                    <span>Jum</span>
+                    <span>Sab</span>
+
                 </div>
+
 
                 <div class="calendar-days">
-                    <!-- September 28 - October 4 -->
-                    <span class="muted">28</span><span class="muted">29</span><span class="muted">30</span>
-                    <span>1</span><span>2</span><span>3</span><span>4</span>
 
-                    <!-- October 5 - 11 -->
-                    <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
+                    <span class="muted">28</span>
+                    <span class="muted">29</span>
+                    <span class="muted">30</span>
 
-                    <!-- October 12 - 18 -->
-                    <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
 
-                    <!-- October 19 - 25 -->
-                    <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span>
-                    <span class="selected">25</span>
+                    <span>5</span>
+                    <span>6</span>
+                    <span>7</span>
+                    <span>8</span>
+                    <span>9</span>
+                    <span>10</span>
+                    <span>11</span>
 
-                    <!-- October 26 - November 1 -->
-                    <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
-                    <span class="muted">1</span>
+                    <span>12</span>
+                    <span>13</span>
+                    <span>14</span>
+                    <span>15</span>
+                    <span>16</span>
+                    <span>17</span>
+                    <span>18</span>
+
+                    <span>19</span>
+                    <span>20</span>
+                    <span>21</span>
+                    <span>22</span>
+                    <span>23</span>
+                    <span>24</span>
+
+                    <span class="selected">
+                        25
+                    </span>
+
+                    <span>26</span>
+                    <span>27</span>
+                    <span>28</span>
+                    <span>29</span>
+                    <span>30</span>
+                    <span>31</span>
+
+                    <span class="muted">
+                        1
+                    </span>
+
                 </div>
+
             </div>
 
-            <!-- Tombol akan membuat file .ics agar tanggal bisa disimpan ke kalender. -->
-            <button class="btn btn-primary" id="calendarButton">
+
+            <button
+                class="btn btn-primary"
+                id="calendarButton">
+
                 ▣ &nbsp; Simpan ke Kalender
+
             </button>
+
         </section>
+
 
         <!-- =====================================================
              GALERI
-             Foto menggunakan gambar dari Unsplash.
-             Untuk website produksi, sebaiknya ganti URL ini
-             dengan foto pasangan sendiri di folder /images.
              ===================================================== -->
-        <section class="section section-paper" id="gallery">
+
+        <section
+            class="section section-paper"
+            id="gallery">
+
             <div class="section-heading">
-                <p class="eyebrow">Our Memories</p>
-                <h2>Galeri Kami</h2>
-                <span class="ornament">❀</span>
+
+                <p class="eyebrow">
+                    Our Memories
+                </p>
+
+                <h2>
+                    Galeri Kami
+                </h2>
+
+                <span class="ornament">
+                    ✿
+                </span>
+
             </div>
+
 
             <div class="gallery-grid">
-                <button class="gallery-item" data-full="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80" alt="Momen pasangan di taman">
+
+                <button
+                    class="gallery-item"
+                    data-full="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80"
+                        alt="Momen pasangan di taman">
+
                 </button>
 
-                <button class="gallery-item" data-full="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=85">
-                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=80" alt="Momen pernikahan outdoor">
+
+                <button
+                    class="gallery-item"
+                    data-full="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=85">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=80"
+                        alt="Momen pernikahan outdoor">
+
                 </button>
 
-                <button class="gallery-item" data-full="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=85">
-                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=700&q=80" alt="Detail dekorasi pernikahan">
+
+                <button
+                    class="gallery-item"
+                    data-full="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=85">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=700&q=80"
+                        alt="Detail dekorasi pernikahan">
+
                 </button>
 
-                <button class="gallery-item" data-full="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=1200&q=85">
-                    <img src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=700&q=80" alt="Pasangan menikmati senja">
+
+                <button
+                    class="gallery-item"
+                    data-full="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=1200&q=85">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=700&q=80"
+                        alt="Pasangan menikmati senja">
+
                 </button>
 
-                <button class="gallery-item gallery-wide" data-full="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1400&q=85">
-                    <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=900&q=80" alt="Momen romantis pasangan">
-                    <span class="play-icon">⊙</span>
+
+                <button
+                    class="gallery-item gallery-wide"
+                    data-full="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1400&q=85">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=900&q=80"
+                        alt="Momen romantis pasangan">
+
+                    <span class="play-icon">
+                        ⊙
+                    </span>
+
                 </button>
+
             </div>
+
         </section>
+
 
         <!-- =====================================================
-             RSVP / UCAPAN
-             Form ini bersifat statis: data hanya diproses di
-             browser dan tidak dikirim ke database/server.
+             RSVP
              ===================================================== -->
-        <section class="section section-sage" id="rsvp">
+
+        <section
+            class="section section-sage"
+            id="rsvp">
+
             <div class="section-heading">
-                <p class="eyebrow">Kehadiran &amp; Doa</p>
-                <h2>Kirim Ucapan</h2>
-                <span class="ornament">❀</span>
+
+                <p class="eyebrow">
+                    Kehadiran &amp; Doa
+                </p>
+
+                <h2>
+                    Kirim Ucapan
+                </h2>
+
+                <span class="ornament">
+                    ✿
+                </span>
+
             </div>
 
-            <form class="rsvp-form" id="rsvpForm">
-                <label>
-                    <span>Nama Lengkap</span>
-                    <input type="text" id="guestName" name="name" placeholder="Nama Lengkap" required>
-                </label>
+
+            <form
+                class="rsvp-form"
+                id="rsvpForm">
 
                 <label>
-                    <span>Hadir / Konfirmasi Kehadiran</span>
-                    <select id="attendance" name="attendance" required>
-                        <option value="">Pilih konfirmasi</option>
-                        <option value="Hadir">Hadir</option>
-                        <option value="Tidak Hadir">Tidak Hadir</option>
-                        <option value="Masih Tentatif">Masih Tentatif</option>
+
+                    <span>
+                        Nama Lengkap
+                    </span>
+
+                    <input
+                        type="text"
+                        id="guestName"
+                        name="name"
+                        placeholder="Nama Lengkap"
+                        required>
+
+                </label>
+
+
+                <label>
+
+                    <span>
+                        Hadir / Konfirmasi Kehadiran
+                    </span>
+
+                    <select
+                        id="attendance"
+                        name="attendance"
+                        required>
+
+                        <option value="">
+                            Pilih konfirmasi
+                        </option>
+
+                        <option value="Hadir">
+                            Hadir
+                        </option>
+
+                        <option value="Tidak Hadir">
+                            Tidak Hadir
+                        </option>
+
+                        <option value="Masih Tentatif">
+                            Masih Tentatif
+                        </option>
+
                     </select>
+
                 </label>
+
 
                 <label>
-                    <span>Ucapan</span>
-                    <textarea id="message" name="message" rows="4" placeholder="Tulis doa &amp; ucapan Anda..." required></textarea>
+
+                    <span>
+                        Ucapan
+                    </span>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="4"
+                        placeholder="Tulis doa &amp; ucapan Anda..."
+                        required></textarea>
+
                 </label>
 
-                <button class="btn btn-primary" type="submit">
+
+                <button
+                    class="btn btn-primary"
+                    type="submit">
+
                     ♡ &nbsp; Kirim Ucapan
+
                 </button>
 
-                <p class="form-status" id="formStatus" aria-live="polite"></p>
+
+                <p
+                    class="form-status"
+                    id="formStatus"
+                    aria-live="polite">
+                </p>
+
             </form>
+
         </section>
+
 
         <!-- =====================================================
              PENUTUP
              ===================================================== -->
+
         <section class="closing section-paper">
+
             <div class="closing-card">
-                <p>“Merupakan suatu kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.”</p>
-                <p class="closing-small">Dengan penuh cinta,</p>
-                <h2>Andi &amp; Sari</h2>
-                <div class="closing-flowers">❀ ❁ ❀</div>
+
+                <div class="closing-flower">
+                    ✿
+                </div>
+
+                <p>
+                    “Merupakan suatu kehormatan bagi kami apabila
+                    Bapak/Ibu/Saudara/i berkenan hadir dan
+                    memberikan doa restu.”
+                </p>
+
+                <p class="closing-small">
+                    Dengan penuh cinta,
+                </p>
+
+                <h2>
+                    Andi &amp; Sari
+                </h2>
+
+                <div class="closing-flowers">
+                    ❀ &nbsp; ✿ &nbsp; ❀
+                </div>
+
             </div>
+
         </section>
+
     </main>
 
-    <footer class="footer">
-        <p>Andi &amp; Sari Wedding Invitation</p>
-        <small>Made with love ♡</small>
-    </footer>
 
     <!-- =========================================================
-         MODAL GALERI
-         Dibuka ketika salah satu foto galeri diklik.
+         FOOTER
          ========================================================= -->
-    <div class="lightbox" id="lightbox" aria-hidden="true">
-        <button class="lightbox-close" id="lightboxClose" aria-label="Tutup galeri">×</button>
-        <img id="lightboxImage" src="" alt="Foto galeri ukuran besar">
+
+    <footer class="footer">
+
+        <p>
+            Andi &amp; Sari Wedding Invitation
+        </p>
+
+        <small>
+            Made with love ♡
+        </small>
+
+    </footer>
+
+
+    <!-- =========================================================
+         LIGHTBOX
+         ========================================================= -->
+
+    <div
+        class="lightbox"
+        id="lightbox"
+        aria-hidden="true">
+
+        <button
+            class="lightbox-close"
+            id="lightboxClose"
+            aria-label="Tutup galeri">
+
+            ×
+
+        </button>
+
+        <img
+            id="lightboxImage"
+            src=""
+            alt="Foto galeri ukuran besar">
+
     </div>
 
-    <!--
-        File JavaScript diminta dengan nama "script.jss".
-        Jika hosting Anda tidak mengizinkan MIME type .jss,
-        rename file menjadi script.js dan ubah nama di baris ini.
-    -->
+
+    <!-- JAVASCRIPT -->
     <script src="assets/js/script.js"></script>
+
 </body>
+
 </html>

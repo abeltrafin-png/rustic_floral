@@ -178,94 +178,565 @@ h3 {
 }
 
 /* ============================================================
+   FIX OPENING UNDANGAN
+   ============================================================ */
+
+/* Hilangkan dekorasi daun/ranting lama yang menutupi halaman */
+body::before,
+body::after {
+    content: none !important;
+    display: none !important;
+}
+
+
+/* ============================================================
    OPENING SCREEN
    ============================================================ */
 
 .opening-screen {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    display: grid;
-    place-items: center;
-    padding: 24px;
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    z-index: 99999 !important;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 20px;
+
+    overflow: hidden;
+
     background:
-        radial-gradient(circle at 10% 20%, rgba(96,118,90,.12), transparent 25%),
-        radial-gradient(circle at 90% 75%, rgba(189,119,123,.10), transparent 25%),
-        var(--cream);
-    transition: opacity .8s ease, visibility .8s ease;
+        #f7f3ec;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transition:
+        opacity .6s ease,
+        visibility .6s ease;
 }
 
+
+/* Setelah tombol Buka Undangan ditekan */
 .opening-screen.is-hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+
+    opacity: 0 !important;
+
+    visibility: hidden !important;
+
+    pointer-events: none !important;
+
 }
+
+
+/* ============================================================
+   KARTU UNDANGAN
+   ============================================================ */
 
 .opening-card {
-    position: relative;
-    z-index: 2;
-    width: min(100%, 580px);
-    padding: clamp(34px, 7vw, 70px) 28px;
+
+    position: relative !important;
+
+    z-index: 20 !important;
+
+    width: min(500px, 88vw);
+
+    min-height: 540px;
+
+    padding: 55px 35px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
     text-align: center;
-    border: 1px solid rgba(184,146,75,.22);
-    background: rgba(251,249,244,.92);
-    box-shadow: var(--shadow);
+
+    background:
+        rgba(255, 253, 249, .97);
+
+    border:
+        1px solid rgba(184, 146, 75, .28);
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 25px 70px rgba(60, 55, 45, .14);
+
 }
+
+
+/* ============================================================
+   TEKS OPENING
+   ============================================================ */
+
+.opening-label {
+
+    margin-bottom: 18px;
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    color: #888077;
+}
+
+
+.small-flower {
+
+    margin-bottom: 8px;
+
+    font-size: 30px;
+
+    color: #d99197;
+
+    line-height: 1;
+
+}
+
 
 .opening-card h1 {
-    font-size: clamp(3.2rem, 10vw, 6.5rem);
+
+    margin: 0;
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(4rem, 11vw, 6.5rem);
+
     font-weight: 500;
-    margin: 6px 0;
+
+    line-height: .9;
+
+    color: #657760;
+
 }
 
-.opening-card h1 span,
-.hero-frame h1 span {
-    color: var(--rose);
+
+.opening-card h1 span {
+
+    color: #d99197;
+
+    font-style: italic;
+
 }
 
-.opening-date,
-.date-pill {
-    font-size: .72rem;
-    letter-spacing: .18em;
-    color: var(--sage-deep);
+
+.opening-subtitle {
+
+    margin-top: 20px;
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size: 23px;
+
+    font-style: italic;
+
+    color: #8b8175;
+
+}
+
+
+/* ============================================================
+   GARIS BUNGA
+   ============================================================ */
+
+.opening-line {
+
+    width: 190px;
+
+    margin: 25px 0 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: #d99197;
+
+    font-size: 20px;
+
+}
+
+
+.opening-line span {
+
+    width: 70px;
+
+    height: 1px;
+
+    background:
+        rgba(184, 146, 75, .35);
+
+}
+
+
+/* ============================================================
+   TANGGAL
+   ============================================================ */
+
+.opening-date {
+
+    margin: 5px 0 15px;
+
+    font-size: 10px;
+
     font-weight: 600;
+
+    letter-spacing: 2.5px;
+
+    color: #657760;
+
 }
+
 
 .opening-note {
-    max-width: 430px;
-    margin: 12px auto 22px;
-    color: var(--muted);
-    font-size: .78rem;
+
+    width: min(360px, 100%);
+
+    margin: 0 auto 28px;
+
+    font-size: 11px;
+
+    line-height: 1.9;
+
+    color: #8b8175;
+
 }
 
-.floral-wreath,
-.closing-flowers {
-    color: var(--rose);
-    letter-spacing: 18px;
-    font-size: 1.5rem;
-    margin: 12px 0;
+
+/* ============================================================
+   BUTTON
+   ============================================================ */
+
+.opening-card .btn {
+
+    position: relative;
+
+    z-index: 30;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 175px;
+
+    padding: 13px 25px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background: #657760;
+
+    color: white;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 1.2px;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+    box-shadow:
+        0 8px 20px rgba(80, 90, 75, .18);
+
+    transition:
+        transform .25s ease,
+        background .25s ease;
 }
 
-.opening-floral {
+
+.opening-card .btn:hover {
+
+    background: #53644f;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* ============================================================
+   BUNGA DEKORASI
+   CUMA BUNGA — TANPA DAUN
+   ============================================================ */
+
+.opening-flower {
+
     position: absolute;
-    width: 280px;
-    height: 280px;
-    opacity: .18;
-    border-radius: 60% 40% 70% 30%;
-    border: 12px solid var(--sage-dark);
-    transform: rotate(-35deg);
+
+    z-index: 5;
+
+    width: 160px;
+
+    height: 160px;
+
+    pointer-events: none;
+
 }
 
-.floral-top-left {
-    left: -150px;
-    top: -80px;
+
+.flower-left {
+
+    top: -25px;
+
+    left: -20px;
+
 }
 
-.floral-bottom-right {
-    right: -150px;
-    bottom: -80px;
-    transform: rotate(145deg);
-    border-color: var(--rose);
+
+.flower-right {
+
+    right: -25px;
+
+    bottom: -25px;
+
+    transform: rotate(20deg);
+
+}
+
+
+/* Kelopak */
+
+.opening-flower .petal {
+
+    position: absolute;
+
+    width: 48px;
+
+    height: 80px;
+
+    left: 56px;
+
+    top: 40px;
+
+    border-radius:
+        50% 50% 45% 45%;
+
+    background:
+        rgba(217, 145, 151, .55);
+
+    transform-origin:
+        50% 40px;
+
+}
+
+
+.opening-flower .p1 {
+
+    transform: rotate(0deg);
+
+}
+
+
+.opening-flower .p2 {
+
+    transform: rotate(72deg);
+
+}
+
+
+.opening-flower .p3 {
+
+    transform: rotate(144deg);
+
+}
+
+
+.opening-flower .p4 {
+
+    transform: rotate(216deg);
+
+}
+
+
+.opening-flower .p5 {
+
+    transform: rotate(288deg);
+
+}
+
+
+/* Tengah bunga */
+
+.flower-center {
+
+    position: absolute;
+
+    width: 30px;
+
+    height: 30px;
+
+    left: 65px;
+
+    top: 65px;
+
+    border-radius: 50%;
+
+    background: #b98254;
+
+    opacity: .75;
+
+}
+
+
+/* ============================================================
+   AGAR ISI UNDANGAN DI BELAKANG TETAP NORMAL
+   ============================================================ */
+
+main {
+
+    position: relative;
+
+    z-index: 1;
+
+}
+
+
+.site-header {
+
+    z-index: 1000 !important;
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .opening-screen {
+
+        padding: 15px;
+
+    }
+
+
+    .opening-card {
+
+        width: 88vw;
+
+        min-height: 500px;
+
+        padding:
+            45px 22px;
+
+    }
+
+
+    .opening-card h1 {
+
+        font-size: 4rem;
+
+    }
+
+
+    .opening-subtitle {
+
+        font-size: 20px;
+
+    }
+
+
+    .opening-note {
+
+        font-size: 10px;
+
+        max-width: 290px;
+
+    }
+
+
+    .opening-flower {
+
+        width: 115px;
+
+        height: 115px;
+
+    }
+
+
+    .flower-left {
+
+        top: -25px;
+
+        left: -30px;
+
+    }
+
+
+    .flower-right {
+
+        right: -30px;
+
+        bottom: -25px;
+
+    }
+
+
+    .opening-flower .petal {
+
+        width: 35px;
+
+        height: 58px;
+
+        left: 40px;
+
+        top: 30px;
+
+        transform-origin:
+            50% 29px;
+
+    }
+
+
+    .flower-center {
+
+        width: 23px;
+
+        height: 23px;
+
+        left: 46px;
+
+        top: 46px;
+
+    }
+
 }
 
 /* ============================================================
