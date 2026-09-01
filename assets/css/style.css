@@ -1108,3 +1108,379 @@ h3 {
         animation-duration: .01ms !important;
     }
 }
+
+/* ============================================================
+   FLORAL ENHANCEMENT — tambahan ornamen bunga yang lebih ramai
+   Tidak membutuhkan gambar tambahan; bunga dibuat dengan CSS.
+   ============================================================ */
+
+:root {
+    --petal: #d99b9f;
+    --petal-light: #efd0cf;
+    --leaf: #70866a;
+    --leaf-light: #a9b99f;
+    --cream-soft: #fffdf8;
+}
+
+/* Latar keseluruhan diberi tekstur lembut agar terasa seperti kertas undangan. */
+body {
+    background:
+        radial-gradient(circle at 20% 10%, rgba(255,255,255,.65), transparent 25%),
+        radial-gradient(circle at 80% 90%, rgba(189,119,123,.10), transparent 25%),
+        #dedbd2;
+}
+
+/* Bingkai dekoratif tipis pada setiap section. */
+.section::before {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(184,146,75,.14);
+    border-radius: 26px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.section > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ornamen bunga pojok atas/bawah menggunakan emoji + bentuk CSS.
+   Bisa dihapus jika ingin tampilan lebih minimalis. */
+.section::after {
+    content: "✿  ❀";
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    color: var(--petal);
+    font-size: 2.15rem;
+    line-height: 1;
+    letter-spacing: 5px;
+    opacity: .48;
+    transform: rotate(-18deg);
+    pointer-events: none;
+    text-shadow: 28px 24px 0 rgba(112,134,106,.34);
+    z-index: 0;
+}
+
+.section-sage::after {
+    left: auto;
+    right: 18px;
+    top: auto;
+    bottom: 18px;
+    transform: rotate(165deg);
+}
+
+/* Hero dibuat lebih seperti frame undangan floral klasik. */
+.hero {
+    background:
+        radial-gradient(circle at 7% 12%, rgba(217,155,159,.14), transparent 17%),
+        radial-gradient(circle at 93% 86%, rgba(112,134,106,.14), transparent 19%),
+        var(--cream);
+}
+
+.hero-frame {
+    border-radius: 34px;
+    background:
+        linear-gradient(rgba(255,255,255,.88), rgba(255,255,255,.88)),
+        var(--cream-soft);
+    border: 1px solid rgba(184,146,75,.28);
+    box-shadow: 0 18px 50px rgba(58,55,45,.12);
+}
+
+/* Empat sudut hero memiliki bunga dekoratif. */
+.hero-frame::before,
+.hero-frame::after {
+    content: "✿";
+    font-family: Georgia, serif;
+    color: var(--petal);
+    font-size: 4.8rem;
+    opacity: .62;
+    text-shadow:
+        22px 10px 0 var(--leaf-light),
+        8px 28px 0 var(--petal-light);
+}
+
+.hero-frame::before {
+    left: 14px;
+    top: 8px;
+    transform: rotate(-18deg);
+}
+
+.hero-frame::after {
+    right: 14px;
+    bottom: 8px;
+    transform: rotate(162deg);
+}
+
+/* Tambahan kelopak bunga mengelilingi nama pasangan. */
+.hero-frame h1 {
+    position: relative;
+    letter-spacing: -.025em;
+    text-shadow: 0 2px 0 rgba(255,255,255,.9);
+}
+
+.hero-frame h1::before,
+.hero-frame h1::after {
+    content: "❀";
+    position: absolute;
+    top: 50%;
+    color: var(--petal);
+    font-size: 1.4rem;
+    opacity: .65;
+}
+
+.hero-frame h1::before {
+    left: -22px;
+    transform: translateY(-50%) rotate(-25deg);
+}
+
+.hero-frame h1::after {
+    right: -22px;
+    transform: translateY(-50%) rotate(25deg);
+}
+
+/* Opening card dibuat lebih romantis. */
+.opening-screen {
+    background:
+        radial-gradient(circle at 0 0, rgba(217,155,159,.18), transparent 24%),
+        radial-gradient(circle at 100% 100%, rgba(112,134,106,.18), transparent 25%),
+        var(--cream);
+}
+
+.opening-card {
+    border-radius: 30px;
+    border: 1px solid rgba(184,146,75,.34);
+    box-shadow: 0 24px 70px rgba(58,55,45,.16);
+    overflow: hidden;
+}
+
+.opening-card::before,
+.opening-card::after {
+    content: "✿ ❀ ✿";
+    position: absolute;
+    color: var(--petal);
+    letter-spacing: 12px;
+    font-size: 1.55rem;
+    opacity: .58;
+}
+
+.opening-card::before {
+    left: 18px;
+    top: 14px;
+    transform: rotate(-12deg);
+}
+
+.opening-card::after {
+    right: 18px;
+    bottom: 14px;
+    transform: rotate(168deg);
+}
+
+.opening-floral {
+    width: 330px;
+    height: 330px;
+    border-width: 10px;
+    opacity: .13;
+    box-shadow:
+        30px 20px 0 -12px rgba(217,155,159,.35),
+        55px 55px 0 -20px rgba(112,134,106,.35);
+}
+
+/* Heading setiap section mendapat motif bunga kecil di bawahnya. */
+.section-heading h2::after {
+    content: "❀  ·  ❀";
+    display: block;
+    margin-top: 9px;
+    color: var(--petal);
+    font-size: 1.1rem;
+    letter-spacing: 5px;
+}
+
+/* Kartu mempelai dibuat lebih elegan dan floral. */
+.person-card {
+    position: relative;
+    padding: 12px 8px 18px;
+    border-radius: 28px;
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.person-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 34px rgba(58,55,45,.08);
+}
+
+.person-card::before {
+    content: "❀";
+    position: absolute;
+    top: -4px;
+    right: 8px;
+    color: var(--petal);
+    font-size: 1.6rem;
+    opacity: .6;
+}
+
+.portrait {
+    border-width: 7px;
+    outline: 1px solid rgba(184,146,75,.65);
+    box-shadow: 0 10px 28px rgba(58,55,45,.12);
+}
+
+/* Countdown dibuat seperti label vintage. */
+.count-box {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(184,146,75,.24);
+    background: rgba(255,255,255,.82);
+    box-shadow: 0 8px 22px rgba(58,55,45,.07);
+}
+
+.count-box::after {
+    content: "✿";
+    position: absolute;
+    right: 5px;
+    bottom: -9px;
+    color: var(--petal);
+    font-size: 1.8rem;
+    opacity: .2;
+}
+
+/* Acara dengan garis botanical di sisi kiri. */
+.event-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(255,255,255,.94), rgba(255,250,246,.88));
+}
+
+.event-card::after {
+    content: "❀";
+    position: absolute;
+    right: 16px;
+    top: 10px;
+    color: var(--petal);
+    opacity: .28;
+    font-size: 2rem;
+}
+
+/* Kalender lebih menyerupai kartu stationery. */
+.calendar-card {
+    position: relative;
+    border: 1px solid rgba(184,146,75,.22);
+    border-radius: 24px;
+    background:
+        linear-gradient(rgba(255,255,255,.94), rgba(255,255,255,.94)),
+        var(--cream-soft);
+}
+
+.calendar-card::before {
+    content: "❀";
+    position: absolute;
+    left: 12px;
+    top: 8px;
+    color: var(--petal);
+    font-size: 1.4rem;
+    opacity: .45;
+}
+
+/* Galeri diberi frame putih seperti foto polaroid. */
+.gallery-item {
+    border-radius: 18px;
+    border: 5px solid rgba(255,255,255,.86);
+    box-shadow: 0 10px 25px rgba(58,55,45,.09);
+}
+
+.gallery-item:nth-child(odd) {
+    transform: rotate(-.6deg);
+}
+
+.gallery-item:nth-child(even) {
+    transform: rotate(.6deg);
+}
+
+.gallery-item:hover {
+    transform: rotate(0) translateY(-4px);
+}
+
+/* Form RSVP dibuat lembut dan lebih premium. */
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form textarea {
+    border-radius: 15px;
+    border-color: rgba(184,146,75,.20);
+    background: rgba(255,255,255,.88);
+}
+
+/* Tombol dengan sedikit aksen bunga. */
+.btn {
+    position: relative;
+    overflow: hidden;
+    border-radius: 999px;
+    box-shadow: 0 8px 20px rgba(58,55,45,.09);
+}
+
+.btn::after {
+    content: "✿";
+    position: absolute;
+    right: 13px;
+    opacity: .32;
+    font-size: .8rem;
+}
+
+/* Dekorasi botanical yang mengambang di seluruh halaman. */
+body::before,
+body::after {
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
+    color: var(--leaf);
+    opacity: .11;
+    font-size: 7rem;
+    line-height: 1;
+}
+
+body::before {
+    content: "❧";
+    left: -16px;
+    top: 22%;
+    transform: rotate(-35deg);
+}
+
+body::after {
+    content: "❧";
+    right: -16px;
+    bottom: 18%;
+    transform: rotate(145deg);
+}
+
+/* HP: dekorasi diperkecil agar tidak mengganggu teks. */
+@media (max-width: 700px) {
+    .section::before {
+        inset: 8px;
+        border-radius: 20px;
+    }
+
+    .section::after {
+        font-size: 1.55rem;
+        opacity: .38;
+    }
+
+    .hero-frame {
+        border-radius: 25px;
+    }
+
+    .hero-frame h1::before,
+    .hero-frame h1::after {
+        display: none;
+    }
+
+    .opening-card {
+        border-radius: 24px;
+    }
+
+    .person-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}
