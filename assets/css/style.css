@@ -993,85 +993,63 @@ main {
 }
 
 /* ============================================================
-   MEMPELAI
+   COUPLE / MEMPELAI
    ============================================================ */
 
 .couple-grid {
-    max-width: 760px;
+    width: min(100%, 1000px);
     margin: 0 auto;
+
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     gap: 26px;
     align-items: center;
-}
 
-.person-card {
-    text-align: center;
-}
-
-.portrait {
-    width: min(100%, 230px);
-    aspect-ratio: 1 / .72;
-    margin: 0 auto 16px;
-    border-radius: 50%;
-    border: 5px solid rgba(255,255,255,.9);
-    outline: 1px solid rgba(184,146,75,.55);
-    display: grid;
-    place-items: center;
-    box-shadow: var(--shadow);
-    position: relative;
-}
-
-.portrait::before,
-.portrait::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-}
-
-.portrait::before {
-    width: 65px;
-    height: 65px;
-    top: 20%;
-    background: rgba(255,255,255,.45);
-}
-
-.portrait::after {
-    width: 150px;
-    height: 85px;
-    bottom: -15px;
-    background: rgba(255,255,255,.35);
-}
-
-.portrait-man {
-    background: linear-gradient(135deg, #789080, #3e5646);
-}
-
-.portrait-woman {
-    background: linear-gradient(135deg, #c9948e, #8f6863);
-}
-
-.portrait span {
-    position: relative;
-    z-index: 2;
-    font-family: var(--display);
-    font-size: 2rem;
-    color: rgba(255,255,255,.92);
-}
-
-.person-card h3 {
-    font-size: 1.35rem;
-}
-
-.person-card p {
-    color: var(--muted);
-    font-size: .72rem;
 }
 
 .couple-symbol {
-    color: var(--rose);
-    font-family: var(--serif);
-    font-size: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: var(--display);
+    font-size: 3rem;
+    font-weight: 500;
+
+    color: var(--sage-dark);
+
+    min-width: 50px;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    .couple-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+
+        width: 100%;
+    }
+
+    .couple-symbol {
+        width: 100%;
+        min-width: 0;
+
+        height: 35px;
+
+        font-size: 2.2rem;
+
+        margin: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
 }
 
 /* ============================================================
