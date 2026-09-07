@@ -565,7 +565,7 @@ h3 {
 .opening-flower .p4 {
 
     transform: rotate(216deg);
-    
+
 }
 
 
@@ -1264,6 +1264,190 @@ h3 {
     background: #7f4e53;
 }
 
+/* ============================================================
+   EVENT — DETAIL & GOOGLE MAPS
+   ============================================================ */
+
+/* Judul AKAD NIKAH / RESEPSI */
+.event-type {
+    margin-bottom: 8px;
+
+    color: var(--rose-dark);
+
+    font-family: var(--serif);
+    font-size: clamp(1.7rem, 4vw, 2.35rem);
+    font-style: normal;
+    font-weight: 600;
+
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+/* Nama tempat */
+.event-title {
+    color: var(--ink);
+
+    font-family: var(--serif);
+    font-size: clamp(1.45rem, 3vw, 1.9rem);
+
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+/* Hari dan tanggal */
+.event-date {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--sage-deep);
+
+    font-family: var(--serif);
+    font-size: 1.25rem;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+/* Waktu */
+.event-time {
+    margin-bottom: 14px;
+
+    color: var(--ink);
+
+    font-size: .75rem;
+    font-weight: 600;
+}
+
+/* Nama tempat */
+.event-venue {
+    margin-bottom: 5px;
+
+    color: var(--rose-dark);
+
+    font-family: var(--serif);
+    font-size: 1.15rem;
+
+    font-weight: 600;
+}
+
+/* Alamat */
+.event-address {
+    max-width: 650px;
+
+    margin-bottom: 18px;
+
+    color: var(--muted);
+
+    font-size: .7rem;
+    line-height: 1.8;
+}
+
+
+/* ============================================================
+   GOOGLE MAPS
+   ============================================================ */
+
+.map-wrapper {
+    width: 100%;
+    height: 300px;
+
+    margin-top: 20px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(184,146,75,.25);
+
+    border-radius: 18px;
+
+    background: var(--paper-dark);
+
+    box-shadow:
+        0 8px 22px rgba(58,55,45,.08);
+}
+
+.map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    border: 0;
+}
+
+
+/* ============================================================
+   EVENT ACTIONS
+   ============================================================ */
+
+.event-actions {
+    margin-top: 18px;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+}
+
+.event-actions .btn {
+    min-height: 42px;
+}
+
+
+/* ============================================================
+   MOBILE EVENT
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    .event-card {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+
+        padding: 22px 18px;
+    }
+
+    .event-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .event-type {
+        font-size: 1.8rem;
+    }
+
+    .event-title {
+        font-size: 1.45rem;
+    }
+
+    .event-date {
+        font-size: 1.1rem;
+    }
+
+    .event-venue {
+        font-size: 1.05rem;
+    }
+
+    .map-wrapper {
+        height: 250px;
+
+        margin-top: 18px;
+
+        border-radius: 15px;
+    }
+
+    .event-actions {
+        flex-direction: column;
+    }
+
+    .event-actions .btn {
+        width: 100%;
+    }
+
+}
 
 /* ============================================================
    12. GALLERY
