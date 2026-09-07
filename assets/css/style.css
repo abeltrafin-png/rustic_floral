@@ -1,35 +1,50 @@
 /* ============================================================
    WEDDING INVITATION — RUSTIC FLORAL
-   File: style.css
+   style.css
+   ============================================================ */
 
-   Semua warna utama dikumpulkan di :root agar mudah diubah.
+
+/* ============================================================
+   1. VARIABLES
    ============================================================ */
 
 :root {
+
     --cream: #f7f3ec;
     --paper: #fbf9f4;
     --paper-dark: #eee8dc;
+
     --sage: #e8eee7;
     --sage-dark: #60765a;
     --sage-deep: #4d6449;
-    --blush: #f5e5e4;
+
     --rose: #bd777b;
     --rose-dark: #955c61;
+    --petal: #d99b9f;
+    --petal-light: #efd0cf;
+
     --gold: #b8924b;
+
     --ink: #30332d;
     --muted: #77766d;
+
     --white: #ffffff;
 
     --serif: "Cormorant Garamond", Georgia, serif;
-    --display: "Playfair Display", Georgia, serif;
     --sans: "Montserrat", Arial, sans-serif;
 
-    --shadow: 0 10px 30px rgba(58, 55, 45, 0.10);
-    --radius: 18px;
+    --shadow:
+        0 12px 35px rgba(58, 55, 45, .09);
+
+    --radius: 20px;
     --max-width: 960px;
 }
 
-/* Reset dasar agar ukuran elemen lebih mudah dikontrol. */
+
+/* ============================================================
+   2. RESET
+   ============================================================ */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -45,12 +60,17 @@ body {
     min-height: 100vh;
 
     background:
-        linear-gradient(
-            135deg,
-            #eef0e9 0%,
-            #f8f6ef 45%,
-            #e9ebe4 100%
-        );
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(255,255,255,.65),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 80% 90%,
+            rgba(189,119,123,.08),
+            transparent 25%
+        ),
+        #dedbd2;
 
     color: var(--ink);
     font-family: var(--sans);
@@ -64,9 +84,9 @@ body.locked {
     overflow: hidden;
 }
 
-/* Saat undangan belum dibuka, halaman belakang tidak bisa di-scroll. */
-body.locked {
-    overflow: hidden;
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
 button,
@@ -87,186 +107,238 @@ a {
 }
 
 /* ============================================================
-   UTILITIES / KOMPONEN UMUM
+   3. GENERAL SECTION
    ============================================================ */
 
 .section {
     position: relative;
+
     width: 100%;
+
     padding: 82px 24px;
+
     overflow: hidden;
 }
 
 .section-paper {
     background:
-        radial-gradient(circle at 15% 10%, rgba(189, 119, 123, .05) 0 2px, transparent 3px),
-        radial-gradient(circle at 80% 85%, rgba(96, 118, 90, .06) 0 2px, transparent 3px),
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(189,119,123,.05) 0 2px,
+            transparent 3px
+        ),
+        radial-gradient(
+            circle at 80% 85%,
+            rgba(96,118,90,.06) 0 2px,
+            transparent 3px
+        ),
         var(--paper);
 }
 
 .section-sage {
     background:
-        radial-gradient(circle at 10% 20%, rgba(96, 118, 90, .10), transparent 22%),
-        radial-gradient(circle at 90% 80%, rgba(189, 119, 123, .06), transparent 22%),
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(96,118,90,.10),
+            transparent 22%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(189,119,123,.06),
+            transparent 22%
+        ),
         var(--sage);
 }
 
-.section-blush {
-    background:
-        radial-gradient(circle at 15% 15%, rgba(255,255,255,.50), transparent 20%),
-        radial-gradient(circle at 85% 80%, rgba(189,119,123,.07), transparent 22%),
-        var(--blush);
+
+/* Bingkai setiap section */
+
+.section::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 14px;
+
+    border:
+        1px solid rgba(184,146,75,.14);
+
+    border-radius: 26px;
+
+    pointer-events: none;
 }
 
-.section-heading {
-    text-align: center;
-    max-width: 760px;
-    margin: 0 auto 32px;
+.section > * {
+    position: relative;
+    z-index: 1;
 }
 
-.eyebrow {
-    color: var(--gold);
-    font-family: var(--serif);
-    font-size: .95rem;
-    font-style: italic;
-    letter-spacing: .05em;
-    margin-bottom: 2px;
-}
+
+/* ============================================================
+   4. TYPOGRAPHY
+   ============================================================ */
 
 h1,
 h2,
 h3 {
-    font-family: var(--display);
+    font-family: var(--serif);
     line-height: 1.12;
 }
 
+.eyebrow {
+    margin-bottom: 4px;
+
+    color: var(--gold);
+
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.section-heading {
+    max-width: 760px;
+
+    margin:
+        0 auto 32px;
+
+    text-align: center;
+}
+
 .section-heading h2 {
-    font-size: clamp(2rem, 5vw, 3.1rem);
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 5vw, 3.3rem);
     font-weight: 600;
 }
 
 .ornament {
     display: block;
-    color: var(--rose);
-    font-size: 1.1rem;
+
     margin-top: 8px;
+
+    color: var(--rose);
+
+    font-family: var(--serif);
+    font-size: 1.15rem;
 }
 
 .section-intro {
     max-width: 620px;
-    margin: 0 auto 36px;
-    text-align: center;
+
+    margin:
+        0 auto 38px;
+
     color: var(--muted);
-    font-size: .88rem;
+
+    font-size: .82rem;
+
+    text-align: center;
 }
 
+
+/* ============================================================
+   5. BUTTON
+   ============================================================ */
+
 .btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding:
+        11px 18px;
+
     border: 0;
     border-radius: 999px;
-    padding: 13px 22px;
+
     cursor: pointer;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-    font-size: .78rem;
+
+    font-family: var(--sans);
+    font-size: .68rem;
     font-weight: 600;
-    letter-spacing: .01em;
-    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
 }
 
 .btn:hover {
     transform: translateY(-2px);
 }
 
-.btn:active {
-    transform: translateY(0);
-}
-
 .btn-primary {
     background: var(--sage-deep);
-    color: white;
-    box-shadow: 0 8px 18px rgba(77, 100, 73, .22);
+    color: var(--white);
+
+    box-shadow:
+        0 8px 20px rgba(77,100,73,.18);
 }
 
 .btn-primary:hover {
     background: #42583f;
 }
 
-/* ============================================================
-   FIX OPENING UNDANGAN
-   ============================================================ */
-
-/* Hilangkan dekorasi daun/ranting lama yang menutupi halaman */
-body::before,
-body::after {
-    content: none !important;
-    display: none !important;
-}
-
 
 /* ============================================================
-   OPENING SCREEN
+   6. OPENING SCREEN
    ============================================================ */
 
 .opening-screen {
-    position: fixed !important;
+    position: fixed;
 
-    inset: 0 !important;
+    inset: 0;
 
-    z-index: 99999 !important;
+    z-index: 9999;
 
-    width: 100vw;
-    height: 100vh;
+    display: flex;
 
-    display: flex !important;
-
-    align-items: center !important;
-    justify-content: center !important;
+    align-items: center;
+    justify-content: center;
 
     padding: 20px;
 
-    overflow: hidden;
-
     background:
-        #f7f3ec;
+        radial-gradient(
+            circle at 0 0,
+            rgba(217,155,159,.18),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 100% 100%,
+            rgba(112,134,106,.18),
+            transparent 25%
+        ),
+        var(--cream);
 
     opacity: 1;
 
     visibility: visible;
-
-    pointer-events: auto;
 
     transition:
         opacity .6s ease,
         visibility .6s ease;
 }
 
-
-/* Setelah tombol Buka Undangan ditekan */
 .opening-screen.is-hidden {
-
-    opacity: 0 !important;
-
-    visibility: hidden !important;
-
-    pointer-events: none !important;
-
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 
 /* ============================================================
-   KARTU UNDANGAN
+   OPENING CARD
    ============================================================ */
 
 .opening-card {
+    position: relative;
 
-    position: relative !important;
+    z-index: 10;
 
-    z-index: 20 !important;
-
-    width: min(500px, 88vw);
-
+    width: min(500px, 90vw);
     min-height: 540px;
 
     padding: 55px 35px;
@@ -282,64 +354,82 @@ body::after {
     text-align: center;
 
     background:
-        rgba(255, 253, 249, .97);
+        rgba(255,253,249,.97);
 
     border:
-        1px solid rgba(184, 146, 75, .28);
+        1px solid rgba(184,146,75,.34);
 
-    border-radius: 4px;
+    border-radius: 30px;
 
     box-shadow:
-        0 25px 70px rgba(60, 55, 45, .14);
+        0 25px 70px rgba(60,55,45,.16);
 
+    overflow: hidden;
+}
+
+.opening-card::before,
+.opening-card::after {
+    content: "✿ ❀ ✿";
+
+    position: absolute;
+
+    color: var(--petal);
+
+    letter-spacing: 12px;
+
+    font-size: 1.5rem;
+
+    opacity: .58;
+}
+
+.opening-card::before {
+    left: 18px;
+    top: 14px;
+
+    transform: rotate(-12deg);
+}
+
+.opening-card::after {
+    right: 18px;
+    bottom: 14px;
+
+    transform: rotate(168deg);
 }
 
 
 /* ============================================================
-   TEKS OPENING
+   OPENING TEXT
    ============================================================ */
 
 .opening-label {
 
     margin-bottom: 18px;
 
-    font-family:
-        "Montserrat",
-        sans-serif;
+    color: #888077;
 
+    font-family: var(--sans);
     font-size: 9px;
-
+    
     font-weight: 600;
 
     letter-spacing: 3px;
 
     text-transform: uppercase;
-
-    color: #888077;
 }
 
 
 .small-flower {
-
     margin-bottom: 8px;
 
     font-size: 30px;
 
-    color: #d99197;
-
-    line-height: 1;
-
+    font-size: 30px;
 }
 
-
 .opening-card h1 {
+    color: #657760;
 
-    margin: 0;
-
-    font-family:
-        "Cormorant Garamond",
-        Georgia,
-        serif;
+    font-family: var(--serif);
 
     font-size:
         clamp(4rem, 11vw, 6.5rem);
@@ -347,237 +437,118 @@ body::after {
     font-weight: 500;
 
     line-height: .9;
-
-    color: #657760;
-
 }
-
 
 .opening-card h1 span {
-
-    color: #d99197;
+    color: var(--petal);
 
     font-style: italic;
-
 }
 
-
 .opening-subtitle {
-
     margin-top: 20px;
-
-    font-family:
-        "Cormorant Garamond",
-        Georgia,
-        serif;
-
-    font-size: 23px;
-
-    font-style: italic;
 
     color: #8b8175;
 
+    font-family: var(--serif);
+    font-size: 23px;
+    font-style: italic;
 }
-
-
-/* ============================================================
-   GARIS BUNGA
-   ============================================================ */
-
-.opening-line {
-
-    width: 190px;
-
-    margin: 25px 0 15px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    color: #d99197;
-
-    font-size: 20px;
-
-}
-
-
-.opening-line span {
-
-    width: 70px;
-
-    height: 1px;
-
-    background:
-        rgba(184, 146, 75, .35);
-
-}
-
-
-/* ============================================================
-   TANGGAL
-   ============================================================ */
 
 .opening-date {
-
     margin: 5px 0 15px;
-
-    font-size: 10px;
-
-    font-weight: 600;
-
-    letter-spacing: 2.5px;
 
     color: #657760;
 
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 2.5px;
 }
 
-
 .opening-note {
-
     width: min(360px, 100%);
 
-    margin: 0 auto 28px;
+    margin:
+        0 auto 28px;
+
+    color: #8b8175;
 
     font-size: 11px;
 
     line-height: 1.9;
-
-    color: #8b8175;
-
 }
 
 
 /* ============================================================
-   BUTTON
+   OPENING BUTTON
    ============================================================ */
 
 .opening-card .btn {
-
-    position: relative;
-
-    z-index: 30;
-
-    display: inline-flex;
-
-    align-items: center;
-
-    justify-content: center;
-
     min-width: 175px;
 
-    padding: 13px 25px;
-
-    border: none;
-
-    border-radius: 999px;
-
-    background: #657760;
-
-    color: white;
+    padding:
+        13px 25px;
 
     font-size: 10px;
 
-    font-weight: 600;
-
     letter-spacing: 1.2px;
-
-    cursor: pointer;
-
-    pointer-events: auto;
-
-    box-shadow:
-        0 8px 20px rgba(80, 90, 75, .18);
-
-    transition:
-        transform .25s ease,
-        background .25s ease;
-}
-
-
-.opening-card .btn:hover {
-
-    background: #53644f;
-
-    transform:
-        translateY(-2px);
-
 }
 
 
 /* ============================================================
-   BUNGA DEKORASI
-   CUMA BUNGA — TANPA DAUN
+   FLOWER DECORATION
    ============================================================ */
 
 .opening-flower {
-
     position: absolute;
 
-    z-index: 5;
-
     width: 160px;
-
     height: 160px;
 
+    z-index: 2;
+
     pointer-events: none;
-
 }
-
 
 .flower-left {
-
     top: -25px;
-
     left: -20px;
-
 }
 
-
 .flower-right {
-
     right: -25px;
-
     bottom: -25px;
 
     transform: rotate(20deg);
-
 }
 
-
-/* Kelopak */
-
 .opening-flower .petal {
-
     position: absolute;
 
     width: 48px;
-
     height: 80px;
 
     left: 56px;
-
     top: 40px;
 
     border-radius:
         50% 50% 45% 45%;
 
     background:
-        rgba(217, 145, 151, .55);
+        rgba(217,145,151,.55);
 
     transform-origin:
         50% 40px;
 
 }
 
-
 .opening-flower .p1 {
 
-    transform: rotate(0deg);
+    transform: rotate(0);
 
 }
-
 
 .opening-flower .p2 {
 
@@ -585,40 +556,30 @@ body::after {
 
 }
 
-
 .opening-flower .p3 {
 
     transform: rotate(144deg);
 
 }
 
-
 .opening-flower .p4 {
 
     transform: rotate(216deg);
-
+    
 }
 
 
 .opening-flower .p5 {
-
     transform: rotate(288deg);
-
 }
 
-
-/* Tengah bunga */
-
 .flower-center {
-
     position: absolute;
 
     width: 30px;
-
     height: 30px;
 
     left: 65px;
-
     top: 65px;
 
     border-radius: 50%;
@@ -626,158 +587,52 @@ body::after {
     background: #b98254;
 
     opacity: .75;
-
 }
 
 
 /* ============================================================
-   AGAR ISI UNDANGAN DI BELAKANG TETAP NORMAL
-   ============================================================ */
-
-main {
-
-    position: relative;
-
-    z-index: 1;
-
-}
-
-
-.site-header {
-
-    z-index: 1000 !important;
-
-}
-
-
-/* ============================================================
-   MOBILE
-   ============================================================ */
-
-@media (max-width: 600px) {
-
-    .opening-screen {
-
-        padding: 15px;
-
-    }
-
-
-    .opening-card {
-
-        width: 88vw;
-
-        min-height: 500px;
-
-        padding:
-            45px 22px;
-
-    }
-
-
-    .opening-card h1 {
-
-        font-size: 4rem;
-
-    }
-
-
-    .opening-subtitle {
-
-        font-size: 20px;
-
-    }
-
-
-    .opening-note {
-
-        font-size: 10px;
-
-        max-width: 290px;
-
-    }
-
-
-    .opening-flower {
-
-        width: 115px;
-
-        height: 115px;
-
-    }
-
-
-    .flower-left {
-
-        top: -25px;
-
-        left: -30px;
-
-    }
-
-
-    .flower-right {
-
-        right: -30px;
-
-        bottom: -25px;
-
-    }
-
-
-    .opening-flower .petal {
-
-        width: 35px;
-
-        height: 58px;
-
-        left: 40px;
-
-        top: 30px;
-
-        transform-origin:
-            50% 29px;
-
-    }
-
-
-    .flower-center {
-
-        width: 23px;
-
-        height: 23px;
-
-        left: 46px;
-
-        top: 46px;
-
-    }
-
-}
-
-/* ============================================================
-   HEADER / NAV
+   7. NAVBAR
    ============================================================ */
 
 .site-header {
     position: fixed;
+
     top: 0;
     left: 50%;
-    z-index: 100;
-    width: min(100% - 24px, var(--max-width));
-    transform: translateX(-50%);
+
+    z-index: 1000;
+
+    width:
+        min(calc(100% - 24px), var(--max-width));
+
     margin-top: 12px;
-    padding: 10px 14px;
+
+    padding:
+        10px 14px;
+
     display: flex;
+
     align-items: center;
     justify-content: space-between;
-    border: 1px solid rgba(255,255,255,.5);
+
+    transform: translateX(-50%);
+
+    border:
+        1px solid rgba(255,255,255,.5);
+
     border-radius: 999px;
-    background: rgba(251,249,244,.82);
+
+    background:
+        rgba(251,249,244,.86);
+
     backdrop-filter: blur(12px);
-    box-shadow: 0 8px 24px rgba(40,40,30,.07);
+
+    box-shadow:
+        0 8px 24px rgba(40,40,30,.07);
+
     opacity: 0;
     pointer-events: none;
+
     transition: opacity .3s ease;
 }
 
@@ -788,17 +643,11 @@ main {
 
 .brand {
     display: flex;
+
     align-items: center;
+
     gap: 9px;
 
-    width: auto;
-    height: auto;
-
-    padding: 4px 10px 4px 4px;
-
-    border-radius: 999px;
-
-    background: transparent;
     color: var(--sage-deep);
 
     font-family: var(--serif);
@@ -810,36 +659,32 @@ main {
     height: 38px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    flex-shrink: 0;
-
     border-radius: 50%;
+
     background: var(--sage-deep);
-    color: white;
+    color: var(--white);
 
     font-family: var(--serif);
     font-size: 20px;
-    font-weight: 700;
 }
 
 .brand > span:last-child {
-    display: block;
-
-    font-family: var(--serif);
     font-size: 16px;
-    color: var(--sage-deep);
-
-    white-space: nowrap;
 }
 
 .nav-links {
     display: flex;
+
     gap: 18px;
-    font-size: .7rem;
-    font-weight: 600;
+
     color: var(--sage-deep);
+
+    font-size: .68rem;
+    font-weight: 600;
 }
 
 .nav-links a:hover {
@@ -848,212 +693,300 @@ main {
 
 .menu-toggle {
     display: none;
+
     border: 0;
+
     background: transparent;
+
     color: var(--sage-deep);
+
     font-size: 1.3rem;
+
     cursor: pointer;
 }
 
+
 /* ============================================================
-   HERO
+   8. HERO
    ============================================================ */
 
 .hero {
     min-height: 100svh;
+
     display: grid;
+
     place-items: center;
-    padding-top: 100px;
+
+    padding:
+        110px 24px 70px;
+
+    background:
+        radial-gradient(
+            circle at 7% 12%,
+            rgba(217,155,159,.14),
+            transparent 17%
+        ),
+        radial-gradient(
+            circle at 93% 86%,
+            rgba(112,134,106,.14),
+            transparent 19%
+        ),
+        var(--cream);
 }
 
 .hero-inner {
     width: min(100%, 800px);
+
     text-align: center;
-}
-
-.hero-frame {
-    position: relative;
-    max-width: 680px;
-    margin: 14px auto 20px;
-    padding: clamp(50px, 9vw, 100px) 20px;
-    background: rgba(255,255,255,.75);
-    border: 1px solid rgba(96,118,90,.12);
-    box-shadow: var(--shadow);
-}
-
-.hero-frame::before,
-.hero-frame::after {
-    content: "❧";
-    position: absolute;
-    color: var(--sage-dark);
-    font-size: 4rem;
-    opacity: .4;
-}
-
-.hero-frame::before {
-    left: 15px;
-    top: 8px;
-    transform: rotate(-45deg);
-}
-
-.hero-frame::after {
-    right: 15px;
-    bottom: 8px;
-    transform: rotate(135deg);
-}
-
-.mini-floral {
-    color: var(--rose);
-    letter-spacing: 9px;
-    margin-bottom: 6px;
-}
-
-.hero-frame h1 {
-    font-size: clamp(4rem, 12vw, 8.5rem);
-    font-weight: 500;
-}
-
-.hero-inner h1 {
-    margin: 10px 0 5px;
-
-    font-family: var(--display);
-    font-size: clamp(3rem, 10vw, 5.5rem);
-    font-weight: 600;
-    line-height: 1;
-
-    color: var(--ink);
-}
-
-.hero-inner h1 span {
-    color: var(--rose);
-    font-style: italic;
 }
 
 .hero-flower {
     margin: 10px 0;
 
     color: var(--rose);
+
     font-size: 1.4rem;
 }
 
-.hero .eyebrow {
-    margin-bottom: 5px;
+.hero-inner h1 {
+    margin:
+        10px 0 5px;
+
+    color: var(--ink);
+
+    font-family: var(--serif);
+
+    font-size:
+        clamp(3.5rem, 10vw, 6.5rem);
+
+    font-weight: 600;
+
+    line-height: 1;
 }
 
-.hero .script-text {
-    margin-top: 8px;
+.hero-inner h1 span {
+    color: var(--rose);
+
+    font-style: italic;
 }
 
 .script-text {
-    font-family: var(--serif);
+    margin-top: 8px;
+
     color: var(--rose-dark);
-    font-size: 1.2rem;
+
+    font-family: var(--serif);
+    font-size: 1.35rem;
     font-style: italic;
 }
 
 .floral-line {
-    margin-top: 10px;
+    width: 210px;
+
+    margin:
+        14px auto;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
     color: var(--gold);
-    font-size: 1.4rem;
+}
+
+.floral-line span {
+    flex: 1;
+
+    height: 1px;
+
+    background:
+        rgba(184,146,75,.35);
 }
 
 .date-pill {
     display: inline-block;
-    padding: 9px 17px;
-    border-bottom: 1px solid rgba(184,146,75,.5);
-    border-top: 1px solid rgba(184,146,75,.5);
+
+    padding:
+        9px 17px;
+
+    border-top:
+        1px solid rgba(184,146,75,.5);
+
+    border-bottom:
+        1px solid rgba(184,146,75,.5);
+
+    font-size: .68rem;
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
 }
 
 .hero-location {
     margin-top: 8px;
+
     color: var(--muted);
+
     font-size: .75rem;
 }
 
-/* Hiasan abstrak yang terinspirasi daun/floral. */
-.leaf-decoration {
-    position: absolute;
-    color: var(--sage-dark);
-    font-size: 13rem;
-    line-height: 1;
-    opacity: .08;
-    pointer-events: none;
-}
-
-.leaf-left {
-    left: -70px;
-    top: 15%;
-    transform: rotate(-25deg);
-}
-
-.leaf-right {
-    right: -70px;
-    bottom: 8%;
-    transform: rotate(145deg);
-}
 
 /* ============================================================
-   COUPLE / MEMPELAI
+   9. COUPLE
    ============================================================ */
 
 .couple-grid {
-    width: min(100%, 1000px);
+    width: min(100%, 900px);
+
     margin: 0 auto;
 
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 26px;
-    align-items: center;
 
+    grid-template-columns:
+        1fr auto 1fr;
+
+    gap: 28px;
+
+    align-items: center;
 }
 
 .couple-symbol {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-family: var(--display);
-    font-size: 3rem;
-    font-weight: 500;
-
     color: var(--sage-dark);
 
-    min-width: 50px;
+    font-family: var(--serif);
+    font-size: 3.5rem;
+}
+
+.person-card {
+    position: relative;
+
+    padding:
+        12px 8px 20px;
+
+    text-align: center;
+
+    border-radius: 28px;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.person-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 34px rgba(58,55,45,.07);
+}
+
+.person-card::before {
+    content: "❀";
+
+    position: absolute;
+
+    top: -5px;
+    right: 5px;
+
+    color: var(--petal);
+
+    font-size: 1.5rem;
+
+    opacity: .6;
+}
+
+.portrait {
+    width: 190px;
+    height: 230px;
+
+    margin:
+        0 auto 22px;
+
+    overflow: hidden;
+
+    border:
+        5px solid rgba(255,255,255,.9);
+
+    border-radius:
+        100px 100px 18px 18px;
+
+    outline:
+        1px solid rgba(184,146,75,.55);
+
+    box-shadow:
+        0 10px 28px rgba(58,55,45,.12);
+
+    background: #e9eee5;
+}
+
+.portrait img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+.person-card h3 {
+    margin-bottom: 8px;
+
+    color: var(--ink);
+
+    font-family: var(--serif);
+    font-size: 1.45rem;
+}
+
+.person-family {
+    margin-bottom: 18px;
+
+    color: var(--muted);
+
+    font-size: .68rem;
+
+    line-height: 1.8;
+}
+
+.social-links {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+}
+
+.social {
+    padding:
+        7px 11px;
+
+    border:
+        1px solid rgba(110,125,100,.18);
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,.75);
+
+    color: #5e665b;
+
+    font-size: .58rem;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.social:hover {
+    transform: translateY(-2px);
+
+    background: white;
+
+    box-shadow:
+        0 5px 15px rgba(70,80,65,.12);
 }
 
 
 /* ============================================================
-   MOBILE
-   ============================================================ */
-
-@media (max-width: 700px) {
-
-    .couple-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
-
-        width: 100%;
-    }
-
-    .couple-symbol {
-        width: 100%;
-        min-width: 0;
-
-        height: 35px;
-
-        font-size: 2.2rem;
-
-        margin: 0;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-}
-
-/* ============================================================
-   COUNTDOWN
+   10. COUNTDOWN
    ============================================================ */
 
 .countdown-section {
@@ -1063,318 +996,582 @@ main {
 
 .countdown-grid {
     width: min(100%, 720px);
+
     margin: 0 auto;
+
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
     gap: 12px;
 }
 
 .count-box {
-    min-height: 90px;
-    padding: 14px 8px;
-    display: grid;
-    place-items: center;
-    align-content: center;
-    background: rgba(255,255,255,.9);
-    border-radius: 12px;
-    box-shadow: 0 5px 18px rgba(58,55,45,.07);
-}
-
-.count-box strong {
-    font-family: var(--display);
-    font-size: clamp(1.8rem, 5vw, 2.8rem);
-    color: var(--sage-deep);
-}
-
-.count-box span {
-    font-size: .55rem;
-    letter-spacing: .14em;
-    color: var(--muted);
-}
-
-/* ============================================================
-   ACARA
-   ============================================================ */
-
-.event-list {
-    width: min(100%, 760px);
-    margin: 0 auto;
-    display: grid;
-    gap: 18px;
-}
-
-.event-card {
-    display: grid;
-    grid-template-columns: 50px 1fr;
-    gap: 14px;
-    padding: 22px;
-    background: rgba(255,255,255,.88);
-    border-radius: var(--radius);
-    box-shadow: 0 6px 18px rgba(58,55,45,.07);
-    border: 1px solid rgba(184,146,75,.2);
-}
-
-.event-reception {
-    border-color: rgba(96,118,90,.30);
-}
-
-.event-icon {
-    width: 42px;
-    height: 42px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    background: var(--blush);
-    color: var(--rose-dark);
-    font-size: 1.2rem;
-}
-
-.event-card h3 {
-    font-size: 1.35rem;
-}
-
-.event-divider {
-    height: 1px;
-    margin: 8px 0;
-    background: rgba(184,146,75,.24);
-}
-
-.event-card p {
-    color: var(--muted);
-    font-size: .7rem;
-    margin-top: 4px;
-}
-
-
-/* ============================================================
-   LOKASI ACARA
-   ============================================================ */
-
-.location-grid {
-    width: min(100%, 1000px);
-    margin: 0 auto;
-
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-}
-
-.location-card {
     position: relative;
 
-    padding: 36px 30px;
+    min-height: 95px;
 
-    background: var(--paper);
+    padding: 14px 8px;
 
-    border: 1px solid rgba(96, 118, 90, 0.18);
+    display: grid;
 
-    border-radius: 18px;
+    place-items: center;
+    align-content: center;
 
-    text-align: center;
+    overflow: hidden;
 
-    box-shadow: 0 12px 30px rgba(50, 60, 45, 0.08);
+    border:
+        1px solid rgba(184,146,75,.24);
 
-    overflow: hidden;}
+    border-radius: 14px;
 
-.location-card::before {
-    content: "❀";
+    background:
+        rgba(255,255,255,.82);
+
+    box-shadow:
+        0 8px 22px rgba(58,55,45,.07);
+}
+
+.count-box::after {
+    content: "✿";
 
     position: absolute;
 
-    top: 10px;
-    left: 16px;
-
-    font-size: 1.3rem;
+    right: 5px;
+    bottom: -9px;
 
     color: var(--petal);
 
-    opacity: .45;
+    font-size: 1.8rem;
+
+    opacity: .2;
 }
 
-.location-card::after {
+.count-box strong {
+    color: var(--sage-deep);
+
+    font-family: var(--serif);
+
+    font-size:
+        clamp(2rem, 5vw, 2.8rem);
+}
+
+.count-box span {
+    color: var(--muted);
+
+    font-size: .52rem;
+
+    letter-spacing: .14em;
+}
+
+
+/* ============================================================
+   11. EVENT
+   ============================================================ */
+
+.event-list {
+    width: min(100%, 780px);
+
+    margin: 0 auto;
+
+    display: grid;
+
+    gap: 20px;
+}
+
+.event-card {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        48px 1fr;
+
+    gap: 16px;
+
+    padding: 25px;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(184,146,75,.20);
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.96),
+            rgba(255,250,246,.90)
+        );
+
+    box-shadow:
+        0 8px 24px rgba(58,55,45,.07);
+}
+
+.event-card::after {
     content: "❀";
 
     position: absolute;
 
     right: 16px;
-    bottom: 10px;
-
-    font-size: 1.3rem;
+    top: 10px;
 
     color: var(--petal);
 
-    opacity: .45;
-}
-
-.location-icon {
     font-size: 2rem;
 
-    color: var(--sage-dark);
-
-    margin-bottom: 10px;
+    opacity: .25;
 }
 
-.location-card .eyebrow {
-    margin-bottom: 6px;
+.event-icon {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: var(--blush, #f5e5e4);
+
+    color: var(--rose-dark);
+
+    font-size: 1.2rem;
 }
 
-.location-card h3 {
-    margin: 0;
+.event-type {
+    margin-bottom: 3px;
 
-    font-family: var(--display);
+    color: var(--gold);
 
-    font-size: 1.7rem;
+    font-family: var(--serif);
 
+    font-size: .95rem;
+
+    font-style: italic;
+}
+
+.event-content h3 {
     color: var(--ink);
-}
 
-.location-card .event-divider {
-    width: 70px;
+    font-size: 1.55rem;
 
-    height: 1px;
-
-    margin: 16px auto;
-
-    background: var(--sage-dark);
-
-    opacity: .4;
-}
-
-.location-date,
-.location-time {
-    margin: 6px 0;
-
-    font-family: var(--body);
-
-    color: var(--ink);
-}
-
-.location-date {
     font-weight: 600;
 }
 
-.location-time {
-    font-size: .95rem;
+.event-divider {
+    width: 100%;
 
-    color: var(--muted);
+    height: 1px;
+
+    margin:
+        10px 0 13px;
+
+    background:
+        rgba(184,146,75,.24);
 }
 
-.location-card .map-address {
-    margin: 20px auto;
 
-    max-width: 330px;
+/* Tanggal */
 
-    line-height: 1.7;
+.event-date {
+    display: inline-block;
+
+    margin-bottom: 5px;
+
+    color: var(--sage-deep);
+
+    font-family: var(--serif);
+
+    font-size: 1.12rem;
+
+    font-weight: 600;
+
+    text-decoration: underline;
+
+    text-decoration-color:
+        rgba(96,118,90,.35);
+
+    text-underline-offset: 4px;
+
+    transition:
+        color .2s ease;
+}
+
+.event-date:hover {
+    color: var(--rose-dark);
+}
+
+
+/* Jam */
+
+.event-time {
+    margin-bottom: 8px;
+
+    color: var(--ink);
+
+    font-size: .72rem;
+
+    font-weight: 600;
+}
+
+
+/* Alamat */
+
+.event-address {
+    max-width: 600px;
 
     color: var(--muted);
 
-    font-size: .9rem;
+    font-size: .68rem;
+
+    line-height: 1.8;
 }
 
-.location-card .map-button {
-    display: inline-flex;
 
-    align-items: center;
-    justify-content: center;
+/* Tombol event */
 
-    margin-top: 8px;
+.event-actions {
+    margin-top: 18px;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+}
+
+.btn-calendar {
+    background: var(--sage-dark);
+
+    color: white;
+}
+
+.btn-map {
+    background: var(--rose-dark);
+
+    color: white;
+}
+
+.btn-calendar:hover {
+    background: var(--sage-deep);
+}
+
+.btn-map:hover {
+    background: #7f4e53;
 }
 
 
 /* ============================================================
-   RESPONSIVE
-   ============================================================ */
-
-@media (max-width: 700px) {
-
-    .location-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .location-card {
-        padding: 30px 22px;
-    }
-
-    .location-card h3 {
-        font-size: 1.5rem;
-    }
-
-}
-
-/* ============================================================
-   GALERI
+   12. GALLERY
    ============================================================ */
 
 .gallery-grid {
     width: min(100%, 760px);
+
     margin: 0 auto;
+
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 9px;
 }
 
 .gallery-item {
     position: relative;
-    display: block;
+
     width: 100%;
+
     aspect-ratio: 1.45 / 1;
-    border: 0;
-    border-radius: 13px;
-    overflow: hidden;
+
     padding: 0;
+
+    overflow: hidden;
+
+    border:
+        5px solid rgba(255,255,255,.88);
+
+    border-radius: 17px;
+
     background: var(--paper-dark);
+
     cursor: pointer;
+
+    box-shadow:
+        0 10px 25px rgba(58,55,45,.09);
+
+    transition:
+        transform .3s ease;
 }
 
 .gallery-item img {
     width: 100%;
     height: 100%;
+
     display: block;
+
     object-fit: cover;
-    transition: transform .5s ease, filter .5s ease;
+
+    transition:
+        transform .5s ease,
+        filter .5s ease;
+}
+
+.gallery-item:hover {
+    transform:
+        translateY(-4px)
+        rotate(0);
 }
 
 .gallery-item:hover img {
     transform: scale(1.05);
+
     filter: brightness(.9);
+}
+
+.gallery-item:nth-child(odd) {
+    transform: rotate(-.6deg);
+}
+
+.gallery-item:nth-child(even) {
+    transform: rotate(.6deg);
 }
 
 .gallery-wide {
     grid-column: 1 / -1;
+
     aspect-ratio: 2.3 / 1;
 }
 
 .play-icon {
     position: absolute;
-    inset: 50% auto auto 50%;
-    transform: translate(-50%, -50%);
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
     width: 52px;
     height: 52px;
+
     display: grid;
+
     place-items: center;
+
     border-radius: 50%;
-    background: rgba(255,255,255,.82);
+
+    background:
+        rgba(255,255,255,.82);
+
     color: var(--rose-dark);
+
     font-size: 1.4rem;
-    box-shadow: 0 5px 20px rgba(0,0,0,.12);
 }
 
+
 /* ============================================================
-   RSVP
+   13. WEDDING QUOTE / DOA
+   ============================================================ */
+
+.wedding-quote-section {
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(217,155,159,.08),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 85% 85%,
+            rgba(112,134,106,.08),
+            transparent 25%
+        ),
+        var(--cream);
+}
+
+.wedding-quote-card {
+    position: relative;
+
+    width: min(100%, 720px);
+
+    margin: 0 auto;
+
+    padding:
+        55px 50px;
+
+    text-align: center;
+
+    border:
+        1px solid rgba(184,146,75,.25);
+
+    border-radius: 28px;
+
+    background:
+        rgba(255,255,255,.72);
+
+    box-shadow:
+        0 15px 40px rgba(58,55,45,.08);
+}
+
+.quote-mark {
+    margin-bottom: 10px;
+
+    color: var(--petal);
+
+    font-family: Georgia, serif;
+
+    font-size: 4rem;
+
+    line-height: .7;
+}
+
+
+/* Doa bahasa Indonesia */
+
+.quote-indonesia {
+    max-width: 590px;
+
+    margin: 0 auto;
+
+    color: #68675f;
+
+    font-family: var(--serif);
+
+    font-size:
+        clamp(1.15rem, 2.5vw, 1.45rem);
+
+    line-height: 1.8;
+}
+
+
+/* Garis */
+
+.quote-divider {
+    width: 190px;
+
+    margin:
+        25px auto;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--rose);
+
+    font-size: 1rem;
+}
+
+.quote-divider span {
+    flex: 1;
+
+    height: 1px;
+
+    background:
+        rgba(184,146,75,.35);
+}
+
+
+/* Bahasa Arab */
+
+.quote-arabic {
+    margin-bottom: 20px;
+
+    color: var(--sage-deep);
+
+    font-family:
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(1.35rem, 3vw, 1.75rem);
+
+    line-height: 2;
+
+    direction: rtl;
+}
+
+
+/* Terjemahan */
+
+.quote-translation {
+    max-width: 570px;
+
+    margin: 0 auto 18px;
+
+    color: var(--muted);
+
+    font-family: var(--serif);
+
+    font-size: 1.05rem;
+
+    line-height: 1.8;
+}
+
+
+/* Sumber */
+
+.quote-source {
+    color: var(--gold);
+
+    font-family: var(--serif);
+
+    font-size: .9rem;
+
+    font-style: italic;
+}
+
+.quote-decoration {
+    position: absolute;
+
+    color: var(--petal);
+
+    font-size: 2rem;
+
+    opacity: .5;
+}
+
+.quote-decoration-top {
+    top: 30px;
+    left: 8%;
+}
+
+.quote-decoration-bottom {
+    right: 8%;
+    bottom: 30px;
+}
+
+
+/* ============================================================
+   14. RSVP
    ============================================================ */
 
 .rsvp-form {
     width: min(100%, 600px);
+
     margin: 0 auto;
+
     display: grid;
-    gap: 12px;
+
+    gap: 13px;
 }
 
 .rsvp-form label span {
     display: block;
-    margin: 0 0 5px 5px;
+
+    margin:
+        0 0 6px 5px;
+
     color: var(--sage-deep);
+
     font-size: .65rem;
     font-weight: 600;
 }
@@ -1383,14 +1580,29 @@ main {
 .rsvp-form select,
 .rsvp-form textarea {
     width: 100%;
-    border: 1px solid rgba(96,118,90,.12);
-    border-radius: 10px;
-    background: rgba(255,255,255,.94);
-    color: var(--ink);
-    padding: 12px 14px;
+
+    padding:
+        12px 14px;
+
+    border:
+        1px solid rgba(184,146,75,.20);
+
+    border-radius: 14px;
+
     outline: none;
+
+    background:
+        rgba(255,255,255,.88);
+
+    color: var(--ink);
+
+    font-family: var(--sans);
+
     font-size: .72rem;
-    transition: border-color .2s ease, box-shadow .2s ease;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
 }
 
 .rsvp-form textarea {
@@ -1400,139 +1612,247 @@ main {
 .rsvp-form input:focus,
 .rsvp-form select:focus,
 .rsvp-form textarea:focus {
-    border-color: rgba(96,118,90,.55);
-    box-shadow: 0 0 0 3px rgba(96,118,90,.08);
+    border-color:
+        rgba(96,118,90,.55);
+
+    box-shadow:
+        0 0 0 3px rgba(96,118,90,.08);
+}
+
+.rsvp-form .btn {
+    margin-top: 5px;
 }
 
 .form-status {
     min-height: 22px;
-    text-align: center;
+
     color: var(--sage-deep);
-    font-size: .7rem;
+
+    font-size: .68rem;
+
+    text-align: center;
 }
 
+
 /* ============================================================
-   PENUTUP & FOOTER
+   15. CLOSING
    ============================================================ */
 
 .closing {
-    padding-top: 55px;
-    padding-bottom: 55px;
+    padding:
+        60px 24px;
+
     text-align: center;
 }
 
 .closing-card {
     max-width: 650px;
+
     margin: 0 auto;
-    padding: 32px 22px;
-    background: rgba(255,255,255,.55);
-    border: 1px solid rgba(184,146,75,.18);
+
+    padding:
+        35px 25px;
+
+    border:
+        1px solid rgba(184,146,75,.18);
+
+    background:
+        rgba(255,255,255,.55);
 }
 
-.closing-card > p:first-child {
+.closing-flower {
+    margin-bottom: 12px;
+
+    color: var(--petal);
+
+    font-size: 1.7rem;
+}
+
+.closing-card > p:first-of-type {
     color: var(--muted);
+
     font-family: var(--serif);
+
     font-size: 1.15rem;
+
     font-style: italic;
 }
 
 .closing-small {
     margin-top: 20px;
+
     color: var(--muted);
-    font-size: .7rem;
+
+    font-size: .68rem;
 }
 
 .closing-card h2 {
     margin-top: 3px;
+
     color: var(--rose-dark);
-    font-size: 2.4rem;
+
+    font-family: var(--serif);
+
+    font-size: 2.6rem;
 }
 
+.closing-flowers {
+    margin-top: 12px;
+
+    color: var(--petal);
+
+    font-size: 1rem;
+}
+
+
+/* ============================================================
+   16. FOOTER
+   ============================================================ */
+
 .footer {
-    padding: 25px 20px;
+    padding:
+        25px 20px;
+
     text-align: center;
-    background: var(--sage-deep);
+
+    background:
+        var(--sage-deep);
+
     color: white;
 }
 
 .footer p {
     font-family: var(--serif);
+
     font-size: 1.1rem;
 }
 
 .footer small {
     opacity: .7;
+
     font-size: .6rem;
 }
 
+
 /* ============================================================
-   LIGHTBOX GALERI
+   17. LIGHTBOX
    ============================================================ */
 
 .lightbox {
     position: fixed;
+
     inset: 0;
-    z-index: 500;
+
+    z-index: 5000;
+
     display: grid;
+
     place-items: center;
+
     padding: 25px;
-    background: rgba(30,32,27,.90);
+
+    background:
+        rgba(30,32,27,.90);
+
     opacity: 0;
+
     visibility: hidden;
+
     pointer-events: none;
-    transition: opacity .3s ease, visibility .3s ease;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
 }
 
 .lightbox.is-open {
     opacity: 1;
+
     visibility: visible;
+
     pointer-events: auto;
 }
 
 .lightbox img {
     max-width: min(100%, 1000px);
+
     max-height: 88vh;
+
     object-fit: contain;
+
     border-radius: 10px;
-    box-shadow: 0 20px 60px rgba(0,0,0,.3);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.3);
 }
 
 .lightbox-close {
     position: absolute;
+
     top: 18px;
     right: 22px;
+
     border: 0;
+
     background: transparent;
+
     color: white;
+
     font-size: 2.5rem;
+
     cursor: pointer;
 }
 
+
 /* ============================================================
-   RESPONSIVE — TABLET & HP
+   18. MOBILE
    ============================================================ */
 
 @media (max-width: 700px) {
+
     .section {
-        padding: 64px 18px;
+        padding:
+            65px 18px;
     }
 
+    .section::before {
+        inset: 8px;
+
+        border-radius: 20px;
+    }
+
+
+    /* NAV */
+
     .site-header {
-        width: calc(100% - 20px);
+        width:
+            calc(100% - 20px);
     }
 
     .nav-links {
         position: absolute;
+
         left: 0;
         right: 0;
-        top: calc(100% + 8px);
-        padding: 14px;
+
+        top:
+            calc(100% + 8px);
+
+        padding: 15px;
+
         display: none;
+
         flex-direction: column;
+
         align-items: center;
+
         gap: 12px;
+
         border-radius: 18px;
-        background: rgba(251,249,244,.96);
+
+        background:
+            rgba(251,249,244,.97);
+
         box-shadow: var(--shadow);
     }
 
@@ -1544,26 +1864,49 @@ main {
         display: block;
     }
 
+
+    /* HERO */
+
     .hero {
         min-height: 90svh;
     }
 
-    .hero-frame {
-        padding: 55px 12px;
-    }
+
+    /* COUPLE */
 
     .couple-grid {
         grid-template-columns: 1fr;
-        gap: 14px;
+
+        gap: 15px;
     }
 
     .couple-symbol {
         order: 2;
+
+        display: flex;
+
+        justify-content: center;
+
+        font-size: 2.5rem;
     }
 
     .person-card:nth-child(3) {
         order: 3;
     }
+
+    .person-card:hover {
+        transform: none;
+
+        box-shadow: none;
+    }
+
+    .portrait {
+        width: 150px;
+        height: 185px;
+    }
+
+
+    /* COUNTDOWN */
 
     .countdown-grid {
         gap: 7px;
@@ -1573,53 +1916,157 @@ main {
         min-height: 78px;
     }
 
+    .count-box strong {
+        font-size: 1.65rem;
+    }
+
+    .count-box span {
+        font-size: .46rem;
+    }
+
+
+    /* EVENT */
+
     .event-card {
-        grid-template-columns: 38px 1fr;
-        padding: 17px;
+        grid-template-columns:
+            38px 1fr;
+
+        gap: 12px;
+
+        padding: 18px;
     }
 
     .event-icon {
         width: 36px;
         height: 36px;
+
+        font-size: 1rem;
     }
+
+    .event-content h3 {
+        font-size: 1.35rem;
+    }
+
+    .event-date {
+        font-size: 1rem;
+    }
+
+    .event-actions {
+        flex-direction: column;
+    }
+
+    .event-actions .btn {
+        width: 100%;
+    }
+
+
+    /* GALLERY */
 
     .gallery-grid {
         gap: 6px;
     }
 
     .gallery-item {
-        border-radius: 9px;
+        border-radius: 10px;
     }
+
+
+    /* DOA */
+
+    .wedding-quote-card {
+        padding:
+            45px 22px;
+    }
+
+    .quote-indonesia {
+        font-size: 1.1rem;
+
+        line-height: 1.8;
+    }
+
+    .quote-arabic {
+        font-size: 1.3rem;
+
+        line-height: 2;
+    }
+
+    .quote-translation {
+        font-size: .98rem;
+    }
+
+    .quote-decoration {
+        font-size: 1.4rem;
+    }
+
 }
 
+
+/* ============================================================
+   19. SMALL MOBILE
+   ============================================================ */
+
 @media (max-width: 420px) {
+
     .opening-card {
-        padding-left: 18px;
-        padding-right: 18px;
+        width: 90vw;
+
+        min-height: 500px;
+
+        padding:
+            45px 18px;
     }
 
     .opening-card h1 {
-        font-size: 3.4rem;
+        font-size: 3.5rem;
     }
 
-    .count-box strong {
-        font-size: 1.55rem;
+    .opening-subtitle {
+        font-size: 20px;
     }
 
-    .count-box span {
-        font-size: .47rem;
+    .opening-note {
+        max-width: 290px;
+
+        font-size: 10px;
     }
 
-    .calendar-card {
-        padding: 18px 10px;
+    .opening-flower {
+        width: 115px;
+        height: 115px;
     }
+
+    .opening-flower .petal {
+        width: 35px;
+        height: 58px;
+
+        left: 40px;
+        top: 30px;
+
+        transform-origin:
+            50% 29px;
+    }
+
+    .flower-center {
+        width: 23px;
+        height: 23px;
+
+        left: 46px;
+        top: 46px;
+    }
+
+    .brand > span:last-child {
+        display: none;
+    }
+
 }
 
+
 /* ============================================================
-   ACCESSIBILITY
+   20. ACCESSIBILITY
    ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
+
     html {
         scroll-behavior: auto;
     }
@@ -1632,899 +2079,3 @@ main {
     }
 }
 
-/* ============================================================
-   FLORAL ENHANCEMENT — tambahan ornamen bunga yang lebih ramai
-   Tidak membutuhkan gambar tambahan; bunga dibuat dengan CSS.
-   ============================================================ */
-
-:root {
-    --petal: #d99b9f;
-    --petal-light: #efd0cf;
-    --leaf: #70866a;
-    --leaf-light: #a9b99f;
-    --cream-soft: #fffdf8;
-}
-
-/* Latar keseluruhan diberi tekstur lembut agar terasa seperti kertas undangan. */
-body {
-    background:
-        radial-gradient(circle at 20% 10%, rgba(255,255,255,.65), transparent 25%),
-        radial-gradient(circle at 80% 90%, rgba(189,119,123,.10), transparent 25%),
-        #dedbd2;
-}
-
-/* Bingkai dekoratif tipis pada setiap section. */
-.section::before {
-    content: "";
-    position: absolute;
-    inset: 14px;
-    border: 1px solid rgba(184,146,75,.14);
-    border-radius: 26px;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.section > * {
-    position: relative;
-    z-index: 1;
-}
-
-/* Ornamen bunga pojok atas/bawah menggunakan emoji + bentuk CSS.
-   Bisa dihapus jika ingin tampilan lebih minimalis. */
-.section::after {
-    content: "✿  ❀";
-    position: absolute;
-    left: 18px;
-    top: 18px;
-    color: var(--petal);
-    font-size: 2.15rem;
-    line-height: 1;
-    letter-spacing: 5px;
-    opacity: .48;
-    transform: rotate(-18deg);
-    pointer-events: none;
-    text-shadow: 28px 24px 0 rgba(112,134,106,.34);
-    z-index: 0;
-}
-
-.section-sage::after {
-    left: auto;
-    right: 18px;
-    top: auto;
-    bottom: 18px;
-    transform: rotate(165deg);
-}
-
-/* Hero dibuat lebih seperti frame undangan floral klasik. */
-.hero {
-    background:
-        radial-gradient(circle at 7% 12%, rgba(217,155,159,.14), transparent 17%),
-        radial-gradient(circle at 93% 86%, rgba(112,134,106,.14), transparent 19%),
-        var(--cream);
-}
-
-.hero-frame {
-    border-radius: 34px;
-    background:
-        linear-gradient(rgba(255,255,255,.88), rgba(255,255,255,.88)),
-        var(--cream-soft);
-    border: 1px solid rgba(184,146,75,.28);
-    box-shadow: 0 18px 50px rgba(58,55,45,.12);
-}
-
-/* Empat sudut hero memiliki bunga dekoratif. */
-.hero-frame::before,
-.hero-frame::after {
-    content: "✿";
-    font-family: Georgia, serif;
-    color: var(--petal);
-    font-size: 4.8rem;
-    opacity: .62;
-    text-shadow:
-        22px 10px 0 var(--leaf-light),
-        8px 28px 0 var(--petal-light);
-}
-
-.hero-frame::before {
-    left: 14px;
-    top: 8px;
-    transform: rotate(-18deg);
-}
-
-.hero-frame::after {
-    right: 14px;
-    bottom: 8px;
-    transform: rotate(162deg);
-}
-
-/* Tambahan kelopak bunga mengelilingi nama pasangan. */
-.hero-frame h1 {
-    position: relative;
-    letter-spacing: -.025em;
-    text-shadow: 0 2px 0 rgba(255,255,255,.9);
-}
-
-.hero-frame h1::before,
-.hero-frame h1::after {
-    content: "❀";
-    position: absolute;
-    top: 50%;
-    color: var(--petal);
-    font-size: 1.4rem;
-    opacity: .65;
-}
-
-.hero-frame h1::before {
-    left: -22px;
-    transform: translateY(-50%) rotate(-25deg);
-}
-
-.hero-frame h1::after {
-    right: -22px;
-    transform: translateY(-50%) rotate(25deg);
-}
-
-/* Opening card dibuat lebih romantis. */
-.opening-screen {
-    background:
-        radial-gradient(circle at 0 0, rgba(217,155,159,.18), transparent 24%),
-        radial-gradient(circle at 100% 100%, rgba(112,134,106,.18), transparent 25%),
-        var(--cream);
-}
-
-.opening-card {
-    border-radius: 30px;
-    border: 1px solid rgba(184,146,75,.34);
-    box-shadow: 0 24px 70px rgba(58,55,45,.16);
-    overflow: hidden;
-}
-
-.opening-card::before,
-.opening-card::after {
-    content: "✿ ❀ ✿";
-    position: absolute;
-    color: var(--petal);
-    letter-spacing: 12px;
-    font-size: 1.55rem;
-    opacity: .58;
-}
-
-.opening-card::before {
-    left: 18px;
-    top: 14px;
-    transform: rotate(-12deg);
-}
-
-.opening-card::after {
-    right: 18px;
-    bottom: 14px;
-    transform: rotate(168deg);
-}
-
-.opening-floral {
-    width: 330px;
-    height: 330px;
-    border-width: 10px;
-    opacity: .13;
-    box-shadow:
-        30px 20px 0 -12px rgba(217,155,159,.35),
-        55px 55px 0 -20px rgba(112,134,106,.35);
-}
-
-/* Heading setiap section mendapat motif bunga kecil di bawahnya. */
-.section-heading h2::after {
-    content: "❀  ·  ❀";
-    display: block;
-    margin-top: 9px;
-    color: var(--petal);
-    font-size: 1.1rem;
-    letter-spacing: 5px;
-}
-
-/* Kartu mempelai dibuat lebih elegan dan floral. */
-.person-card {
-    position: relative;
-    padding: 12px 8px 18px;
-    border-radius: 28px;
-    transition: transform .35s ease, box-shadow .35s ease;
-}
-
-.person-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 34px rgba(58,55,45,.08);
-}
-
-.person-card::before {
-    content: "❀";
-    position: absolute;
-    top: -4px;
-    right: 8px;
-    color: var(--petal);
-    font-size: 1.6rem;
-    opacity: .6;
-}
-
-.portrait {
-    border-width: 7px;
-    outline: 1px solid rgba(184,146,75,.65);
-    box-shadow: 0 10px 28px rgba(58,55,45,.12);
-}
-
-/* Countdown dibuat seperti label vintage. */
-.count-box {
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(184,146,75,.24);
-    background: rgba(255,255,255,.82);
-    box-shadow: 0 8px 22px rgba(58,55,45,.07);
-}
-
-.count-box::after {
-    content: "✿";
-    position: absolute;
-    right: 5px;
-    bottom: -9px;
-    color: var(--petal);
-    font-size: 1.8rem;
-    opacity: .2;
-}
-
-/* Acara dengan garis botanical di sisi kiri. */
-.event-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 24px;
-    background: linear-gradient(135deg, rgba(255,255,255,.94), rgba(255,250,246,.88));
-}
-
-.event-card::after {
-    content: "❀";
-    position: absolute;
-    right: 16px;
-    top: 10px;
-    color: var(--petal);
-    opacity: .28;
-    font-size: 2rem;
-}
-
-/* Kalender lebih menyerupai kartu stationery. */
-.calendar-card {
-    position: relative;
-    border: 1px solid rgba(184,146,75,.22);
-    border-radius: 24px;
-    background:
-        linear-gradient(rgba(255,255,255,.94), rgba(255,255,255,.94)),
-        var(--cream-soft);
-}
-
-.calendar-card::before {
-    content: "❀";
-    position: absolute;
-    left: 12px;
-    top: 8px;
-    color: var(--petal);
-    font-size: 1.4rem;
-    opacity: .45;
-}
-
-/* Galeri diberi frame putih seperti foto polaroid. */
-.gallery-item {
-    border-radius: 18px;
-    border: 5px solid rgba(255,255,255,.86);
-    box-shadow: 0 10px 25px rgba(58,55,45,.09);
-}
-
-.gallery-item:nth-child(odd) {
-    transform: rotate(-.6deg);
-}
-
-.gallery-item:nth-child(even) {
-    transform: rotate(.6deg);
-}
-
-.gallery-item:hover {
-    transform: rotate(0) translateY(-4px);
-}
-
-/* Form RSVP dibuat lembut dan lebih premium. */
-.rsvp-form input,
-.rsvp-form select,
-.rsvp-form textarea {
-    border-radius: 15px;
-    border-color: rgba(184,146,75,.20);
-    background: rgba(255,255,255,.88);
-}
-
-/* Tombol dengan sedikit aksen bunga. */
-.btn {
-    position: relative;
-    overflow: hidden;
-    border-radius: 999px;
-    box-shadow: 0 8px 20px rgba(58,55,45,.09);
-}
-
-.btn::after {
-    content: "✿";
-    position: absolute;
-    right: 13px;
-    opacity: .32;
-    font-size: .8rem;
-}
-
-/* Dekorasi botanical yang mengambang di seluruh halaman. */
-body::before,
-body::after {
-    position: fixed;
-    z-index: 0;
-    pointer-events: none;
-    color: var(--leaf);
-    opacity: .11;
-    font-size: 7rem;
-    line-height: 1;
-}
-
-body::before {
-    content: "❧";
-    left: -16px;
-    top: 22%;
-    transform: rotate(-35deg);
-}
-
-body::after {
-    content: "❧";
-    right: -16px;
-    bottom: 18%;
-    transform: rotate(145deg);
-}
-
-/* HP: dekorasi diperkecil agar tidak mengganggu teks. */
-@media (max-width: 700px) {
-    .section::before {
-        inset: 8px;
-        border-radius: 20px;
-    }
-
-    .section::after {
-        font-size: 1.55rem;
-        opacity: .38;
-    }
-
-    .hero-frame {
-        border-radius: 25px;
-    }
-
-    .hero-frame h1::before,
-    .hero-frame h1::after {
-        display: none;
-    }
-
-    .opening-card {
-        border-radius: 24px;
-    }
-
-    .person-card:hover {
-        transform: none;
-        box-shadow: none;
-    }
-}
-
-
-body {
-    margin: 0;
-    background:
-        linear-gradient(
-            135deg,
-            #eef0e9 0%,
-            #f8f6ef 45%,
-            #e9ebe4 100%
-        );
-
-    min-height: 100vh;
-}
-
-
-/* ============================================================
-   KERTAS UTAMA
-   Memberikan efek kertas putih/cream seperti pada desain
-   ============================================================ */
-
-body::before {
-    content: "";
-
-    position: fixed;
-
-    width: min(94vw, 760px);
-    height: 96vh;
-
-    top: 2vh;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    z-index: 0;
-
-    background:
-        /* tekstur halus */
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(120, 120, 100, 0.035) 0 1px,
-            transparent 2px
-        ),
-        radial-gradient(
-            circle at 80% 70%,
-            rgba(120, 120, 100, 0.03) 0 1px,
-            transparent 2px
-        ),
-        #f7f5ed;
-
-    background-size:
-        35px 35px,
-        45px 45px,
-        auto;
-
-    box-shadow:
-        0 15px 40px rgba(60, 60, 50, 0.18);
-
-    pointer-events: none;
-}
-
-
-/* ============================================================
-   AGAR SEMUA ISI WEBSITE BERADA DI ATAS KERTAS
-   ============================================================ */
-
-body > * {
-    position: relative;
-    z-index: 1;
-}
-
-
-/* ============================================================
-   DAUN POJOK KIRI ATAS
-   Dibuat menggunakan CSS
-   ============================================================ */
-
-body::after {
-    content: "";
-
-    position: fixed;
-
-    width: 180px;
-    height: 260px;
-
-    top: 20px;
-    left: calc(50% - min(47vw, 380px));
-
-    z-index: 2;
-
-    pointer-events: none;
-
-    opacity: 0.75;
-
-    background:
-
-        /* daun besar 1 */
-        radial-gradient(
-            ellipse 35px 70px at 35% 18%,
-            rgba(108, 143, 104, 0.48) 0%,
-            rgba(108, 143, 104, 0.28) 45%,
-            transparent 70%
-        ),
-
-        /* daun besar 2 */
-        radial-gradient(
-            ellipse 30px 60px at 18% 45%,
-            rgba(108, 143, 104, 0.42) 0%,
-            rgba(108, 143, 104, 0.22) 45%,
-            transparent 70%
-        ),
-
-        /* daun 3 */
-        radial-gradient(
-            ellipse 28px 55px at 45% 58%,
-            rgba(119, 150, 112, 0.38) 0%,
-            rgba(119, 150, 112, 0.20) 45%,
-            transparent 70%
-        ),
-
-        /* daun 4 */
-        radial-gradient(
-            ellipse 24px 48px at 10% 75%,
-            rgba(108, 143, 104, 0.38) 0%,
-            transparent 70%
-        );
-
-    transform: rotate(-18deg);
-}
-
-
-/* ============================================================
-   EFEK DAUN KANAN BAWAH
-   ============================================================ */
-
-.invitation::after {
-    content: "";
-
-    position: absolute;
-
-    width: 220px;
-    height: 300px;
-
-    right: -20px;
-    bottom: -20px;
-
-    pointer-events: none;
-
-    opacity: 0.75;
-
-    background:
-
-        radial-gradient(
-            ellipse 35px 70px at 75% 20%,
-            rgba(103, 140, 99, 0.48) 0%,
-            rgba(103, 140, 99, 0.25) 48%,
-            transparent 70%
-        ),
-
-        radial-gradient(
-            ellipse 32px 65px at 55% 40%,
-            rgba(103, 140, 99, 0.45) 0%,
-            rgba(103, 140, 99, 0.22) 48%,
-            transparent 70%
-        ),
-
-        radial-gradient(
-            ellipse 28px 58px at 80% 60%,
-            rgba(103, 140, 99, 0.42) 0%,
-            transparent 70%
-        ),
-
-        radial-gradient(
-            ellipse 26px 50px at 45% 78%,
-            rgba(103, 140, 99, 0.35) 0%,
-            transparent 70%
-        );
-
-    transform: rotate(15deg);
-}
-
-
-/* ============================================================
-   KELOPAK BUNGA
-   Beberapa kelopak pink seperti gambar referensi
-   ============================================================ */
-
-.opening::before {
-    content: "";
-
-    position: absolute;
-
-    width: 100%;
-    height: 100%;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    background:
-
-        /* kelopak kiri */
-        radial-gradient(
-            ellipse 13px 22px at 8% 38%,
-            rgba(202, 130, 136, 0.48) 0%,
-            rgba(202, 130, 136, 0.18) 55%,
-            transparent 70%
-        ),
-
-        /* kelopak kanan */
-        radial-gradient(
-            ellipse 12px 20px at 91% 65%,
-            rgba(202, 130, 136, 0.45) 0%,
-            rgba(202, 130, 136, 0.15) 55%,
-            transparent 70%
-        ),
-
-        /* kelopak bawah */
-        radial-gradient(
-            ellipse 14px 24px at 72% 88%,
-            rgba(202, 130, 136, 0.40) 0%,
-            rgba(202, 130, 136, 0.13) 55%,
-            transparent 70%
-        );
-
-    z-index: 3;
-}
-
-/* ============================================================
-   PROFIL MEMPELAI
-   ============================================================ */
-
-
-/* Container foto */
-.person-card {
-    text-align: center;
-}
-
-
-/* Foto mempelai */
-.person-card .portrait {
-    width: 190px;
-    height: 230px;
-
-    margin: 0 auto 22px;
-
-    border-radius: 100px 100px 18px 18px;
-
-    overflow: hidden;
-
-    border: 5px solid rgba(255, 255, 255, .9);
-
-    box-shadow:
-        0 8px 25px rgba(70, 80, 65, .15);
-
-    background: #e9eee5;
-}
-
-
-/* Gambar */
-.person-card .portrait img {
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    object-fit: cover;
-}
-
-
-/* Nama */
-.person-card h3 {
-    margin: 0 0 8px;
-
-    font-family:
-        "Playfair Display",
-        Georgia,
-        serif;
-
-    font-size: 21px;
-
-    color: #30352f;
-}
-
-
-/* Keterangan keluarga */
-.person-family {
-    margin: 0 auto 18px;
-
-    font-size: 12px;
-
-    line-height: 1.7;
-
-    color: #777b73;
-}
-
-
-/* ============================================================
-   SOCIAL MEDIA
-   ============================================================ */
-
-.social-links {
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    gap: 8px;
-
-    margin-top: 14px;
-}
-
-
-/* Tombol social media */
-.social {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 6px;
-
-    min-width: 92px;
-
-    padding: 8px 12px;
-
-    border-radius: 30px;
-
-    text-decoration: none;
-
-    font-family:
-        "Montserrat",
-        sans-serif;
-
-    font-size: 10px;
-
-    letter-spacing: .3px;
-
-    color: #5e665b;
-
-    background: rgba(255, 255, 255, .75);
-
-    border: 1px solid rgba(110, 125, 100, .18);
-
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        background .25s ease;
-}
-
-
-/* Icon social */
-.social-icon {
-    font-size: 15px;
-
-    line-height: 1;
-
-    color: #75866d;
-}
-
-
-/* Hover */
-.social:hover {
-    transform: translateY(-2px);
-
-    background: #fff;
-
-    box-shadow:
-        0 5px 15px rgba(70, 80, 65, .12);
-}
-
-
-/* Instagram */
-.social.instagram:hover {
-    color: #a76f72;
-}
-
-
-/* TikTok */
-.social.tiktok:hover {
-    color: #4d6250;
-}
-
-
-/* ============================================================
-   FOTO SAAT DI HP
-   ============================================================ */
-
-@media (max-width: 600px) {
-
-    .person-card .portrait {
-        width: 145px;
-        height: 180px;
-
-        border-radius:
-            80px 80px 15px 15px;
-    }
-
-    .person-card h3 {
-        font-size: 18px;
-    }
-
-    .person-family {
-        font-size: 10px;
-    }
-
-    .social {
-        min-width: 82px;
-
-        padding: 7px 9px;
-
-        font-size: 9px;
-    }
-
-}
-
-/* =========================================================
-   EVENT BUTTONS
-   ========================================================= */
-
-.btn-calendar {
-    display: inline-block;
-    margin-top: 18px;
-    padding: 11px 18px;
-
-    background: var(--sage-dark);
-    color: #ffffff;
-
-    border-radius: 6px;
-
-    text-decoration: none;
-
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-
-    letter-spacing: 0.3px;
-
-    transition:
-        transform 0.2s ease,
-        opacity 0.2s ease;
-}
-
-.btn-calendar:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
-}
-
-.event-location-link {
-    color: var(--sage-dark);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-.event-location-link:hover {
-    opacity: 0.7;
-}
-
-/* =========================================================
-   GOOGLE CALENDAR BUTTON
-   ========================================================= */
-
-.calendar-button-wrapper {
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-top: 28px;
-}
-
-.calendar-google-button {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    min-width: 230px;
-
-    text-align: center;
-
-    text-decoration: none;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        opacity 0.25s ease;
-}
-
-.calendar-google-button:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 8px 20px rgba(71, 82, 68, 0.15);
-
-    opacity: 0.92;
-}
-
-.calendar-google-button:active {
-    transform: translateY(0);
-}
-
-
-/* Mobile */
-
-@media (max-width: 600px) {
-
-    .calendar-button-wrapper {
-        margin-top: 24px;
-        padding: 0 20px;
-    }
-
-    .calendar-google-button {
-        width: 100%;
-        max-width: 320px;
-    }
-
-}
