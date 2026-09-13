@@ -2210,32 +2210,25 @@ SMALL MOBILE
 }
 
 /* ============================================================
-   PERBESAR JUDUL SECTION
+   UKURAN JUDUL SECTION & HERO
    ============================================================ */
 
-.section-heading h2 {
+.section-heading h2,
+.hero .eyebrow {
     font-family: var(--serif);
     font-size: clamp(1.4rem, 6vw, 2.2rem);
     font-weight: 600;
     line-height: 1.05;
 }
 
-/* The Wedding Invitation Of */
-.hero .eyebrow {
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-}
-
 /* ============================================================
-   MOBILE — JUDUL LEBIH BESAR
+   MOBILE — UKURAN JUDUL DISAMAKAN
    ============================================================ */
 
 @media (max-width: 700px) {
 
+    .section-heading h2,
     .hero .eyebrow {
-        font-size: 1.4rem;
-    }
-
-    .section-heading h2 {
         font-size: 1.4rem;
         line-height: 1.05;
     }
