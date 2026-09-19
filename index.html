@@ -1,813 +1,271 @@
 <!DOCTYPE html>
-
 <html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Undangan pernikahan Andi & Sari dengan tema rustic floral.">
+    <title>Andi & Sari — Undangan Pernikahan</title>
 
-<meta name="description"
-    content="Undangan pernikahan Andi & Sari dengan tema rustic floral.">
-
-<title>Andi & Sari — Undangan Pernikahan</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@400;500;600&display=swap"
-    rel="stylesheet">
-
-<link rel="stylesheet" href="assets/css/style.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-    
-<!-- OPENING SCREEN -->
 
-<div class="opening-screen" id="openingScreen">
-
-    <div class="opening-flower flower-left" aria-hidden="true">
-        <span class="petal p1"></span>
-        <span class="petal p2"></span>
-        <span class="petal p3"></span>
-        <span class="petal p4"></span>
-        <span class="petal p5"></span>
-        <span class="flower-center"></span>
+    <!-- ORNAMEN FLORAL ANIMATED (BACKGROUND EFFECT) -->
+    <div class="rustic-bg-ornaments" aria-hidden="true">
+        <div class="leaf leaf-1">🌿</div>
+        <div class="leaf leaf-2">🍃</div>
+        <div class="flower flower-1">🌸</div>
+        <div class="flower flower-2">🌺</div>
     </div>
 
-    <div class="opening-flower flower-right" aria-hidden="true">
-        <span class="petal p1"></span>
-        <span class="petal p2"></span>
-        <span class="petal p3"></span>
-        <span class="petal p4"></span>
-        <span class="petal p5"></span>
-        <span class="flower-center"></span>
-    </div>
-
-    <div class="opening-card">
-
-        <p class="opening-label">
-            THE WEDDING INVITATION OF
-        </p>
-
-        <div class="small-flower">✿</div>
-
-        <h1>
-            Andi <span>&amp;</span> Sari
-        </h1>
-
-        <p class="opening-subtitle">
-            are getting married
-        </p>
-
-        <div class="floral-line">
-            <span></span>
-            ❀
-            <span></span>
+    <!-- OPENING SCREEN -->
+    <div class="opening-screen" id="openingScreen">
+        <div class="opening-card">
+            <p class="opening-label">THE WEDDING INVITATION OF</p>
+            <div class="small-flower">✿</div>
+            <h1>Andi <span>&amp;</span> Sari</h1>
+            <p class="opening-subtitle">are getting married</p>
+            <div class="floral-line"><span></span>❀<span></span></div>
+            <p class="opening-date">SABTU, 25 OKTOBER 2025</p>
+            <button type="button" class="btn btn-primary btn-animate" id="openInvitation">♡ &nbsp; Buka Undangan</button>
         </div>
-
-        <p class="opening-date">
-            SABTU, 25 OKTOBER 2025
-        </p>
-
-        <p class="opening-note">
-            Dengan penuh kebahagiaan, kami mengundang
-            Anda untuk hadir dan menjadi bagian dari
-            hari istimewa kami.
-        </p>
-
-        <button
-            type="button"
-            class="btn btn-primary"
-            id="openInvitation">
-            ♡ &nbsp; Buka Undangan
-        </button>
-
     </div>
-</div>
 
+    <!-- DESKTOP NAVBAR -->
+    <header class="site-header" id="siteHeader">
+        <a class="brand" href="#hero">
+            <span class="brand-initial">A&S</span>
+        </a>
+        <nav class="nav-links">
+            <a href="#couple">Mempelai</a>
+            <a href="#events">Acara</a>
+            <a href="#countdown">Countdown</a>
+            <a href="#story">Love Story</a>
+            <a href="#wedding-quote">Doa</a>
+            <a href="#gift">Amplop Digital</a>
+            <a href="#rsvp">RSVP & Ucapan</a>
+        </nav>
+    </header>
 
-<!-- NAVBAR -->
+    <main>
+        <!-- HERO -->
+        <section class="hero section-paper" id="hero">
+            <div class="hero-inner text-center">
+                <p class="eyebrow">The Wedding Invitation Of</p>
+                <h1>Andi <span>&amp;</span> Sari</h1>
+                <p class="script-text">are getting married</p>
+                <div class="floral-line"><span></span>❀<span></span></div>
+                <p class="date-pill">SABTU, 25 OKTOBER 2025</p>
+            </div>
+        </section>
 
-<header class="site-header" id="siteHeader">
+        <!-- 1. MEMPELAI -->
+        <section class="section section-paper" id="couple">
+            <div class="section-heading text-center">
+                <p class="eyebrow">Mempelai</p>
+                <h2>Kami Yang Berbahagia</h2>
+                <span class="ornament">✿</span>
+            </div>
+            <div class="couple-grid">
+                <article class="person-card text-center">
+                    <div class="portrait">
+                        <img src="assets/images/man.png" alt="Foto Andi Prasetyo">
+                    </div>
+                    <h3>Andi Prasetyo, S.T.</h3>
+                    <p class="person-family">Putra dari Bapak H. Ahmad &amp; Ibu Hj. Fatimah</p>
+                </article>
+                <div class="couple-symbol">&amp;</div>
+                <article class="person-card text-center">
+                    <div class="portrait">
+                        <img src="assets/images/woman.png" alt="Foto Sari Wulandari">
+                    </div>
+                    <h3>Sari Wulandari, S.Pd.</h3>
+                    <p class="person-family">Putri dari Bapak H. Budi &amp; Ibu Hj. Rahayu</p>
+                </article>
+            </div>
+        </section>
 
-    <a class="brand" href="#hero">
-        <span class="brand-initial">A&S</span>
-        <span>Mempelai</span>
-    </a>
+        <!-- 2. RANGKAIAN ACARA -->
+        <section class="section section-paper" id="events">
+            <div class="section-heading text-center">
+                <p class="eyebrow">Rangkaian Pernikahan</p>
+                <h2>Acara Utama</h2>
+                <span class="ornament">✿</span>
+            </div>
 
-    <nav class="nav-links" id="navLinks">
-        <a href="#hero">Home</a>
-        <a href="#couple">Mempelai</a>
-        <a href="#countdown">Countdown</a>
-        <a href="#events">Acara</a>
-        <a href="#gallery">Galeri</a>
-        <a href="#wedding-quote">Doa</a>
-        <a href="#rsvp">Ucapan</a>
+            <div class="event-list-centered">
+                <!-- AKAD NIKAH -->
+                <article class="event-card-centered">
+                    <div class="event-icon">🕌</div>
+                    <h3 class="event-type">AKAD NIKAH</h3>
+                    <div class="event-divider"><span></span>❀<span></span></div>
+                    <p class="event-date">Sabtu, 25 Oktober 2025</p>
+                    <p class="event-time">Pukul 08.00 — 10.00 WIB</p>
+                    <p class="event-venue">Masjid Jami' Al-Ikhlas Jatipadang</p>
+                    <div class="event-actions">
+                        <a href="#" class="btn btn-primary btn-animate">🗺️ Petunjuk Lokasi</a>
+                    </div>
+                </article>
+
+                <!-- RESEPSI -->
+                <article class="event-card-centered">
+                    <div class="event-icon">✨</div>
+                    <h3 class="event-type">RESEPSI</h3>
+                    <div class="event-divider"><span></span>❀<span></span></div>
+                    <p class="event-date">Sabtu, 25 Oktober 2025</p>
+                    <p class="event-time">Pukul 14.00 — 16.00 WIB</p>
+                    <p class="event-venue">Gedung Pertemuan PERTAMINA</p>
+                    <div class="event-actions">
+                        <a href="#" class="btn btn-primary btn-animate">🗺️ Petunjuk Lokasi</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 3. COUNTDOWN -->
+        <section class="section section-sage countdown-section" id="countdown">
+            <div class="section-heading text-center">
+                <p class="eyebrow">Menuju Hari Bahagia</p>
+                <h2>Hitung Mundur</h2>
+                <span class="ornament">✿</span>
+            </div>
+            <div class="countdown-grid">
+                <div class="count-box"><strong id="days">000</strong><span>HARI</span></div>
+                <div class="count-box"><strong id="hours">00</strong><span>JAM</span></div>
+                <div class="count-box"><strong id="minutes">00</strong><span>MENIT</span></div>
+                <div class="count-box"><strong id="seconds">00</strong><span>DETIK</span></div>
+            </div>
+        </section>
+
+        <!-- 4. LOVE STORY / JOURNEY -->
+        <section class="section section-paper" id="story">
+            <div class="section-heading text-center">
+                <p class="eyebrow">Kisah Kami</p>
+                <h2>Love Story</h2>
+                <span class="ornament">✿</span>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2021</div>
+                    <div class="timeline-content">
+                        <h3>Pertama Pertemu</h3>
+                        <p>Kami pertama kali bertemu di bangku kuliah saat kegiatan organisasi kampus.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-content">
+                        <h3>Berkomitmen</h3>
+                        <p>Memutuskan untuk melangkah bersama dan saling mendukung impian satu sama lain.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-content">
+                        <h3>Lamaran & Pernikahan</h3>
+                        <p>Mengikat janji suci untuk mengarungi bahtera rumah tangga bersama.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. DOA & HARAPAN -->
+        <section class="section wedding-quote-section" id="wedding-quote">
+            <div class="section-heading text-center">
+                <p class="eyebrow">Doa &amp; Harapan</p>
+                <h2>Sebuah Doa Untuk Kami</h2>
+                <span class="ornament">✿</span>
+            </div>
+            <div class="wedding-quote-card text-center">
+                <p class="quote-arabic">رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا</p>
+                <p class="quote-translation">“Ya Tuhan kami, anugerahkanlah kepada kami pasangan dan keturunan yang menjadi penyejuk hati...”</p>
+                <p class="quote-source">— QS. Al-Furqan: 74 —</p>
+            </div>
+        </section>
+
+        <!-- 6. AMPLOP DIGITAL (HADIAH DIGITAL / BANK / QRIS) -->
+        <section class="section section-sage" id="gift">
+            <div class="section-heading text-center">
+                <p class="eyebrow">Tanda Kasih</p>
+                <h2>Amplop Digital</h2>
+                <span class="ornament">✿</span>
+            </div>
+            <p class="text-center section-intro">Doa restu Anda merupakan hadiah terindah. Namun jika ingin memberi hadiah, Anda dapat menggunakan fitur di bawah ini:</p>
+            
+            <div class="gift-grid">
+                <div class="gift-card text-center">
+                    <h3>Bank BCA</h3>
+                    <p class="account-number" id="bcaNum">1234 5678 90</p>
+                    <p class="account-name">a.n. Andi Prasetyo</p>
+                    <button class="btn btn-secondary btn-animate" onclick="copyToClipboard('bcaNum')">📋 Salin Rekening</button>
+                </div>
+                <div class="gift-card text-center">
+                    <h3>QRIS / E-Wallet</h3>
+                    <div class="qris-box">
+                        <img src="assets/images/qris-placeholder.png" alt="QRIS Code" style="max-width: 150px; margin: 10px 0;">
+                    </div>
+                    <p class="account-name">Scan QRIS All Payment</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. RSVP & KIRIM UCAPAN -->
+        <section class="section section-paper" id="rsvp">
+            <div class="section-heading text-center">
+                <p class="eyebrow">Kehadiran &amp; Doa</p>
+                <h2>RSVP &amp; Kirim Ucapan</h2>
+                <span class="ornament">✿</span>
+            </div>
+            <form class="rsvp-form" id="rsvpForm">
+                <label>
+                    <span>Nama Lengkap</span>
+                    <input type="text" placeholder="Nama Lengkap" required>
+                </label>
+                <label>
+                    <span>Konfirmasi Kehadiran</span>
+                    <select required>
+                        <option value="">Pilih konfirmasi</option>
+                        <option value="Hadir">Hadir</option>
+                        <option value="Tidak Hadir">Tidak Hadir</option>
+                    </select>
+                </label>
+                <label>
+                    <span>Ucapan & Doa</span>
+                    <textarea rows="4" placeholder="Tulis doa &amp; ucapan..." required></textarea>
+                </label>
+                <button class="btn btn-primary btn-animate" type="submit">♡ &nbsp; Kirim Ucapan</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- MOBILE BOTTOM NAVIGATION BAR -->
+    <nav class="mobile-bottom-nav">
+        <a href="#couple" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">Mempelai</span>
+        </a>
+        <a href="#events" class="nav-item">
+            <span class="nav-icon">📅</span>
+            <span class="nav-label">Acara</span>
+        </a>
+        <a href="#story" class="nav-item">
+            <span class="nav-icon">📖</span>
+            <span class="nav-label">Story</span>
+        </a>
+        <a href="#gift" class="nav-item">
+            <span class="nav-icon">🎁</span>
+            <span class="nav-label">Hadiah</span>
+        </a>
+        <a href="#rsvp" class="nav-item">
+            <span class="nav-icon">💬</span>
+            <span class="nav-label">RSVP</span>
+        </a>
     </nav>
 
-    <button
-        class="menu-toggle"
-        id="menuToggle"
-        aria-label="Buka menu"
-        aria-expanded="false">
-        ☰
-    </button>
-
-</header>
-
-
-<main>
-
-    <!-- HERO -->
-
-    <section class="hero section-paper" id="hero">
-
-        <div class="hero-inner">
-
-            <p class="eyebrow">
-                The Wedding Invitation Of
-            </p>
-
-            <div class="hero-flower">✿</div>
-
-            <h1>
-                Andi <span>&amp;</span> Sari
-            </h1>
-
-            <p class="script-text">
-                are getting married
-            </p>
-
-            <div class="floral-line">
-                <span></span>
-                ❀
-                <span></span>
-            </div>
-
-            <p class="date-pill">
-                SABTU, 25 OKTOBER 2025
-            </p>
-
-            <p class="hero-location">
-                Gedung Pertemuan PERTAMINA
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- MEMPELAI -->
-
-    <section class="section section-paper" id="couple">
-
-        <div class="section-heading">
-
-            <p class="eyebrow">
-                Mempelai
-            </p>
-
-            <h2>
-                Kami Yang Berbahagia
-            </h2>
-
-            <span class="ornament">✿</span>
-
-        </div>
-
-        <p class="section-intro">
-            Dengan memohon rahmat dan ridha Allah SWT,
-            kami bermaksud mengundang Bapak/Ibu/Saudara/i
-            untuk menghadiri pernikahan kami.
-        </p>
-
-        <div class="couple-grid">
-
-            <article class="person-card">
-
-                <div class="portrait">
-                    <img
-                        src="assets/images/man.png"
-                        alt="Foto Andi Prasetyo">
-                </div>
-
-                <h3>
-                    Andi Prasetyo, S.T.
-                </h3>
-
-                <p class="person-family">
-                    Putra pertama dari Bapak H. Ahmad
-                    <br>
-                    &amp; Ibu Hj. Fatimah
-                </p>
-
-                <div class="social-links">
-
-                    <a
-                        href="https://www.instagram.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="social">
-                        ◎ Instagram
-                    </a>
-
-                    <a
-                        href="https://www.tiktok.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="social">
-                        ♪ TikTok
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <div class="couple-symbol">
-                &amp;
-            </div>
-
-
-            <article class="person-card">
-
-                <div class="portrait">
-                    <img
-                        src="assets/images/woman.png"
-                        alt="Foto Sari Wulandari">
-                </div>
-
-                <h3>
-                    Sari Wulandari, S.Pd.
-                </h3>
-
-                <p class="person-family">
-                    Putri kedua dari Bapak H. Budi
-                    <br>
-                    &amp; Ibu Hj. Rahayu
-                </p>
-
-                <div class="social-links">
-
-                    <a
-                        href="https://www.instagram.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="social">
-                        ◎ Instagram
-                    </a>
-
-                    <a
-                        href="https://www.tiktok.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="social">
-                        ♪ TikTok
-                    </a>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </section>
-
-
-    <!-- COUNTDOWN -->
-
-    <section class="section section-sage countdown-section" id="countdown">
-
-        <div class="section-heading">
-
-            <p class="eyebrow">
-                Menuju Hari Bahagia
-            </p>
-
-            <h2>
-                Countdown
-            </h2>
-
-            <span class="ornament">✿</span>
-
-        </div>
-
-        <div class="countdown-grid">
-
-            <div class="count-box">
-                <strong id="days">000</strong>
-                <span>HARI</span>
-            </div>
-
-            <div class="count-box">
-                <strong id="hours">00</strong>
-                <span>JAM</span>
-            </div>
-
-            <div class="count-box">
-                <strong id="minutes">00</strong>
-                <span>MENIT</span>
-            </div>
-
-            <div class="count-box">
-                <strong id="seconds">00</strong>
-                <span>DETIK</span>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ACARA -->
-
-    <section class="section section-paper" id="events">
-
-        <div class="section-heading">
-
-            <p class="eyebrow">
-                Rangkaian Pernikahan
-            </p>
-
-            <h2>
-                Acara
-            </h2>
-
-            <span class="ornament">✿</span>
-
-        </div>
-
-
-        <div class="event-list">
-
-            <!-- AKAD NIKAH -->
-
-            <article class="event-card">
-
-                <div class="event-content">
-
-                    <p class="event-type">
-                        AKAD NIKAH
-                    </p>
-
-                    <div class="event-divider"></div>
-
-                    <p class="event-date">
-                        Sabtu, 25 Oktober 2025
-                    </p>
-
-                    <p class="event-time">
-                        Pukul 08.00 — 10.00 WIB
-                    </p>
-
-                    <p class="event-venue">
-                        Masjid Jami' Al-Ikhlas Jatipadang
-                    </p>
-
-                    <p class="event-address">
-                        Jl. Raya Ragunan No. 11A,
-                        RT. 04/RW. 03,
-                        Jati Padang, Pasar Minggu,
-                        Jakarta Selatan 12540
-                    </p>
-
-                    <div class="map-wrapper">
-
-                        <iframe
-                            src="https://www.google.com/maps?q=Masjid%20Jami'%20Al-Ikhlas%20Jatipadang%2C%20Jl.%20Raya%20Ragunan%20No.%2011A%2C%20Jakarta%20Selatan&output=embed"
-                            loading="lazy"
-                            allowfullscreen
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-
-                    </div>
-
-                    <div class="event-actions">
-
-                        <a
-                            href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Akad%20Nikah%20Andi%20%26%20Sari&dates=20251025T010000Z%2F20251025T030000Z&details=Akad%20Nikah%20Andi%20%26%20Sari&location=Masjid%20Jami%27%20Al-Ikhlas%20Jatipadang"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn btn-calendar">
-
-                            📅 Simpan ke Calendar
-
-                        </a>
-
-                        <a
-                            href="https://maps.app.goo.gl/D9EjhXU4hjFv1mSd9"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn btn-map">
-
-                            🗺️ Buka Google Maps
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- RESEPSI -->
-
-            <article class="event-card">
-
-            <div class="event-content">
-
-                <p class="event-type">
-                    RESEPSI
-                </p>
-
-                <div class="event-divider"></div>
-
-                <p class="event-date">
-                    Sabtu, 25 Oktober 2025
-                </p>
-
-                <p class="event-time">
-                    Pukul 14.00 — 16.00 WIB
-                </p>
-
-                <p class="event-venue">
-                    Gedung Pertemuan PERTAMINA
-                </p>
-
-                <p class="event-address">
-                    Jl. Cempaka Putih Tengah XX B No. 20B,
-                    RT. 03/RW. 06,
-                    Cempaka Putih Timur,
-                    Kecamatan Cempaka Putih,
-                    Jakarta Pusat
-                </p>
-
-                <div class="map-wrapper">
-
-                    <iframe
-                        src="https://www.google.com/maps?q=Gedung%20Pertemuan%20Pertamina%2C%20Jl.%20Cempaka%20Putih%20Tengah%20XX%20B%20No.%2020B%2C%20Jakarta%20Pusat&output=embed"
-                        loading="lazy"
-                        allowfullscreen
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-
-                </div>
-
-                <div class="event-actions">
-
-                    <a
-                        href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Resepsi%20Pernikahan%20Andi%20%26%20Sari&dates=20251025T070000Z%2F20251025T090000Z&details=Resepsi%20Pernikahan%20Andi%20%26%20Sari&location=Gedung%20Pertemuan%20Pertamina"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="btn btn-calendar">
-
-                        📅 Simpan ke Calendar
-
-                    </a>
-
-                    <a
-                        href="https://maps.app.goo.gl/Ha9vMKtMUWKWryFV9"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="btn btn-map">
-
-                        🗺️ Buka Google Maps
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </article>
-
-        </div>
-
-    </section>
-
-
-    <!-- GALERI -->
-
-    <section class="section section-paper" id="gallery">
-
-        <div class="section-heading">
-
-            <p class="eyebrow">
-                Our Memories
-            </p>
-
-            <h2>
-                Galeri Kami
-            </h2>
-
-            <span class="ornament">✿</span>
-
-        </div>
-
-        <div class="gallery-grid">
-
-            <button
-                class="gallery-item"
-                data-full="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85">
-
-                <img
-                    src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80"
-                    alt="Momen pasangan di taman">
-
-            </button>
-
-            <button
-                class="gallery-item"
-                data-full="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=85">
-
-                <img
-                    src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=80"
-                    alt="Momen pernikahan outdoor">
-
-            </button>
-
-            <button
-                class="gallery-item"
-                data-full="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=85">
-
-                <img
-                    src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=700&q=80"
-                    alt="Detail dekorasi pernikahan">
-
-            </button>
-
-            <button
-                class="gallery-item"
-                data-full="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=1200&q=85">
-
-                <img
-                    src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=700&q=80"
-                    alt="Pasangan menikmati senja">
-
-            </button>
-
-            <button
-                class="gallery-item gallery-wide"
-                data-full="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1400&q=85">
-
-                <img
-                    src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=900&q=80"
-                    alt="Momen romantis pasangan">
-
-                <span class="play-icon">
-                    ⊙
-                </span>
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- DOA -->
-
-    <section class="section wedding-quote-section" id="wedding-quote">
-
-        <div class="quote-decoration quote-decoration-top">
-            ❀
-        </div>
-
-        <div class="section-heading">
-
-            <p class="eyebrow">
-                Doa &amp; Harapan
-            </p>
-
-            <h2>
-                Sebuah Doa Untuk Kami
-            </h2>
-
-            <span class="ornament">✿</span>
-
-        </div>
-
-        <div class="wedding-quote-card">
-
-            <div class="quote-mark">
-                “
-            </div>
-
-            <blockquote class="quote-indonesia">
-
-                <em>
-                    Semoga Allah SWT senantiasa melimpahkan
-                    keberkahan dalam setiap langkah kami,
-                    menyatukan hati kami dalam cinta dan kasih sayang,
-                    serta menjadikan pernikahan ini sebagai awal
-                    dari kehidupan yang penuh kebahagiaan,
-                    kesetiaan, dan ketenteraman.
-                </em>
-
-            </blockquote>
-
-            <div class="quote-divider">
-                <span></span>
-                ❀
-                <span></span>
-            </div>
-
-            <p class="quote-arabic">
-                رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا
-                وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ
-                وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا
-            </p>
-
-            <p class="quote-translation">
-
-                <em>
-                    “Ya Tuhan kami, anugerahkanlah kepada kami
-                    pasangan dan keturunan yang menjadi penyejuk hati,
-                    dan jadikanlah kami pemimpin bagi orang-orang
-                    yang bertakwa.”
-                </em>
-
-            </p>
-
-            <p class="quote-source">
-                — QS. Al-Furqan: 74 —
-            </p>
-
-        </div>
-
-        <div class="quote-decoration quote-decoration-bottom">
-            ❀
-        </div>
-
-    </section>
-
-
-    <!-- RSVP -->
-
-    <section class="section section-sage" id="rsvp">
-
-        <div class="section-heading">
-
-            <p class="eyebrow">
-                Kehadiran &amp; Doa
-            </p>
-
-            <h2>
-                Kirim Ucapan
-            </h2>
-
-            <span class="ornament">✿</span>
-
-        </div>
-
-        <form class="rsvp-form" id="rsvpForm">
-
-            <label>
-                <span>Nama Lengkap</span>
-
-                <input
-                    type="text"
-                    id="guestName"
-                    name="name"
-                    placeholder="Nama Lengkap"
-                    required>
-            </label>
-
-            <label>
-                <span>Konfirmasi Kehadiran</span>
-
-                <select
-                    id="attendance"
-                    name="attendance"
-                    required>
-
-                    <option value="">
-                        Pilih konfirmasi
-                    </option>
-
-                    <option value="Hadir">
-                        Hadir
-                    </option>
-
-                    <option value="Tidak Hadir">
-                        Tidak Hadir
-                    </option>
-
-                    <option value="Masih Tentatif">
-                        Masih Tentatif
-                    </option>
-
-                </select>
-
-            </label>
-
-            <label>
-                <span>Ucapan</span>
-
-                <textarea
-                    id="message"
-                    name="message"
-                    rows="4"
-                    placeholder="Tulis doa &amp; ucapan Anda..."
-                    required></textarea>
-            </label>
-
-            <button
-                class="btn btn-primary"
-                type="submit">
-                ♡ &nbsp; Kirim Ucapan
-            </button>
-
-            <p
-                class="form-status"
-                id="formStatus"
-                aria-live="polite">
-            </p>
-
-        </form>
-
-    </section>
-
-
-    <!-- PENUTUP -->
-
-    <section class="closing section-paper">
-
-        <div class="closing-card">
-
-            <div class="closing-flower">
-                ✿
-            </div>
-
-            <p>
-                “Merupakan suatu kehormatan bagi kami apabila
-                Bapak/Ibu/Saudara/i berkenan hadir dan
-                memberikan doa restu.”
-            </p>
-
-            <p class="closing-small">
-                Dengan penuh cinta,
-            </p>
-
-            <h2>
-                Andi &amp; Sari
-            </h2>
-
-            <div class="closing-flowers">
-                ❀ &nbsp; ✿ &nbsp; ❀
-            </div>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-<!-- FOOTER -->
-
-<footer class="footer">
-
-    <p>
-        Andi &amp; Sari Wedding Invitation
-    </p>
-
-    <small>
-        Made with love ♡
-    </small>
-
-</footer>
-
-
-<!-- LIGHTBOX -->
-
-<div
-    class="lightbox"
-    id="lightbox"
-    aria-hidden="true">
-
-    <button
-        class="lightbox-close"
-        id="lightboxClose"
-        aria-label="Tutup galeri">
-        ×
-    </button>
-
-    <img
-        id="lightboxImage"
-        src=""
-        alt="Foto galeri ukuran besar">
-
-</div>
-
-
-<script src="assets/js/script.js"></script>
-
-
 </body>
-
 </html>
