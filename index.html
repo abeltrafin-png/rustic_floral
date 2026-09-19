@@ -190,81 +190,85 @@
             </div>
         </section>
 
-        <!-- 3. PETA LOKASI + COUNTDOWN -->
-        <section class="section countdown-section" id="countdown">
+        <!-- ==================== LOKASI ACARA ==================== -->
+        <section class="section location-section" id="location">
+        <div class="section-heading">
+            <p class="eyebrow">Lokasi</p>
+            <h2>Lokasi Acara</h2>
+            <p>Temukan lokasi akad nikah dan resepsi kami.</p>
+        </div>
 
-            <!-- PETA LOKASI -->
-            <div class="section-heading">
-                <p class="section-eyebrow">Temukan Lokasi Acara</p>
-                <h2>Peta Lokasi</h2>
-                <div class="heading-flower">❀</div>
-            </div>
+        <div class="maps-slider">
+            <div class="maps-track" id="mapsTrack">
 
-            <div class="map-slider">
-
-                <!-- SLIDE AKAD -->
-                <div class="map-slide active">
-                    <div class="map-title">
-                        <span>01</span>
-                        <div>
-                            <small>LOKASI AKAD NIKAH</small>
-                            <h3>Masjid Jami' Al-Ikhlas</h3>
-                        </div>
+            <!-- MAP AKAD -->
+            <div class="map-slide">
+                <div class="map-card">
+                <div class="map-title">
+                    <span>📍</span>
+                    <div>
+                    <h3>Akad Nikah</h3>
+                    <p>Masjid Jami' Al-Ikhlas</p>
                     </div>
-
-                    <div class="map-frame">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.7362024147047!2d106.8286915!3d-6.2983804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f2307bdcdd03%3A0x6b9bfd3b48f654b1!2sMasjid%20Jami%27%20Al-Ikhlas!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
-                            width="100%"
-                            height="350"
-                            style="border:0;"
-                            allowfullscreen=""
-                            loading="lazy">
-                        </iframe>
-                    </div>
-
-                    <div class="map-info">
-                        <p>📍 Jl. Raya Ragunan No. 11A, Jati Padang, Pasar Minggu, Jakarta Selatan</p>
-                        <p>🕐 Minggu, 21 Februari 2027 · 08.00 — 10.00 WIB</p>
-                    </div>
-
-                <!-- SLIDE RESEPSI -->
-                <div class="map-slide">
-                    <div class="map-title">
-                        <span>02</span>
-                        <div>
-                            <small>LOKASI RESEPSI</small>
-                            <h3>Gedung Pertemuan PERTAMINA</h3>
-                        </div>
-                    </div>
-
-                    <div class="map-frame">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2737668615796!2d106.8329618!3d-6.2275811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3ebd03c9233%3A0x3344692eb3f57262!2sGedung%20Pertemuan%20Pertamina!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
-                            width="100%"
-                            height="350"
-                            style="border:0;"
-                            allowfullscreen=""
-                            loading="lazy">
-                        </iframe>
-                    </div>
-
-                    <div class="map-info">
-                        <p>📍 Gedung Pertemuan PERTAMINA</p>
-                        <p>🕐 Minggu, 21 Februari 2027 · 14.00 — 16.00 WIB</p>
-                    </div>
-
-
-                <!-- NAVIGASI SLIDER -->
-                <button class="map-arrow map-prev" type="button">‹</button>
-                <button class="map-arrow map-next" type="button">›</button>
-
-                <div class="map-dots">
-                    <button class="map-dot active" type="button"></button>
-                    <button class="map-dot" type="button"></button>
                 </div>
 
+                <div class="map-frame">
+                    <iframe
+                    src="MASUKKAN-URL-MAP-AKAD-DI-SINI"
+                    width="100%"
+                    height="260"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                </div>
             </div>
+
+            <!-- MAP RESEPSI -->
+            <div class="map-slide">
+                <div class="map-card">
+                <div class="map-title">
+                    <span>📍</span>
+                    <div>
+                    <h3>Resepsi</h3>
+                    <p>Gedung Pertemuan PERTAMINA</p>
+                    </div>
+                </div>
+
+                <div class="map-frame">
+                    <iframe
+                    src="MASUKKAN-URL-MAP-RESEPSI-DI-SINI"
+                    width="100%"
+                    height="260"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                </div>
+            </div>
+
+            </div>
+
+            <!-- Tombol slide -->
+            <button class="map-arrow map-prev" id="mapPrev" type="button">
+            ‹
+            </button>
+
+            <button class="map-arrow map-next" id="mapNext" type="button">
+            ›
+            </button>
+        </div>
+
+        <!-- Indicator -->
+        <div class="map-dots">
+            <button class="map-dot active" data-map="0" type="button"></button>
+            <button class="map-dot" data-map="1" type="button"></button>
+        </div>
+        </section>
 
 
             <!-- COUNTDOWN -->

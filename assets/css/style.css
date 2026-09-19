@@ -2504,3 +2504,378 @@ main {
         font-size: 2.5rem;
     }
 }
+
+
+/* ============================================================
+   FINAL OVERRIDE — LOKASI ACARA & BUTTON PRESISI
+   ------------------------------------------------------------
+   Bagian ini sengaja diletakkan PALING BAWAH agar aturan baru
+   tidak tertimpa oleh CSS lama di atas.
+   ============================================================ */
+
+/* ---------- EVENT BUTTONS ---------- */
+
+.event-actions {
+    width: min(100%, 360px);
+    margin: 20px auto 0 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch;
+    justify-content: center;
+    gap: 10px;
+}
+
+.event-actions .event-button {
+    flex: 1 1 0;
+    width: auto !important;
+    min-width: 0;
+    height: 42px;
+    margin: 0 !important;
+    padding: 10px 12px !important;
+
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    text-align: center;
+    white-space: nowrap;
+
+    background: var(--sage-deep) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--sage-deep) !important;
+    border-radius: 20px;
+
+    font-family: var(--sans);
+    font-size: 0.62rem !important;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+
+    transition: all 0.25s ease;
+}
+
+.event-actions .event-button:hover {
+    background: var(--rose-dark) !important;
+    border-color: var(--rose-dark) !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(80, 65, 55, 0.12);
+}
+
+
+/* ---------- SECTION LOKASI ACARA ---------- */
+
+.location-section {
+    position: relative;
+    padding-top: 90px;
+    padding-bottom: 80px;
+    background: var(--paper);
+    overflow: hidden;
+}
+
+.location-section .section-heading {
+    margin-bottom: 30px;
+}
+
+.location-section .section-heading h2 {
+    color: var(--sage-deep);
+}
+
+
+/* ---------- MAP SLIDER ---------- */
+
+.maps-slider {
+    position: relative;
+    width: min(720px, 100%);
+    margin: 0 auto;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.maps-track {
+    display: flex;
+    width: 100%;
+    transition: transform 0.45s ease;
+    will-change: transform;
+}
+
+.map-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    padding: 0 42px;
+    box-sizing: border-box;
+}
+
+.map-card {
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 18px;
+    box-sizing: border-box;
+
+    background: rgba(255, 253, 249, 0.92);
+    border: 1px solid rgba(185, 147, 88, 0.22);
+    border-radius: 20px;
+
+    box-shadow:
+        0 12px 35px rgba(80, 65, 55, 0.09);
+}
+
+.map-title {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 14px;
+    text-align: left;
+}
+
+.map-title > span {
+    flex: 0 0 auto;
+    color: var(--rose-dark);
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+.map-title h3 {
+    margin: 0;
+    color: var(--sage-deep);
+    font-family: var(--serif);
+    font-size: 1.45rem;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+.map-title p {
+    margin: 3px 0 0;
+    color: var(--muted);
+    font-size: 0.65rem;
+    line-height: 1.5;
+}
+
+.map-frame {
+    width: 100%;
+    height: 255px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: var(--cream-dark);
+}
+
+.map-frame iframe {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+
+/* ---------- TOMBOL SLIDE ---------- */
+
+.map-arrow {
+    position: absolute;
+    top: 56%;
+    z-index: 10;
+
+    width: 36px;
+    height: 36px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(185, 147, 88, 0.28);
+    border-radius: 50%;
+
+    background: rgba(255, 253, 249, 0.96);
+    color: var(--sage-deep);
+
+    font-family: Georgia, serif;
+    font-size: 1.55rem;
+    line-height: 1;
+
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(70, 55, 45, 0.12);
+
+    transform: translateY(-50%);
+    transition: all 0.25s ease;
+}
+
+.map-arrow:hover {
+    background: var(--sage-deep);
+    color: #ffffff;
+    transform: translateY(-50%) scale(1.06);
+}
+
+.map-prev {
+    left: 3px;
+}
+
+.map-next {
+    right: 3px;
+}
+
+
+/* ---------- DOT INDICATOR ---------- */
+
+.map-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 15px;
+}
+
+.map-dot {
+    width: 7px;
+    height: 7px;
+    padding: 0;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: #cfc7bf;
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.map-dot.active {
+    width: 20px;
+    border-radius: 10px;
+    background: var(--sage-deep);
+}
+
+
+/* ---------- KOMPATIBILITAS DENGAN CONTAINER MAP LAMA ---------- */
+
+.location-section .maps-container {
+    width: min(720px, 100%);
+    margin: 0 auto;
+}
+
+.location-section .maps-container iframe {
+    width: 100%;
+    max-width: 100%;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 700px) {
+
+    .location-section {
+        padding-top: 75px;
+        padding-bottom: 65px;
+    }
+
+    .location-section .section-heading {
+        margin-bottom: 25px;
+    }
+
+    .maps-slider {
+        width: 100%;
+    }
+
+    .map-slide {
+        padding: 0 30px;
+    }
+
+    .map-card {
+        padding: 14px;
+        border-radius: 18px;
+    }
+
+    .map-title {
+        gap: 9px;
+        margin-bottom: 12px;
+    }
+
+    .map-title > span {
+        font-size: 1.2rem;
+    }
+
+    .map-title h3 {
+        font-size: 1.25rem;
+    }
+
+    .map-title p {
+        font-size: 0.58rem;
+    }
+
+    .map-frame {
+        height: 230px;
+        border-radius: 12px;
+    }
+
+    .map-arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 1.35rem;
+    }
+
+    .map-prev {
+        left: 1px;
+    }
+
+    .map-next {
+        right: 1px;
+    }
+
+    .event-actions {
+        width: min(100%, 340px);
+        gap: 8px;
+    }
+
+    .event-actions .event-button {
+        height: 40px;
+        padding: 9px 7px !important;
+        font-size: 0.56rem !important;
+        letter-spacing: 0.35px;
+    }
+}
+
+
+/* ---------- SMALL MOBILE ---------- */
+
+@media (max-width: 400px) {
+
+    .map-slide {
+        padding: 0 26px;
+    }
+
+    .map-card {
+        padding: 12px;
+    }
+
+    .map-frame {
+        height: 215px;
+    }
+
+    .map-title h3 {
+        font-size: 1.15rem;
+    }
+
+    .map-title p {
+        font-size: 0.55rem;
+    }
+
+    .map-arrow {
+        width: 30px;
+        height: 30px;
+    }
+
+    .event-actions {
+        gap: 6px;
+    }
+
+    .event-actions .event-button {
+        height: 38px;
+        padding: 8px 5px !important;
+        font-size: 0.52rem !important;
+    }
+}
