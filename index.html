@@ -40,6 +40,7 @@
             <a href="#events">Acara</a>
             <a href="#countdown">Hitung Mundur</a>
             <a href="#story">Kisah</a>
+            <a href="#gallry">Gallery</a>
             <a href="#wedding-quote">Doa</a>
             <a href="#gift">Hadiah</a>
             <a href="#rsvp">RSVP</a>
@@ -133,12 +134,15 @@
                         </div>
                         <div>
                             <span class="detail-label">Tempat</span>
-                            <strong>Masjid Jami' Al-Ikhlas Jatipadang</strong>
+                            <strong>Masjid Jami' Al-Ikhlas</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">
+                                Jl. Raya Ragunan No. 11A, Jati Padang, Pasar Minggu, Jakarta Selatan
+                            </p>
                         </div>
                     </div>
                     <div class="event-actions" style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
-                        <a href="https://maps.google.com/?q=Masjid+Jami'+Al-Ikhlas+Jatipadang" target="_blank" class="event-button">🗺️ Petunjuk Lokasi</a>
-                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Akad+Nikah+Andi+%26+Sari&dates=20270221T010000Z/20270221T030000Z&details=Akad+Nikah+Andi+Prasetyo+%26+Sari+Wulandari&location=Masjid+Jami'+Al-Ikhlas+Jatipadang" target="_blank" class="event-button">📅 Save The Date (Google Calendar)</a>
+                        <a href="https://maps.google.com/?q=Masjid+Jami'+Al-Ikhlas+Jl.+Raya+Ragunan+No.+11A+Jati+Padang" target="_blank" class="event-button">🗺️ Lokasi Akad</a>
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Akad+Nikah+Andi+%26+Sari&dates=20270221T010000Z/20270221T030000Z&details=Akad+Nikah+Andi+Prasetyo+%26+Sari+Wulandari&location=Masjid+Jami'+Al-Ikhlas,+Jl.+Raya+Ragunan+No.+11A,+Jati+Padang,+Pasar+Minggu,+Jakarta+Selatan" target="_blank" class="event-button">📅 Save The Date </a>
                     </div>
                 </article>
 
@@ -165,47 +169,144 @@
                         </div>
                     </div>
                     <div class="event-actions" style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
-                        <a href="https://maps.google.com/?q=Gedung+Pertemuan+PERTAMINA" target="_blank" class="event-button">🗺️ Petunjuk Lokasi</a>
-                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Resepsi+Pernikahan+Andi+%26+Sari&dates=20270221T070000Z/20270221T090000Z&details=Resepsi+Pernikahan+Andi+Prasetyo+%26+Sari+Wulandari&location=Gedung+Pertemuan+PERTAMINA" target="_blank" class="event-button">📅 Save The Date (Google Calendar)</a>
+                        <a href="https://maps.google.com/?q=Gedung+Pertemuan+PERTAMINA" target="_blank" class="event-button">🗺️ Lokasi Resepsi</a>
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Resepsi+Pernikahan+Andi+%26+Sari&dates=20270221T070000Z/20270221T090000Z&details=Resepsi+Pernikahan+Andi+Prasetyo+%26+Sari+Wulandari&location=Gedung+Pertemuan+PERTAMINA" target="_blank" class="event-button">📅 Save The Date</a>
                     </div>
                 </article>
             </div>
         </section>
 
-        <!-- 3. COUNTDOWN & MAPS (#countdown) -->
+        <!-- 3. PETA LOKASI + COUNTDOWN -->
         <section class="section countdown-section" id="countdown">
+
+            <!-- PETA LOKASI -->
             <div class="section-heading">
-                <p class="section-eyebrow">Menuju Hari Bahagia</p>
-                <h2>Hitung Mundur</h2>
-                <div class="heading-flower">✿</div>
+                <p class="section-eyebrow">Temukan Lokasi Acara</p>
+                <h2>Peta Lokasi</h2>
+                <div class="heading-flower">❀</div>
             </div>
 
-            <div class="countdown">
-                <div class="count-item"><strong id="days">000</strong><span>HARI</span></div>
-                <div class="count-item"><strong id="hours">00</strong><span>JAM</span></div>
-                <div class="count-item"><strong id="minutes">00</strong><span>MENIT</span></div>
-                <div class="count-item"><strong id="seconds">00</strong><span>DETIK</span></div>
-            </div>
+            <div class="map-slider">
 
-            <!-- EMBED GOOGLE MAPS LOKASI ACARA -->
-            <div class="maps-container" style="margin-top: 50px; text-align: center;">
-                <h3 style="font-family: var(--serif); color: var(--sage-deep); margin-bottom: 20px;">Peta Lokasi Acara</h3>
-                <div style="width: 100%; max-width: 850px; margin: 0 auto; border: 5px solid white; box-shadow: var(--shadow);">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.7362024147047!2d106.8286915!3d-6.2983804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f2307bdcdd03%3A0x6b9bfd3b48f654b1!2sMasjid%20Jami&#39;%20Al-Ikhlas!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
-                        width="100%" 
-                        height="380" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                <!-- SLIDE AKAD -->
+                <div class="map-slide active">
+                    <div class="map-title">
+                        <span>01</span>
+                        <div>
+                            <small>LOKASI AKAD NIKAH</small>
+                            <h3>Masjid Jami' Al-Ikhlas</h3>
+                        </div>
+                    </div>
+
+                    <div class="map-frame">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.7362024147047!2d106.8286915!3d-6.2983804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f2307bdcdd03%3A0x6b9bfd3b48f654b1!2sMasjid%20Jami%27%20Al-Ikhlas!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+                            width="100%"
+                            height="350"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy">
+                        </iframe>
+                    </div>
+
+                    <div class="map-info">
+                        <p>📍 Jl. Raya Ragunan No. 11A, Jati Padang, Pasar Minggu, Jakarta Selatan</p>
+                        <p>🕐 Minggu, 21 Februari 2027 · 08.00 — 10.00 WIB</p>
+                    </div>
+
+                    <a
+                        href="https://maps.google.com/?q=Masjid+Jami+Al-Ikhlas+Jl.+Raya+Ragunan+No.+11A+Jati+Padang"
+                        target="_blank"
+                        class="map-button">
+                        🗺️ Buka Google Maps
+                    </a>
                 </div>
+
+
+                <!-- SLIDE RESEPSI -->
+                <div class="map-slide">
+                    <div class="map-title">
+                        <span>02</span>
+                        <div>
+                            <small>LOKASI RESEPSI</small>
+                            <h3>Gedung Pertemuan PERTAMINA</h3>
+                        </div>
+                    </div>
+
+                    <div class="map-frame">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2737668615796!2d106.8329618!3d-6.2275811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3ebd03c9233%3A0x3344692eb3f57262!2sGedung%20Pertemuan%20Pertamina!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+                            width="100%"
+                            height="350"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy">
+                        </iframe>
+                    </div>
+
+                    <div class="map-info">
+                        <p>📍 Gedung Pertemuan PERTAMINA</p>
+                        <p>🕐 Minggu, 21 Februari 2027 · 14.00 — 16.00 WIB</p>
+                    </div>
+
+                    <a
+                        href="https://maps.google.com/?q=Gedung+Pertemuan+PERTAMINA"
+                        target="_blank"
+                        class="map-button">
+                        🗺️ Buka Google Maps
+                    </a>
+                </div>
+
+                <!-- NAVIGASI SLIDER -->
+                <button class="map-arrow map-prev" type="button">‹</button>
+                <button class="map-arrow map-next" type="button">›</button>
+
+                <div class="map-dots">
+                    <button class="map-dot active" type="button"></button>
+                    <button class="map-dot" type="button"></button>
+                </div>
+
             </div>
+
+
+            <!-- COUNTDOWN -->
+            <div class="countdown-wrapper">
+
+                <div class="section-heading countdown-heading">
+                    <p class="section-eyebrow">Menuju Hari Bahagia</p>
+                    <h2>Hitung Mundur</h2>
+                    <div class="heading-flower">✿</div>
+                </div>
+
+                <div class="countdown">
+                    <div class="count-item">
+                        <strong id="days">000</strong>
+                        <span>HARI</span>
+                    </div>
+
+                    <div class="count-item">
+                        <strong id="hours">00</strong>
+                        <span>JAM</span>
+                    </div>
+
+                    <div class="count-item">
+                        <strong id="minutes">00</strong>
+                        <span>MENIT</span>
+                    </div>
+
+                    <div class="count-item">
+                        <strong id="seconds">00</strong>
+                        <span>DETIK</span>
+                    </div>
+                </div>
+
+            </div>
+
         </section>
 
-        <!-- 4. LOVE STORY (#story) -->
+        <!-- 4. LOVE STORY -->
         <section class="section story-section" id="story">
+
             <div class="section-heading">
                 <p class="section-eyebrow">Kisah Kami</p>
                 <h2>Love Story</h2>
@@ -213,33 +314,144 @@
             </div>
 
             <div class="story">
+
+                <!-- CERITA 1 -->
                 <div class="story-item">
-                    <div class="story-year">Awal</div>
+
+                    <div class="story-year">
+                        01
+                    </div>
+
                     <div class="story-dot"></div>
+
                     <div class="story-content">
-                        <h3>Pertama Pertemu</h3>
-                        <p>Kami pertama kali bertemu di bangku kuliah saat kegiatan organisasi kampus.</p>
+
+                        <div class="story-image">
+                            <img
+                                src="assets/images/story-1.jpg"
+                                alt="Awal pertemuan Andi dan Sari">
+                        </div>
+
+                        <div class="story-text">
+                            <span class="story-label">AWAL PERTEMUAN</span>
+                            <h3>Pertama Bertemu</h3>
+
+                            <p>
+                                Kami pertama kali bertemu di bangku kuliah
+                                saat mengikuti kegiatan organisasi kampus.
+                                Dari sebuah pertemuan sederhana,
+                                perlahan tumbuh cerita yang begitu berarti.
+                            </p>
+                        </div>
+
                     </div>
                 </div>
 
+
+                <!-- CERITA 2 -->
                 <div class="story-item">
-                    <div class="story-year">Komitmen</div>
+
+                    <div class="story-year">
+                        02
+                    </div>
+
                     <div class="story-dot"></div>
+
                     <div class="story-content">
-                        <h3>Berkomitmen</h3>
-                        <p>Memutuskan untuk melangkah bersama dan saling mendukung impian satu sama lain.</p>
+
+                        <div class="story-image">
+                            <img
+                                src="assets/images/story-2.jpg"
+                                alt="Kisah Andi dan Sari">
+                        </div>
+
+                        <div class="story-text">
+                            <span class="story-label">KOMITMEN</span>
+                            <h3>Berkomitmen</h3>
+
+                            <p>
+                                Setelah melalui berbagai cerita bersama,
+                                kami memutuskan untuk melangkah lebih jauh,
+                                saling mendukung dan tumbuh bersama.
+                            </p>
+                        </div>
+
                     </div>
                 </div>
 
+
+                <!-- CERITA 3 -->
                 <div class="story-item">
-                    <div class="story-year">Restu</div>
+
+                    <div class="story-year">
+                        03
+                    </div>
+
                     <div class="story-dot"></div>
+
                     <div class="story-content">
-                        <h3>Lamaran & Pernikahan</h3>
-                        <p>Mengikat janji suci untuk mengarungi bahtera rumah tangga bersama.</p>
+
+                        <div class="story-image">
+                            <img
+                                src="assets/images/story-3.jpg"
+                                alt="Lamaran Andi dan Sari">
+                        </div>
+
+                        <div class="story-text">
+                            <span class="story-label">MENUJU PERNIKAHAN</span>
+                            <h3>Lamaran & Pernikahan</h3>
+
+                            <p>
+                                Dengan restu kedua keluarga, kami memantapkan
+                                hati untuk mengikat janji suci dan memulai
+                                perjalanan baru sebagai satu keluarga.
+                            </p>
+                        </div>
+
                     </div>
                 </div>
+
             </div>
+
+        </section>
+
+        <!-- 5. GALLERY -->
+        <section class="section gallery-section" id="gallery">
+
+            <div class="section-heading">
+                <p class="section-eyebrow">Momen Bahagia Kami</p>
+                <h2>Our Gallery</h2>
+                <div class="heading-flower">❀</div>
+            </div>
+
+            <div class="gallery">
+
+                <div class="gallery-item gallery-large">
+                    <img src="assets/images/gallery-1.jpg" alt="Foto Andi dan Sari">
+                </div>
+
+                <div class="gallery-item">
+                    <img src="assets/images/gallery-2.jpg" alt="Foto Andi dan Sari">
+                </div>
+
+                <div class="gallery-item">
+                    <img src="assets/images/gallery-3.jpg" alt="Foto Andi dan Sari">
+                </div>
+
+                <div class="gallery-item gallery-tall">
+                    <img src="assets/images/gallery-4.jpg" alt="Foto Andi dan Sari">
+                </div>
+
+                <div class="gallery-item">
+                    <img src="assets/images/gallery-5.jpg" alt="Foto Andi dan Sari">
+                </div>
+
+                <div class="gallery-item gallery-large">
+                    <img src="assets/images/gallery-6.jpg" alt="Foto Andi dan Sari">
+                </div>
+
+            </div>
+
         </section>
 
         <!-- 5. DOA & HARAPAN (#wedding-quote) -->
@@ -337,6 +549,7 @@
         <a href="#events"><span>◈</span><small>Acara</small></a>
         <a href="#countdown"><span>⌂</span><small>Mundur</small></a>
         <a href="#story"><span>▧</span><small>Kisah</small></a>
+        <a href="#gallery"><span>[]</span><small>Gallery</small></a>
         <a href="#rsvp"><span>✉</span><small>RSVP</small></a>
     </nav>
 
