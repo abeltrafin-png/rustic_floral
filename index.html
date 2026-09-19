@@ -1,271 +1,1778 @@
-<!DOCTYPE html>
-<html lang="id">
+/* ============================================================
+   WEDDING INVITATION — ANDI & SARI
+   PASTEL RUSTIC FLORAL
+   ============================================================ */
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Undangan pernikahan Andi & Sari dengan tema rustic floral.">
-    <title>Andi & Sari — Undangan Pernikahan</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
+/* ============================================================
+   GOOGLE FONT
+   ============================================================ */
 
-<body>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@400;500;600&display=swap');
 
-    <!-- ORNAMEN FLORAL ANIMATED (BACKGROUND EFFECT) -->
-    <div class="rustic-bg-ornaments" aria-hidden="true">
-        <div class="leaf leaf-1">🌿</div>
-        <div class="leaf leaf-2">🍃</div>
-        <div class="flower flower-1">🌸</div>
-        <div class="flower flower-2">🌺</div>
-    </div>
 
-    <!-- OPENING SCREEN -->
-    <div class="opening-screen" id="openingScreen">
-        <div class="opening-card">
-            <p class="opening-label">THE WEDDING INVITATION OF</p>
-            <div class="small-flower">✿</div>
-            <h1>Andi <span>&amp;</span> Sari</h1>
-            <p class="opening-subtitle">are getting married</p>
-            <div class="floral-line"><span></span>❀<span></span></div>
-            <p class="opening-date">SABTU, 25 OKTOBER 2025</p>
-            <button type="button" class="btn btn-primary btn-animate" id="openInvitation">♡ &nbsp; Buka Undangan</button>
-        </div>
-    </div>
+/* ============================================================
+   ROOT
+   ============================================================ */
 
-    <!-- DESKTOP NAVBAR -->
-    <header class="site-header" id="siteHeader">
-        <a class="brand" href="#hero">
-            <span class="brand-initial">A&S</span>
-        </a>
-        <nav class="nav-links">
-            <a href="#couple">Mempelai</a>
-            <a href="#events">Acara</a>
-            <a href="#countdown">Countdown</a>
-            <a href="#story">Love Story</a>
-            <a href="#wedding-quote">Doa</a>
-            <a href="#gift">Amplop Digital</a>
-            <a href="#rsvp">RSVP & Ucapan</a>
-        </nav>
-    </header>
+:root {
 
-    <main>
-        <!-- HERO -->
-        <section class="hero section-paper" id="hero">
-            <div class="hero-inner text-center">
-                <p class="eyebrow">The Wedding Invitation Of</p>
-                <h1>Andi <span>&amp;</span> Sari</h1>
-                <p class="script-text">are getting married</p>
-                <div class="floral-line"><span></span>❀<span></span></div>
-                <p class="date-pill">SABTU, 25 OKTOBER 2025</p>
-            </div>
-        </section>
+    /* Background */
+    --cream: #faf6f2;
+    --paper: #fffdf9;
+    --paper-dark: #f3ece7;
 
-        <!-- 1. MEMPELAI -->
-        <section class="section section-paper" id="couple">
-            <div class="section-heading text-center">
-                <p class="eyebrow">Mempelai</p>
-                <h2>Kami Yang Berbahagia</h2>
-                <span class="ornament">✿</span>
-            </div>
-            <div class="couple-grid">
-                <article class="person-card text-center">
-                    <div class="portrait">
-                        <img src="assets/images/man.png" alt="Foto Andi Prasetyo">
-                    </div>
-                    <h3>Andi Prasetyo, S.T.</h3>
-                    <p class="person-family">Putra dari Bapak H. Ahmad &amp; Ibu Hj. Fatimah</p>
-                </article>
-                <div class="couple-symbol">&amp;</div>
-                <article class="person-card text-center">
-                    <div class="portrait">
-                        <img src="assets/images/woman.png" alt="Foto Sari Wulandari">
-                    </div>
-                    <h3>Sari Wulandari, S.Pd.</h3>
-                    <p class="person-family">Putri dari Bapak H. Budi &amp; Ibu Hj. Rahayu</p>
-                </article>
-            </div>
-        </section>
+    /* Sage */
+    --sage: #e8eee7;
+    --sage-light: #f1f5f0;
+    --sage-dark: #829783;
+    --sage-deep: #607564;
 
-        <!-- 2. RANGKAIAN ACARA -->
-        <section class="section section-paper" id="events">
-            <div class="section-heading text-center">
-                <p class="eyebrow">Rangkaian Pernikahan</p>
-                <h2>Acara Utama</h2>
-                <span class="ornament">✿</span>
-            </div>
+    /* Pink / Rose */
+    --rose: #dca1a6;
+    --rose-light: #f5dfe0;
+    --rose-dark: #b97980;
+    --petal: #efc7ca;
+    --petal-light: #f8e8e8;
 
-            <div class="event-list-centered">
-                <!-- AKAD NIKAH -->
-                <article class="event-card-centered">
-                    <div class="event-icon">🕌</div>
-                    <h3 class="event-type">AKAD NIKAH</h3>
-                    <div class="event-divider"><span></span>❀<span></span></div>
-                    <p class="event-date">Sabtu, 25 Oktober 2025</p>
-                    <p class="event-time">Pukul 08.00 — 10.00 WIB</p>
-                    <p class="event-venue">Masjid Jami' Al-Ikhlas Jatipadang</p>
-                    <div class="event-actions">
-                        <a href="#" class="btn btn-primary btn-animate">🗺️ Petunjuk Lokasi</a>
-                    </div>
-                </article>
+    /* Lavender */
+    --lavender: #e8e1ed;
+    --lavender-dark: #9b8aa9;
 
-                <!-- RESEPSI -->
-                <article class="event-card-centered">
-                    <div class="event-icon">✨</div>
-                    <h3 class="event-type">RESEPSI</h3>
-                    <div class="event-divider"><span></span>❀<span></span></div>
-                    <p class="event-date">Sabtu, 25 Oktober 2025</p>
-                    <p class="event-time">Pukul 14.00 — 16.00 WIB</p>
-                    <p class="event-venue">Gedung Pertemuan PERTAMINA</p>
-                    <div class="event-actions">
-                        <a href="#" class="btn btn-primary btn-animate">🗺️ Petunjuk Lokasi</a>
-                    </div>
-                </article>
-            </div>
-        </section>
+    /* Gold */
+    --gold: #bd9653;
+    --gold-light: #d8bb80;
 
-        <!-- 3. COUNTDOWN -->
-        <section class="section section-sage countdown-section" id="countdown">
-            <div class="section-heading text-center">
-                <p class="eyebrow">Menuju Hari Bahagia</p>
-                <h2>Hitung Mundur</h2>
-                <span class="ornament">✿</span>
-            </div>
-            <div class="countdown-grid">
-                <div class="count-box"><strong id="days">000</strong><span>HARI</span></div>
-                <div class="count-box"><strong id="hours">00</strong><span>JAM</span></div>
-                <div class="count-box"><strong id="minutes">00</strong><span>MENIT</span></div>
-                <div class="count-box"><strong id="seconds">00</strong><span>DETIK</span></div>
-            </div>
-        </section>
+    /* Text */
+    --ink: #46433f;
+    --muted: #817a74;
+    --white: #ffffff;
 
-        <!-- 4. LOVE STORY / JOURNEY -->
-        <section class="section section-paper" id="story">
-            <div class="section-heading text-center">
-                <p class="eyebrow">Kisah Kami</p>
-                <h2>Love Story</h2>
-                <span class="ornament">✿</span>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">2021</div>
-                    <div class="timeline-content">
-                        <h3>Pertama Pertemu</h3>
-                        <p>Kami pertama kali bertemu di bangku kuliah saat kegiatan organisasi kampus.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2023</div>
-                    <div class="timeline-content">
-                        <h3>Berkomitmen</h3>
-                        <p>Memutuskan untuk melangkah bersama dan saling mendukung impian satu sama lain.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2025</div>
-                    <div class="timeline-content">
-                        <h3>Lamaran & Pernikahan</h3>
-                        <p>Mengikat janji suci untuk mengarungi bahtera rumah tangga bersama.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    /* Font */
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Montserrat", Arial, sans-serif;
 
-        <!-- 5. DOA & HARAPAN -->
-        <section class="section wedding-quote-section" id="wedding-quote">
-            <div class="section-heading text-center">
-                <p class="eyebrow">Doa &amp; Harapan</p>
-                <h2>Sebuah Doa Untuk Kami</h2>
-                <span class="ornament">✿</span>
-            </div>
-            <div class="wedding-quote-card text-center">
-                <p class="quote-arabic">رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا</p>
-                <p class="quote-translation">“Ya Tuhan kami, anugerahkanlah kepada kami pasangan dan keturunan yang menjadi penyejuk hati...”</p>
-                <p class="quote-source">— QS. Al-Furqan: 74 —</p>
-            </div>
-        </section>
+    /* Shadow */
+    --shadow-soft:
+        0 10px 30px rgba(90, 70, 60, 0.07);
 
-        <!-- 6. AMPLOP DIGITAL (HADIAH DIGITAL / BANK / QRIS) -->
-        <section class="section section-sage" id="gift">
-            <div class="section-heading text-center">
-                <p class="eyebrow">Tanda Kasih</p>
-                <h2>Amplop Digital</h2>
-                <span class="ornament">✿</span>
-            </div>
-            <p class="text-center section-intro">Doa restu Anda merupakan hadiah terindah. Namun jika ingin memberi hadiah, Anda dapat menggunakan fitur di bawah ini:</p>
-            
-            <div class="gift-grid">
-                <div class="gift-card text-center">
-                    <h3>Bank BCA</h3>
-                    <p class="account-number" id="bcaNum">1234 5678 90</p>
-                    <p class="account-name">a.n. Andi Prasetyo</p>
-                    <button class="btn btn-secondary btn-animate" onclick="copyToClipboard('bcaNum')">📋 Salin Rekening</button>
-                </div>
-                <div class="gift-card text-center">
-                    <h3>QRIS / E-Wallet</h3>
-                    <div class="qris-box">
-                        <img src="assets/images/qris-placeholder.png" alt="QRIS Code" style="max-width: 150px; margin: 10px 0;">
-                    </div>
-                    <p class="account-name">Scan QRIS All Payment</p>
-                </div>
-            </div>
-        </section>
+    --shadow-card:
+        0 8px 25px rgba(90, 70, 60, 0.06);
+}
 
-        <!-- 7. RSVP & KIRIM UCAPAN -->
-        <section class="section section-paper" id="rsvp">
-            <div class="section-heading text-center">
-                <p class="eyebrow">Kehadiran &amp; Doa</p>
-                <h2>RSVP &amp; Kirim Ucapan</h2>
-                <span class="ornament">✿</span>
-            </div>
-            <form class="rsvp-form" id="rsvpForm">
-                <label>
-                    <span>Nama Lengkap</span>
-                    <input type="text" placeholder="Nama Lengkap" required>
-                </label>
-                <label>
-                    <span>Konfirmasi Kehadiran</span>
-                    <select required>
-                        <option value="">Pilih konfirmasi</option>
-                        <option value="Hadir">Hadir</option>
-                        <option value="Tidak Hadir">Tidak Hadir</option>
-                    </select>
-                </label>
-                <label>
-                    <span>Ucapan & Doa</span>
-                    <textarea rows="4" placeholder="Tulis doa &amp; ucapan..." required></textarea>
-                </label>
-                <button class="btn btn-primary btn-animate" type="submit">♡ &nbsp; Kirim Ucapan</button>
-            </form>
-        </section>
-    </main>
 
-    <!-- MOBILE BOTTOM NAVIGATION BAR -->
-    <nav class="mobile-bottom-nav">
-        <a href="#couple" class="nav-item">
-            <span class="nav-icon">👤</span>
-            <span class="nav-label">Mempelai</span>
-        </a>
-        <a href="#events" class="nav-item">
-            <span class="nav-icon">📅</span>
-            <span class="nav-label">Acara</span>
-        </a>
-        <a href="#story" class="nav-item">
-            <span class="nav-icon">📖</span>
-            <span class="nav-label">Story</span>
-        </a>
-        <a href="#gift" class="nav-item">
-            <span class="nav-icon">🎁</span>
-            <span class="nav-label">Hadiah</span>
-        </a>
-        <a href="#rsvp" class="nav-item">
-            <span class="nav-icon">💬</span>
-            <span class="nav-label">RSVP</span>
-        </a>
-    </nav>
+/* ============================================================
+   RESET
+   ============================================================ */
 
-</body>
-</html>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    background: var(--cream);
+    color: var(--ink);
+
+    font-family: var(--sans);
+
+    line-height: 1.7;
+
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+
+/* ============================================================
+   TEXT CENTER
+   ============================================================ */
+
+.text-center {
+    text-align: center;
+}
+
+
+/* ============================================================
+   BACKGROUND ORNAMENTS
+   ============================================================ */
+
+.rustic-bg-ornaments {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    overflow: hidden;
+}
+
+.leaf,
+.flower {
+    position: absolute;
+
+    opacity: 0.13;
+
+    font-size: 2rem;
+
+    animation:
+        floatAnimation
+        8s
+        infinite
+        ease-in-out
+        alternate;
+
+    filter: saturate(0.65);
+}
+
+.leaf-1 {
+    top: 10%;
+    left: 5%;
+
+    animation-duration: 7s;
+}
+
+.leaf-2 {
+    top: 70%;
+    right: 5%;
+
+    animation-duration: 9s;
+}
+
+.flower-1 {
+    top: 40%;
+    left: 80%;
+
+    animation-duration: 6s;
+}
+
+.flower-2 {
+    top: 85%;
+    left: 15%;
+
+    animation-duration: 10s;
+}
+
+@keyframes floatAnimation {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    100% {
+        transform:
+            translateY(25px)
+            rotate(15deg);
+    }
+}
+
+
+/* ============================================================
+   OPENING SCREEN
+   ============================================================ */
+
+.opening-screen {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(239, 199, 202, 0.35),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 80% 75%,
+            rgba(230, 223, 236, 0.4),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #faf4ee,
+            #f7eff1,
+            #f3eef6
+        );
+
+    transition:
+        opacity 0.6s ease,
+        visibility 0.6s ease;
+}
+
+.opening-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.opening-card {
+    width: min(500px, 100%);
+
+    padding: 55px 30px;
+
+    text-align: center;
+
+    background:
+        rgba(255, 253, 249, 0.9);
+
+    border:
+        1px solid
+        rgba(189, 150, 83, 0.18);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(90, 70, 60, 0.1);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.opening-card::before,
+.opening-card::after {
+    content: "✿";
+
+    position: absolute;
+
+    color: var(--petal);
+
+    font-size: 4rem;
+
+    opacity: 0.45;
+}
+
+.opening-card::before {
+    top: -10px;
+    left: 10px;
+}
+
+.opening-card::after {
+    right: 10px;
+    bottom: -15px;
+}
+
+.opening-label {
+    margin-bottom: 12px;
+
+    color: var(--gold);
+
+    font-family: var(--serif);
+
+    font-size: 1.35rem;
+
+    font-style: italic;
+
+    letter-spacing: 1px;
+}
+
+.small-flower {
+    margin-bottom: 8px;
+
+    color: var(--rose);
+
+    font-size: 1.4rem;
+}
+
+.opening-card h1 {
+    color: var(--sage-deep);
+
+    font-family: var(--serif);
+
+    font-size: clamp(3.5rem, 10vw, 5rem);
+
+    font-weight: 500;
+
+    line-height: 1;
+}
+
+.opening-card h1 span {
+    color: var(--rose);
+}
+
+.opening-subtitle {
+    margin-top: 10px;
+
+    color: var(--rose-dark);
+
+    font-family: var(--serif);
+
+    font-size: 1.35rem;
+
+    font-style: italic;
+}
+
+.opening-date {
+    margin-top: 20px;
+
+    color: var(--sage-deep);
+
+    font-size: 0.8rem;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+}
+
+
+/* ============================================================
+   BUTTON
+   ============================================================ */
+
+.btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+
+    padding: 11px 20px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    font-size: 0.82rem;
+
+    font-weight: 600;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: scale(0.96);
+}
+
+.btn-primary {
+    background: var(--sage-deep);
+
+    color: var(--white);
+
+    box-shadow:
+        0 8px 20px
+        rgba(96, 117, 100, 0.18);
+}
+
+.btn-primary:hover {
+    background: var(--rose-dark);
+
+    box-shadow:
+        0 10px 22px
+        rgba(185, 121, 128, 0.2);
+}
+
+.btn-secondary {
+    background: var(--petal-light);
+
+    color: var(--rose-dark);
+
+    border:
+        1px solid
+        var(--petal);
+}
+
+.opening-card .btn {
+    margin-top: 25px;
+}
+
+
+/* ============================================================
+   DESKTOP HEADER
+   ============================================================ */
+
+.site-header {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 15px 6%;
+
+    background:
+        rgba(255, 253, 249, 0.88);
+
+    backdrop-filter: blur(10px);
+
+    border-bottom:
+        1px solid
+        rgba(220, 161, 166, 0.15);
+}
+
+.brand {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: var(--sage-light);
+
+    color: var(--sage-deep);
+
+    font-family: var(--serif);
+
+    font-size: 1rem;
+
+    border:
+        1px solid
+        rgba(96, 117, 100, 0.15);
+}
+
+.nav-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 24px;
+}
+
+.nav-links a {
+    color: var(--muted);
+
+    font-size: 0.72rem;
+
+    font-weight: 500;
+
+    transition:
+        color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--rose-dark);
+}
+
+
+/* ============================================================
+   MAIN
+   ============================================================ */
+
+main {
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding:
+        100px 25px
+        70px;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(255, 255, 255, 0.95),
+            transparent 50%
+        ),
+
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(239, 199, 202, 0.2),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 70%,
+            rgba(230, 223, 236, 0.25),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #faf5ef,
+            #f8f0f1,
+            #f4f0f6
+        );
+}
+
+.hero-inner {
+    width: min(850px, 100%);
+}
+
+.hero .eyebrow {
+    margin-bottom: 10px;
+
+    color: var(--gold);
+
+    font-family: var(--serif);
+
+    font-size: clamp(1.35rem, 3vw, 1.9rem);
+
+    font-style: italic;
+
+    line-height: 1.2;
+}
+
+.hero h1 {
+    color: var(--sage-deep);
+
+    font-family: var(--serif);
+
+    font-size: clamp(4rem, 12vw, 7.5rem);
+
+    font-weight: 500;
+
+    line-height: 0.9;
+
+    letter-spacing: 1px;
+}
+
+.hero h1 span {
+    color: var(--rose);
+}
+
+.script-text {
+    margin-top: 18px;
+
+    color: var(--rose-dark);
+
+    font-family: var(--serif);
+
+    font-size: 1.5rem;
+
+    font-style: italic;
+}
+
+.floral-line {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    margin:
+        18px
+        auto;
+    
+    max-width: 230px;
+
+    color: var(--gold);
+
+    font-family: var(--serif);
+
+    font-size: 1.2rem;
+}
+
+.floral-line span {
+    width: 70px;
+    height: 1px;
+
+    background: var(--petal);
+}
+
+.date-pill {
+    display: inline-block;
+
+    padding:
+        8px
+        18px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255, 255, 255, 0.7);
+
+    border:
+        1px solid
+        rgba(189, 150, 83, 0.2);
+
+    color: var(--sage-deep);
+
+    font-size: 0.75rem;
+
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* ============================================================
+   SECTION
+   ============================================================ */
+
+.section {
+    position: relative;
+
+    padding:
+        90px 7%;
+
+    overflow: hidden;
+}
+
+.section-paper {
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(239, 199, 202, 0.13),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(230, 223, 236, 0.16),
+            transparent 32%
+        ),
+
+        var(--paper);
+}
+
+.section-sage {
+    background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(239, 199, 202, 0.18),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 10% 85%,
+            rgba(230, 223, 236, 0.22),
+            transparent 32%
+        ),
+
+        var(--sage-light);
+}
+
+
+/* ============================================================
+   SECTION HEADING
+   ============================================================ */
+
+.section-heading {
+    margin-bottom: 45px;
+}
+
+.section-heading .eyebrow {
+    margin-bottom: 6px;
+
+    color: var(--gold);
+
+    font-family: var(--serif);
+
+    /*
+       INI UKURAN UNTUK:
+       Mempelai
+       Rangkaian Pernikahan
+       Menuju Hari Bahagia
+       Doa & Harapan
+       Tanda Kasih
+       Kehadiran & Doa
+    */
+
+    font-size: 1.55rem;
+
+    font-style: italic;
+
+    font-weight: 400;
+
+    line-height: 1.2;
+
+    letter-spacing: 0.2px;
+}
+
+.section-heading h2 {
+    margin: 0;
+
+    color: var(--ink);
+
+    font-family: var(--serif);
+
+    /*
+       JUDUL UTAMA SECTION
+    */
+
+    font-size: clamp(
+        2.1rem,
+        5vw,
+        3.1rem
+    );
+
+    font-weight: 600;
+
+    line-height: 1.05;
+}
+
+.section-heading .ornament {
+    display: block;
+
+    margin-top: 10px;
+
+    color: var(--rose);
+
+    font-size: 1.15rem;
+
+    opacity: 0.8;
+}
+
+
+/* ============================================================
+   COUPLE
+   ============================================================ */
+
+.couple-grid {
+    width: min(900px, 100%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        auto
+        1fr;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+.person-card {
+    padding: 25px;
+
+    background:
+        rgba(255, 255, 255, 0.75);
+
+    border:
+        1px solid
+        rgba(220, 161, 166, 0.18);
+
+    border-radius: 22px;
+
+    box-shadow:
+        var(--shadow-card);
+}
+
+.portrait {
+    width: 180px;
+    height: 180px;
+
+    margin:
+        0 auto
+        20px;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    border:
+        6px solid
+        #ffffff;
+
+    box-shadow:
+        0 8px 25px
+        rgba(90, 70, 60, 0.1);
+}
+
+.portrait img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.person-card h3 {
+    color: var(--sage-deep);
+
+    font-family: var(--serif);
+
+    font-size: 1.65rem;
+
+    font-weight: 600;
+}
+
+.person-family {
+    margin-top: 7px;
+
+    color: var(--muted);
+
+    font-size: 0.8rem;
+}
+
+.couple-symbol {
+    color: var(--rose);
+
+    font-family: var(--serif);
+
+    font-size: 3rem;
+}
+
+
+/* ============================================================
+   EVENTS
+   ============================================================ */
+
+.event-list-centered {
+    width: min(900px, 100%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 25px;
+}
+
+.event-card-centered {
+    padding: 35px 25px;
+
+    text-align: center;
+
+    background:
+        rgba(255, 255, 255, 0.78);
+
+    border:
+        1px solid
+        rgba(189, 150, 83, 0.16);
+
+    border-radius: 22px;
+
+    box-shadow:
+        var(--shadow-card);
+}
+
+.event-icon {
+    margin-bottom: 10px;
+
+    font-size: 1.8rem;
+}
+
+.event-type {
+    color: var(--sage-deep);
+
+    font-family: var(--sans);
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+}
+
+.event-divider {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    margin: 12px auto;
+
+    color: var(--gold);
+}
+
+.event-divider span {
+    width: 45px;
+    height: 1px;
+
+    background: var(--petal);
+}
+
+.event-date {
+    margin-top: 12px;
+
+    color: var(--rose-dark);
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+}
+
+.event-time {
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 0.8rem;
+}
+
+.event-venue {
+    margin-top: 15px;
+
+    color: var(--ink);
+
+    font-family: var(--serif);
+
+    font-size: 1.4rem;
+
+    line-height: 1.2;
+}
+
+.event-actions {
+    margin-top: 22px;
+}
+
+
+/* ============================================================
+   COUNTDOWN
+   ============================================================ */
+
+.countdown-grid {
+    width: min(850px, 100%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+.count-box {
+    padding: 22px 10px;
+
+    text-align: center;
+
+    background:
+        rgba(255, 255, 255, 0.7);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.9);
+
+    border-radius: 18px;
+
+    box-shadow:
+        var(--shadow-card);
+}
+
+.count-box strong {
+    display: block;
+
+    color: var(--rose-dark);
+
+    font-family: var(--serif);
+
+    font-size: 3rem;
+
+    font-weight: 500;
+
+    line-height: 1;
+}
+
+.count-box span {
+    display: block;
+
+    margin-top: 7px;
+
+    color: var(--sage-deep);
+
+    font-size: 0.65rem;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+}
+
+
+/* ============================================================
+   TIMELINE / LOVE STORY
+   ============================================================ */
+
+.timeline {
+    width: min(650px, 100%);
+
+    margin: auto;
+
+    position: relative;
+
+    padding: 10px 0;
+}
+
+.timeline-item {
+    position: relative;
+
+    margin-bottom: 25px;
+
+    padding:
+        15px 20px
+        15px 30px;
+
+    border-left:
+        2px solid
+        var(--petal);
+}
+
+.timeline-item::before {
+    content: "✿";
+
+    position: absolute;
+
+    left: -12px;
+
+    top: 13px;
+
+    width: 22px;
+    height: 22px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--paper);
+
+    color: var(--rose);
+
+    font-size: 0.85rem;
+}
+
+.timeline-date {
+    margin-bottom: 3px;
+
+    color: var(--sage-deep);
+
+    font-size: 0.8rem;
+
+    font-weight: 600;
+}
+
+.timeline-content {
+    padding: 12px 15px;
+
+    background:
+        rgba(255, 255, 255, 0.55);
+
+    border-radius: 12px;
+}
+
+.timeline-content h3 {
+    color: var(--rose-dark);
+
+    font-family: var(--serif);
+
+    font-size: 1.35rem;
+}
+
+.timeline-content p {
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 0.8rem;
+}
+
+
+/* ============================================================
+   DOA & HARAPAN
+   ============================================================ */
+
+.wedding-quote-section {
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(239, 199, 202, 0.28),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(230, 223, 236, 0.3),
+            transparent 30%
+        ),
+
+        #fbf7f4;
+}
+
+.wedding-quote-card {
+    width: min(850px, 100%);
+
+    margin: auto;
+
+    padding:
+        40px 30px;
+
+    background:
+        rgba(255, 255, 255, 0.76);
+
+    border:
+        1px solid
+        rgba(220, 161, 166, 0.2);
+
+    border-radius: 24px;
+
+    box-shadow:
+        var(--shadow-soft);
+}
+
+.quote-arabic {
+    color: var(--sage-deep);
+
+    font-family: "Times New Roman", serif;
+
+    font-size: clamp(
+        1.4rem,
+        3vw,
+        2rem
+    );
+
+    line-height: 2;
+
+    direction: rtl;
+}
+
+.quote-translation {
+    margin-top: 25px;
+
+    color: var(--muted);
+
+    font-family: var(--serif);
+
+    font-size: 1.3rem;
+
+    font-style: italic;
+
+    line-height: 1.5;
+}
+
+.quote-source {
+    margin-top: 12px;
+
+    color: var(--gold);
+
+    font-size: 0.8rem;
+
+    font-weight: 600;
+}
+
+
+/* ============================================================
+   AMPLOP DIGITAL
+   ============================================================ */
+
+.section-intro {
+    width: min(700px, 100%);
+
+    margin:
+        -15px
+        auto
+        30px;
+
+    color: var(--muted);
+
+    font-size: 0.82rem;
+
+    line-height: 1.8;
+}
+
+.gift-grid {
+    width: min(750px, 100%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.gift-card {
+    padding: 30px 20px;
+
+    background:
+        rgba(255, 255, 255, 0.78);
+
+    border:
+        1px solid
+        rgba(220, 161, 166, 0.2);
+
+    border-radius: 20px;
+
+    box-shadow:
+        var(--shadow-card);
+}
+
+.gift-card h3 {
+    color: var(--sage-deep);
+
+    font-family: var(--serif);
+
+    font-size: 1.5rem;
+}
+
+.account-number {
+    margin: 12px 0 4px;
+
+    color: var(--rose-dark);
+
+    font-size: 1.2rem;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+}
+
+.account-name {
+    color: var(--muted);
+
+    font-size: 0.75rem;
+}
+
+.gift-card .btn {
+    margin-top: 18px;
+}
+
+.qris-box {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ============================================================
+   RSVP
+   ============================================================ */
+
+.rsvp-form {
+    width: min(650px, 100%);
+
+    margin: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.rsvp-form label {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.rsvp-form label span {
+    color: var(--sage-deep);
+
+    font-size: 0.78rem;
+
+    font-weight: 600;
+}
+
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form textarea {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    background:
+        rgba(255, 255, 255, 0.8);
+
+    border:
+        1px solid
+        #e6deda;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    color: var(--ink);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.rsvp-form textarea {
+    resize: vertical;
+
+    min-height: 120px;
+}
+
+.rsvp-form input:focus,
+.rsvp-form select:focus,
+.rsvp-form textarea:focus {
+    border-color: var(--rose);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(220, 161, 166, 0.12);
+}
+
+.rsvp-form > button {
+    align-self: center;
+}
+
+
+/* ============================================================
+   MOBILE BOTTOM NAVIGATION
+   ============================================================ */
+
+.mobile-bottom-nav {
+    display: none;
+
+    position: fixed;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 1000;
+
+    justify-content: space-around;
+
+    padding: 8px 0;
+
+    background:
+        rgba(255, 253, 249, 0.96);
+
+    backdrop-filter: blur(10px);
+
+    border-top:
+        1px solid
+        #eee4df;
+
+    box-shadow:
+        0 -5px 20px
+        rgba(90, 70, 60, 0.08);
+}
+
+.mobile-bottom-nav .nav-item {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 1px;
+
+    color: var(--muted);
+
+    font-size: 0.62rem;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.mobile-bottom-nav .nav-icon {
+    font-size: 1.05rem;
+}
+
+.mobile-bottom-nav .nav-item:active {
+    transform: scale(0.9);
+
+    color: var(--rose-dark);
+}
+
+
+/* ============================================================
+   BUTTON ANIMATION
+   ============================================================ */
+
+.btn-animate {
+    cursor: pointer;
+}
+
+
+/* ============================================================
+   RESPONSIVE TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .site-header {
+        padding:
+            13px 4%;
+    }
+
+    .nav-links {
+        gap: 14px;
+    }
+
+    .nav-links a {
+        font-size: 0.65rem;
+    }
+
+    .section {
+        padding:
+            75px 5%;
+    }
+
+    .couple-grid {
+        gap: 15px;
+    }
+}
+
+
+/* ============================================================
+   RESPONSIVE MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    body {
+        padding-bottom: 62px;
+    }
+
+
+    /* Header desktop disembunyikan */
+
+    .site-header {
+        display: none;
+    }
+
+
+    /* Bottom navigation */
+
+    .mobile-bottom-nav {
+        display: flex;
+    }
+
+
+    /* Hero */
+
+    .hero {
+        min-height: 100svh;
+
+        padding:
+            80px 20px
+            60px;
+    }
+
+    .hero .eyebrow {
+
+        /*
+           The Wedding Invitation Of
+        */
+
+        font-size: 1.3rem;
+
+        margin-bottom: 10px;
+    }
+
+    .hero h1 {
+        font-size:
+            clamp(
+                3.8rem,
+                17vw,
+                5.5rem
+            );
+    }
+
+    .script-text {
+        font-size: 1.25rem;
+    }
+
+    .date-pill {
+        font-size: 0.65rem;
+
+        letter-spacing: 1px;
+    }
+
+
+    /* Section */
+
+    .section {
+        padding:
+            65px 20px;
+    }
+
+
+    /* ========================================================
+       INI BAGIAN YANG MENGATUR:
+
+       Mempelai
+       Rangkaian Pernikahan
+       Menuju Hari Bahagia
+       Doa & Harapan
+       Tanda Kasih
+       Kehadiran & Doa
+       ======================================================== */
+
+    .section-heading .eyebrow {
+
+        font-size: 1.25rem;
+
+        line-height: 1.2;
+
+        margin-bottom: 6px;
+    }
+
+
+    /* Judul utama */
+
+    .section-heading h2 {
+
+        font-size: 2.15rem;
+
+        line-height: 1.05;
+    }
+
+
+    .section-heading .ornament {
+
+        margin-top: 8px;
+
+        font-size: 1rem;
+    }
+
+
+    /* Couple */
+
+    .couple-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .couple-symbol {
+
+        font-size: 2.3rem;
+    }
+
+    .person-card {
+
+        padding: 22px 15px;
+    }
+
+    .portrait {
+
+        width: 145px;
+        height: 145px;
+    }
+
+
+    /* Events */
+
+    .event-list-centered {
+
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .event-card-centered {
+
+        padding:
+            28px 18px;
+    }
+
+    .event-venue {
+
+        font-size: 1.25rem;
+    }
+
+
+    /* Countdown */
+
+    .countdown-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 12px;
+    }
+
+    .count-box {
+
+        padding:
+            18px 8px;
+    }
+
+    .count-box strong {
+
+        font-size: 2.5rem;
+    }
+
+
+    /* Timeline */
+
+    .timeline-item {
+
+        padding-left: 25px;
+    }
+
+
+    /* Doa */
+
+    .wedding-quote-card {
+
+        padding:
+            30px 18px;
+    }
+
+    .quote-arabic {
+
+        font-size: 1.25rem;
+
+        line-height: 2;
+    }
+
+    .quote-translation {
+
+        font-size: 1.15rem;
+    }
+
+
+    /* Gift */
+
+    .gift-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Bottom nav */
+
+    .mobile-bottom-nav .nav-item {
+
+        font-size: 0.58rem;
+    }
+
+    .mobile-bottom-nav .nav-icon {
+
+        font-size: 1rem;
+    }
+}
+
+
+/* ============================================================
+   VERY SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 400px) {
+
+    .hero .eyebrow {
+
+        font-size: 1.15rem;
+    }
+
+    .hero h1 {
+
+        font-size: 3.7rem;
+    }
+
+    .section-heading .eyebrow {
+
+        font-size: 1.15rem;
+    }
+
+    .section-heading h2 {
+
+        font-size: 1.95rem;
+    }
+
+    .section {
+
+        padding:
+            55px 16px;
+    }
+
+    .mobile-bottom-nav {
+
+        padding:
+            7px 0;
+    }
+}
+
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+    }
+}
