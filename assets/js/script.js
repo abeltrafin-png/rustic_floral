@@ -8,8 +8,10 @@
    - Mobile menu
    - Countdown
    - Save to Calendar
+   - Map Slider
    - Gallery / Lightbox
    - RSVP / Ucapan
+   - Smooth Scroll
    ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -18,7 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
        KONFIGURASI
        ========================================================= */
 
-    const WEDDING_DATE = "2025-10-25T08:00:00+07:00";
+    // Tanggal akad: 21 Februari 2027 pukul 08.00 WIB
+    const WEDDING_DATE = "2027-02-21T08:00:00+07:00";
 
 
     /* =========================================================
@@ -81,22 +84,14 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        /* Hilangkan cover */
         openingScreen.classList.add("is-hidden");
 
-        /* Aktifkan kembali scroll */
         document.body.classList.remove("locked");
 
-        /* Tampilkan navbar */
         if (siteHeader) {
             siteHeader.classList.add("visible");
         }
 
-        /*
-         * Setelah animasi selesai,
-         * pastikan cover benar-benar tidak bisa
-         * menangkap klik.
-         */
         setTimeout(() => {
 
             openingScreen.style.display = "none";
@@ -106,8 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /*
-     * Saat halaman pertama kali dibuka,
-     * body dikunci agar user fokus ke cover.
+     * Kunci halaman ketika cover masih tampil
      */
     if (openingScreen) {
 
@@ -130,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /*
-     * Jika user menekan Enter pada keyboard
+     * Tekan Enter untuk membuka undangan
      */
     document.addEventListener("keydown", (event) => {
 
@@ -189,9 +183,6 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-        /*
-         * Tutup menu setelah memilih menu
-         */
         const navigationLinks =
             navLinks.querySelectorAll("a");
 
@@ -218,10 +209,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateCountdown() {
 
-        /*
-         * Kalau elemen countdown tidak ada,
-         * fungsi tidak perlu dijalankan.
-         */
         if (
             !daysEl ||
             !hoursEl ||
@@ -309,6 +296,9 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCountdown();
 
 
+    /*
+     * Update setiap 1 detik
+     */
     setInterval(
         updateCountdown,
         1000
@@ -333,21 +323,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     "PRODID:-//Andi & Sari Wedding//ID",
 
+                    "CALSCALE:GREGORIAN",
+
                     "BEGIN:VEVENT",
 
-                    "UID:andi-sari-wedding-2025@example.com",
+                    "UID:andi-sari-wedding-2027@example.com",
 
-                    "DTSTAMP:20250831T000000Z",
+                    "DTSTAMP:20260919T000000Z",
 
-                    "DTSTART:20251025T010000Z",
+                    "DTSTART:20270221T010000Z",
 
-                    "DTEND:20251025T090000Z",
+                    "DTEND:20270221T030000Z",
 
-                    "SUMMARY:Pernikahan Andi & Sari",
+                    "SUMMARY:Akad Nikah Andi & Sari",
 
-                    "LOCATION:Gedung Serbaguna Cempaka, Jakarta Selatan",
+                    "LOCATION:Masjid Jami' Al-Ikhlas, Jl. Raya Ragunan No. 11A, Jati Padang, Pasar Minggu, Jakarta Selatan",
 
-                    "DESCRIPTION:Akad Nikah dan Resepsi Pernikahan Andi & Sari.",
+                    "DESCRIPTION:Akad Nikah Andi & Sari.",
 
                     "END:VEVENT",
 
@@ -377,7 +369,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 link.href = url;
 
                 link.download =
-                    "andi-sari-wedding.ics";
+                    "andi-sari-akad.ics";
 
 
                 document.body.appendChild(link);
@@ -387,10 +379,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 link.remove();
 
 
-                /*
-                 * Beri waktu browser menggunakan URL
-                 * sebelum URL dihapus.
-                 */
                 setTimeout(() => {
 
                     URL.revokeObjectURL(url);
@@ -404,11 +392,262 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================================
-       6. GALERI / LIGHTBOX
+       6. MAP SLIDER
+       ========================================================= */
+
+    const mapSlider =
+        document.getElementById("mapSlider");
+
+    const mapTrack =
+        document.querySelector(".map-track");
+
+    const mapSlides =
+        document.querySelectorAll(".map-slide");
+
+    const mapDots =
+        document.querySelectorAll(".map-dot");
+
+    const mapPrev =
+        document.querySelector(".map-prev");
+
+    const mapNext =
+        document.querySelector(".map-next");
+
+
+    let currentMap = 0;
+
+
+    /*
+     * Tampilkan map tertentu
+     */
+    function showMap(index) {
+
+        if (
+            !mapTrack ||
+            mapSlides.length === 0
+        ) {
+
+            return;
+
+        }
+
+
+        currentMap =
+            (index + mapSlides.length) %
+            mapSlides.length;
+
+
+        /*
+         * Geser track
+         */
+        mapTrack.style.transform =
+            `translateX(-${currentMap * 100}%)`;
+
+
+        /*
+         * Aktifkan slide
+         */
+        mapSlides.forEach(
+            (slide, i) => {
+
+                slide.classList.toggle(
+                    "active",
+                    i === currentMap
+                );
+
+            }
+        );
+
+
+        /*
+         * Update titik navigasi
+         */
+        mapDots.forEach(
+            (dot, i) => {
+
+                dot.classList.toggle(
+                    "active",
+                    i === currentMap
+                );
+
+                dot.setAttribute(
+                    "aria-current",
+                    i === currentMap
+                        ? "true"
+                        : "false"
+                );
+
+            }
+        );
+
+    }
+
+
+    /*
+     * Tombol sebelumnya
+     */
+    if (mapPrev) {
+
+        mapPrev.addEventListener(
+            "click",
+            () => {
+
+                showMap(
+                    currentMap - 1
+                );
+
+            }
+        );
+
+    }
+
+
+    /*
+     * Tombol berikutnya
+     */
+    if (mapNext) {
+
+        mapNext.addEventListener(
+            "click",
+            () => {
+
+                showMap(
+                    currentMap + 1
+                );
+
+            }
+        );
+
+    }
+
+
+    /*
+     * Tombol titik / indicator
+     */
+    mapDots.forEach(
+        (dot, index) => {
+
+            dot.addEventListener(
+                "click",
+                () => {
+
+                    showMap(index);
+
+                }
+            );
+
+        }
+    );
+
+
+    /*
+     * Inisialisasi map pertama
+     */
+    if (mapSlides.length > 0) {
+
+        showMap(0);
+
+    }
+
+
+    /* =========================================================
+       MAP SLIDER — SWIPE / TOUCH
+       ========================================================= */
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+
+    if (mapSlider) {
+
+        mapSlider.addEventListener(
+            "touchstart",
+            (event) => {
+
+                touchStartX =
+                    event.changedTouches[0].clientX;
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        mapSlider.addEventListener(
+            "touchend",
+            (event) => {
+
+                touchEndX =
+                    event.changedTouches[0].clientX;
+
+
+                const swipeDistance =
+                    touchStartX - touchEndX;
+
+
+                /*
+                 * Swipe ke kiri
+                 */
+                if (swipeDistance > 50) {
+
+                    showMap(
+                        currentMap + 1
+                    );
+
+                }
+
+
+                /*
+                 * Swipe ke kanan
+                 */
+                if (swipeDistance < -50) {
+
+                    showMap(
+                        currentMap - 1
+                    );
+
+                }
+
+            },
+            {
+                passive: true
+            }
+        );
+
+    }
+
+
+    /*
+     * Auto slide setiap 6 detik
+     *
+     * Hanya aktif kalau ada lebih dari
+     * satu lokasi.
+     */
+    if (mapSlides.length > 1) {
+
+        setInterval(
+            () => {
+
+                showMap(
+                    currentMap + 1
+                );
+
+            },
+            6000
+        );
+
+    }
+
+
+    /* =========================================================
+       7. GALERI / LIGHTBOX
        ========================================================= */
 
     const galleryItems =
-        document.querySelectorAll(".gallery-item");
+        document.querySelectorAll(
+            ".gallery-item"
+        );
 
 
     if (
@@ -417,83 +656,105 @@ document.addEventListener("DOMContentLoaded", () => {
         galleryItems.length > 0
     ) {
 
-        galleryItems.forEach((item) => {
+        galleryItems.forEach(
+            (item) => {
 
-            item.addEventListener(
-                "click",
-                () => {
+                /*
+                 * Placeholder gallery jangan dibuka
+                 */
+                if (
+                    item.classList.contains(
+                        "gallery-placeholder"
+                    )
+                ) {
 
-                    /*
-                     * Ambil gambar dari data-full
-                     */
-                    const fullImage =
-                        item.dataset.full;
+                    return;
 
-
-                    /*
-                     * Kalau data-full tidak ada,
-                     * coba ambil gambar dari img
-                     */
-                    let imageSource =
-                        fullImage;
+                }
 
 
-                    if (!imageSource) {
+                item.addEventListener(
+                    "click",
+                    () => {
 
-                        const image =
-                            item.querySelector("img");
+                        /*
+                         * Ambil gambar dari data-full
+                         */
+                        const fullImage =
+                            item.dataset.full;
 
 
-                        if (image) {
+                        let imageSource =
+                            fullImage;
 
-                            imageSource =
-                                image.src;
+
+                        /*
+                         * Kalau data-full tidak ada,
+                         * ambil src dari img
+                         */
+                        if (!imageSource) {
+
+                            const image =
+                                item.querySelector(
+                                    "img"
+                                );
+
+
+                            if (image) {
+
+                                imageSource =
+                                    image.src;
+
+                            }
 
                         }
 
+
+                        if (!imageSource) {
+
+                            return;
+
+                        }
+
+
+                        lightboxImage.src =
+                            imageSource;
+
+
+                        lightbox.classList.add(
+                            "is-open"
+                        );
+
+
+                        lightbox.setAttribute(
+                            "aria-hidden",
+                            "false"
+                        );
+
+
+                        document.body.classList.add(
+                            "locked"
+                        );
+
                     }
+                );
 
-
-                    if (!imageSource) {
-                        return;
-                    }
-
-
-                    lightboxImage.src =
-                        imageSource;
-
-
-                    lightbox.classList.add(
-                        "is-open"
-                    );
-
-
-                    lightbox.setAttribute(
-                        "aria-hidden",
-                        "false"
-                    );
-
-
-                    document.body.classList.add(
-                        "locked"
-                    );
-
-                }
-            );
-
-        });
+            }
+        );
 
     }
 
 
     /* =========================================================
-       TUTUP LIGHTBOX
+       8. TUTUP LIGHTBOX
        ========================================================= */
 
     function closeLightbox() {
 
         if (!lightbox) {
+
             return;
+
         }
 
 
@@ -516,12 +777,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         /*
-         * Hanya unlock kalau opening invitation
-         * sudah dibuka.
+         * Jangan unlock kalau cover masih terbuka
          */
         if (
             !openingScreen ||
-            openingScreen.classList.contains("is-hidden")
+            openingScreen.classList.contains(
+                "is-hidden"
+            )
         ) {
 
             document.body.classList.remove(
@@ -533,6 +795,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    /*
+     * Tombol close
+     */
     if (lightboxClose) {
 
         lightboxClose.addEventListener(
@@ -544,7 +809,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /*
-     * Klik area luar foto
+     * Klik area luar gambar
      */
     if (lightbox) {
 
@@ -567,7 +832,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /*
-     * Tombol Escape
+     * Escape untuk menutup
      */
     document.addEventListener(
         "keydown",
@@ -576,7 +841,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if (
                 event.key === "Escape" &&
                 lightbox &&
-                lightbox.classList.contains("is-open")
+                lightbox.classList.contains(
+                    "is-open"
+                )
             ) {
 
                 closeLightbox();
@@ -588,7 +855,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================================
-       7. RSVP / UCAPAN
+       9. RSVP / UCAPAN
        ========================================================= */
 
     if (rsvpForm) {
@@ -690,11 +957,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         );
 
 
-                    /*
-                     * Pastikan datanya array
-                     */
                     if (
-                        !Array.isArray(previousData)
+                        !Array.isArray(
+                            previousData
+                        )
                     ) {
 
                         previousData = [];
@@ -761,89 +1027,89 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================================
-       8. SMOOTH SCROLL
-       Untuk semua link dengan href="#..."
+       10. SMOOTH SCROLL
        ========================================================= */
 
     document
-        .querySelectorAll('a[href^="#"]')
-        .forEach((link) => {
+        .querySelectorAll(
+            'a[href^="#"]'
+        )
+        .forEach(
+            (link) => {
 
-            link.addEventListener(
-                "click",
-                (event) => {
+                link.addEventListener(
+                    "click",
+                    (event) => {
 
-                    const targetId =
-                        link.getAttribute("href");
+                        const targetId =
+                            link.getAttribute(
+                                "href"
+                            );
 
 
-                    /*
-                     * Jangan lakukan apa-apa
-                     * untuk href="#"
-                     */
-                    if (
-                        !targetId ||
-                        targetId === "#"
-                    ) {
+                        if (
+                            !targetId ||
+                            targetId === "#"
+                        ) {
 
-                        return;
+                            return;
+
+                        }
+
+
+                        const target =
+                            document.querySelector(
+                                targetId
+                            );
+
+
+                        if (!target) {
+
+                            return;
+
+                        }
+
+
+                        event.preventDefault();
+
+
+                        /*
+                         * Tinggi navbar
+                         */
+                        const headerHeight =
+                            siteHeader
+                                ? siteHeader.offsetHeight
+                                : 0;
+
+
+                        const targetPosition =
+                            target.getBoundingClientRect()
+                                .top +
+                            window.scrollY -
+                            headerHeight;
+
+
+                        window.scrollTo({
+
+                            top:
+                                targetPosition,
+
+                            behavior:
+                                "smooth"
+
+                        });
 
                     }
+                );
 
-
-                    const target =
-                        document.querySelector(
-                            targetId
-                        );
-
-
-                    if (!target) {
-                        return;
-                    }
-
-
-                    event.preventDefault();
-
-
-                    /*
-                     * Offset navbar
-                     */
-                    const headerHeight =
-                        siteHeader
-                            ? siteHeader.offsetHeight
-                            : 0;
-
-
-                    const targetPosition =
-                        target.getBoundingClientRect().top +
-                        window.scrollY -
-                        headerHeight;
-
-
-                    window.scrollTo({
-
-                        top:
-                            targetPosition,
-
-                        behavior:
-                            "smooth"
-
-                    });
-
-                }
-            );
-
-        });
+            }
+        );
 
 
     /* =========================================================
-       9. CEK STATUS AWAL
+       11. CEK STATUS AWAL
        ========================================================= */
 
-    /*
-     * Kalau opening screen tidak ada,
-     * jangan mengunci body.
-     */
     if (!openingScreen) {
 
         document.body.classList.remove(
@@ -853,13 +1119,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /*
-     * Pastikan navbar bisa tampil
-     * setelah undangan dibuka.
-     */
     if (
         openingScreen &&
-        openingScreen.classList.contains("is-hidden") &&
+        openingScreen.classList.contains(
+            "is-hidden"
+        ) &&
         siteHeader
     ) {
 
@@ -869,52 +1133,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    /* ============================================================
-    MAP SLIDER
-    ============================================================ */
-
-    const mapSlides = document.querySelectorAll(".map-slide");
-    const mapDots = document.querySelectorAll(".map-dot");
-    const mapPrev = document.querySelector(".map-prev");
-    const mapNext = document.querySelector(".map-next");
-
-    let currentMap = 0;
-
-    function showMap(index) {
-
-        if (!mapSlides.length) return;
-
-        currentMap = (index + mapSlides.length) % mapSlides.length;
-
-        mapSlides.forEach((slide, i) => {
-            slide.classList.toggle("active", i === currentMap);
-        });
-
-        mapDots.forEach((dot, i) => {
-            dot.classList.toggle("active", i === currentMap);
-        });
-    }
-
-    if (mapNext) {
-        mapNext.addEventListener("click", () => {
-            showMap(currentMap + 1);
-        });
-    }
-
-    if (mapPrev) {
-        mapPrev.addEventListener("click", () => {
-            showMap(currentMap - 1);
-        });
-    }
-
-    mapDots.forEach((dot, index) => {
-        dot.addEventListener("click", () => {
-            showMap(index);
-        });
-    });
-    setInterval(() => {
-    showMap(currentMap + 1);
-    }, 5000);
-
 });
-
