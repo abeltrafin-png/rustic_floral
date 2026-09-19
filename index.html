@@ -3,89 +3,40 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta name="description" content="Undangan Pernikahan Andi & Sari">
-
     <title>Undangan Pernikahan — Andi & Sari</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Path CSS disesuaikan ke folder assets/css/ -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
-    <!-- ======================================================
-         BACKGROUND ORNAMENTS
-         ====================================================== -->
-
     <div class="rustic-bg-ornaments">
-
         <div class="flower-decoration flower-top-left">✿</div>
         <div class="flower-decoration flower-top-right">❀</div>
         <div class="flower-decoration flower-bottom-left">❁</div>
         <div class="flower-decoration flower-bottom-right">✿</div>
-
     </div>
 
-
-    <!-- ======================================================
-         OPENING SCREEN
-         ====================================================== -->
-
+    <!-- OPENING SCREEN -->
     <div class="opening-screen" id="openingScreen">
-
         <div class="opening-card">
-
-            <div class="opening-floral">
-                ❀
-            </div>
-
-            <div class="opening-label">
-                The Wedding Of
-            </div>
-
-            <h1>
-                Andi
-                <span>&</span>
-                Sari
-            </h1>
-
+            <div class="opening-floral">❀</div>
+            <div class="opening-label">The Wedding Of</div>
+            <h1>Andi <span>&</span> Sari</h1>
             <div class="opening-line"></div>
-
-            <p class="opening-to">
-                Kepada Yth.<br>
-                Bapak/Ibu/Saudara/i
-            </p>
-
-            <div class="opening-date">
-                MINGGU, 21 FEBRUARI 2027
-            </div>
-
-            <button
-                type="button"
-                class="open-button"
-                id="openInvitation">
-                Buka Undangan
-            </button>
-
+            <p class="opening-to">Kepada Yth.<br>Bapak/Ibu/Saudara/i</p>
+            <div class="opening-date">MINGGU, 21 FEBRUARI 2027</div>
+            <button type="button" class="open-button" id="openInvitation">Buka Undangan</button>
         </div>
-
     </div>
 
-
-    <!-- ======================================================
-         DESKTOP HEADER
-         ====================================================== -->
-
+    <!-- HEADER -->
     <header class="site-header" id="siteHeader">
-
-        <a href="#hero" class="brand">
-            A<span>&</span>S
-        </a>
-
+        <a href="#hero" class="brand">A<span>&</span>S</a>
         <nav class="nav-links">
-
             <a href="#hero">Beranda</a>
             <a href="#couple">Mempelai</a>
             <a href="#events">Acara</a>
@@ -93,893 +44,225 @@
             <a href="#gallery">Galeri</a>
             <a href="#gift">Hadiah</a>
             <a href="#rsvp">RSVP</a>
-
         </nav>
-
     </header>
-
-
-    <!-- ======================================================
-         MAIN
-         ====================================================== -->
 
     <main>
 
-
-        <!-- ==================================================
-             HERO
-             ================================================== -->
-
+        <!-- HERO -->
         <section class="hero" id="hero">
-
-            <div class="hero-flower hero-flower-left">
-                ❀
-            </div>
-
-            <div class="hero-flower hero-flower-right">
-                ✿
-            </div>
-
+            <div class="hero-flower hero-flower-left">❀</div>
+            <div class="hero-flower hero-flower-right">✿</div>
             <div class="hero-content">
-
-                <p class="hero-eyebrow">
-                    The Wedding Invitation Of
-                </p>
-
-                <h1 class="hero-names">
-                    Andi
-                    <span>&</span>
-                    Sari
-                </h1>
-
+                <p class="hero-eyebrow">The Wedding Invitation Of</p>
+                <h1 class="hero-names">Andi <span>&</span> Sari</h1>
                 <div class="hero-divider">
-                    <span></span>
-                    ❀
-                    <span></span>
+                    <span></span>❀<span></span>
                 </div>
-
                 <p class="hero-message">
-                    Dengan penuh kebahagiaan,
-                    kami mengundang Anda untuk
-                    menjadi bagian dari hari istimewa kami.
+                    Dengan penuh kebahagiaan, kami mengundang Anda untuk menjadi bagian dari hari istimewa kami.
                 </p>
-
                 <div class="hero-date">
                     <span>MINGGU</span>
                     <strong>21</strong>
                     <span>FEBRUARI</span>
                     <span>2027</span>
                 </div>
-
                 <a href="#couple" class="scroll-down">
                     <span>Scroll untuk melihat undangan</span>
                     <b>↓</b>
                 </a>
-
             </div>
-
         </section>
 
-
-        <!-- ==================================================
-             MEMPELAI
-             ================================================== -->
-
+        <!-- MEMPELAI -->
         <section class="section couple-section" id="couple">
-
             <div class="section-heading">
-
-                <p class="section-eyebrow">
-                    Mempelai
-                </p>
-
-                <h2>
-                    Dua Hati, Satu Cerita
-                </h2>
-
-                <div class="heading-flower">
-                    ❀
-                </div>
-
+                <p class="section-eyebrow">Mempelai</p>
+                <h2>Dua Hati, Satu Cerita</h2>
+                <div class="heading-flower">❀</div>
             </div>
-
 
             <div class="couple-wrapper">
+                <div class="person">
+                    <div class="person-image">
+                        <!-- Path gambar disesuaikan ke assets/images/ -->
+                        <img src="assets/images/man.png" alt="Andi Pratama">
+                    </div>
+                    <p class="person-label">The Groom</p>
+                    <h3>Andi Pratama</h3>
+                    <p class="person-family">Putra dari<br>Bapak A & Ibu B</p>
+                </div>
+
+                <div class="couple-heart"><span>♡</span></div>
 
                 <div class="person">
-
                     <div class="person-image">
-                        <img
-                            src="gambar/andi.jpg"
-                            alt="Andi Pratama">
+                        <!-- Path gambar disesuaikan ke assets/images/ -->
+                        <img src="assets/images/woman.png" alt="Sari Wijaya">
                     </div>
-
-                    <p class="person-label">
-                        The Groom
-                    </p>
-
-                    <h3>
-                        Andi Pratama
-                    </h3>
-
-                    <p class="person-family">
-                        Putra dari<br>
-                        Bapak A & Ibu B
-                    </p>
-
+                    <p class="person-label">The Bride</p>
+                    <h3>Sari Wijaya</h3>
+                    <p class="person-family">Putri dari<br>Bapak C & Ibu D</p>
                 </div>
-
-
-                <div class="couple-heart">
-                    <span>♡</span>
-                </div>
-
-
-                <div class="person">
-
-                    <div class="person-image">
-                        <img
-                            src="gambar/sari.jpg"
-                            alt="Sari Wijaya">
-                    </div>
-
-                    <p class="person-label">
-                        The Bride
-                    </p>
-
-                    <h3>
-                        Sari Wijaya
-                    </h3>
-
-                    <p class="person-family">
-                        Putri dari<br>
-                        Bapak C & Ibu D
-                    </p>
-
-                </div>
-
             </div>
-
         </section>
 
-
-        <!-- ==================================================
-             DOA / QUOTE
-             ================================================== -->
-
+        <!-- DOA / QUOTE -->
         <section class="quote-section">
-
-            <div class="quote-decoration">
-                ❀
-            </div>
-
+            <div class="quote-decoration">❀</div>
             <div class="quote-content">
-
                 <p class="quote-intro">
-                    "Dan di antara tanda-tanda kekuasaan-Nya
-                    ialah Dia menciptakan untukmu pasangan
-                    dari jenismu sendiri..."
+                    "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan dari jenismu sendiri..."
                 </p>
-
                 <div class="quote-line"></div>
-
-                <p class="quote-source">
-                    QS. Ar-Rum: 21
-                </p>
-
+                <p class="quote-source">QS. Ar-Rum: 21</p>
             </div>
-
         </section>
 
-
-        <!-- ==================================================
-             COUNTDOWN
-             ================================================== -->
-
+        <!-- COUNTDOWN -->
         <section class="section countdown-section" id="countdown">
-
             <div class="section-heading">
-
-                <p class="section-eyebrow">
-                    Menuju Hari Bahagia
-                </p>
-
-                <h2>
-                    Hitung Mundur
-                </h2>
-
-                <div class="heading-flower">
-                    ❀
-                </div>
-
+                <p class="section-eyebrow">Menuju Hari Bahagia</p>
+                <h2>Hitung Mundur</h2>
+                <div class="heading-flower">❀</div>
             </div>
-
 
             <div class="countdown">
-
-                <div class="count-item">
-                    <strong id="days">000</strong>
-                    <span>Hari</span>
-                </div>
-
-                <div class="count-item">
-                    <strong id="hours">00</strong>
-                    <span>Jam</span>
-                </div>
-
-                <div class="count-item">
-                    <strong id="minutes">00</strong>
-                    <span>Menit</span>
-                </div>
-
-                <div class="count-item">
-                    <strong id="seconds">00</strong>
-                    <span>Detik</span>
-                </div>
-
+                <div class="count-item"><strong id="days">000</strong><span>Hari</span></div>
+                <div class="count-item"><strong id="hours">00</strong><span>Jam</span></div>
+                <div class="count-item"><strong id="minutes">00</strong><span>Menit</span></div>
+                <div class="count-item"><strong id="seconds">00</strong><span>Detik</span></div>
             </div>
-
         </section>
 
-
-        <!-- ==================================================
-             ACARA
-             ================================================== -->
-
+        <!-- ACARA -->
         <section class="section events-section" id="events">
-
             <div class="section-heading">
-
-                <p class="section-eyebrow">
-                    Rangkaian Pernikahan
-                </p>
-
-                <h2>
-                    Waktu & Tempat
-                </h2>
-
-                <div class="heading-flower">
-                    ❀
-                </div>
-
+                <p class="section-eyebrow">Rangkaian Pernikahan</p>
+                <h2>Waktu & Tempat</h2>
+                <div class="heading-flower">❀</div>
             </div>
 
-
             <div class="events-wrapper">
-
-
-                <!-- AKAD -->
-
                 <article class="event">
-
                     <div class="event-top">
                         <span>01</span>
                         <p>AKAD NIKAH</p>
                     </div>
-
-                    <div class="event-flower">
-                        ❀
-                    </div>
-
-                    <h3>
-                        Akad Nikah
-                    </h3>
-
+                    <div class="event-flower">❀</div>
+                    <h3>Akad Nikah</h3>
                     <div class="event-detail">
-
                         <div>
-                            <span class="detail-label">
-                                Hari & Tanggal
-                            </span>
-
-                            <strong>
-                                Minggu, 21 Februari 2027
-                            </strong>
+                            <span class="detail-label">Hari & Tanggal</span>
+                            <strong>Minggu, 21 Februari 2027</strong>
                         </div>
-
                         <div>
-                            <span class="detail-label">
-                                Waktu
-                            </span>
-
-                            <strong>
-                                08.00 — 10.00 WIB
-                            </strong>
+                            <span class="detail-label">Waktu</span>
+                            <strong>08.00 — 10.00 WIB</strong>
                         </div>
-
                         <div>
-                            <span class="detail-label">
-                                Tempat
-                            </span>
-
-                            <strong>
-                                Masjid Jami' Al-Ikhlas
-                            </strong>
-
-                            <p>
-                                Jl. Raya Ragunan No. 11A<br>
-                                Jati Padang, Pasar Minggu<br>
-                                Jakarta Selatan
-                            </p>
+                            <span class="detail-label">Tempat</span>
+                            <strong>Masjid Jami' Al-Ikhlas</strong>
+                            <p>Jl. Raya Ragunan No. 11A<br>Jati Padang, Pasar Minggu<br>Jakarta Selatan</p>
                         </div>
-
                     </div>
-
-                    <a
-                        href="#"
-                        class="event-button">
-                        Lihat Lokasi
-                    </a>
-
+                    <a href="#" class="event-button">Lihat Lokasi</a>
                 </article>
 
-
-                <!-- RESEPSI -->
-
                 <article class="event">
-
                     <div class="event-top">
                         <span>02</span>
                         <p>RESEPSI</p>
                     </div>
-
-                    <div class="event-flower">
-                        ❀
-                    </div>
-
-                    <h3>
-                        Resepsi Pernikahan
-                    </h3>
-
+                    <div class="event-flower">❀</div>
+                    <h3>Resepsi Pernikahan</h3>
                     <div class="event-detail">
-
                         <div>
-                            <span class="detail-label">
-                                Hari & Tanggal
-                            </span>
-
-                            <strong>
-                                Minggu, 21 Februari 2027
-                            </strong>
+                            <span class="detail-label">Hari & Tanggal</span>
+                            <strong>Minggu, 21 Februari 2027</strong>
                         </div>
-
                         <div>
-                            <span class="detail-label">
-                                Waktu
-                            </span>
-
-                            <strong>
-                                14.00 — 16.00 WIB
-                            </strong>
+                            <span class="detail-label">Waktu</span>
+                            <strong>14.00 — 16.00 WIB</strong>
                         </div>
-
                         <div>
-                            <span class="detail-label">
-                                Tempat
-                            </span>
-
-                            <strong>
-                                Gedung Pertemuan Pertamina
-                            </strong>
-
-                            <p>
-                                Jl. Cempaka Putih Tengah XX B No. 20B<br>
-                                Jakarta Pusat
-                            </p>
+                            <span class="detail-label">Tempat</span>
+                            <strong>Gedung Pertemuan Pertamina</strong>
+                            <p>Jl. Cempaka Putih Tengah XX B No. 20B<br>Jakarta Pusat</p>
                         </div>
-
                     </div>
-
-                    <a
-                        href="#"
-                        class="event-button">
-                        Lihat Lokasi
-                    </a>
-
+                    <a href="#" class="event-button">Lihat Lokasi</a>
                 </article>
-
             </div>
-
         </section>
 
-
-        <!-- ==================================================
-             LOVE STORY
-             ================================================== -->
-
-        <section class="section story-section" id="story">
-
-            <div class="section-heading">
-
-                <p class="section-eyebrow">
-                    Our Story
-                </p>
-
-                <h2>
-                    Perjalanan Cinta
-                </h2>
-
-                <div class="heading-flower">
-                    ❀
-                </div>
-
-            </div>
-
-
-            <div class="story">
-
-                <div class="story-item">
-
-                    <div class="story-year">
-                        2024
-                    </div>
-
-                    <div class="story-dot"></div>
-
-                    <div class="story-content">
-
-                        <h3>
-                            Pertama Bertemu
-                        </h3>
-
-                        <p>
-                            Awal dari sebuah cerita sederhana
-                            yang kemudian membawa kami pada
-                            perjalanan yang penuh makna.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="story-item">
-
-                    <div class="story-year">
-                        2025
-                    </div>
-
-                    <div class="story-dot"></div>
-
-                    <div class="story-content">
-
-                        <h3>
-                            Menjalani Bersama
-                        </h3>
-
-                        <p>
-                            Bersama melewati berbagai cerita,
-                            pengalaman, tawa, dan perjalanan
-                            yang semakin mendekatkan hati.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="story-item">
-
-                    <div class="story-year">
-                        2026
-                    </div>
-
-                    <div class="story-dot"></div>
-
-                    <div class="story-content">
-
-                        <h3>
-                            Memantapkan Hati
-                        </h3>
-
-                        <p>
-                            Dengan penuh keyakinan, kami memilih
-                            untuk melanjutkan perjalanan ini
-                            menuju sebuah ikatan pernikahan.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="story-item">
-
-                    <div class="story-year">
-                        2027
-                    </div>
-
-                    <div class="story-dot"></div>
-
-                    <div class="story-content">
-
-                        <h3>
-                            Hari Bahagia
-                        </h3>
-
-                        <p>
-                            Dua hati dipertemukan dalam satu
-                            janji untuk berjalan bersama
-                            sepanjang kehidupan.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ==================================================
-             GALERI
-             ================================================== -->
-
+        <!-- GALERI -->
         <section class="section gallery-section" id="gallery">
-
             <div class="section-heading">
-
-                <p class="section-eyebrow">
-                    Our Memories
-                </p>
-
-                <h2>
-                    Cerita Dalam Bingkai
-                </h2>
-
-                <div class="heading-flower">
-                    ❀
-                </div>
-
+                <p class="section-eyebrow">Our Memories</p>
+                <h2>Cerita Dalam Bingkai</h2>
+                <div class="heading-flower">❀</div>
             </div>
-
 
             <div class="gallery">
-
-                <div class="gallery-item">
-                    <img
-                        src="gambar/andi.jpg"
-                        alt="Andi">
-                </div>
-
-                <div class="gallery-item">
-                    <img
-                        src="gambar/sari.jpg"
-                        alt="Sari">
-                </div>
-
-                <div class="gallery-item">
-                    <img
-                        src="gambar/andi.jpg"
-                        alt="Andi dan Sari">
-                </div>
-
-                <div class="gallery-item">
-                    <img
-                        src="gambar/sari.jpg"
-                        alt="Andi dan Sari">
-                </div>
-
+                <div class="gallery-item"><img src="assets/images/man.png" alt="Andi"></div>
+                <div class="gallery-item"><img src="assets/images/woman.png" alt="Sari"></div>
+                <div class="gallery-item"><img src="assets/images/man.png" alt="Andi dan Sari"></div>
+                <div class="gallery-item"><img src="assets/images/woman.png" alt="Andi dan Sari"></div>
             </div>
-
         </section>
 
-
-        <!-- ==================================================
-             DOA & HARAPAN
-             ================================================== -->
-
-        <section class="section prayer-section" id="doa">
-
-            <div class="section-heading">
-
-                <p class="section-eyebrow">
-                    Doa & Harapan
-                </p>
-
-                <h2>
-                    Sebuah Doa
-                </h2>
-
-                <div class="heading-flower">
-                    ❀
-                </div>
-
-            </div>
-
-
-            <div class="prayer-card">
-
-                <p class="arabic">
-                    رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا
-                    وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ
-                    وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا
-                </p>
-
-                <div class="prayer-divider">
-                    ❀
-                </div>
-
-                <p class="translation">
-                    "Ya Tuhan kami, anugerahkanlah kepada
-                    kami pasangan dan keturunan kami sebagai
-                    penyenang hati, dan jadikanlah kami
-                    pemimpin bagi orang-orang yang bertakwa."
-                </p>
-
-                <p class="prayer-source">
-                    QS. Al-Furqan: 74
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- ==================================================
-             AMPLOP DIGITAL
-             ================================================== -->
-
-        <section class="section gift-section" id="gift">
-
-            <div class="section-heading">
-
-                <p class="section-eyebrow">
-                    Tanda Kasih
-                </p>
-
-                <h2>
-                    Amplop Digital
-                </h2>
-
-                <div class="heading-flower">
-                    ❀
-                </div>
-
-            </div>
-
-
-            <p class="gift-intro">
-                Doa dan kehadiran Anda merupakan hadiah
-                terindah bagi kami. Bagi yang ingin memberikan
-                tanda kasih, dapat melalui informasi berikut.
-            </p>
-
-
-            <div class="gift-wrapper">
-
-                <div class="gift-card">
-
-                    <p class="gift-bank">
-                        BANK BCA
-                    </p>
-
-                    <div class="gift-account">
-                        1234567890
-                    </div>
-
-                    <p class="gift-name">
-                        a.n. Andi Pratama
-                    </p>
-
-                    <button
-                        type="button"
-                        class="gift-button"
-                        onclick="copyAccount('1234567890')">
-                        Salin Nomor Rekening
-                    </button>
-
-                </div>
-
-
-                <div class="gift-card">
-
-                    <p class="gift-bank">
-                        QRIS
-                    </p>
-
-                    <div class="qris-placeholder">
-                        QRIS
-                    </div>
-
-                    <p class="gift-name">
-                        Scan untuk memberikan tanda kasih
-                    </p>
-
-                    <button
-                        type="button"
-                        class="gift-button">
-                        Lihat QRIS
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ==================================================
-             RSVP
-             ================================================== -->
-
+        <!-- RSVP -->
         <section class="section rsvp-section" id="rsvp">
-
             <div class="section-heading">
-
-                <p class="section-eyebrow">
-                    Kehadiran & Doa
-                </p>
-
-                <h2>
-                    Konfirmasi Kehadiran
-                </h2>
-
-                <div class="heading-flower">
-                    ❀
-                </div>
-
+                <p class="section-eyebrow">Kehadiran & Doa</p>
+                <h2>Konfirmasi Kehadiran</h2>
+                <div class="heading-flower">❀</div>
             </div>
-
-
-            <p class="rsvp-intro">
-                Merupakan suatu kebahagiaan bagi kami apabila
-                Anda dapat hadir dan memberikan doa restu.
-            </p>
-
 
             <form class="rsvp-form" id="rsvpForm">
-
                 <div class="form-group">
-
-                    <label for="guestName">
-                        Nama
-                    </label>
-
-                    <input
-                        type="text"
-                        id="guestName"
-                        placeholder="Nama Anda"
-                        required>
-
+                    <label for="guestName">Nama</label>
+                    <input type="text" id="guestName" placeholder="Nama Anda" required>
                 </div>
-
-
                 <div class="form-group">
-
-                    <label for="attendance">
-                        Kehadiran
-                    </label>
-
-                    <select
-                        id="attendance"
-                        required>
-
-                        <option value="">
-                            Pilih Kehadiran
-                        </option>
-
-                        <option value="Hadir">
-                            Hadir
-                        </option>
-
-                        <option value="Tidak Hadir">
-                            Tidak Hadir
-                        </option>
-
-                        <option value="Tentatif">
-                            Masih Tentatif
-                        </option>
-
+                    <label for="attendance">Kehadiran</label>
+                    <select id="attendance" required>
+                        <option value="">Pilih Kehadiran</option>
+                        <option value="Hadir">Hadir</option>
+                        <option value="Tidak Hadir">Tidak Hadir</option>
+                        <option value="Tentatif">Masih Tentatif</option>
                     </select>
-
                 </div>
-
-
                 <div class="form-group">
-
-                    <label for="message">
-                        Ucapan & Doa
-                    </label>
-
-                    <textarea
-                        id="message"
-                        placeholder="Tuliskan ucapan dan doa..."
-                        required></textarea>
-
+                    <label for="message">Ucapan & Doa</label>
+                    <textarea id="message" placeholder="Tuliskan ucapan dan doa..." required></textarea>
                 </div>
-
-
-                <button
-                    type="submit"
-                    class="rsvp-button">
-                    Kirim Ucapan
-                </button>
-
-                <p
-                    class="form-status"
-                    id="formStatus">
-                </p>
-
+                <button type="submit" class="rsvp-button">Kirim Ucapan</button>
+                <p class="form-status" id="formStatus"></p>
             </form>
-
         </section>
 
     </main>
 
-
-    <!-- ======================================================
-         FOOTER
-         ====================================================== -->
-
     <footer class="footer">
-
-        <div class="footer-flower">
-            ❀
-        </div>
-
-        <p class="footer-small">
-            With love
-        </p>
-
-        <h2>
-            Andi & Sari
-        </h2>
-
-        <p>
-            21 Februari 2027
-        </p>
-
-        <div class="footer-line"></div>
-
-        <small>
-            Terima kasih atas doa dan kehadiran Anda.
-        </small>
-
+        <div class="footer-flower">❀</div>
+        <p class="footer-small">With love</p>
+        <h2>Andi & Sari</h2>
+        <p>21 Februari 2027</p>
     </footer>
 
-
-    <!-- ======================================================
-         MOBILE NAVIGATION
-         ====================================================== -->
-
     <nav class="mobile-nav">
-
-        <a href="#hero">
-            <span>⌂</span>
-            <small>Home</small>
-        </a>
-
-        <a href="#couple">
-            <span>♡</span>
-            <small>Mempelai</small>
-        </a>
-
-        <a href="#events">
-            <span>◈</span>
-            <small>Acara</small>
-        </a>
-
-        <a href="#gallery">
-            <span>▧</span>
-            <small>Galeri</small>
-        </a>
-
-        <a href="#rsvp">
-            <span>✉</span>
-            <small>RSVP</small>
-        </a>
-
+        <a href="#hero"><span>⌂</span><small>Home</small></a>
+        <a href="#couple"><span>♡</span><small>Mempelai</small></a>
+        <a href="#events"><span>◈</span><small>Acara</small></a>
+        <a href="#gallery"><span>▧</span><small>Galeri</small></a>
+        <a href="#rsvp"><span>✉</span><small>RSVP</small></a>
     </nav>
 
-
-    <!-- ======================================================
-         JAVASCRIPT
-         ====================================================== -->
-
-    <script src="script.js"></script>
-
+    <!-- Path JS disesuaikan ke folder assets/js/ -->
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
