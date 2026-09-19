@@ -1236,72 +1236,112 @@ main {
     line-height: 1.8;
 }
 
-/* ============================================================
-   FLORAL PHOTO GALLERY
-============================================================ */
+/* =========================================================
+   GALLERY — FIXED & PRECISE
+   ========================================================= */
 
 .gallery-section {
-    background:
-        radial-gradient(
-            circle at 10% 20%,
-            rgba(217, 160, 165, 0.18),
-            transparent 25%
-        ),
-        radial-gradient(
-            circle at 90% 80%,
-            rgba(112, 131, 111, 0.16),
-            transparent 25%
-        ),
-        var(--cream);
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
-.gallery {
-    width: min(1050px, 100%);
-    margin: auto;
+.gallery-section .section-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* GRID UTAMA */
+.gallery-grid {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 260px;
-    gap: 15px;
+    gap: 14px;
+
+    box-sizing: border-box;
 }
 
+/* SETIAP FOTO */
 .gallery-item {
     position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
     overflow: hidden;
-    background: white;
-    padding: 6px;
-    border: 1px solid var(--gold-light);
-    box-shadow: var(--shadow);
+
+    border: 1px solid #d8c39a;
+    background: #f5f0e8;
+
+    box-sizing: border-box;
 }
 
-.gallery-item::after {
-    content: "❀";
-    position: absolute;
-    right: 10px;
-    bottom: 5px;
-    color: white;
-    font-size: 1.4rem;
-    opacity: 0.7;
-    pointer-events: none;
-}
-
+/* GAMBAR */
 .gallery-item img {
+    display: block;
+
     width: 100%;
     height: 100%;
+
     object-fit: cover;
-    transition: transform 0.6s ease;
+    object-position: center;
+
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+
+    transition: transform 0.4s ease;
 }
 
+/* HOVER */
 .gallery-item:hover img {
-    transform: scale(1.06);
+    transform: scale(1.04);
 }
 
-.gallery-large {
-    grid-column: span 2;
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .gallery-section {
+        padding: 60px 18px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
 }
 
-.gallery-tall {
-    grid-row: span 2;
+
+/* =========================================================
+   HP
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .gallery-section {
+        padding: 50px 14px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .gallery-item {
+        aspect-ratio: 1 / 1;
+    }
+
 }
 
 /* ============================================================
