@@ -869,4 +869,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+    /* ============================================================
+    MAP SLIDER
+    ============================================================ */
+
+    const mapSlides = document.querySelectorAll(".map-slide");
+    const mapDots = document.querySelectorAll(".map-dot");
+    const mapPrev = document.querySelector(".map-prev");
+    const mapNext = document.querySelector(".map-next");
+
+    let currentMap = 0;
+
+    function showMap(index) {
+
+        if (!mapSlides.length) return;
+
+        currentMap = (index + mapSlides.length) % mapSlides.length;
+
+        mapSlides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === currentMap);
+        });
+
+        mapDots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === currentMap);
+        });
+    }
+
+    if (mapNext) {
+        mapNext.addEventListener("click", () => {
+            showMap(currentMap + 1);
+        });
+    }
+
+    if (mapPrev) {
+        mapPrev.addEventListener("click", () => {
+            showMap(currentMap - 1);
+        });
+    }
+
+    mapDots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+            showMap(index);
+        });
+    });
+    setInterval(() => {
+    showMap(currentMap + 1);
+    }, 5000);
+
 });
+

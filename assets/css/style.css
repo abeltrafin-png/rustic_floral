@@ -921,62 +921,48 @@ main {
 
 /* ============================================================
    COUNTDOWN
-   ============================================================ */
+============================================================ */
+
+.countdown-wrapper {
+    width: min(850px, 100%);
+    margin: 80px auto 0;
+}
+
+.countdown-heading {
+    margin-bottom: 35px;
+}
 
 .countdown {
-    width: min(850px, 100%);
-
-    margin: auto;
-
+    width: 100%;
     display: grid;
-
     grid-template-columns: repeat(4, 1fr);
-
-    gap: 1px;
-
+    gap: 2px;
     background: var(--gold-light);
-
-    border:
-        1px solid
-        var(--gold-light);
+    border: 1px solid var(--gold-light);
 }
 
 .count-item {
     padding: 30px 10px;
-
     text-align: center;
-
-    background: var(--paper);
+    background: rgba(255, 253, 249, 0.95);
 }
 
 .count-item strong {
     display: block;
-
     color: var(--rose-dark);
-
     font-family: var(--serif);
-
     font-size: clamp(2.8rem, 6vw, 4.5rem);
-
     font-weight: 500;
-
     line-height: 1;
 }
 
 .count-item span {
     display: block;
-
     margin-top: 8px;
-
     color: var(--sage-deep);
-
     font-size: 0.62rem;
-
     font-weight: 600;
-
     letter-spacing: 1.5px;
-
-    text-transform: uppercase;
 }
 
 
@@ -1138,163 +1124,185 @@ main {
 
 
 /* ============================================================
-   STORY
-   ============================================================ */
+   LOVE STORY WITH PHOTOS
+============================================================ */
 
 .story {
-    width: min(850px, 100%);
-
+    width: min(1000px, 100%);
     margin: auto;
-
     position: relative;
 }
 
 .story::before {
     content: "";
-
     position: absolute;
-
     left: 50%;
-
     top: 0;
     bottom: 0;
-
     width: 1px;
-
     background: var(--gold-light);
-
     transform: translateX(-50%);
 }
 
 .story-item {
     position: relative;
-
     display: grid;
-
-    grid-template-columns: 1fr 50px 1fr;
-
+    grid-template-columns: 1fr 70px 1fr;
     align-items: center;
-
-    min-height: 150px;
+    min-height: 300px;
 }
 
 .story-year {
-    padding: 20px;
-
     color: var(--rose-dark);
-
     font-family: var(--serif);
-
-    font-size: 2rem;
-
+    font-size: 2.5rem;
     text-align: right;
+    padding: 20px;
 }
 
 .story-item:nth-child(even) .story-year {
     grid-column: 3;
-
     text-align: left;
-}
-
-.story-item:nth-child(even) .story-content {
-    grid-column: 1;
-
-    grid-row: 1;
-
-    text-align: right;
 }
 
 .story-dot {
     grid-column: 2;
-
     grid-row: 1;
-
-    width: 14px;
-    height: 14px;
-
+    width: 18px;
+    height: 18px;
     margin: auto;
-
     background: var(--paper);
-
-    border:
-        2px solid
-        var(--rose);
-
+    border: 2px solid var(--rose);
     border-radius: 50%;
-
     z-index: 2;
 }
 
 .story-content {
-    padding: 20px;
+    padding: 25px;
 }
 
-.story-content h3 {
-    color: var(--sage-deep);
-
-    font-family: var(--serif);
-
-    font-size: 1.6rem;
+.story-item:nth-child(even) .story-content {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: right;
 }
 
-.story-content p {
-    margin-top: 4px;
-
-    color: var(--muted);
-
-    font-size: 0.75rem;
-
-    line-height: 1.7;
-}
-
-
-/* ============================================================
-   GALLERY
-   ============================================================ */
-
-.gallery {
-    width: min(950px, 100%);
-
-    margin: auto;
-
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    gap: 12px;
-}
-
-.gallery-item {
-    height: 320px;
-
+.story-image {
+    width: 220px;
+    height: 270px;
     overflow: hidden;
-
-    background: var(--paper);
-
-    border:
-        5px solid
-        white;
-
+    margin-bottom: 18px;
+    border: 6px solid white;
     box-shadow: var(--shadow);
 }
 
-.gallery-item:nth-child(even) {
-    margin-top: 30px;
+.story-item:nth-child(odd) .story-image {
+    margin-left: auto;
+}
+
+.story-item:nth-child(even) .story-image {
+    margin-left: 0;
+}
+
+.story-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.story-image:hover img {
+    transform: scale(1.05);
+}
+
+.story-label {
+    color: var(--gold);
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.story-content h3 {
+    margin-top: 5px;
+    color: var(--sage-deep);
+    font-family: var(--serif);
+    font-size: 1.9rem;
+}
+
+.story-content p {
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: 0.75rem;
+    line-height: 1.8;
+}
+
+/* ============================================================
+   FLORAL PHOTO GALLERY
+============================================================ */
+
+.gallery-section {
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(217, 160, 165, 0.18),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(112, 131, 111, 0.16),
+            transparent 25%
+        ),
+        var(--cream);
+}
+
+.gallery {
+    width: min(1050px, 100%);
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 260px;
+    gap: 15px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    background: white;
+    padding: 6px;
+    border: 1px solid var(--gold-light);
+    box-shadow: var(--shadow);
+}
+
+.gallery-item::after {
+    content: "❀";
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    color: white;
+    font-size: 1.4rem;
+    opacity: 0.7;
+    pointer-events: none;
 }
 
 .gallery-item img {
     width: 100%;
     height: 100%;
-
     object-fit: cover;
-
-    transition: transform 0.5s ease;
+    transition: transform 0.6s ease;
 }
 
 .gallery-item:hover img {
-    transform: scale(1.05);
+    transform: scale(1.06);
 }
 
+.gallery-large {
+    grid-column: span 2;
+}
+
+.gallery-tall {
+    grid-row: span 2;
+}
 
 /* ============================================================
    PRAYER
@@ -2198,5 +2206,301 @@ main {
     .event-button {
         width: 100%;
         text-align: center;
+    }
+}
+
+/* ============================================================
+   FLORAL BOTANICAL BACKGROUND
+============================================================ */
+
+.rustic-bg-ornaments {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.floral-corner {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    opacity: 0.18;
+}
+
+.floral-corner-left {
+    top: -45px;
+    left: -45px;
+    transform: rotate(-20deg);
+}
+
+.floral-corner-right {
+    right: -50px;
+    bottom: -40px;
+    transform: rotate(160deg);
+}
+
+.flower,
+.leaf {
+    position: absolute;
+    font-family: var(--serif);
+}
+
+.flower {
+    color: var(--rose-dark);
+    font-size: 4rem;
+}
+
+.leaf {
+    color: var(--sage-deep);
+    font-size: 5rem;
+}
+
+.flower-1 {
+    top: 30px;
+    left: 60px;
+}
+
+.flower-2 {
+    top: 110px;
+    left: 15px;
+    font-size: 2.8rem;
+    color: var(--gold);
+}
+
+.leaf-1 {
+    top: 50px;
+    left: 100px;
+    transform: rotate(25deg);
+}
+
+.leaf-2 {
+    top: 135px;
+    left: 75px;
+    transform: rotate(-30deg);
+}
+
+.flower-3 {
+    top: 20px;
+    left: 70px;
+    color: var(--rose);
+}
+
+.flower-4 {
+    top: 100px;
+    left: 20px;
+    color: var(--gold);
+    font-size: 3rem;
+}
+
+.leaf-3 {
+    top: 55px;
+    left: 110px;
+    transform: rotate(25deg);
+}
+
+.leaf-4 {
+    top: 135px;
+    left: 75px;
+    transform: rotate(-25deg);
+}
+
+.floating-botanical {
+    position: absolute;
+    color: var(--sage-deep);
+    font-family: var(--serif);
+    opacity: 0.10;
+}
+
+.botanical-1 {
+    top: 35%;
+    left: 3%;
+    font-size: 7rem;
+    transform: rotate(-20deg);
+}
+
+.botanical-2 {
+    top: 55%;
+    right: 3%;
+    color: var(--rose-dark);
+    font-size: 6rem;
+    transform: rotate(25deg);
+}
+
+.botanical-3 {
+    bottom: 18%;
+    left: 8%;
+    color: var(--gold);
+    font-size: 4rem;
+}
+
+/* Floral accent pada section */
+
+.section {
+    position: relative;
+}
+
+.section::before {
+    content: "❀";
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    color: var(--rose);
+    font-family: var(--serif);
+    font-size: 3rem;
+    opacity: 0.10;
+    transform: rotate(-20deg);
+}
+
+.section::after {
+    content: "❦";
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    color: var(--sage-deep);
+    font-family: var(--serif);
+    font-size: 4rem;
+    opacity: 0.09;
+    transform: rotate(15deg);
+}
+
+@media (max-width: 700px) {
+
+    /* MAP */
+
+    .map-slider {
+        padding: 25px 15px 60px;
+    }
+
+    .map-title {
+        gap: 10px;
+    }
+
+    .map-title > span {
+        font-size: 1.8rem;
+    }
+
+    .map-title h3 {
+        font-size: 1.55rem;
+    }
+
+    .map-frame iframe {
+        height: 270px;
+    }
+
+    .map-info {
+        font-size: 0.85rem;
+    }
+
+    .map-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 1.6rem;
+    }
+
+    .map-prev {
+        left: 8px;
+    }
+
+    .map-next {
+        right: 8px;
+    }
+
+
+    /* COUNTDOWN */
+
+    .countdown-wrapper {
+        margin-top: 60px;
+    }
+
+    .countdown {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .count-item {
+        padding: 22px 8px;
+    }
+
+    .count-item strong {
+        font-size: 2.8rem;
+    }
+
+
+    /* STORY */
+
+    .story::before {
+        left: 10px;
+    }
+
+    .story-item {
+        display: block;
+        min-height: 0;
+        padding-left: 30px;
+        margin-bottom: 45px;
+    }
+
+    .story-year,
+    .story-item:nth-child(even) .story-year {
+        padding: 0;
+        text-align: left;
+        font-size: 1.8rem;
+    }
+
+    .story-dot {
+        position: absolute;
+        left: 3px;
+        top: 5px;
+    }
+
+    .story-content,
+    .story-item:nth-child(even) .story-content {
+        padding: 12px 0 0;
+        text-align: left;
+    }
+
+    .story-image,
+    .story-item:nth-child(odd) .story-image,
+    .story-item:nth-child(even) .story-image {
+        width: 100%;
+        max-width: 300px;
+        height: 280px;
+        margin: 0 auto 18px;
+    }
+
+
+    /* GALLERY */
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 190px;
+        gap: 8px;
+    }
+
+    .gallery-large {
+        grid-column: span 2;
+    }
+
+    .gallery-tall {
+        grid-row: span 1;
+    }
+
+
+    /* FLORAL */
+
+    .floral-corner {
+        transform: scale(0.7);
+    }
+
+    .botanical-1,
+    .botanical-2 {
+        font-size: 4rem;
+    }
+
+    .section::before {
+        font-size: 2rem;
+    }
+
+    .section::after {
+        font-size: 2.5rem;
     }
 }
