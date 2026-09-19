@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Undangan Pernikahan Andi & Sari">
+    <meta name="description" content="Undangan Pernikahan Andi Prasetyo & Sari Wulandari">
     <title>Undangan Pernikahan — Andi & Sari</title>
 
-    <!-- Path CSS disesuaikan ke folder assets/css/ -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -37,11 +36,11 @@
     <header class="site-header" id="siteHeader">
         <a href="#hero" class="brand">A<span>&</span>S</a>
         <nav class="nav-links">
-            <a href="#hero">Beranda</a>
             <a href="#couple">Mempelai</a>
             <a href="#events">Acara</a>
-            <a href="#story">Cerita</a>
-            <a href="#gallery">Galeri</a>
+            <a href="#countdown">Hitung Mundur</a>
+            <a href="#story">Kisah</a>
+            <a href="#wedding-quote">Doa</a>
             <a href="#gift">Hadiah</a>
             <a href="#rsvp">RSVP</a>
         </nav>
@@ -49,7 +48,7 @@
 
     <main>
 
-        <!-- HERO -->
+        <!-- HERO / COVER -->
         <section class="hero" id="hero">
             <div class="hero-flower hero-flower-left">❀</div>
             <div class="hero-flower hero-flower-right">✿</div>
@@ -75,76 +74,47 @@
             </div>
         </section>
 
-        <!-- MEMPELAI -->
+        <!-- 1. MEMPELAI (#couple) -->
         <section class="section couple-section" id="couple">
             <div class="section-heading">
-                <p class="section-eyebrow">Mempelai</p>
-                <h2>Dua Hati, Satu Cerita</h2>
-                <div class="heading-flower">❀</div>
+                <p class="section-eyebrow">Kami Yang Berbahagia</p>
+                <h2>Mempelai</h2>
+                <div class="heading-flower">✿</div>
             </div>
 
             <div class="couple-wrapper">
                 <div class="person">
                     <div class="person-image">
-                        <!-- Path gambar disesuaikan ke assets/images/ -->
-                        <img src="assets/images/man.png" alt="Andi Pratama">
+                        <img src="assets/images/man.png" alt="Andi Prasetyo, S.T.">
                     </div>
                     <p class="person-label">The Groom</p>
-                    <h3>Andi Pratama</h3>
-                    <p class="person-family">Putra dari<br>Bapak A & Ibu B</p>
+                    <h3>Andi Prasetyo, S.T.</h3>
+                    <p class="person-family">Putra dari<br>Bapak H. Ahmad & Ibu Hj. Fatimah</p>
                 </div>
 
                 <div class="couple-heart"><span>♡</span></div>
 
                 <div class="person">
                     <div class="person-image">
-                        <!-- Path gambar disesuaikan ke assets/images/ -->
-                        <img src="assets/images/woman.png" alt="Sari Wijaya">
+                        <img src="assets/images/woman.png" alt="Sari Wulandari, S.Pd.">
                     </div>
                     <p class="person-label">The Bride</p>
-                    <h3>Sari Wijaya</h3>
-                    <p class="person-family">Putri dari<br>Bapak C & Ibu D</p>
+                    <h3>Sari Wulandari, S.Pd.</h3>
+                    <p class="person-family">Putri dari<br>Bapak H. Budi & Ibu Hj. Rahayu</p>
                 </div>
             </div>
         </section>
 
-        <!-- DOA / QUOTE -->
-        <section class="quote-section">
-            <div class="quote-decoration">❀</div>
-            <div class="quote-content">
-                <p class="quote-intro">
-                    "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan dari jenismu sendiri..."
-                </p>
-                <div class="quote-line"></div>
-                <p class="quote-source">QS. Ar-Rum: 21</p>
-            </div>
-        </section>
-
-        <!-- COUNTDOWN -->
-        <section class="section countdown-section" id="countdown">
-            <div class="section-heading">
-                <p class="section-eyebrow">Menuju Hari Bahagia</p>
-                <h2>Hitung Mundur</h2>
-                <div class="heading-flower">❀</div>
-            </div>
-
-            <div class="countdown">
-                <div class="count-item"><strong id="days">000</strong><span>Hari</span></div>
-                <div class="count-item"><strong id="hours">00</strong><span>Jam</span></div>
-                <div class="count-item"><strong id="minutes">00</strong><span>Menit</span></div>
-                <div class="count-item"><strong id="seconds">00</strong><span>Detik</span></div>
-            </div>
-        </section>
-
-        <!-- ACARA -->
+        <!-- 2. RANGKAIAN ACARA (#events) -->
         <section class="section events-section" id="events">
             <div class="section-heading">
                 <p class="section-eyebrow">Rangkaian Pernikahan</p>
-                <h2>Waktu & Tempat</h2>
-                <div class="heading-flower">❀</div>
+                <h2>Acara Utama</h2>
+                <div class="heading-flower">✿</div>
             </div>
 
             <div class="events-wrapper">
+                <!-- AKAD NIKAH -->
                 <article class="event">
                     <div class="event-top">
                         <span>01</span>
@@ -163,13 +133,16 @@
                         </div>
                         <div>
                             <span class="detail-label">Tempat</span>
-                            <strong>Masjid Jami' Al-Ikhlas</strong>
-                            <p>Jl. Raya Ragunan No. 11A<br>Jati Padang, Pasar Minggu<br>Jakarta Selatan</p>
+                            <strong>Masjid Jami' Al-Ikhlas Jatipadang</strong>
                         </div>
                     </div>
-                    <a href="#" class="event-button">Lihat Lokasi</a>
+                    <div class="event-actions" style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+                        <a href="https://maps.google.com/?q=Masjid+Jami'+Al-Ikhlas+Jatipadang" target="_blank" class="event-button">🗺️ Petunjuk Lokasi</a>
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Akad+Nikah+Andi+%26+Sari&dates=20270221T010000Z/20270221T030000Z&details=Akad+Nikah+Andi+Prasetyo+%26+Sari+Wulandari&location=Masjid+Jami'+Al-Ikhlas+Jatipadang" target="_blank" class="event-button">📅 Save The Date (Google Calendar)</a>
+                    </div>
                 </article>
 
+                <!-- RESEPSI -->
                 <article class="event">
                     <div class="event-top">
                         <span>02</span>
@@ -188,58 +161,163 @@
                         </div>
                         <div>
                             <span class="detail-label">Tempat</span>
-                            <strong>Gedung Pertemuan Pertamina</strong>
-                            <p>Jl. Cempaka Putih Tengah XX B No. 20B<br>Jakarta Pusat</p>
+                            <strong>Gedung Pertemuan PERTAMINA</strong>
                         </div>
                     </div>
-                    <a href="#" class="event-button">Lihat Lokasi</a>
+                    <div class="event-actions" style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+                        <a href="https://maps.google.com/?q=Gedung+Pertemuan+PERTAMINA" target="_blank" class="event-button">🗺️ Petunjuk Lokasi</a>
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Resepsi+Pernikahan+Andi+%26+Sari&dates=20270221T070000Z/20270221T090000Z&details=Resepsi+Pernikahan+Andi+Prasetyo+%26+Sari+Wulandari&location=Gedung+Pertemuan+PERTAMINA" target="_blank" class="event-button">📅 Save The Date (Google Calendar)</a>
+                    </div>
                 </article>
             </div>
         </section>
 
-        <!-- GALERI -->
-        <section class="section gallery-section" id="gallery">
+        <!-- 3. COUNTDOWN & MAPS (#countdown) -->
+        <section class="section countdown-section" id="countdown">
             <div class="section-heading">
-                <p class="section-eyebrow">Our Memories</p>
-                <h2>Cerita Dalam Bingkai</h2>
-                <div class="heading-flower">❀</div>
+                <p class="section-eyebrow">Menuju Hari Bahagia</p>
+                <h2>Hitung Mundur</h2>
+                <div class="heading-flower">✿</div>
             </div>
 
-            <div class="gallery">
-                <div class="gallery-item"><img src="assets/images/man.png" alt="Andi"></div>
-                <div class="gallery-item"><img src="assets/images/woman.png" alt="Sari"></div>
-                <div class="gallery-item"><img src="assets/images/man.png" alt="Andi dan Sari"></div>
-                <div class="gallery-item"><img src="assets/images/woman.png" alt="Andi dan Sari"></div>
+            <div class="countdown">
+                <div class="count-item"><strong id="days">000</strong><span>HARI</span></div>
+                <div class="count-item"><strong id="hours">00</strong><span>JAM</span></div>
+                <div class="count-item"><strong id="minutes">00</strong><span>MENIT</span></div>
+                <div class="count-item"><strong id="seconds">00</strong><span>DETIK</span></div>
+            </div>
+
+            <!-- EMBED GOOGLE MAPS LOKASI ACARA -->
+            <div class="maps-container" style="margin-top: 50px; text-align: center;">
+                <h3 style="font-family: var(--serif); color: var(--sage-deep); margin-bottom: 20px;">Peta Lokasi Acara</h3>
+                <div style="width: 100%; max-width: 850px; margin: 0 auto; border: 5px solid white; box-shadow: var(--shadow);">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.7362024147047!2d106.8286915!3d-6.2983804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f2307bdcdd03%3A0x6b9bfd3b48f654b1!2sMasjid%20Jami&#39;%20Al-Ikhlas!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+                        width="100%" 
+                        height="380" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
             </div>
         </section>
 
-        <!-- RSVP -->
+        <!-- 4. LOVE STORY (#story) -->
+        <section class="section story-section" id="story">
+            <div class="section-heading">
+                <p class="section-eyebrow">Kisah Kami</p>
+                <h2>Love Story</h2>
+                <div class="heading-flower">✿</div>
+            </div>
+
+            <div class="story">
+                <div class="story-item">
+                    <div class="story-year">Awal</div>
+                    <div class="story-dot"></div>
+                    <div class="story-content">
+                        <h3>Pertama Pertemu</h3>
+                        <p>Kami pertama kali bertemu di bangku kuliah saat kegiatan organisasi kampus.</p>
+                    </div>
+                </div>
+
+                <div class="story-item">
+                    <div class="story-year">Komitmen</div>
+                    <div class="story-dot"></div>
+                    <div class="story-content">
+                        <h3>Berkomitmen</h3>
+                        <p>Memutuskan untuk melangkah bersama dan saling mendukung impian satu sama lain.</p>
+                    </div>
+                </div>
+
+                <div class="story-item">
+                    <div class="story-year">Restu</div>
+                    <div class="story-dot"></div>
+                    <div class="story-content">
+                        <h3>Lamaran & Pernikahan</h3>
+                        <p>Mengikat janji suci untuk mengarungi bahtera rumah tangga bersama.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. DOA & HARAPAN (#wedding-quote) -->
+        <section class="section prayer-section" id="wedding-quote">
+            <div class="section-heading">
+                <p class="section-eyebrow">Doa & Harapan</p>
+                <h2>Sebuah Doa Untuk Kami</h2>
+                <div class="heading-flower">✿</div>
+            </div>
+
+            <div class="prayer-card">
+                <div class="arabic">
+                    رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا
+                </div>
+                <div class="prayer-divider">❀</div>
+                <div class="translation">
+                    “Ya Tuhan kami, anugerahkanlah kepada kami pasangan dan keturunan yang menjadi penyejuk hati...”
+                </div>
+                <div class="prayer-source">— QS. Al-Furqan: 74 —</div>
+            </div>
+        </section>
+
+        <!-- 6. AMPLOP DIGITAL / HADIAH (#gift) -->
+        <section class="section gift-section" id="gift">
+            <div class="section-heading">
+                <p class="section-eyebrow">Tanda Kasih</p>
+                <h2>Amplop Digital</h2>
+                <div class="heading-flower">✿</div>
+            </div>
+
+            <p class="gift-intro">
+                Doa restu Anda merupakan hadiah terindah. Namun jika ingin memberi hadiah, Anda dapat menggunakan fitur di bawah ini:
+            </p>
+
+            <div class="gift-wrapper">
+                <div class="gift-card">
+                    <p class="gift-bank">BANK BCA</p>
+                    <p class="gift-account" id="accountBCA">1234 5678 90</p>
+                    <p class="gift-name">a.n. Andi Prasetyo</p>
+                    <button type="button" class="gift-button" onclick="navigator.clipboard.writeText('1234567890'); alert('Nomor rekening berhasil disalin!');">📋 Salin Rekening</button>
+                </div>
+
+                <div class="gift-card">
+                    <p class="gift-bank">QRIS / E-WALLET</p>
+                    <div class="qris-placeholder">
+                        <span>QRIS</span>
+                    </div>
+                    <p class="gift-name">Scan QRIS All Payment</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. RSVP & KIRIM UCAPAN (#rsvp) -->
         <section class="section rsvp-section" id="rsvp">
             <div class="section-heading">
                 <p class="section-eyebrow">Kehadiran & Doa</p>
-                <h2>Konfirmasi Kehadiran</h2>
-                <div class="heading-flower">❀</div>
+                <h2>RSVP & Kirim Ucapan</h2>
+                <div class="heading-flower">✿</div>
             </div>
 
             <form class="rsvp-form" id="rsvpForm">
                 <div class="form-group">
-                    <label for="guestName">Nama</label>
-                    <input type="text" id="guestName" placeholder="Nama Anda" required>
+                    <label for="guestName">Nama Lengkap</label>
+                    <input type="text" id="guestName" placeholder="Nama Lengkap Anda" required>
                 </div>
                 <div class="form-group">
-                    <label for="attendance">Kehadiran</label>
+                    <label for="attendance">Konfirmasi Kehadiran</label>
                     <select id="attendance" required>
-                        <option value="">Pilih Kehadiran</option>
+                        <option value="">Pilih konfirmasi</option>
                         <option value="Hadir">Hadir</option>
                         <option value="Tidak Hadir">Tidak Hadir</option>
-                        <option value="Tentatif">Masih Tentatif</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="message">Ucapan & Doa</label>
-                    <textarea id="message" placeholder="Tuliskan ucapan dan doa..." required></textarea>
+                    <textarea id="message" placeholder="Tuliskan ucapan dan doa terbaik Anda..." required></textarea>
                 </div>
-                <button type="submit" class="rsvp-button">Kirim Ucapan</button>
+                <button type="submit" class="rsvp-button">♡ Kirim Ucapan</button>
                 <p class="form-status" id="formStatus"></p>
             </form>
         </section>
@@ -253,15 +331,15 @@
         <p>21 Februari 2027</p>
     </footer>
 
+    <!-- NAVBAR MOBILE -->
     <nav class="mobile-nav">
-        <a href="#hero"><span>⌂</span><small>Home</small></a>
         <a href="#couple"><span>♡</span><small>Mempelai</small></a>
         <a href="#events"><span>◈</span><small>Acara</small></a>
-        <a href="#gallery"><span>▧</span><small>Galeri</small></a>
+        <a href="#countdown"><span>⌂</span><small>Mundur</small></a>
+        <a href="#story"><span>▧</span><small>Kisah</small></a>
         <a href="#rsvp"><span>✉</span><small>RSVP</small></a>
     </nav>
 
-    <!-- Path JS disesuaikan ke folder assets/js/ -->
     <script src="assets/js/script.js"></script>
 </body>
 
