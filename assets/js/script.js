@@ -1,1136 +1,457 @@
-    /* ============================================================
-    WEDDING INVITATION — JAVASCRIPT
-    File: script.js
+/* ============================================================
+WEDDING INVITATION — JAVASCRIPT
+File: script.js
+============================================================ */
 
-    Fungsi:
-    - Membuka undangan
-    - Navbar
-    - Mobile menu
-    - Countdown
-    - Save to Calendar
-    - Map Slider
-    - Gallery / Lightbox
-    - RSVP / Ucapan
-    - Smooth Scroll
-    ============================================================ */
+document.addEventListener("DOMContentLoaded", () => {
 
-    document.addEventListener("DOMContentLoaded", () => {
+    /* =========================================================
+    1. KONFIGURASI & ELEMENT
+    ========================================================= */
 
-        /* =========================================================
-        KONFIGURASI
-        ========================================================= */
+    const WEDDING_DATE = "2027-02-21T08:00:00+07:00";
 
-        // Tanggal akad: 21 Februari 2027 pukul 08.00 WIB
-        const WEDDING_DATE = "2027-02-21T08:00:00+07:00";
+    const openingScreen = document.getElementById("openingScreen");
+    const openInvitation = document.getElementById("openInvitation");
+    const siteHeader = document.getElementById("siteHeader");
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.querySelector(".nav-links");
 
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
 
-        /* =========================================================
-        ELEMENT WEBSITE
-        ========================================================= */
+    const calendarButton = document.getElementById("calendarButton");
+    const rsvpForm = document.getElementById("rsvpForm");
+    const formStatus = document.getElementById("formStatus");
 
-        const openingScreen =
-            document.getElementById("openingScreen");
-
-        const openInvitation =
-            document.getElementById("openInvitation");
-
-        const siteHeader =
-            document.getElementById("siteHeader");
-
-        const menuToggle =
-            document.getElementById("menuToggle");
-
-        const navLinks =
-            document.querySelector(".nav-links");
-
-        const daysEl =
-            document.getElementById("days");
-
-        const hoursEl =
-            document.getElementById("hours");
-
-        const minutesEl =
-            document.getElementById("minutes");
-
-        const secondsEl =
-            document.getElementById("seconds");
-
-        const calendarButton =
-            document.getElementById("calendarButton");
-
-        const rsvpForm =
-            document.getElementById("rsvpForm");
-
-        const formStatus =
-            document.getElementById("formStatus");
-
-        const lightbox =
-            document.getElementById("lightbox");
-
-        const lightboxImage =
-            document.getElementById("lightboxImage");
-
-        const lightboxClose =
-            document.getElementById("lightboxClose");
+    // Modal Galeri Element
+    const galleryModal = document.getElementById("galleryModal");
+    const galleryModalImg = document.getElementById("galleryModalImg");
+    const galleryModalClose = document.getElementById("galleryModalClose");
 
 
-        /* =========================================================
-        1. PEMBUKA UNDANGAN
-        ========================================================= */
+    /* =========================================================
+    2. PEMBUKA UNDANGAN
+    ========================================================= */
 
-        function openWeddingInvitation() {
+    function openWeddingInvitation() {
+        if (!openingScreen) return;
 
-            if (!openingScreen) {
-                return;
-            }
+        openingScreen.classList.add("is-hidden");
+        document.body.classList.remove("locked");
 
-            openingScreen.classList.add("is-hidden");
-
-            document.body.classList.remove("locked");
-
-            if (siteHeader) {
-                siteHeader.classList.add("visible");
-            }
-
-            setTimeout(() => {
-
-                openingScreen.style.display = "none";
-
-            }, 700);
+        if (siteHeader) {
+            siteHeader.classList.add("visible");
         }
 
+        setTimeout(() => {
+            openingScreen.style.display = "none";
+        }, 700);
+    }
 
-        /*
-        * Kunci halaman ketika cover masih tampil
-        */
-        if (openingScreen) {
+    if (openingScreen) {
+        document.body.classList.add("locked");
+    }
 
-            document.body.classList.add("locked");
+    if (openInvitation) {
+        openInvitation.addEventListener("click", openWeddingInvitation);
+    }
 
+    document.addEventListener("keydown", (event) => {
+        if (
+            event.key === "Enter" &&
+            openingScreen &&
+            !openingScreen.classList.contains("is-hidden")
+        ) {
+            openWeddingInvitation();
         }
+    });
 
 
-        /*
-        * Tombol Buka Undangan
-        */
-        if (openInvitation) {
+    /* =========================================================
+    3. NAVBAR & MOBILE MENU
+    ========================================================= */
 
-            openInvitation.addEventListener(
-                "click",
-                openWeddingInvitation
-            );
-
+    window.addEventListener("scroll", () => {
+        if (openingScreen && openingScreen.classList.contains("is-hidden")) {
+            if (siteHeader) siteHeader.classList.add("visible");
         }
+    }, { passive: true });
 
-
-        /*
-        * Tekan Enter untuk membuka undangan
-        */
-        document.addEventListener("keydown", (event) => {
-
-            if (
-                event.key === "Enter" &&
-                openingScreen &&
-                !openingScreen.classList.contains("is-hidden")
-            ) {
-
-                openWeddingInvitation();
-
-            }
-
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("open");
         });
 
-
-        /* =========================================================
-        2. NAVBAR
-        ========================================================= */
-
-        window.addEventListener(
-            "scroll",
-            () => {
-
-                if (
-                    openingScreen &&
-                    openingScreen.classList.contains("is-hidden")
-                ) {
-
-                    if (siteHeader) {
-
-                        siteHeader.classList.add("visible");
-
-                    }
-
-                }
-
-            },
-            { passive: true }
-        );
-
-
-        /* =========================================================
-        3. MOBILE MENU
-        ========================================================= */
-
-        if (menuToggle && navLinks) {
-
-            menuToggle.addEventListener(
-                "click",
-                () => {
-
-                    navLinks.classList.toggle("open");
-
-                }
-            );
-
-
-            const navigationLinks =
-                navLinks.querySelectorAll("a");
-
-
-            navigationLinks.forEach((link) => {
-
-                link.addEventListener(
-                    "click",
-                    () => {
-
-                        navLinks.classList.remove("open");
-
-                    }
-                );
-
+        navLinks.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("open");
             });
+        });
+    }
 
+
+    /* =========================================================
+    4. COUNTDOWN
+    ========================================================= */
+
+    function updateCountdown() {
+        if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+        const target = new Date(WEDDING_DATE).getTime();
+        const now = Date.now();
+        const difference = target - now;
+
+        if (difference <= 0) {
+            daysEl.textContent = "000";
+            hoursEl.textContent = "00";
+            minutesEl.textContent = "00";
+            secondsEl.textContent = "00";
+            return;
         }
 
-
-        /* =========================================================
-        4. COUNTDOWN
-        ========================================================= */
-
-        function updateCountdown() {
-
-            if (
-                !daysEl ||
-                !hoursEl ||
-                !minutesEl ||
-                !secondsEl
-            ) {
-
-                return;
-
-            }
-
-
-            const target =
-                new Date(WEDDING_DATE).getTime();
-
-            const now =
-                Date.now();
-
-            const difference =
-                target - now;
-
-
-            /*
-            * Kalau tanggal sudah lewat
-            */
-            if (difference <= 0) {
-
-                daysEl.textContent = "000";
-                hoursEl.textContent = "00";
-                minutesEl.textContent = "00";
-                secondsEl.textContent = "00";
-
-                return;
-
-            }
-
-
-            const totalSeconds =
-                Math.floor(difference / 1000);
-
-
-            const days =
-                Math.floor(
-                    totalSeconds / 86400
-                );
-
-
-            const hours =
-                Math.floor(
-                    (totalSeconds % 86400) / 3600
-                );
-
-
-            const minutes =
-                Math.floor(
-                    (totalSeconds % 3600) / 60
-                );
-
-
-            const seconds =
-                totalSeconds % 60;
-
-
-            daysEl.textContent =
-                String(days).padStart(3, "0");
-
-
-            hoursEl.textContent =
-                String(hours).padStart(2, "0");
-
-
-            minutesEl.textContent =
-                String(minutes).padStart(2, "0");
-
-
-            secondsEl.textContent =
-                String(seconds).padStart(2, "0");
-
-        }
-
-
-        /*
-        * Jalankan countdown
-        */
-        updateCountdown();
-
-
-        /*
-        * Update setiap 1 detik
-        */
-        setInterval(
-            updateCountdown,
-            1000
-        );
-
-
-        /* =========================================================
-        5. SAVE TO CALENDAR
-        ========================================================= */
-
-        if (calendarButton) {
-
-            calendarButton.addEventListener(
-                "click",
-                () => {
-
-                    const icsContent = [
-
-                        "BEGIN:VCALENDAR",
-
-                        "VERSION:2.0",
-
-                        "PRODID:-//Andi & Sari Wedding//ID",
-
-                        "CALSCALE:GREGORIAN",
-
-                        "BEGIN:VEVENT",
-
-                        "UID:andi-sari-wedding-2027@example.com",
-
-                        "DTSTAMP:20260919T000000Z",
-
-                        "DTSTART:20270221T010000Z",
-
-                        "DTEND:20270221T030000Z",
-
-                        "SUMMARY:Akad Nikah Andi & Sari",
-
-                        "LOCATION:Masjid Jami' Al-Ikhlas, Jl. Raya Ragunan No. 11A, Jati Padang, Pasar Minggu, Jakarta Selatan",
-
-                        "DESCRIPTION:Akad Nikah Andi & Sari.",
-
-                        "END:VEVENT",
-
-                        "END:VCALENDAR"
-
-                    ].join("\r\n");
-
-
-                    const blob =
-                        new Blob(
-                            [icsContent],
-                            {
-                                type:
-                                    "text/calendar;charset=utf-8"
-                            }
-                        );
-
-
-                    const url =
-                        URL.createObjectURL(blob);
-
-
-                    const link =
-                        document.createElement("a");
-
-
-                    link.href = url;
-
-                    link.download =
-                        "andi-sari-akad.ics";
-
-
-                    document.body.appendChild(link);
-
-                    link.click();
-
-                    link.remove();
-
-
-                    setTimeout(() => {
-
-                        URL.revokeObjectURL(url);
-
-                    }, 1000);
-
-                }
-            );
-
-        }
-
-
-        /* =========================================================
-        6. MAP SLIDER
-        ========================================================= */
-
-        const mapSlider =
-            document.getElementById("mapSlider");
-
-        const mapTrack =
-            document.querySelector(".map-track");
-
-        const mapSlides =
-            document.querySelectorAll(".map-slide");
-
-        const mapDots =
-            document.querySelectorAll(".map-dot");
-
-        const mapPrev =
-            document.querySelector(".map-prev");
-
-        const mapNext =
-            document.querySelector(".map-next");
-
-
-        let currentMap = 0;
-
-
-        /*
-        * Tampilkan map tertentu
-        */
-        function showMap(index) {
-
-            if (
-                !mapTrack ||
-                mapSlides.length === 0
-            ) {
-
-                return;
-
-            }
-
-
-            currentMap =
-                (index + mapSlides.length) %
-                mapSlides.length;
-
-
-            /*
-            * Geser track
-            */
-            mapTrack.style.transform =
-                `translateX(-${currentMap * 100}%)`;
-
-
-            /*
-            * Aktifkan slide
-            */
-            mapSlides.forEach(
-                (slide, i) => {
-
-                    slide.classList.toggle(
-                        "active",
-                        i === currentMap
-                    );
-
-                }
-            );
-
-
-            /*
-            * Update titik navigasi
-            */
-            mapDots.forEach(
-                (dot, i) => {
-
-                    dot.classList.toggle(
-                        "active",
-                        i === currentMap
-                    );
-
-                    dot.setAttribute(
-                        "aria-current",
-                        i === currentMap
-                            ? "true"
-                            : "false"
-                    );
-
-                }
-            );
-
-        }
-
-
-        /*
-        * Tombol sebelumnya
-        */
-        if (mapPrev) {
-
-            mapPrev.addEventListener(
-                "click",
-                () => {
-
-                    showMap(
-                        currentMap - 1
-                    );
-
-                }
-            );
-
-        }
-
-
-        /*
-        * Tombol berikutnya
-        */
-        if (mapNext) {
-
-            mapNext.addEventListener(
-                "click",
-                () => {
-
-                    showMap(
-                        currentMap + 1
-                    );
-
-                }
-            );
-
-        }
-
-
-        /*
-        * Tombol titik / indicator
-        */
-        mapDots.forEach(
-            (dot, index) => {
-
-                dot.addEventListener(
-                    "click",
-                    () => {
-
-                        showMap(index);
-
-                    }
-                );
-
-            }
-        );
-
-
-        /*
-        * Inisialisasi map pertama
-        */
-        if (mapSlides.length > 0) {
-
-            showMap(0);
-
-        }
-
-
-        /* =========================================================
-        MAP SLIDER — SWIPE / TOUCH
-        ========================================================= */
-
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-
-        if (mapSlider) {
-
-            mapSlider.addEventListener(
-                "touchstart",
-                (event) => {
-
-                    touchStartX =
-                        event.changedTouches[0].clientX;
-
-                },
-                {
-                    passive: true
-                }
-            );
-
-
-            mapSlider.addEventListener(
-                "touchend",
-                (event) => {
-
-                    touchEndX =
-                        event.changedTouches[0].clientX;
-
-
-                    const swipeDistance =
-                        touchStartX - touchEndX;
-
-
-                    /*
-                    * Swipe ke kiri
-                    */
-                    if (swipeDistance > 50) {
-
-                        showMap(
-                            currentMap + 1
-                        );
-
-                    }
-
-
-                    /*
-                    * Swipe ke kanan
-                    */
-                    if (swipeDistance < -50) {
-
-                        showMap(
-                            currentMap - 1
-                        );
-
-                    }
-
-                },
-                {
-                    passive: true
-                }
-            );
-
-        }
-
-
-        /*
-        * Auto slide setiap 6 detik
-        *
-        * Hanya aktif kalau ada lebih dari
-        * satu lokasi.
-        */
-        if (mapSlides.length > 1) {
-
-            setInterval(
-                () => {
-
-                    showMap(
-                        currentMap + 1
-                    );
-
-                },
-                6000
-            );
-
-        }
-
-
-        /* =========================================================
-        7. GALERI / LIGHTBOX
-        ========================================================= */
-
-        const galleryItems =
-            document.querySelectorAll(
-                ".gallery-item"
-            );
-
-
-        if (
-            lightbox &&
-            lightboxImage &&
-            galleryItems.length > 0
-        ) {
-
-            galleryItems.forEach(
-                (item) => {
-
-                    /*
-                    * Placeholder gallery jangan dibuka
-                    */
-                    if (
-                        item.classList.contains(
-                            "gallery-placeholder"
-                        )
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    item.addEventListener(
-                        "click",
-                        () => {
-
-                            /*
-                            * Ambil gambar dari data-full
-                            */
-                            const fullImage =
-                                item.dataset.full;
-
-
-                            let imageSource =
-                                fullImage;
-
-
-                            /*
-                            * Kalau data-full tidak ada,
-                            * ambil src dari img
-                            */
-                            if (!imageSource) {
-
-                                const image =
-                                    item.querySelector(
-                                        "img"
-                                    );
-
-
-                                if (image) {
-
-                                    imageSource =
-                                        image.src;
-
-                                }
-
-                            }
-
-
-                            if (!imageSource) {
-
-                                return;
-
-                            }
-
-
-                            lightboxImage.src =
-                                imageSource;
-
-
-                            lightbox.classList.add(
-                                "is-open"
-                            );
-
-
-                            lightbox.setAttribute(
-                                "aria-hidden",
-                                "false"
-                            );
-
-
-                            document.body.classList.add(
-                                "locked"
-                            );
-
-                        }
-                    );
-
-                }
-            );
-
-        }
-
-
-        /* =========================================================
-        8. TUTUP LIGHTBOX
-        ========================================================= */
-
-        function closeLightbox() {
-
-            if (!lightbox) {
-
-                return;
-
-            }
-
-
-            lightbox.classList.remove(
-                "is-open"
-            );
-
-
-            lightbox.setAttribute(
-                "aria-hidden",
-                "true"
-            );
-
-
-            if (lightboxImage) {
-
-                lightboxImage.src = "";
-
-            }
-
-
-            /*
-            * Jangan unlock kalau cover masih terbuka
-            */
-            if (
-                !openingScreen ||
-                openingScreen.classList.contains(
-                    "is-hidden"
-                )
-            ) {
-
-                document.body.classList.remove(
-                    "locked"
-                );
-
-            }
-
-        }
-
-
-        /*
-        * Tombol close
-        */
-        if (lightboxClose) {
-
-            lightboxClose.addEventListener(
-                "click",
-                closeLightbox
-            );
-
-        }
-
-
-        /*
-        * Klik area luar gambar
-        */
-        if (lightbox) {
-
-            lightbox.addEventListener(
-                "click",
-                (event) => {
-
-                    if (
-                        event.target === lightbox
-                    ) {
-
-                        closeLightbox();
-
-                    }
-
-                }
-            );
-
-        }
-
-
-        /*
-        * Escape untuk menutup
-        */
-        document.addEventListener(
-            "keydown",
-            (event) => {
-
-                if (
-                    event.key === "Escape" &&
-                    lightbox &&
-                    lightbox.classList.contains(
-                        "is-open"
-                    )
-                ) {
-
-                    closeLightbox();
-
-                }
-
-            }
-        );
-
-
-        /* =========================================================
-        9. RSVP / UCAPAN
-        ========================================================= */
-
-        if (rsvpForm) {
-
-            rsvpForm.addEventListener(
-                "submit",
-                (event) => {
-
-                    event.preventDefault();
-
-
-                    const guestNameElement =
-                        document.getElementById(
-                            "guestName"
-                        );
-
-
-                    const attendanceElement =
-                        document.getElementById(
-                            "attendance"
-                        );
-
-
-                    const messageElement =
-                        document.getElementById(
-                            "message"
-                        );
-
-
-                    const guestName =
-                        guestNameElement
-                            ? guestNameElement.value.trim()
-                            : "";
-
-
-                    const attendance =
-                        attendanceElement
-                            ? attendanceElement.value
-                            : "";
-
-
-                    const message =
-                        messageElement
-                            ? messageElement.value.trim()
-                            : "";
-
-
-                    /*
-                    * Validasi
-                    */
-                    if (
-                        !guestName ||
-                        !attendance ||
-                        !message
-                    ) {
-
-                        if (formStatus) {
-
-                            formStatus.textContent =
-                                "Mohon lengkapi semua kolom terlebih dahulu.";
-
-                        }
-
-                        return;
-
-                    }
-
-
-                    /*
-                    * Data RSVP
-                    */
-                    const rsvpData = {
-
-                        name: guestName,
-
-                        attendance: attendance,
-
-                        message: message,
-
-                        submittedAt:
-                            new Date().toISOString()
-
-                    };
-
-
-                    /*
-                    * Ambil data sebelumnya
-                    */
-                    let previousData = [];
-
-
-                    try {
-
-                        previousData =
-                            JSON.parse(
-                                localStorage.getItem(
-                                    "andiSariRSVP"
-                                ) || "[]"
-                            );
-
-
-                        if (
-                            !Array.isArray(
-                                previousData
-                            )
-                        ) {
-
-                            previousData = [];
-
-                        }
-
-                    } catch (error) {
-
-                        previousData = [];
-
-                    }
-
-
-                    /*
-                    * Tambahkan data baru
-                    */
-                    previousData.push(
-                        rsvpData
-                    );
-
-
-                    /*
-                    * Simpan ke browser
-                    */
-                    try {
-
-                        localStorage.setItem(
-                            "andiSariRSVP",
-                            JSON.stringify(
-                                previousData
-                            )
-                        );
-
-                    } catch (error) {
-
-                        console.error(
-                            "Gagal menyimpan RSVP:",
-                            error
-                        );
-
-                    }
-
-
-                    /*
-                    * Pesan sukses
-                    */
-                    if (formStatus) {
-
-                        formStatus.textContent =
-                            `Terima kasih, ${guestName}. Ucapan Anda sudah tersimpan di browser ini.`;
-
-                    }
-
-
-                    /*
-                    * Reset form
-                    */
-                    rsvpForm.reset();
-
-                }
-            );
-
-        }
-
-
-        /* =========================================================
-        10. SMOOTH SCROLL
-        ========================================================= */
-
-        document
-            .querySelectorAll(
-                'a[href^="#"]'
-            )
-            .forEach(
-                (link) => {
-
-                    link.addEventListener(
-                        "click",
-                        (event) => {
-
-                            const targetId =
-                                link.getAttribute(
-                                    "href"
-                                );
-
-
-                            if (
-                                !targetId ||
-                                targetId === "#"
-                            ) {
-
-                                return;
-
-                            }
-
-
-                            const target =
-                                document.querySelector(
-                                    targetId
-                                );
-
-
-                            if (!target) {
-
-                                return;
-
-                            }
-
-
-                            event.preventDefault();
-
-
-                            /*
-                            * Tinggi navbar
-                            */
-                            const headerHeight =
-                                siteHeader
-                                    ? siteHeader.offsetHeight
-                                    : 0;
-
-
-                            const targetPosition =
-                                target.getBoundingClientRect()
-                                    .top +
-                                window.scrollY -
-                                headerHeight;
-
-
-                            window.scrollTo({
-
-                                top:
-                                    targetPosition,
-
-                                behavior:
-                                    "smooth"
-
-                            });
-
-                        }
-                    );
-
-                }
-            );
-
-
-        /* =========================================================
-        11. CEK STATUS AWAL
-        ========================================================= */
-
-        if (!openingScreen) {
-
-            document.body.classList.remove(
-                "locked"
-            );
-
-        }
-
-
-        if (
-            openingScreen &&
-            openingScreen.classList.contains(
-                "is-hidden"
-            ) &&
-            siteHeader
-        ) {
-
-            siteHeader.classList.add(
-                "visible"
-            );
-
-        }
-
+        const totalSeconds = Math.floor(difference / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        daysEl.textContent = String(days).padStart(3, "0");
+        hoursEl.textContent = String(hours).padStart(2, "0");
+        minutesEl.textContent = String(minutes).padStart(2, "0");
+        secondsEl.textContent = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+
+    /* =========================================================
+    5. SAVE TO CALENDAR
+    ========================================================= */
+
+    if (calendarButton) {
+        calendarButton.addEventListener("click", () => {
+            const icsContent = [
+                "BEGIN:VCALENDAR",
+                "VERSION:2.0",
+                "PRODID:-//Andi & Sari Wedding//ID",
+                "CALSCALE:GREGORIAN",
+                "BEGIN:VEVENT",
+                "UID:andi-sari-wedding-2027@example.com",
+                "DTSTAMP:20260919T000000Z",
+                "DTSTART:20270221T010000Z",
+                "DTEND:20270221T030000Z",
+                "SUMMARY:Akad Nikah Andi & Sari",
+                "LOCATION:Masjid Jami' Al-Ikhlas, Jl. Raya Ragunan No. 11A, Jati Padang, Pasar Minggu, Jakarta Selatan",
+                "DESCRIPTION:Akad Nikah Andi & Sari.",
+                "END:VEVENT",
+                "END:VCALENDAR"
+            ].join("\r\n");
+
+            const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+
+            link.href = url;
+            link.download = "andi-sari-akad.ics";
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+
+            setTimeout(() => {
+                URL.revokeObjectURL(url);
+            }, 1000);
+        });
+    }
+
+
+    /* =========================================================
+    6. MAP SLIDER
+    ========================================================= */
+
+    const mapSlider = document.getElementById("mapSlider");
+    const mapTrack = document.querySelector(".map-track");
+    const mapSlides = document.querySelectorAll(".map-slide");
+    const mapDots = document.querySelectorAll(".map-dot");
+    const mapPrev = document.getElementById("mapPrev");
+    const mapNext = document.getElementById("mapNext");
+
+    let currentMap = 0;
+
+    function showMap(index) {
+        if (!mapTrack || mapSlides.length === 0) return;
+
+        currentMap = (index + mapSlides.length) % mapSlides.length;
+        mapTrack.style.transform = `translateX(-${currentMap * 100}%)`;
+
+        mapSlides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === currentMap);
+        });
+
+        mapDots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === currentMap);
+            dot.setAttribute("aria-current", i === currentMap ? "true" : "false");
+        });
+    }
+
+    if (mapPrev) {
+        mapPrev.addEventListener("click", () => showMap(currentMap - 1));
+    }
+
+    if (mapNext) {
+        mapNext.addEventListener("click", () => showMap(currentMap + 1));
+    }
+
+    mapDots.forEach((dot, index) => {
+        dot.addEventListener("click", () => showMap(index));
     });
+
+    if (mapSlides.length > 0) {
+        showMap(0);
+    }
+
+    // Touch Swipe Map
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    if (mapSlider) {
+        mapSlider.addEventListener("touchstart", (event) => {
+            touchStartX = event.changedTouches[0].clientX;
+        }, { passive: true });
+
+        mapSlider.addEventListener("touchend", (event) => {
+            touchEndX = event.changedTouches[0].clientX;
+            const swipeDistance = touchStartX - touchEndX;
+
+            if (swipeDistance > 50) showMap(currentMap + 1);
+            if (swipeDistance < -50) showMap(currentMap - 1);
+        }, { passive: true });
+    }
+
+
+/* =========================================================
+    7. GALERI / LIGHTBOX MODAL & MOBILE SLIDER
+    ========================================================= */
+
+    const gallerySlider = document.getElementById("gallerySlider");
+    const galleryTrack = document.querySelector(".gallery-track");
+    const gallerySlides = document.querySelectorAll(".gallery-slide");
+    const galleryPrev = document.getElementById("galleryPrev");
+    const galleryNext = document.getElementById("galleryNext");
+    const galleryDotsContainer = document.getElementById("galleryDots");
+    const galleryItems = document.querySelectorAll(".gallery-item");
+
+    let currentGalleryIndex = 0;
+    let isMobileView = window.innerWidth <= 768;
+
+    // Inisialisasi Dots Slider Foto untuk Mobile
+    if (galleryDotsContainer && gallerySlides.length > 0) {
+        galleryDotsContainer.innerHTML = "";
+        gallerySlides.forEach((_, index) => {
+            const dot = document.createElement("button");
+            dot.type = "button";
+            dot.classList.add("gallery-dot");
+            if (index === 0) dot.classList.add("active");
+            dot.addEventListener("click", () => showGallerySlide(index));
+            galleryDotsContainer.appendChild(dot);
+        });
+    }
+
+    const galleryDots = document.querySelectorAll(".gallery-dot");
+
+    function showGallerySlide(index) {
+        if (!galleryTrack || gallerySlides.length === 0 || !isMobileView) return;
+
+        currentGalleryIndex = (index + gallerySlides.length) % gallerySlides.length;
+        galleryTrack.style.transform = `translateX(-${currentGalleryIndex * 100}%)`;
+
+        galleryDots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === currentGalleryIndex);
+        });
+    }
+
+    if (galleryPrev) {
+        galleryPrev.addEventListener("click", () => showGallerySlide(currentGalleryIndex - 1));
+    }
+
+    if (galleryNext) {
+        galleryNext.addEventListener("click", () => showGallerySlide(currentGalleryIndex + 1));
+    }
+
+    // Touch / Swipe Khusus Mobile pada Galeri
+    let galleryTouchStartX = 0;
+    let galleryTouchEndX = 0;
+
+    if (gallerySlider) {
+        gallerySlider.addEventListener("touchstart", (e) => {
+            if (!isMobileView) return;
+            galleryTouchStartX = e.changedTouches[0].clientX;
+        }, { passive: true });
+
+        gallerySlider.addEventListener("touchend", (e) => {
+            if (!isMobileView) return;
+            galleryTouchEndX = e.changedTouches[0].clientX;
+            const diff = galleryTouchStartX - galleryTouchEndX;
+
+            if (diff > 40) showGallerySlide(currentGalleryIndex + 1);
+            if (diff < -40) showGallerySlide(currentGalleryIndex - 1);
+        }, { passive: true });
+    }
+
+    // Handlers Resizing Window
+    window.addEventListener("resize", () => {
+        isMobileView = window.innerWidth <= 768;
+        if (!isMobileView && galleryTrack) {
+            galleryTrack.style.transform = "none"; // Reset transformasi saat kembali ke Desktop
+        } else {
+            showGallerySlide(currentGalleryIndex);
+        }
+    });
+
+    // Lightbox Modal
+    function openGalleryModal(imageSrc) {
+        if (!galleryModal || !galleryModalImg) return;
+        galleryModalImg.src = imageSrc;
+        galleryModal.classList.add("active");
+        galleryModal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("locked");
+    }
+
+    function closeGalleryModal() {
+        if (!galleryModal) return;
+        galleryModal.classList.remove("active");
+        galleryModal.setAttribute("aria-hidden", "true");
+        if (galleryModalImg) galleryModalImg.src = "";
+
+        if (!openingScreen || openingScreen.classList.contains("is-hidden")) {
+            document.body.classList.remove("locked");
+        }
+    }
+
+    galleryItems.forEach((item) => {
+        item.addEventListener("click", () => {
+            const img = item.querySelector("img");
+            if (img && img.src) {
+                openGalleryModal(img.src);
+            }
+        });
+    });
+
+    if (galleryModalClose) {
+        galleryModalClose.addEventListener("click", closeGalleryModal);
+    }
+
+    if (galleryModal) {
+        galleryModal.addEventListener("click", (event) => {
+            if (event.target === galleryModal) {
+                closeGalleryModal();
+            }
+        });
+    }
+
+    document.addEventListener("keydown", (event) => {
+        if (
+            event.key === "Escape" &&
+            galleryModal &&
+            galleryModal.classList.contains("active")
+        ) {
+            closeGalleryModal();
+        }
+    });
+
+    /* =========================================================
+    8. RSVP / UCAPAN
+    ========================================================= */
+
+    if (rsvpForm) {
+        rsvpForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const guestNameElement = document.getElementById("guestName");
+            const attendanceElement = document.getElementById("attendance");
+            const messageElement = document.getElementById("message");
+
+            const guestName = guestNameElement ? guestNameElement.value.trim() : "";
+            const attendance = attendanceElement ? attendanceElement.value : "";
+            const message = messageElement ? messageElement.value.trim() : "";
+
+            if (!guestName || !attendance || !message) {
+                if (formStatus) {
+                    formStatus.textContent = "Mohon lengkapi semua kolom terlebih dahulu.";
+                }
+                return;
+            }
+
+            const rsvpData = {
+                name: guestName,
+                attendance: attendance,
+                message: message,
+                submittedAt: new Date().toISOString()
+            };
+
+            let previousData = [];
+            try {
+                previousData = JSON.parse(localStorage.getItem("andiSariRSVP") || "[]");
+                if (!Array.isArray(previousData)) previousData = [];
+            } catch (error) {
+                previousData = [];
+            }
+
+            previousData.push(rsvpData);
+
+            try {
+                localStorage.setItem("andiSariRSVP", JSON.stringify(previousData));
+            } catch (error) {
+                console.error("Gagal menyimpan RSVP:", error);
+            }
+
+            if (formStatus) {
+                formStatus.textContent = `Terima kasih, ${guestName}. Ucapan Anda sudah tersimpan di browser ini.`;
+            }
+
+            rsvpForm.reset();
+        });
+    }
+
+
+    /* =========================================================
+    9. SMOOTH SCROLL
+    ========================================================= */
+
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (event) => {
+            const targetId = link.getAttribute("href");
+            if (!targetId || targetId === "#") return;
+
+            const target = document.querySelector(targetId);
+            if (!target) return;
+
+            event.preventDefault();
+
+            const headerHeight = siteHeader ? siteHeader.offsetHeight : 0;
+            const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+            window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth"
+            });
+        });
+    });
+
+
+    /* =========================================================
+    10. CEK STATUS AWAL
+    ========================================================= */
+
+    if (!openingScreen) {
+        document.body.classList.remove("locked");
+    }
+
+    if (openingScreen && openingScreen.classList.contains("is-hidden") && siteHeader) {
+        siteHeader.classList.add("visible");
+    }
+
+});
