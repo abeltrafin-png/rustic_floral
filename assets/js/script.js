@@ -32,144 +32,97 @@ document.addEventListener("DOMContentLoaded", () => {
     const galleryModalClose = document.getElementById("galleryModalClose");
 
     /* ============================================================
-   WEDDING BACKGROUND MUSIC
-   ============================================================ */
-
-document.addEventListener("DOMContentLoaded", function () {
+    WEDDING BACKGROUND MUSIC
+    ============================================================ */
 
     const music = document.getElementById("weddingMusic");
     const musicControl = document.getElementById("musicControl");
-    const openInvitation = document.getElementById("openInvitation");
+    const openInvitationButton = document.getElementById("openInvitation");
 
-    if (!music || !musicControl) return;
+    if (music && musicControl) {
 
-
-    /* ------------------------------------------------------------
-       UPDATE MUSIC BUTTON
-       ------------------------------------------------------------ */
-
-    function updateMusicButton() {
-
-        if (!music.paused) {
-
-            musicControl.classList.add("playing");
-
-            musicControl.setAttribute(
-                "aria-label",
-                "Jeda musik"
-            );
-
-            musicControl.setAttribute(
-                "aria-pressed",
-                "true"
-            );
-
-        } else {
-
-            musicControl.classList.remove("playing");
-
-            musicControl.setAttribute(
-                "aria-label",
-                "Putar musik"
-            );
-
-            musicControl.setAttribute(
-                "aria-pressed",
-                "false"
-            );
-        }
-    }
-
-
-    /* ------------------------------------------------------------
-       PLAY MUSIC
-       ------------------------------------------------------------ */
-
-    function playMusic() {
-
+        // Volume awal
         music.volume = 0.45;
 
-        const playPromise = music.play();
+        /* ------------------------------------------------------------
+        UPDATE TOMBOL MUSIK
+        ------------------------------------------------------------ */
 
-        if (playPromise !== undefined) {
+        function updateMusicButton() {
+            if (!music.paused) {
+                musicControl.classList.add("playing");
 
-            playPromise
-                .then(function () {
+                musicControl.setAttribute("aria-label", "Jeda musik");
+                musicControl.setAttribute("aria-pressed", "true");
+            } else {
+                musicControl.classList.remove("playing");
+
+                musicControl.setAttribute("aria-label", "Putar musik");
+                musicControl.setAttribute("aria-pressed", "false");
+            }
+        }
+
+        /* ------------------------------------------------------------
+        PLAY MUSIC
+        ------------------------------------------------------------ */
+
+        function playMusic() {
+            music.play()
+                .then(() => {
+                    console.log("Musik berhasil diputar.");
                     updateMusicButton();
                 })
-                .catch(function () {
-                    console.log("Musik menunggu interaksi pengguna.");
+                .catch((error) => {
+                    console.error("Musik gagal diputar:", error);
+                    updateMusicButton();
                 });
         }
-    }
 
+        /* ------------------------------------------------------------
+        PAUSE MUSIC
+        ------------------------------------------------------------ */
 
-    /* ------------------------------------------------------------
-       PAUSE MUSIC
-       ------------------------------------------------------------ */
+        function pauseMusic() {
+            music.pause();
+            updateMusicButton();
+        }
 
-    function pauseMusic() {
+        /* ------------------------------------------------------------
+        BUKA UNDANGAN
+        ------------------------------------------------------------ */
 
-        music.pause();
+        if (openInvitationButton) {
+            openInvitationButton.addEventListener("click", function () {
+
+                // Jalankan musik setelah user klik tombol
+                playMusic();
+
+            });
+        }
+
+        /* ------------------------------------------------------------
+        TOMBOL PLAY / PAUSE
+        ------------------------------------------------------------ */
+
+        musicControl.addEventListener("click", function () {
+
+            if (music.paused) {
+                playMusic();
+            } else {
+                pauseMusic();
+            }
+
+        });
+
+        /* ------------------------------------------------------------
+        UPDATE STATUS
+        ------------------------------------------------------------ */
+
+        music.addEventListener("play", updateMusicButton);
+        music.addEventListener("pause", updateMusicButton);
 
         updateMusicButton();
     }
-
-
-    /* ------------------------------------------------------------
-       OPEN INVITATION
-       MUSIC STARTS HERE
-       ------------------------------------------------------------ */
-
-    if (openInvitation) {
-
-        openInvitation.addEventListener("click", function () {
-
-            /*
-             * Musik mulai ketika user membuka undangan.
-             * Ini lebih aman terhadap aturan autoplay browser.
-             */
-
-            playMusic();
-
-        });
-    }
-
-
-    /* ------------------------------------------------------------
-       PLAY / PAUSE BUTTON
-       ------------------------------------------------------------ */
-
-    musicControl.addEventListener("click", function () {
-
-        if (music.paused) {
-
-            playMusic();
-
-        } else {
-
-            pauseMusic();
-
-        }
-
-    });
-
-
-    /* ------------------------------------------------------------
-       WHEN MUSIC ENDS
-       ------------------------------------------------------------ */
-
-    music.addEventListener("play", updateMusicButton);
-    music.addEventListener("pause", updateMusicButton);
-
-
-    /* ------------------------------------------------------------
-       INITIAL STATE
-       ------------------------------------------------------------ */
-
-    updateMusicButton();
-
-});
 
     /* =========================================================
     2. PEMBUKA UNDANGAN
