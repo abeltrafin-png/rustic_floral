@@ -531,6 +531,167 @@ main {
     line-height: 1.8;
 }
 
+/* ============================================================
+   BACKGROUND MUSIC CONTROL
+   ============================================================ */
+
+.music-control {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+
+    width: 52px;
+    height: 52px;
+
+    border: 1px solid rgba(96, 118, 90, 0.35);
+    border-radius: 50%;
+
+    background: rgba(251, 249, 244, 0.95);
+    color: var(--deep, #4d6449);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 9998;
+
+    box-shadow:
+        0 8px 25px rgba(48, 51, 45, 0.15);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.music-control:hover {
+    transform: scale(1.08);
+
+    box-shadow:
+        0 10px 30px rgba(48, 51, 45, 0.22);
+}
+
+.music-icon {
+    font-size: 22px;
+    line-height: 1;
+
+    position: relative;
+    z-index: 2;
+}
+
+
+/* ============================================================
+   MUSIC WAVES
+   ============================================================ */
+
+.music-waves {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.music-waves i {
+    display: block;
+
+    width: 2px;
+    height: 10px;
+
+    background: var(--rose, #bd777b);
+
+    border-radius: 2px;
+
+    transform-origin: center;
+}
+
+
+/* MUSIC PLAYING */
+
+.music-control.playing {
+    border-color: rgba(189, 119, 123, 0.45);
+
+    animation: musicPulse 2s ease-in-out infinite;
+}
+
+.music-control.playing .music-waves {
+    opacity: 1;
+}
+
+.music-control.playing .music-icon {
+    opacity: 0.25;
+}
+
+.music-control.playing .music-waves i:nth-child(1) {
+    animation: musicWave 0.8s ease-in-out infinite;
+}
+
+.music-control.playing .music-waves i:nth-child(2) {
+    animation: musicWave 0.6s ease-in-out infinite 0.1s;
+}
+
+.music-control.playing .music-waves i:nth-child(3) {
+    animation: musicWave 0.9s ease-in-out infinite 0.2s;
+}
+
+
+/* ============================================================
+   ANIMATION
+   ============================================================ */
+
+@keyframes musicWave {
+    0%,
+    100% {
+        transform: scaleY(0.5);
+    }
+
+    50% {
+        transform: scaleY(1.7);
+    }
+}
+
+@keyframes musicPulse {
+    0%,
+    100% {
+        box-shadow:
+            0 8px 25px rgba(48, 51, 45, 0.15);
+    }
+
+    50% {
+        box-shadow:
+            0 8px 30px rgba(189, 119, 123, 0.28);
+    }
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .music-control {
+        width: 46px;
+        height: 46px;
+
+        right: 16px;
+        bottom: 75px;
+    }
+
+    .music-icon {
+        font-size: 19px;
+    }
+}
 
 /* ============================================================
    COUPLE
@@ -990,6 +1151,305 @@ main {
     background: var(--rose);
 }
 
+/* ============================================================
+   LIVE STREAMING
+   ============================================================ */
+
+.live-section {
+    position: relative;
+
+    width: 100%;
+
+    padding:
+        100px 7%;
+
+    background: var(--cream);
+
+    text-align: center;
+
+    overflow: hidden;
+}
+
+
+.live-wrapper {
+    width: min(900px, 100%);
+
+    margin: 0 auto;
+}
+
+
+.live-card {
+    position: relative;
+
+    width: 100%;
+
+    padding: 25px;
+
+    background: var(--paper);
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+/* ============================================================
+   LIVE STATUS
+   ============================================================ */
+
+.live-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 18px;
+
+    padding:
+        6px 14px;
+
+    border:
+        1px solid rgba(184, 117, 125, .25);
+
+    border-radius: 30px;
+
+    color: var(--rose-dark);
+
+    font-size: .65rem;
+
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    background:
+        rgba(242, 223, 224, .45);
+}
+
+
+.live-dot {
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: var(--rose-dark);
+
+    animation:
+        livePulse 1.4s infinite;
+}
+
+
+@keyframes livePulse {
+
+    0%,
+    100% {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: .35;
+
+        transform: scale(.75);
+    }
+
+}
+
+
+/* ============================================================
+   LIVE FRAME
+   ============================================================ */
+
+.live-frame {
+    position: relative;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    border:
+        6px solid white;
+
+    background: #1f211e;
+
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, .08);
+
+    aspect-ratio: 16 / 9;
+}
+
+
+.live-frame iframe {
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
+
+    border: 0;
+}
+
+
+/* ============================================================
+   LIVE CONTENT
+   ============================================================ */
+
+.live-content {
+    width: min(650px, 100%);
+
+    margin:
+        25px auto 0;
+
+    text-align: center;
+}
+
+
+.live-content h3 {
+    color: var(--sage-deep);
+
+    font-family: var(--serif);
+
+    font-size: 1.8rem;
+
+    font-weight: 600;
+}
+
+
+.live-content p {
+    margin-top: 10px;
+
+    color: var(--muted);
+
+    font-size: .75rem;
+
+    line-height: 1.8;
+}
+
+
+/* ============================================================
+   LIVE BUTTON
+   ============================================================ */
+
+.live-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 190px;
+
+    margin-top: 20px;
+
+    padding:
+        12px 22px;
+
+    border:
+        1px solid var(--sage-deep);
+
+    border-radius: 25px;
+
+    background: var(--sage-deep);
+
+    color: white;
+
+    font-size: .65rem;
+
+    font-weight: 600;
+
+    letter-spacing: .8px;
+
+    text-transform: uppercase;
+
+    transition:
+        .25s ease;
+}
+
+
+.live-button:hover {
+    background: var(--rose-dark);
+
+    border-color: var(--rose-dark);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    .live-section {
+        padding:
+            80px 10px 90px;
+    }
+
+
+    .live-wrapper {
+        width: 100%;
+    }
+
+
+    .live-card {
+        width: 100%;
+
+        padding: 15px;
+
+        border-radius: 14px;
+    }
+
+
+    .live-status {
+        margin-bottom: 14px;
+
+        font-size: .58rem;
+    }
+
+
+    .live-frame {
+        width: 100%;
+
+        border-width: 4px;
+
+        border-radius: 10px;
+    }
+
+
+    .live-content {
+        width: 100%;
+
+        padding:
+            0 5px;
+    }
+
+
+    .live-content h3 {
+        font-size: 1.5rem;
+    }
+
+
+    .live-content p {
+        font-size: .68rem;
+    }
+
+
+    .live-button {
+        width: 100%;
+
+        max-width: 250px;
+    }
+
+}
 
 /* ============================================================
    LOVE STORY
@@ -1095,9 +1555,8 @@ main {
     line-height: 1.8;
 }
 
-
 /* ============================================================
-   VIDEO WEDDING (DISAMAKAN DISTANSI DAN STRUKTURNYA)
+   VIDEO — DESKTOP
    ============================================================ */
 
 .video-section {
@@ -1108,7 +1567,7 @@ main {
 }
 
 .video-wrapper {
-    width: min(1000px, 100%);
+    width: min(900px, calc(100% - 40px));
     margin: 0 auto;
 }
 
@@ -1132,7 +1591,6 @@ main {
 .wedding-video {
     display: block;
     width: 100%;
-    padding: { 25px, 45px };
     aspect-ratio: 16 / 9;
     height: auto;
     object-fit: cover;
@@ -1142,11 +1600,57 @@ main {
 .video-caption {
     width: min(600px, 100%);
     margin: 22px auto 0;
+    padding: 0 10px;
     color: var(--muted);
     font-family: var(--serif);
     font-size: 1.05rem;
     font-style: italic;
     line-height: 1.7;
+    text-align: center;
+}
+
+
+/* ============================================================
+   VIDEO — MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    .video-section {
+        padding: 80px 5px 90px;
+    }
+
+    .video-wrapper {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .video-card {
+        width: 100%;
+        padding: 0;
+        border-radius: 12px;
+    }
+
+    .video-frame {
+        width: 100%;
+        border-width: 4px;
+        border-radius: 12px;
+    }
+
+    .wedding-video {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+    .video-caption {
+        width: min(600px, 100%);
+        margin: 18px auto 0;
+        padding: 0 10px;
+        font-size: 0.95rem;
+        text-align: center;
+    }
+
 }
 
 /* ============================================================

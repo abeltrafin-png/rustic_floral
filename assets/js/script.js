@@ -31,6 +31,145 @@ document.addEventListener("DOMContentLoaded", () => {
     const galleryModalImg = document.getElementById("galleryModalImg");
     const galleryModalClose = document.getElementById("galleryModalClose");
 
+    /* ============================================================
+   WEDDING BACKGROUND MUSIC
+   ============================================================ */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const music = document.getElementById("weddingMusic");
+    const musicControl = document.getElementById("musicControl");
+    const openInvitation = document.getElementById("openInvitation");
+
+    if (!music || !musicControl) return;
+
+
+    /* ------------------------------------------------------------
+       UPDATE MUSIC BUTTON
+       ------------------------------------------------------------ */
+
+    function updateMusicButton() {
+
+        if (!music.paused) {
+
+            musicControl.classList.add("playing");
+
+            musicControl.setAttribute(
+                "aria-label",
+                "Jeda musik"
+            );
+
+            musicControl.setAttribute(
+                "aria-pressed",
+                "true"
+            );
+
+        } else {
+
+            musicControl.classList.remove("playing");
+
+            musicControl.setAttribute(
+                "aria-label",
+                "Putar musik"
+            );
+
+            musicControl.setAttribute(
+                "aria-pressed",
+                "false"
+            );
+        }
+    }
+
+
+    /* ------------------------------------------------------------
+       PLAY MUSIC
+       ------------------------------------------------------------ */
+
+    function playMusic() {
+
+        music.volume = 0.45;
+
+        const playPromise = music.play();
+
+        if (playPromise !== undefined) {
+
+            playPromise
+                .then(function () {
+                    updateMusicButton();
+                })
+                .catch(function () {
+                    console.log("Musik menunggu interaksi pengguna.");
+                });
+        }
+    }
+
+
+    /* ------------------------------------------------------------
+       PAUSE MUSIC
+       ------------------------------------------------------------ */
+
+    function pauseMusic() {
+
+        music.pause();
+
+        updateMusicButton();
+    }
+
+
+    /* ------------------------------------------------------------
+       OPEN INVITATION
+       MUSIC STARTS HERE
+       ------------------------------------------------------------ */
+
+    if (openInvitation) {
+
+        openInvitation.addEventListener("click", function () {
+
+            /*
+             * Musik mulai ketika user membuka undangan.
+             * Ini lebih aman terhadap aturan autoplay browser.
+             */
+
+            playMusic();
+
+        });
+    }
+
+
+    /* ------------------------------------------------------------
+       PLAY / PAUSE BUTTON
+       ------------------------------------------------------------ */
+
+    musicControl.addEventListener("click", function () {
+
+        if (music.paused) {
+
+            playMusic();
+
+        } else {
+
+            pauseMusic();
+
+        }
+
+    });
+
+
+    /* ------------------------------------------------------------
+       WHEN MUSIC ENDS
+       ------------------------------------------------------------ */
+
+    music.addEventListener("play", updateMusicButton);
+    music.addEventListener("pause", updateMusicButton);
+
+
+    /* ------------------------------------------------------------
+       INITIAL STATE
+       ------------------------------------------------------------ */
+
+    updateMusicButton();
+
+});
 
     /* =========================================================
     2. PEMBUKA UNDANGAN
