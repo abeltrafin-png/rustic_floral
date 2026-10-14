@@ -549,9 +549,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (formStatus) {
                     formStatus.textContent =
-                        "Permintaan pengiriman telah dikirim. " +
-                        "Periksa Google Spreadsheet untuk memastikan " +
-                        "ucapan sudah tersimpan.";
+                        "Permintaan pengiriman telah dikirim. ";
                 }
 
                 // Kosongkan formulir setelah permintaan dikirim
