@@ -461,7 +461,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // GANTI dengan URL Web App Apps Script kamu
     const GOOGLE_SCRIPT_URL =
-        "TEMPEL_URL_WEB_APP_KAMU_DI_SINI";
+        "https://script.google.com/macros/s/AKfycbw6p9hJJB5mYBBqcY-9oI_SOFDIyeat9Nf2ZHa6kdAHxiRdaKyIs51RWl6H9iKeILNXkQ/exec";
 
     if (rsvpForm) {
         rsvpForm.addEventListener("submit", async (event) => {
@@ -501,8 +501,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Pastikan URL Apps Script sudah diisi
             if (
+                !GOOGLE_SCRIPT_URL ||
+                GOOGLE_SCRIPT_URL.includes("TEMPEL_URL") ||
                 !GOOGLE_SCRIPT_URL.startsWith(
-                    "https://script.google.com/macros/s/AKfycbw6p9hJJB5mYBBqcY-9oI_SOFDIyeat9Nf2ZHa6kdAHxiRdaKyIs51RWl6H9iKeILNXkQ/exec"
+                    "https://script.google.com/macros/s/"
                 ) ||
                 !GOOGLE_SCRIPT_URL.endsWith("/exec")
             ) {
