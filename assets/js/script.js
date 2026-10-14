@@ -454,59 +454,125 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    
     /* =========================================================
-    8. RSVP / UCAPAN
+    8. RSVP / UCAPAN — GOOGLE SHEETS
     ========================================================= */
 
+    // GANTI dengan URL Web App Apps Script kamu
+    const GOOGLE_SCRIPT_URL =
+        "TEMPEL_URL_WEB_APP_KAMU_DI_SINI";
+
     if (rsvpForm) {
-        rsvpForm.addEventListener("submit", (event) => {
+        rsvpForm.addEventListener("submit", async (event) => {
             event.preventDefault();
 
             const guestNameElement = document.getElementById("guestName");
             const attendanceElement = document.getElementById("attendance");
             const messageElement = document.getElementById("message");
+            const submitButton = rsvpForm.querySelector(
+                'button[type="submit"]'
+            );
 
-            const guestName = guestNameElement ? guestNameElement.value.trim() : "";
-            const attendance = attendanceElement ? attendanceElement.value : "";
-            const message = messageElement ? messageElement.value.trim() : "";
+            const guestName = guestNameElement
+                ? guestNameElement.value.trim()
+                : "";
 
-            if (!guestName || !attendance || !message) {
+            const attendance = attendanceElement
+                ? attendanceElement.value
+                : "";
+
+            const message = messageElement
+                ? messageElement.value.trim()
+                : "";
+
+            // Validasi formulir
+            if (
+                !guestName ||
+                !message ||
+                !["Hadir", "Tidak Hadir"].includes(attendance)
+            ) {
                 if (formStatus) {
-                    formStatus.textContent = "Mohon lengkapi semua kolom terlebih dahulu.";
+                    formStatus.textContent =
+                        "Mohon lengkapi semua kolom terlebih dahulu.";
+                }
+                return;
+            }
+
+            // Pastikan URL Apps Script sudah diisi
+            if (
+                !GOOGLE_SCRIPT_URL.startsWith(
+                    "https://script.google.com/macros/s/AKfycbw6p9hJJB5mYBBqcY-9oI_SOFDIyeat9Nf2ZHa6kdAHxiRdaKyIs51RWl6H9iKeILNXkQ/exec"
+                ) ||
+                !GOOGLE_SCRIPT_URL.endsWith("/exec")
+            ) {
+                if (formStatus) {
+                    formStatus.textContent =
+                        "URL Google Apps Script belum diatur dengan benar.";
                 }
                 return;
             }
 
             const rsvpData = {
-                name: guestName,
+                name: guestName.slice(0, 100),
                 attendance: attendance,
-                message: message,
-                submittedAt: new Date().toISOString()
+                message: message.slice(0, 2000)
             };
 
-            let previousData = [];
-            try {
-                previousData = JSON.parse(localStorage.getItem("andiSariRSVP") || "[]");
-                if (!Array.isArray(previousData)) previousData = [];
-            } catch (error) {
-                previousData = [];
-            }
-
-            previousData.push(rsvpData);
-
-            try {
-                localStorage.setItem("andiSariRSVP", JSON.stringify(previousData));
-            } catch (error) {
-                console.error("Gagal menyimpan RSVP:", error);
+            // Cegah pengiriman berulang saat proses berlangsung
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = "Mengirim...";
             }
 
             if (formStatus) {
-                formStatus.textContent = `Terima kasih, ${guestName}. Ucapan Anda sudah tersimpan di browser ini.`;
+                formStatus.textContent = "Sedang mengirim ucapan...";
             }
 
-            rsvpForm.reset();
+            try {
+                /*
+                * mode no-cors digunakan untuk menghindari
+                * pembacaan respons lintas domain.
+                * Respons Google Apps Script tidak dapat
+                * dibaca langsung dengan mode ini.
+                */
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: {
+                        "Content-Type": "text/plain;charset=utf-8"
+                    },
+                    body: JSON.stringify(rsvpData)
+                });
+
+                if (formStatus) {
+                    formStatus.textContent =
+                        "Permintaan pengiriman telah dikirim. " +
+                        "Periksa Google Spreadsheet untuk memastikan " +
+                        "ucapan sudah tersimpan.";
+                }
+
+                // Kosongkan formulir setelah permintaan dikirim
+                rsvpForm.reset();
+
+            } catch (error) {
+                console.error("Gagal mengirim ucapan:", error);
+
+                if (formStatus) {
+                    formStatus.textContent =
+                        "Pengiriman gagal. Periksa koneksi internet " +
+                        "dan coba kembali.";
+                }
+
+            } finally {
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = "♡ Kirim Ucapan";
+                }
+            }
         });
     }
+
 
 
     /* =========================================================
