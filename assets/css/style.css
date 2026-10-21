@@ -1998,6 +1998,7 @@ main {
 }
 
 
+
 /* ============================================================
    RSVP & GUESTBOOK — FINAL RESPONSIVE DESIGN
    Tema: Rustic Floral — Cream, Sage, Rose, Gold
@@ -2011,7 +2012,6 @@ main {
     width: 100%;
     max-width: 1050px;
     margin: 0 auto;
-
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: stretch;
@@ -2019,23 +2019,25 @@ main {
 }
 
 /* ------------------------------------------------------------
-   2. BOX RSVP DAN RIWAYAT
+   2. BOX UTAMA
+   Kedua box sejajar dengan tinggi konsisten di desktop
    ------------------------------------------------------------ */
 
 .rsvp-box {
+    width: 100%;
+    height: 540px;
     min-width: 0;
-    min-height: 590px;
-    padding: 35px 30px;
-
+    min-height: 0;
+    padding: 30px 26px;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
 
     background: var(--paper);
     border: 1px solid var(--border);
     border-radius: 0;
     box-shadow: var(--shadow);
-
-    box-sizing: border-box;
 }
 
 /* ------------------------------------------------------------
@@ -2044,46 +2046,44 @@ main {
 
 .rsvp-box-heading {
     flex-shrink: 0;
-    margin: 0 0 25px;
+    margin: 0 0 22px;
     text-align: center;
 }
 
 .rsvp-box-icon {
-    width: 44px;
-    height: 44px;
-    margin: 0 auto 14px;
-
+    width: 42px;
+    height: 42px;
+    margin: 0 auto 12px;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
 
     border: 1px solid var(--gold-light);
     border-radius: 50%;
-
     color: var(--rose-dark);
     font-family: var(--serif);
-    font-size: 1.5rem;
+    font-size: 1.45rem;
 }
 
 .rsvp-box-heading h3 {
     margin: 0;
-
     color: var(--sage-deep);
     font-family: var(--serif);
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 600;
     line-height: 1.3;
+    overflow-wrap: anywhere;
 }
 
 .rsvp-box-heading p {
     max-width: 340px;
-    margin: 10px auto 0;
-
+    margin: 8px auto 0;
     color: var(--muted);
     font-family: var(--sans);
-    font-size: 0.75rem;
+    font-size: 0.74rem;
     font-weight: 400;
-    line-height: 1.8;
+    line-height: 1.75;
 }
 
 /* ------------------------------------------------------------
@@ -2093,6 +2093,7 @@ main {
 .rsvp-form-box .rsvp-form {
     width: 100%;
     max-width: none;
+    min-height: 0;
     margin: 0;
     padding: 0;
 
@@ -2111,17 +2112,17 @@ main {
 
 .rsvp-form-box .form-group {
     width: 100%;
-    margin: 0 0 19px;
-
+    min-width: 0;
+    margin: 0 0 15px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 7px;
 }
 
 .rsvp-form-box .rsvp-form label {
     color: var(--sage-deep);
     font-family: var(--sans);
-    font-size: 0.75rem;
+    font-size: 0.74rem;
     font-weight: 600;
     line-height: 1.5;
 }
@@ -2132,35 +2133,30 @@ main {
     width: 100%;
     max-width: 100%;
     min-width: 0;
-    padding: 12px 14px;
+    padding: 11px 13px;
+    box-sizing: border-box;
 
     color: var(--ink);
     background: var(--paper);
-
     border: 1px solid var(--border);
     border-radius: 0;
     outline: none;
 
     font-family: var(--sans);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 400;
     line-height: 1.6;
 
-    box-sizing: border-box;
-
-    transition:
-        border-color 0.25s ease,
-        box-shadow 0.25s ease,
-        background 0.25s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .rsvp-form-box .rsvp-form input,
 .rsvp-form-box .rsvp-form select {
-    min-height: 46px;
+    min-height: 44px;
 }
 
 .rsvp-form-box .rsvp-form textarea {
-    min-height: 125px;
+    min-height: 90px;
     flex: 1;
     resize: vertical;
 }
@@ -2176,67 +2172,59 @@ main {
 .rsvp-form-box .rsvp-form textarea:focus {
     border-color: var(--sage-dark);
     background: #fffdf9;
-    box-shadow: 0 0 0 3px rgba(112, 131, 111, 0.10);
+    box-shadow: 0 0 0 3px rgba(112, 131, 111, 0.1);
 }
 
 /* ------------------------------------------------------------
-   5. TOMBOL KIRIM RSVP
+   5. TOMBOL KIRIM
    ------------------------------------------------------------ */
 
 .rsvp-form-box .rsvp-button {
     width: 100%;
-    min-height: 46px;
+    min-height: 44px;
     flex-shrink: 0;
-
     margin-top: auto;
-    padding: 12px 20px;
+    padding: 11px 18px;
 
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
 
     border: 1px solid var(--sage-deep);
     border-radius: 24px;
-
     background: var(--sage-deep);
     color: white;
 
     font-family: var(--sans);
-    font-size: 0.68rem;
+    font-size: 0.67rem;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
     text-transform: uppercase;
 
     cursor: pointer;
-
-    transition:
-        background 0.25s ease,
-        border-color 0.25s ease,
-        transform 0.25s ease;
+    transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .rsvp-form-box .rsvp-button:hover {
     background: var(--rose-dark);
     border-color: var(--rose-dark);
-    transform: translateY(-2px);
 }
 
 .rsvp-form-box .rsvp-button:disabled {
     opacity: 0.65;
     cursor: not-allowed;
-    transform: none;
 }
 
-/* Pesan berhasil / gagal */
+/* Pesan status formulir */
 
 .rsvp-form-box .form-status {
     flex-shrink: 0;
-    margin-top: 12px;
-
+    margin: 9px 0 0;
     color: var(--muted);
     font-family: var(--sans);
-    font-size: 0.75rem;
-    line-height: 1.7;
+    font-size: 0.72rem;
+    line-height: 1.6;
     overflow-wrap: anywhere;
 }
 
@@ -2245,27 +2233,29 @@ main {
    ------------------------------------------------------------ */
 
 .guestbook-box {
-    min-height: 590px;
-    overflow: hidden;
+    min-height: 0;
 }
 
 .guestbook-box .rsvp-box-heading {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
-/* Area scroll hanya untuk daftar ucapan */
+/* Area daftar ucapan mengambil ruang tersisa */
 
 .guestbook-scroll-container {
-    flex: 1;
-    min-height: 0;
     width: 100%;
+    min-width: 0;
+    min-height: 0;
+    flex: 1;
 
     overflow-x: hidden;
     overflow-y: auto;
-
-    padding: 2px 9px 2px 2px;
-
     overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+
+    padding: 2px 8px 2px 2px;
+    box-sizing: border-box;
+
     scrollbar-width: thin;
     scrollbar-color: var(--sage-dark) var(--cream-dark);
 }
@@ -2284,17 +2274,18 @@ main {
     border-radius: 10px;
 }
 
-/* Daftar pesan */
+/* Daftar ucapan */
 
 .guestbook-scroll-container #guestbookHistory,
 #guestbookHistory {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-
     width: 100%;
     min-width: 0;
     margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 
     box-sizing: border-box;
 }
@@ -2307,7 +2298,8 @@ main {
     width: 100%;
     min-width: 0;
     margin: 0;
-    padding: 20px;
+    padding: 17px;
+    flex-shrink: 0;
 
     background: var(--paper);
     border: 1px solid var(--border);
@@ -2317,40 +2309,30 @@ main {
     overflow-wrap: anywhere;
     box-sizing: border-box;
 
-    transition:
-        border-color 0.25s ease,
-        background 0.25s ease;
+    transition: border-color 0.2s ease;
 }
 
 #guestbookHistory .guestbook-message:hover {
     border-color: var(--gold-light);
-    background: #fffdf9;
 }
 
-/* Nama tamu */
-
 #guestbookHistory .guestbook-message h3 {
-    margin: 0 0 8px;
-
+    margin: 0 0 7px;
     color: var(--sage-deep);
     font-family: var(--serif);
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     font-weight: 600;
     line-height: 1.4;
-
     overflow-wrap: anywhere;
 }
 
-/* Kehadiran dan ucapan */
-
 #guestbookHistory .guestbook-message p {
-    margin: 0 0 9px;
-
+    margin: 0 0 8px;
     color: var(--muted);
     font-family: var(--sans);
-    font-size: 0.75rem;
+    font-size: 0.73rem;
     font-weight: 400;
-    line-height: 1.8;
+    line-height: 1.75;
 
     white-space: pre-wrap;
     overflow-wrap: anywhere;
@@ -2360,22 +2342,21 @@ main {
     margin-bottom: 0;
 }
 
-/* Waktu pengiriman */
-
 #guestbookHistory .guestbook-message small {
     display: block;
-    margin-top: 13px;
-    padding-top: 10px;
+    margin-top: 11px;
+    padding-top: 9px;
 
     color: var(--gold);
     border-top: 1px solid var(--border);
 
     font-family: var(--sans);
-    font-size: 0.65rem;
+    font-size: 0.63rem;
     line-height: 1.6;
+    overflow-wrap: anywhere;
 }
 
-/* Pesan kosong / loading */
+/* Pesan kosong atau status loading */
 
 #guestbookHistory:empty {
     display: none;
@@ -2384,11 +2365,11 @@ main {
 .guestbook-scroll-container #guestbookHistory > p,
 #guestbookHistory > p {
     margin: 0;
-    padding: 25px 12px;
+    padding: 20px 10px;
 
     color: var(--muted);
     font-family: var(--serif);
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-style: italic;
     line-height: 1.8;
     text-align: center;
@@ -2403,32 +2384,27 @@ main {
 .guestbook-box #loadMoreMessages,
 #loadMoreMessages {
     width: 100%;
-    max-width: 260px;
-    min-height: 43px;
+    max-width: 240px;
+    min-height: 41px;
     flex-shrink: 0;
-
-    margin: 18px auto 0;
-    padding: 11px 18px;
+    margin: 13px auto 0;
+    padding: 10px 15px;
 
     display: block;
+    box-sizing: border-box;
 
     color: var(--sage-deep);
     background: transparent;
-
     border: 1px solid var(--sage-deep);
     border-radius: 24px;
 
     font-family: var(--sans);
-    font-size: 0.68rem;
+    font-size: 0.66rem;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
 
     cursor: pointer;
-
-    transition:
-        background 0.25s ease,
-        color 0.25s ease,
-        border-color 0.25s ease;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 #loadMoreMessages:hover {
@@ -2444,23 +2420,26 @@ main {
    9. TABLET
    ------------------------------------------------------------ */
 
-@media (max-width: 900px) {
+@media (min-width: 769px) and (max-width: 1000px) {
     .rsvp-container {
-        gap: 20px;
+        gap: 18px;
     }
 
-    .rsvp-box,
-    .guestbook-box {
-        min-height: 570px;
-        padding: 28px 22px;
+    .rsvp-box {
+        height: 550px;
+        padding: 26px 20px;
     }
 
     .rsvp-box-heading h3 {
-        font-size: 1.8rem;
+        font-size: 1.65rem;
+    }
+
+    .rsvp-form-box .form-group {
+        margin-bottom: 13px;
     }
 
     #guestbookHistory .guestbook-message {
-        padding: 17px;
+        padding: 14px;
     }
 }
 
@@ -2471,42 +2450,54 @@ main {
 @media (max-width: 768px) {
     .rsvp-container {
         grid-template-columns: minmax(0, 1fr);
-        gap: 22px;
+        gap: 20px;
     }
 
-    .rsvp-box,
-    .guestbook-box {
-        width: 100%;
+    .rsvp-box {
+        height: auto;
         min-height: 0;
-        padding: 28px 24px;
+        padding: 27px 23px;
+        overflow: visible;
     }
 
     .rsvp-box-heading {
-        margin-bottom: 22px;
+        margin-bottom: 21px;
     }
 
     .rsvp-box-heading h3 {
-        font-size: 1.85rem;
+        font-size: 1.8rem;
     }
 
-    .rsvp-box-heading p {
-        font-size: 0.75rem;
+    .rsvp-form-box .rsvp-form {
+        flex: initial;
     }
 
     .rsvp-form-box .rsvp-form textarea {
-        min-height: 120px;
+        min-height: 115px;
+        flex: initial;
+    }
+
+    .rsvp-form-box .rsvp-button {
+        margin-top: 3px;
+    }
+
+    .guestbook-box {
+        height: 470px;
+        overflow: hidden;
+    }
+
+    .guestbook-box .rsvp-box-heading {
+        margin-bottom: 15px;
     }
 
     .guestbook-scroll-container {
-        flex: initial;
+        flex: 1;
         min-height: 0;
-        max-height: 430px;
-
-        -webkit-overflow-scrolling: touch;
+        max-height: none;
     }
 
     .guestbook-box #loadMoreMessages {
-        margin-top: 18px;
+        margin-top: 12px;
     }
 }
 
@@ -2516,90 +2507,93 @@ main {
 
 @media (max-width: 480px) {
     .rsvp-container {
-        gap: 18px;
+        gap: 17px;
     }
 
-    .rsvp-box,
-    .guestbook-box {
-        padding: 24px 18px;
+    .rsvp-box {
+        padding: 23px 17px;
     }
 
     .rsvp-box-heading {
-        margin-bottom: 20px;
+        margin-bottom: 19px;
     }
 
     .rsvp-box-icon {
-        width: 40px;
-        height: 40px;
-        margin-bottom: 12px;
+        width: 39px;
+        height: 39px;
+        margin-bottom: 11px;
     }
 
     .rsvp-box-heading h3 {
-        font-size: 1.65rem;
+        font-size: 1.6rem;
     }
 
     .rsvp-box-heading p {
-        font-size: 0.72rem;
-        line-height: 1.75;
+        font-size: 0.71rem;
+        line-height: 1.7;
     }
 
     .rsvp-form-box .form-group {
-        margin-bottom: 17px;
+        margin-bottom: 15px;
         gap: 7px;
     }
 
     .rsvp-form-box .rsvp-form label {
-        font-size: 0.75rem;
+        font-size: 0.73rem;
     }
 
     .rsvp-form-box .rsvp-form input,
     .rsvp-form-box .rsvp-form select,
     .rsvp-form-box .rsvp-form textarea {
-        padding: 12px;
+        padding: 11px 12px;
         font-size: 16px;
     }
 
     .rsvp-form-box .rsvp-form textarea {
-        min-height: 115px;
+        min-height: 110px;
     }
 
     .rsvp-form-box .rsvp-button {
-        min-height: 47px;
-        font-size: 0.68rem;
+        min-height: 45px;
+        font-size: 0.65rem;
+    }
+
+    .guestbook-box {
+        height: 430px;
+        padding: 22px 17px;
     }
 
     .guestbook-scroll-container {
-        max-height: 400px;
         padding-right: 6px;
     }
 
     .guestbook-scroll-container #guestbookHistory,
     #guestbookHistory {
-        gap: 12px;
+        gap: 10px;
     }
 
     #guestbookHistory .guestbook-message {
-        padding: 16px 14px;
+        padding: 14px 12px;
     }
 
     #guestbookHistory .guestbook-message h3 {
-        font-size: 1.2rem;
+        font-size: 1.15rem;
     }
 
     #guestbookHistory .guestbook-message p {
-        font-size: 0.75rem;
-        line-height: 1.8;
+        font-size: 0.72rem;
+        line-height: 1.7;
     }
 
     #guestbookHistory .guestbook-message small {
-        font-size: 0.63rem;
+        font-size: 0.62rem;
     }
 
     .guestbook-box #loadMoreMessages,
     #loadMoreMessages {
         max-width: 100%;
-        min-height: 44px;
-        font-size: 0.68rem;
+        min-height: 41px;
+        font-size: 0.65rem;
     }
 }
 
@@ -2616,11 +2610,9 @@ main {
     #loadMoreMessages {
         transition: none;
     }
-
-    .rsvp-form-box .rsvp-button:hover {
-        transform: none;
-    }
 }
+
+
 
 /* ============================================================
    FOOTER
