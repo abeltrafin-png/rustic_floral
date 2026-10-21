@@ -1817,7 +1817,7 @@ main {
 
 
 /* ============================================================
-   GIFT
+   GIFT / AMPLOP DIGITAL & KIRIM KADO
    ============================================================ */
 
 .gift-intro {
@@ -1825,6 +1825,7 @@ main {
     margin: -25px auto 40px;
     color: var(--muted);
     font-size: 0.75rem;
+    line-height: 1.9;
     text-align: center;
 }
 
@@ -1832,48 +1833,73 @@ main {
     width: min(800px, 100%);
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 25px;
+    align-items: stretch;
 }
 
 .gift-card {
-    padding: 40px 25px;
+    padding: 35px 25px;
     text-align: center;
     background: var(--paper);
     border: 1px solid var(--border);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gift-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(80, 102, 81, 0.08);
+}
+
+.gift-icon {
+    width: 42px;
+    height: 42px;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    color: var(--rose-dark);
+    font-family: var(--serif);
+    font-size: 1.5rem;
 }
 
 .gift-bank {
+    margin: 0 0 15px;
     color: var(--gold);
-    font-size: 0.65rem;
+    font-size: 0.68rem;
     font-weight: 600;
     letter-spacing: 2px;
 }
 
 .gift-account {
-    margin-top: 15px;
+    margin: 15px 0 8px;
     color: var(--rose-dark);
     font-family: var(--serif);
     font-size: 2rem;
     letter-spacing: 2px;
+    overflow-wrap: anywhere;
 }
 
 .gift-name {
+    margin: 0;
     color: var(--muted);
-    font-size: 0.72rem;
+    font-size: 0.75rem;
 }
 
 .gift-button {
-    margin-top: 20px;
-    padding: 10px 18px;
+    margin-top: 22px;
+    padding: 11px 18px;
     border: 1px solid var(--sage-deep);
     border-radius: 15px;
     background: transparent;
     color: var(--sage-deep);
     cursor: pointer;
-    font-size: 0.63rem;
+    font-family: inherit;
+    font-size: 0.65rem;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     transition: 0.25s ease;
 }
 
@@ -1882,6 +1908,91 @@ main {
     color: white;
 }
 
+/* Detail penerima kado */
+
+.gift-delivery-card {
+    text-align: left;
+}
+
+.gift-delivery-card .gift-icon,
+.gift-delivery-card .gift-bank {
+    text-align: center;
+}
+
+.gift-detail {
+    margin-top: 18px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid var(--border);
+}
+
+.gift-detail:last-of-type {
+    border-bottom: none;
+}
+
+.gift-label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--gold);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.gift-value {
+    margin: 0;
+    color: var(--sage-deep);
+    font-size: 0.78rem;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.gift-address {
+    white-space: normal;
+}
+
+.gift-delivery-card .gift-button {
+    display: block;
+    margin: 22px auto 0;
+}
+
+/* Tampilan HP */
+
+@media (max-width: 600px) {
+    .gift-intro {
+        margin: -15px auto 28px;
+        padding: 0 8px;
+        font-size: 0.72rem;
+    }
+
+    .gift-wrapper {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .gift-card {
+        padding: 28px 22px;
+    }
+
+    .gift-account {
+        font-size: 1.7rem;
+    }
+
+    .gift-delivery-card {
+        text-align: left;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gift-card,
+    .gift-button {
+        transition: none;
+    }
+
+    .gift-card:hover {
+        transform: none;
+    }
+}
 
 /* =========================================================
    RSVP & GUESTBOOK — RUSTIC FLORAL
@@ -2392,47 +2503,6 @@ main {
         display: none;
     }
 
-    .mobile-nav {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        z-index: 2000;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        padding: 8px 4px;
-        background: rgba(255, 253, 249, 0.97);
-        border-top: 1px solid rgba(185, 147, 88, 0.2);
-        box-shadow: 0 -8px 25px rgba(70, 55, 45, 0.08);
-        backdrop-filter: blur(12px);
-    }
-
-    .mobile-nav a {
-        flex: 1;
-        min-height: 48px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2px;
-        color: var(--muted);
-        font-size: 0.6rem;
-        text-align: center;
-        transition: color 0.25s ease;
-    }
-
-    .mobile-nav a.active,
-    .mobile-nav a:hover {
-        color: var(--rose-dark);
-    }
-
-    .mobile-nav a span {
-        font-family: var(--serif);
-        font-size: 1.1rem;
-        line-height: 1;
-    }
-
     .section,
     .quote-section,
     .countdown-section,
@@ -2897,5 +2967,99 @@ main {
 
     .gallery-next {
         right: 7px;
+    }
+}
+
+/* =========================================================
+   FLOATING NAVBAR — MOBILE
+   ========================================================= */
+
+.mobile-nav {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-nav {
+        position: fixed;
+        left: 50%;
+        bottom: calc(18px + env(safe-area-inset-bottom));
+        transform: translateX(-50%);
+        z-index: 2000;
+
+        width: calc(100% - 32px);
+        max-width: 420px;
+        box-sizing: border-box;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 4px;
+
+        padding: 9px 8px;
+
+        background: rgba(255, 253, 249, 0.96);
+        border: 1px solid rgba(185, 147, 88, 0.25);
+        border-radius: 24px;
+
+        box-shadow: 0 8px 28px rgba(70, 55, 45, 0.16);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+    }
+
+    .mobile-nav a {
+        flex: 1;
+        min-width: 0;
+        min-height: 48px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+
+        color: var(--muted);
+        text-decoration: none;
+        border-radius: 16px;
+
+        transition:
+            color 0.25s ease,
+            background 0.25s ease,
+            transform 0.25s ease;
+    }
+
+    .mobile-nav a span {
+        font-family: var(--serif);
+        font-size: 1.25rem;
+        line-height: 1;
+    }
+
+    .mobile-nav a small {
+        font-family: var(--sans, sans-serif);
+        font-size: 0.58rem;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+
+    .mobile-nav a.active {
+        color: var(--sage-deep);
+        background: rgba(223, 232, 223, 0.75);
+    }
+
+    .mobile-nav a:hover {
+        color: var(--rose-dark);
+    }
+
+    .mobile-nav a:active {
+        transform: scale(0.94);
+    }
+
+    /* Beri ruang agar navbar tidak menutupi konten terakhir */
+    body {
+        padding-bottom: 95px;
+    }
+
+    /* Sembunyikan navbar desktop di HP jika diperlukan */
+    .site-header .nav-links {
+        display: none;
     }
 }

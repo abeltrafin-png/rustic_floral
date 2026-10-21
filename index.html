@@ -588,24 +588,63 @@
             </div>
 
             <p class="gift-intro">
-                Doa restu Anda merupakan hadiah terindah. Namun jika ingin memberi hadiah, Anda dapat menggunakan fitur di bawah ini:
+                Doa restu Anda merupakan hadiah terindah. Namun jika ingin memberi hadiah,
+                Anda dapat menggunakan fitur di bawah ini:
             </p>
 
             <div class="gift-wrapper">
+
+                <!-- KARTU REKENING BCA -->
                 <div class="gift-card">
+                    <div class="gift-icon">♡</div>
                     <p class="gift-bank">BANK BCA</p>
+
                     <p class="gift-account" id="accountBCA">1234 5678 90</p>
+
                     <p class="gift-name">a.n. Andi Prasetyo</p>
-                    <button type="button" class="gift-button" onclick="navigator.clipboard.writeText('1234567890'); alert('Nomor rekening berhasil disalin!');">📋 Salin Rekening</button>
+
+                    <button
+                        type="button"
+                        class="gift-button"
+                        onclick="salinRekening()">
+                        Salin Rekening
+                    </button>
                 </div>
 
-                <div class="gift-card">
-                    <p class="gift-bank">QRIS / E-WALLET</p>
-                    <div class="qris-placeholder">
-                        <span>QRIS</span>
+                <!-- KARTU KIRIM KADO -->
+                <div class="gift-card gift-delivery-card">
+                    <div class="gift-icon">♡</div>
+                    <p class="gift-bank">KIRIM KADO</p>
+
+                    <div class="gift-detail">
+                        <span class="gift-label">Nama Penerima</span>
+                        <p class="gift-value" id="giftRecipient">
+                            Andi Prasetyo
+                        </p>
                     </div>
-                    <p class="gift-name">Scan QRIS All Payment</p>
+
+                    <div class="gift-detail">
+                        <span class="gift-label">Nomor HP</span>
+                        <p class="gift-value" id="giftPhone">
+                            0812-3456-7890
+                        </p>
+                    </div>
+
+                    <div class="gift-detail">
+                        <span class="gift-label">Alamat Penerima</span>
+                        <p class="gift-value gift-address" id="giftAddress">
+                            Masukkan alamat lengkap penerima kado di sini
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="gift-button"
+                        onclick="salinAlamatKado()">
+                        Salin Alamat Kado
+                    </button>
                 </div>
+
             </div>
         </section>
 
@@ -683,14 +722,31 @@
     </footer>
 
     <!-- NAVBAR MOBILE -->
-    <nav class="mobile-nav">
-        <a href="#couple"><span>♡</span><small>Mempelai</small></a>
-        <a href="#events"><span>◈</span><small>Acara</small></a>
-        <a href="#countdown"><span>⌂</span><small>Count</small></a>
-        <a href="#story"><span>▧</span><small>Kisah</small></a>
-        <a href="#gallery"><span>[]</span><small>Gallery</small></a>
-        <a href="#rsvp"><span>✉</span><small>RSVP</small></a>
+
+        <nav class="mobile-nav" aria-label="Navigasi undangan">
+        <a href="#home" class="active">
+            <span>⌂</span>
+            <small>Home</small>
+        </a>
+        <a href="#couple">
+            <span>♡</span>
+            <small>Mempelai</small>
+        </a>
+        <a href="#event">
+            <span>♧</span>
+            <small>Acara</small>
+        </a>
+        <a href="#gallery">
+            <span>▧</span>
+            <small>Galeri</small>
+        </a>
+        <a href="#gift">
+            <span>♧</span>
+            <small>Hadiah</small>
+        </a>
     </nav>
+    
+
 
     <script src="assets/js/script.js"></script>
 </body>

@@ -31,6 +31,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const galleryModalImg = document.getElementById("galleryModalImg");
     const galleryModalClose = document.getElementById("galleryModalClose");
 
+    /* FLOATING NAVBAR — ACTIVE LINK */
+    const mobileNavLinks = document.querySelectorAll(".mobile-nav a");
+
+    mobileNavLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            mobileNavLinks.forEach((item) => {
+                item.classList.remove("active");
+            });
+
+            link.classList.add("active");
+        });
+    });
+
     /* ============================================================
     WEDDING BACKGROUND MUSIC
     ============================================================ */
@@ -469,7 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let guestbookMessages = [];
     let visibleMessages = 5;
-    
+
     /* =========================================================
     TAMPILKAN RIWAYAT UCAPAN
     ========================================================= */
@@ -721,5 +734,87 @@ document.addEventListener("DOMContentLoaded", () => {
     if (openingScreen && openingScreen.classList.contains("is-hidden") && siteHeader) {
         siteHeader.classList.add("visible");
     }
+
+    /* =========================================================
+       11. AMPLOP DIGITAL / SALIN REKENING & ALAMAT KADO
+       ========================================================= */
+
+    async function salinTeksGift(teks, pesan) {
+        try {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(teks);
+                alert(pesan);
+                return;
+            }
+
+            // Fallback untuk browser yang tidak mendukung Clipboard API
+            const area = document.createElement("textarea");
+            area.value = teks;
+            area.setAttribute("readonly", "");
+            area.style.position = "fixed";
+            area.style.opacity = "0";
+            area.style.pointerEvents = "none";
+
+            document.body.appendChild(area);
+            area.select();
+
+            const berhasil = document.execCommand("copy");
+            area.remove();
+
+            if (berhasil) {
+                alert(pesan);
+            } else {
+                alert("Gagal menyalin. Silakan salin secara manual.");
+            }
+        } catch (error) {
+            console.error("Gagal menyalin informasi hadiah:", error);
+            alert("Gagal menyalin. Silakan salin secara manual.");
+        }
+    }
+
+    function salinRekening() {
+        const accountElement = document.getElementById("accountBCA");
+
+        if (!accountElement) {
+            alert("Nomor rekening tidak ditemukan.");
+            return;
+        }
+
+        const nomorRekening = accountElement.textContent.trim().replace(/\s+/g, "");
+
+        salinTeksGift(
+            nomorRekening,
+            "Nomor rekening berhasil disalin!"
+        );
+    }
+
+    function salinAlamatKado() {
+        const namaElement = document.getElementById("giftRecipient");
+        const hpElement = document.getElementById("giftPhone");
+        const alamatElement = document.getElementById("giftAddress");
+
+        if (!namaElement || !hpElement || !alamatElement) {
+            alert("Informasi penerima kado belum lengkap.");
+            return;
+        }
+
+        const nama = namaElement.textContent.trim();
+        const hp = hpElement.textContent.trim();
+        const alamat = alamatElement.textContent.trim();
+
+        const informasiKado =
+            `Nama Penerima: ${nama}\n` +
+            `Nomor HP: ${hp}\n` +
+            `Alamat: ${alamat}`;
+
+        salinTeksGift(
+            informasiKado,
+            "Informasi penerima kado berhasil disalin!"
+        );
+    }   
+    
+    // Agar dapat dipanggil oleh atribut onclick pada HTML.
+    window.salinRekening = salinRekening;
+    window.salinAlamatKado = salinAlamatKado;
 
 });
