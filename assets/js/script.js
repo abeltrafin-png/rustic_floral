@@ -456,37 +456,154 @@ document.addEventListener("DOMContentLoaded", () => {
 
     
     /* =========================================================
-    8. RSVP / UCAPAN — GOOGLE SHEETS
+    8. RSVP / UCAPAN — GOOGLE SHEETS + RIWAYAT UCAPAN
     ========================================================= */
 
-    // GANTI dengan URL Web App Apps Script kamu
+    
     const GOOGLE_SCRIPT_URL =
         "https://script.google.com/macros/s/AKfycbw6p9hJJB5mYBBqcY-9oI_SOFDIyeat9Nf2ZHa6kdAHxiRdaKyIs51RWl6H9iKeILNXkQ/exec";
+
+    // Element riwayat ucapan
+    const guestbookHistory = document.getElementById("guestbookHistory");
+    const loadMoreMessages = document.getElementById("loadMoreMessages");
+
+    let guestbookMessages = [];
+    let visibleMessages = 5;
+    
+    /* =========================================================
+    TAMPILKAN RIWAYAT UCAPAN
+    ========================================================= */
+
+    function renderGuestbook() {
+        if (!guestbookHistory) return;
+
+        guestbookHistory.replaceChildren();
+
+        if (guestbookMessages.length === 0) {
+            const emptyMessage = document.createElement("p");
+            emptyMessage.textContent = "Belum ada ucapan. Jadilah yang pertama!";
+            guestbookHistory.appendChild(emptyMessage);
+        } else {
+            guestbookMessages.slice(0, visibleMessages).forEach((item) => {
+                const card = document.createElement("div");
+                card.className = "guestbook-message";
+
+                const name = document.createElement("h3");
+                name.textContent = item.name || item.nama || "Tamu";
+
+                const attendance = document.createElement("p");
+                attendance.textContent =
+                    "Kehadiran: " +
+                    (item.attendance || item.kehadiran || "-");
+
+                const message = document.createElement("p");
+                message.textContent = item.message || item.ucapan || "";
+
+                card.append(name, attendance, message);
+
+                const dateValue =
+                    item.timestamp ||
+                    item.waktu ||
+                    item.date ||
+                    item.tanggal;
+
+                if (dateValue) {
+                    const date = document.createElement("small");
+                    const parsedDate = new Date(dateValue);
+
+                    date.textContent = !Number.isNaN(parsedDate.getTime())
+                        ? parsedDate.toLocaleString("id-ID", {
+                            dateStyle: "medium",
+                            timeStyle: "short"
+                        })
+                        : String(dateValue);
+
+                    card.appendChild(date);
+                }
+
+                guestbookHistory.appendChild(card);
+            });
+        }
+
+        if (loadMoreMessages) {
+            loadMoreMessages.hidden =
+                guestbookMessages.length <= visibleMessages;
+        }
+    }
+
+    /* =========================================================
+    AMBIL UCAPAN DARI GOOGLE SHEETS
+    ========================================================= */
+
+    async function loadGuestbook() {
+        if (!guestbookHistory) return;
+
+        guestbookHistory.textContent = "Memuat ucapan dan doa...";
+
+        try {
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: "GET",
+                redirect: "follow",
+                cache: "no-store"
+            });
+
+            if (!response.ok) {
+                throw new Error("Gagal mengambil data ucapan.");
+            }
+
+            const data = await response.json();
+
+            if (!Array.isArray(data)) {
+                throw new Error("Format data dari Google Sheets tidak sesuai.");
+            }
+
+            guestbookMessages = data.reverse();
+            visibleMessages = 5;
+
+            renderGuestbook();
+        } catch (error) {
+            console.error("Gagal memuat riwayat ucapan:", error);
+
+            guestbookHistory.textContent =
+                "Riwayat ucapan belum dapat dimuat. Silakan coba lagi nanti.";
+        }
+    }
+
+    /* =========================================================
+    TOMBOL LIHAT UCAPAN LAINNYA
+    ========================================================= */
+
+    if (loadMoreMessages) {
+        loadMoreMessages.addEventListener("click", () => {
+            visibleMessages += 5;
+            renderGuestbook();
+        });
+    }
+
+    /* =========================================================
+    KIRIM RSVP DAN UCAPAN
+    ========================================================= */
 
     if (rsvpForm) {
         rsvpForm.addEventListener("submit", async (event) => {
             event.preventDefault();
 
-            const guestNameElement = document.getElementById("guestName");
-            const attendanceElement = document.getElementById("attendance");
-            const messageElement = document.getElementById("message");
+            const guestName = document
+                .getElementById("guestName")
+                ?.value.trim() || "";
+
+            const attendance = document
+                .getElementById("attendance")
+                ?.value || "";
+
+            const message = document
+                .getElementById("message")
+                ?.value.trim() || "";
+
             const submitButton = rsvpForm.querySelector(
                 'button[type="submit"]'
             );
 
-            const guestName = guestNameElement
-                ? guestNameElement.value.trim()
-                : "";
-
-            const attendance = attendanceElement
-                ? attendanceElement.value
-                : "";
-
-            const message = messageElement
-                ? messageElement.value.trim()
-                : "";
-
-            // Validasi formulir
             if (
                 !guestName ||
                 !message ||
@@ -499,10 +616,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // Pastikan URL Apps Script sudah diisi
             if (
-                !GOOGLE_SCRIPT_URL ||
-                GOOGLE_SCRIPT_URL.includes("TEMPEL_URL") ||
                 !GOOGLE_SCRIPT_URL.startsWith(
                     "https://script.google.com/macros/s/"
                 ) ||
@@ -510,7 +624,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ) {
                 if (formStatus) {
                     formStatus.textContent =
-                        "URL Google Apps Script belum diatur dengan benar.";
+                        "URL Google Apps Script belum benar.";
                 }
                 return;
             }
@@ -521,7 +635,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 message: message.slice(0, 2000)
             };
 
-            // Cegah pengiriman berulang saat proses berlangsung
             if (submitButton) {
                 submitButton.disabled = true;
                 submitButton.textContent = "Mengirim...";
@@ -532,12 +645,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                /*
-                * mode no-cors digunakan untuk menghindari
-                * pembacaan respons lintas domain.
-                * Respons Google Apps Script tidak dapat
-                * dibaca langsung dengan mode ini.
-                */
                 await fetch(GOOGLE_SCRIPT_URL, {
                     method: "POST",
                     mode: "no-cors",
@@ -549,21 +656,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (formStatus) {
                     formStatus.textContent =
-                        "Permintaan pengiriman telah dikirim. ";
+                        "Permintaan terkirim. Ucapan akan muncul setelah tersimpan di spreadsheet.";
                 }
 
-                // Kosongkan formulir setelah permintaan dikirim
                 rsvpForm.reset();
+
+                // Muat ulang riwayat setelah memberi waktu
+                // kepada Google Apps Script untuk menyimpan data.
+                setTimeout(loadGuestbook, 2000);
 
             } catch (error) {
                 console.error("Gagal mengirim ucapan:", error);
 
                 if (formStatus) {
                     formStatus.textContent =
-                        "Pengiriman gagal. Periksa koneksi internet " +
-                        "dan coba kembali.";
+                        "Pengiriman gagal. Periksa koneksi internet dan coba kembali.";
                 }
-
             } finally {
                 if (submitButton) {
                     submitButton.disabled = false;
@@ -573,6 +681,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    /* Muat riwayat ketika halaman dibuka */
+    loadGuestbook();
 
 
     /* =========================================================

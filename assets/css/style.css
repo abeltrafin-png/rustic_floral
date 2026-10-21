@@ -1883,79 +1883,387 @@ main {
 }
 
 
-/* ============================================================
-   RSVP
-   ============================================================ */
+/* =========================================================
+   RSVP & GUESTBOOK — RUSTIC FLORAL
+   ========================================================= */
 
-.rsvp-intro {
-    width: min(550px, 100%);
-    margin: -25px auto 35px;
-    color: var(--muted);
-    font-size: 0.75rem;
-    text-align: center;
+.rsvp-section {
+    position: relative;
+    padding: 80px 20px;
 }
 
+.rsvp-section > .section-heading {
+    margin-bottom: 35px;
+}
+
+/* FORM RSVP */
 .rsvp-form {
-    width: min(600px, 100%);
-    margin: auto;
-    padding: 40px;
-    background: var(--paper);
-    border: 1px solid var(--border);
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 35px;
+    background: var(--paper, #fffdf9);
+    border: 1px solid rgba(185, 147, 88, 0.25);
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(80, 102, 81, 0.08);
 }
 
-.form-group {
-    margin-bottom: 20px;
+.rsvp-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 22px;
 }
 
-.form-group label {
+.rsvp-form label {
+    color: var(--sage-dark, #506651);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form textarea {
     display: block;
-    margin-bottom: 7px;
-    color: var(--sage-deep);
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
     width: 100%;
-    padding: 13px 14px;
-    border: 1px solid #ddd4cd;
-    border-radius: 0;
+    box-sizing: border-box;
+    padding: 13px 15px;
+    border: 1px solid #e4ddd3;
+    border-radius: 9px;
+    background: #fffefa;
+    color: #514b43;
+    font: inherit;
+    font-size: 0.95rem;
     outline: none;
-    background: white;
-    color: var(--ink);
-    font-size: 0.75rem;
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
 }
 
-.form-group textarea {
-    min-height: 130px;
+.rsvp-form input,
+.rsvp-form select {
+    min-height: 48px;
+}
+
+.rsvp-form textarea {
+    min-height: 145px;
     resize: vertical;
+    line-height: 1.7;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    border-color: var(--rose);
+.rsvp-form input::placeholder,
+.rsvp-form textarea::placeholder {
+    color: #aaa197;
+    opacity: 1;
 }
 
-.rsvp-button {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    background: var(--sage-deep);
-    color: white;
+.rsvp-form input:focus,
+.rsvp-form select:focus,
+.rsvp-form textarea:focus {
+    border-color: var(--sage, #70836f);
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(112, 131, 111, 0.12);
+}
+
+.rsvp-form select {
     cursor: pointer;
-    font-size: 0.68rem;
+}
+
+/* TOMBOL KIRIM */
+.rsvp-button {
+    display: block;
+    width: 100%;
+    min-height: 49px;
+    margin-top: 8px;
+    padding: 13px 20px;
+    border: 1px solid var(--sage-dark, #506651);
+    border-radius: 9px;
+    background: var(--sage-dark, #506651);
+    color: #fffdf9;
+    font: inherit;
+    font-size: 0.95rem;
     font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    transition: 0.25s ease;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .rsvp-button:hover {
-    background: var(--rose-dark);
+    background: #3f5340;
+    box-shadow: 0 5px 15px rgba(80, 102, 81, 0.18);
+    transform: translateY(-2px);
+}
+
+.rsvp-button:active {
+    transform: translateY(0);
+}
+
+.rsvp-button:disabled {
+    opacity: 0.65;
+    cursor: wait;
+    transform: none;
+    box-shadow: none;
+}
+
+/* STATUS PENGIRIMAN */
+.form-status {
+    min-height: 20px;
+    margin: 14px 0 0;
+    color: var(--sage-dark, #506651);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   RIWAYAT UCAPAN
+   ========================================================= */
+
+.guestbook-section {
+    width: 100%;
+    max-width: 850px;
+    margin: 75px auto 0;
+}
+
+.guestbook-section > .section-heading {
+    margin-bottom: 30px;
+}
+
+#guestbookHistory {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    width: 100%;
+}
+
+#guestbookHistory > p {
+    margin: 0;
+    padding: 28px 20px;
+    border: 1px dashed #d8cbbb;
+    border-radius: 12px;
+    background: rgba(255, 253, 249, 0.8);
+    color: #81786e;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    text-align: center;
+}
+
+/* KARTU UCAPAN TAMU */
+.guestbook-message {
+    position: relative;
+    min-width: 0;
+    padding: 23px 25px;
+    border: 1px solid #e9e0d5;
+    border-left: 4px solid var(--sage, #70836f);
+    border-radius: 12px;
+    background: var(--paper, #fffdf9);
+    box-shadow: 0 5px 18px rgba(80, 70, 55, 0.045);
+    overflow-wrap: anywhere;
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.guestbook-message:hover {
+    border-color: #d7c6ad;
+    box-shadow: 0 8px 22px rgba(80, 70, 55, 0.08);
+    transform: translateY(-2px);
+}
+
+.guestbook-message h3 {
+    margin: 0 0 9px;
+    color: var(--sage-dark, #506651);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 1.45rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.guestbook-message p {
+    margin: 8px 0 0;
+    color: #655d53;
+    font-size: 0.92rem;
+    line-height: 1.8;
+    white-space: pre-wrap;
+}
+
+.guestbook-message p:first-of-type {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #edf1e9;
+    color: #506651;
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+.guestbook-message small {
+    display: block;
+    margin-top: 15px;
+    padding-top: 11px;
+    border-top: 1px solid #eee6dc;
+    color: #9a8e80;
+    font-size: 0.77rem;
+    line-height: 1.5;
+}
+
+/* TOMBOL LIHAT UCAPAN LAINNYA */
+#loadMoreMessages {
+    display: block;
+    min-height: 44px;
+    margin: 25px auto 0;
+    padding: 11px 25px;
+    border: 1px solid var(--sage, #70836f);
+    border-radius: 30px;
+    background: transparent;
+    color: var(--sage-dark, #506651);
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+#loadMoreMessages:hover {
+    background: var(--sage-dark, #506651);
+    border-color: var(--sage-dark, #506651);
+    color: #fffdf9;
+}
+
+#loadMoreMessages[hidden] {
+    display: none !important;
+}
+
+/* =========================================================
+   RESPONSIVE — TABLET & MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+    .rsvp-section {
+        padding: 60px 18px;
+    }
+
+    .rsvp-form {
+        padding: 26px 22px;
+        border-radius: 15px;
+    }
+
+    .guestbook-section {
+        margin-top: 55px;
+    }
+
+    .guestbook-message {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rsvp-section {
+        padding: 45px 16px;
+    }
+
+    .rsvp-section > .section-heading {
+        margin-bottom: 25px;
+    }
+
+    .rsvp-form {
+        padding: 22px 17px;
+        border-radius: 13px;
+    }
+
+    .rsvp-form .form-group {
+        gap: 8px;
+        margin-bottom: 18px;
+    }
+
+    .rsvp-form label {
+        font-size: 0.85rem;
+    }
+
+    .rsvp-form input,
+    .rsvp-form select,
+    .rsvp-form textarea {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .rsvp-form textarea {
+        min-height: 125px;
+    }
+
+    .rsvp-button {
+        min-height: 47px;
+        font-size: 0.9rem;
+    }
+
+    .guestbook-section {
+        margin-top: 45px;
+    }
+
+    .guestbook-section > .section-heading {
+        margin-bottom: 23px;
+    }
+
+    #guestbookHistory {
+        gap: 13px;
+    }
+
+    .guestbook-message {
+        padding: 18px 16px;
+        border-radius: 10px;
+    }
+
+    .guestbook-message h3 {
+        font-size: 1.3rem;
+    }
+
+    .guestbook-message p {
+        font-size: 0.88rem;
+        line-height: 1.75;
+    }
+
+    .guestbook-message p:first-of-type {
+        font-size: 0.75rem;
+    }
+
+    .guestbook-message small {
+        font-size: 0.73rem;
+    }
+
+    #loadMoreMessages {
+        width: 100%;
+        max-width: 260px;
+        margin-top: 20px;
+        padding: 11px 16px;
+        font-size: 0.84rem;
+    }
+}
+
+/* AKSESIBILITAS: KURANGI ANIMASI */
+@media (prefers-reduced-motion: reduce) {
+    .rsvp-form input,
+    .rsvp-form select,
+    .rsvp-form textarea,
+    .rsvp-button,
+    .guestbook-message,
+    #loadMoreMessages {
+        transition: none;
+    }
+
+    .guestbook-message:hover,
+    .rsvp-button:hover {
+        transform: none;
+    }
 }
 
 
