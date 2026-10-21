@@ -474,7 +474,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     
     const GOOGLE_SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycbw6p9hJJB5mYBBqcY-9oI_SOFDIyeat9Nf2ZHa6kdAHxiRdaKyIs51RWl6H9iKeILNXkQ/exec";
+        "https://script.google.com/macros/s/AKfycby0ijLbTlRvzkjtySPbHRTmf0CxJhSezpaPzvY8mIDeP53kLFg50IM91dqGvsj4U7befw/exec";
 
     // Element riwayat ucapan
     const guestbookHistory = document.getElementById("guestbookHistory");
@@ -553,33 +553,63 @@ document.addEventListener("DOMContentLoaded", () => {
 
         guestbookHistory.textContent = "Memuat ucapan dan doa...";
 
-        try {
-            const response = await fetch(GOOGLE_SCRIPT_URL, {
-                method: "GET",
-                redirect: "follow",
-                cache: "no-store"
-            });
+        const callbackName =
+            "guestbookCallback_" + Date.now() + "_" +
+            Math.random().toString(36).slice(2);
 
-            if (!response.ok) {
-                throw new Error("Gagal mengambil data ucapan.");
-            }
-
-            const data = await response.json();
-
-            if (!Array.isArray(data)) {
-                throw new Error("Format data dari Google Sheets tidak sesuai.");
-            }
-
-            guestbookMessages = data.reverse();
-            visibleMessages = 5;
-
-            renderGuestbook();
-        } catch (error) {
-            console.error("Gagal memuat riwayat ucapan:", error);
+        const script = document.createElement("script");
+        const timeout = setTimeout(() => {
+            cleanup();
 
             guestbookHistory.textContent =
                 "Riwayat ucapan belum dapat dimuat. Silakan coba lagi nanti.";
+
+            console.error("Waktu tunggu riwayat ucapan habis.");
+        }, 15000);
+
+        function cleanup() {
+            clearTimeout(timeout);
+            script.remove();
+            delete window[callbackName];
         }
+
+        window[callbackName] = function(data) {
+            cleanup();
+
+            if (!Array.isArray(data)) {
+                console.error("Respons riwayat tidak valid:", data);
+
+                guestbookHistory.textContent =
+                    "Riwayat ucapan belum dapat dimuat.";
+
+                return;
+            }
+
+            guestbookMessages = data;
+            visibleMessages = 5;
+            renderGuestbook();
+        };
+
+        script.onerror = function() {
+            cleanup();
+
+            guestbookHistory.textContent =
+                "Riwayat ucapan belum dapat dimuat. Periksa deployment Apps Script.";
+
+            console.error("Gagal memuat script riwayat ucapan.");
+        };
+
+        const separator = GOOGLE_SCRIPT_URL.includes("?") ? "&" : "?";
+
+        script.src =
+            GOOGLE_SCRIPT_URL +
+            separator +
+            "callback=" +
+            encodeURIComponent(callbackName) +
+            "&_=" +
+            Date.now();
+
+        document.head.appendChild(script);
     }
 
     /* =========================================================
