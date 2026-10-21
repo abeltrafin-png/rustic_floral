@@ -1854,12 +1854,15 @@ main {
 .gift-icon {
     width: 42px;
     height: 42px;
-    margin: 0 auto 18px;
+    margin: 32px auto 18px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     border: 1px solid var(--gold);
     border-radius: 50%;
+
     color: var(--rose-dark);
     font-family: var(--serif);
     font-size: 1.5rem;
@@ -1994,389 +1997,630 @@ main {
     }
 }
 
-/* =========================================================
-   RSVP & GUESTBOOK — RUSTIC FLORAL
-   ========================================================= */
 
-.rsvp-section {
-    position: relative;
-    padding: 80px 20px;
-}
+/* ============================================================
+   RSVP & GUESTBOOK — FINAL RESPONSIVE DESIGN
+   Tema: Rustic Floral — Cream, Sage, Rose, Gold
+   ============================================================ */
 
-.rsvp-section > .section-heading {
-    margin-bottom: 35px;
-}
+/* ------------------------------------------------------------
+   1. CONTAINER UTAMA
+   ------------------------------------------------------------ */
 
-/* FORM RSVP */
-.rsvp-form {
+.rsvp-container {
     width: 100%;
-    max-width: 650px;
+    max-width: 1050px;
     margin: 0 auto;
-    padding: 35px;
-    background: var(--paper, #fffdf9);
-    border: 1px solid rgba(185, 147, 88, 0.25);
-    border-radius: 18px;
-    box-shadow: 0 12px 35px rgba(80, 102, 81, 0.08);
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 28px;
 }
 
-.rsvp-form .form-group {
+/* ------------------------------------------------------------
+   2. BOX RSVP DAN RIWAYAT
+   ------------------------------------------------------------ */
+
+.rsvp-box {
+    min-width: 0;
+    min-height: 590px;
+    padding: 35px 30px;
+
     display: flex;
     flex-direction: column;
-    gap: 9px;
-    margin-bottom: 22px;
-}
 
-.rsvp-form label {
-    color: var(--sage-dark, #506651);
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-}
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 0;
+    box-shadow: var(--shadow);
 
-.rsvp-form input,
-.rsvp-form select,
-.rsvp-form textarea {
-    display: block;
-    width: 100%;
     box-sizing: border-box;
-    padding: 13px 15px;
-    border: 1px solid #e4ddd3;
-    border-radius: 9px;
-    background: #fffefa;
-    color: #514b43;
-    font: inherit;
-    font-size: 0.95rem;
+}
+
+/* ------------------------------------------------------------
+   3. JUDUL BOX
+   ------------------------------------------------------------ */
+
+.rsvp-box-heading {
+    flex-shrink: 0;
+    margin: 0 0 25px;
+    text-align: center;
+}
+
+.rsvp-box-icon {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--gold-light);
+    border-radius: 50%;
+
+    color: var(--rose-dark);
+    font-family: var(--serif);
+    font-size: 1.5rem;
+}
+
+.rsvp-box-heading h3 {
+    margin: 0;
+
+    color: var(--sage-deep);
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.rsvp-box-heading p {
+    max-width: 340px;
+    margin: 10px auto 0;
+
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.8;
+}
+
+/* ------------------------------------------------------------
+   4. FORM RSVP
+   ------------------------------------------------------------ */
+
+.rsvp-form-box .rsvp-form {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0;
+
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+
+    box-sizing: border-box;
+}
+
+.rsvp-form-box .form-group {
+    width: 100%;
+    margin: 0 0 19px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rsvp-form-box .rsvp-form label {
+    color: var(--sage-deep);
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.rsvp-form-box .rsvp-form input,
+.rsvp-form-box .rsvp-form select,
+.rsvp-form-box .rsvp-form textarea {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 12px 14px;
+
+    color: var(--ink);
+    background: var(--paper);
+
+    border: 1px solid var(--border);
+    border-radius: 0;
     outline: none;
+
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 1.6;
+
+    box-sizing: border-box;
+
     transition:
         border-color 0.25s ease,
         box-shadow 0.25s ease,
         background 0.25s ease;
 }
 
-.rsvp-form input,
-.rsvp-form select {
-    min-height: 48px;
+.rsvp-form-box .rsvp-form input,
+.rsvp-form-box .rsvp-form select {
+    min-height: 46px;
 }
 
-.rsvp-form textarea {
-    min-height: 145px;
+.rsvp-form-box .rsvp-form textarea {
+    min-height: 125px;
+    flex: 1;
     resize: vertical;
-    line-height: 1.7;
 }
 
-.rsvp-form input::placeholder,
-.rsvp-form textarea::placeholder {
-    color: #aaa197;
-    opacity: 1;
+.rsvp-form-box .rsvp-form input::placeholder,
+.rsvp-form-box .rsvp-form textarea::placeholder {
+    color: var(--muted);
+    opacity: 0.75;
 }
 
-.rsvp-form input:focus,
-.rsvp-form select:focus,
-.rsvp-form textarea:focus {
-    border-color: var(--sage, #70836f);
-    background: #ffffff;
-    box-shadow: 0 0 0 3px rgba(112, 131, 111, 0.12);
+.rsvp-form-box .rsvp-form input:focus,
+.rsvp-form-box .rsvp-form select:focus,
+.rsvp-form-box .rsvp-form textarea:focus {
+    border-color: var(--sage-dark);
+    background: #fffdf9;
+    box-shadow: 0 0 0 3px rgba(112, 131, 111, 0.10);
 }
 
-.rsvp-form select {
-    cursor: pointer;
-}
+/* ------------------------------------------------------------
+   5. TOMBOL KIRIM RSVP
+   ------------------------------------------------------------ */
 
-/* TOMBOL KIRIM */
-.rsvp-button {
-    display: block;
+.rsvp-form-box .rsvp-button {
     width: 100%;
-    min-height: 49px;
-    margin-top: 8px;
-    padding: 13px 20px;
-    border: 1px solid var(--sage-dark, #506651);
-    border-radius: 9px;
-    background: var(--sage-dark, #506651);
-    color: #fffdf9;
-    font: inherit;
-    font-size: 0.95rem;
+    min-height: 46px;
+    flex-shrink: 0;
+
+    margin-top: auto;
+    padding: 12px 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--sage-deep);
+    border-radius: 24px;
+
+    background: var(--sage-deep);
+    color: white;
+
+    font-family: var(--sans);
+    font-size: 0.68rem;
     font-weight: 600;
-    letter-spacing: 0.4px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
     cursor: pointer;
+
     transition:
         background 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-.rsvp-button:hover {
-    background: #3f5340;
-    box-shadow: 0 5px 15px rgba(80, 102, 81, 0.18);
-    transform: translateY(-2px);
-}
-
-.rsvp-button:active {
-    transform: translateY(0);
-}
-
-.rsvp-button:disabled {
-    opacity: 0.65;
-    cursor: wait;
-    transform: none;
-    box-shadow: none;
-}
-
-/* STATUS PENGIRIMAN */
-.form-status {
-    min-height: 20px;
-    margin: 14px 0 0;
-    color: var(--sage-dark, #506651);
-    font-size: 0.88rem;
-    line-height: 1.6;
-    text-align: center;
-    overflow-wrap: anywhere;
-}
-
-/* =========================================================
-   RIWAYAT UCAPAN
-   ========================================================= */
-
-.guestbook-section {
-    width: 100%;
-    max-width: 850px;
-    margin: 75px auto 0;
-}
-
-.guestbook-section > .section-heading {
-    margin-bottom: 30px;
-}
-
-#guestbookHistory {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-    width: 100%;
-}
-
-#guestbookHistory > p {
-    margin: 0;
-    padding: 28px 20px;
-    border: 1px dashed #d8cbbb;
-    border-radius: 12px;
-    background: rgba(255, 253, 249, 0.8);
-    color: #81786e;
-    font-size: 0.95rem;
-    line-height: 1.8;
-    text-align: center;
-}
-
-/* KARTU UCAPAN TAMU */
-.guestbook-message {
-    position: relative;
-    min-width: 0;
-    padding: 23px 25px;
-    border: 1px solid #e9e0d5;
-    border-left: 4px solid var(--sage, #70836f);
-    border-radius: 12px;
-    background: var(--paper, #fffdf9);
-    box-shadow: 0 5px 18px rgba(80, 70, 55, 0.045);
-    overflow-wrap: anywhere;
-    transition:
         border-color 0.25s ease,
-        box-shadow 0.25s ease,
         transform 0.25s ease;
 }
 
-.guestbook-message:hover {
-    border-color: #d7c6ad;
-    box-shadow: 0 8px 22px rgba(80, 70, 55, 0.08);
+.rsvp-form-box .rsvp-button:hover {
+    background: var(--rose-dark);
+    border-color: var(--rose-dark);
     transform: translateY(-2px);
 }
 
-.guestbook-message h3 {
-    margin: 0 0 9px;
-    color: var(--sage-dark, #506651);
-    font-family: "Cormorant Garamond", Georgia, serif;
-    font-size: 1.45rem;
-    font-weight: 600;
-    line-height: 1.3;
+.rsvp-form-box .rsvp-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
 }
 
-.guestbook-message p {
-    margin: 8px 0 0;
-    color: #655d53;
-    font-size: 0.92rem;
-    line-height: 1.8;
-    white-space: pre-wrap;
+/* Pesan berhasil / gagal */
+
+.rsvp-form-box .form-status {
+    flex-shrink: 0;
+    margin-top: 12px;
+
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
 }
 
-.guestbook-message p:first-of-type {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 20px;
-    background: #edf1e9;
-    color: #506651;
-    font-size: 0.78rem;
-    line-height: 1.5;
+/* ------------------------------------------------------------
+   6. BOX RIWAYAT UCAPAN
+   ------------------------------------------------------------ */
+
+.guestbook-box {
+    min-height: 590px;
+    overflow: hidden;
 }
 
-.guestbook-message small {
-    display: block;
-    margin-top: 15px;
-    padding-top: 11px;
-    border-top: 1px solid #eee6dc;
-    color: #9a8e80;
-    font-size: 0.77rem;
-    line-height: 1.5;
+.guestbook-box .rsvp-box-heading {
+    margin-bottom: 20px;
 }
 
-/* TOMBOL LIHAT UCAPAN LAINNYA */
-#loadMoreMessages {
-    display: block;
-    min-height: 44px;
-    margin: 25px auto 0;
-    padding: 11px 25px;
-    border: 1px solid var(--sage, #70836f);
-    border-radius: 30px;
-    background: transparent;
-    color: var(--sage-dark, #506651);
-    font: inherit;
-    font-size: 0.88rem;
-    font-weight: 600;
-    cursor: pointer;
+/* Area scroll hanya untuk daftar ucapan */
+
+.guestbook-scroll-container {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    padding: 2px 9px 2px 2px;
+
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--sage-dark) var(--cream-dark);
+}
+
+.guestbook-scroll-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+.guestbook-scroll-container::-webkit-scrollbar-track {
+    background: var(--cream-dark);
+    border-radius: 10px;
+}
+
+.guestbook-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--sage-dark);
+    border-radius: 10px;
+}
+
+/* Daftar pesan */
+
+.guestbook-scroll-container #guestbookHistory,
+#guestbookHistory {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+
+    box-sizing: border-box;
+}
+
+/* ------------------------------------------------------------
+   7. KARTU UCAPAN TAMU
+   ------------------------------------------------------------ */
+
+#guestbookHistory .guestbook-message {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 20px;
+
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 0;
+    box-shadow: none;
+
+    overflow-wrap: anywhere;
+    box-sizing: border-box;
+
     transition:
-        color 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+#guestbookHistory .guestbook-message:hover {
+    border-color: var(--gold-light);
+    background: #fffdf9;
+}
+
+/* Nama tamu */
+
+#guestbookHistory .guestbook-message h3 {
+    margin: 0 0 8px;
+
+    color: var(--sage-deep);
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.4;
+
+    overflow-wrap: anywhere;
+}
+
+/* Kehadiran dan ucapan */
+
+#guestbookHistory .guestbook-message p {
+    margin: 0 0 9px;
+
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.8;
+
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+#guestbookHistory .guestbook-message p:last-of-type {
+    margin-bottom: 0;
+}
+
+/* Waktu pengiriman */
+
+#guestbookHistory .guestbook-message small {
+    display: block;
+    margin-top: 13px;
+    padding-top: 10px;
+
+    color: var(--gold);
+    border-top: 1px solid var(--border);
+
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    line-height: 1.6;
+}
+
+/* Pesan kosong / loading */
+
+#guestbookHistory:empty {
+    display: none;
+}
+
+.guestbook-scroll-container #guestbookHistory > p,
+#guestbookHistory > p {
+    margin: 0;
+    padding: 25px 12px;
+
+    color: var(--muted);
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.8;
+    text-align: center;
+
+    overflow-wrap: anywhere;
+}
+
+/* ------------------------------------------------------------
+   8. TOMBOL MUAT UCAPAN BERIKUTNYA
+   ------------------------------------------------------------ */
+
+.guestbook-box #loadMoreMessages,
+#loadMoreMessages {
+    width: 100%;
+    max-width: 260px;
+    min-height: 43px;
+    flex-shrink: 0;
+
+    margin: 18px auto 0;
+    padding: 11px 18px;
+
+    display: block;
+
+    color: var(--sage-deep);
+    background: transparent;
+
+    border: 1px solid var(--sage-deep);
+    border-radius: 24px;
+
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    transition:
         background 0.25s ease,
+        color 0.25s ease,
         border-color 0.25s ease;
 }
 
 #loadMoreMessages:hover {
-    background: var(--sage-dark, #506651);
-    border-color: var(--sage-dark, #506651);
-    color: #fffdf9;
+    color: white;
+    background: var(--sage-deep);
 }
 
 #loadMoreMessages[hidden] {
     display: none !important;
 }
 
-/* =========================================================
-   RESPONSIVE — TABLET & MOBILE
-   ========================================================= */
+/* ------------------------------------------------------------
+   9. TABLET
+   ------------------------------------------------------------ */
 
-@media (max-width: 768px) {
-    .rsvp-section {
-        padding: 60px 18px;
+@media (max-width: 900px) {
+    .rsvp-container {
+        gap: 20px;
     }
 
-    .rsvp-form {
-        padding: 26px 22px;
-        border-radius: 15px;
+    .rsvp-box,
+    .guestbook-box {
+        min-height: 570px;
+        padding: 28px 22px;
     }
 
-    .guestbook-section {
-        margin-top: 55px;
+    .rsvp-box-heading h3 {
+        font-size: 1.8rem;
     }
 
-    .guestbook-message {
-        padding: 20px;
+    #guestbookHistory .guestbook-message {
+        padding: 17px;
     }
 }
 
+/* ------------------------------------------------------------
+   10. MOBILE
+   ------------------------------------------------------------ */
+
+@media (max-width: 768px) {
+    .rsvp-container {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+    }
+
+    .rsvp-box,
+    .guestbook-box {
+        width: 100%;
+        min-height: 0;
+        padding: 28px 24px;
+    }
+
+    .rsvp-box-heading {
+        margin-bottom: 22px;
+    }
+
+    .rsvp-box-heading h3 {
+        font-size: 1.85rem;
+    }
+
+    .rsvp-box-heading p {
+        font-size: 0.75rem;
+    }
+
+    .rsvp-form-box .rsvp-form textarea {
+        min-height: 120px;
+    }
+
+    .guestbook-scroll-container {
+        flex: initial;
+        min-height: 0;
+        max-height: 430px;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .guestbook-box #loadMoreMessages {
+        margin-top: 18px;
+    }
+}
+
+/* ------------------------------------------------------------
+   11. SMALL MOBILE
+   ------------------------------------------------------------ */
+
 @media (max-width: 480px) {
-    .rsvp-section {
-        padding: 45px 16px;
+    .rsvp-container {
+        gap: 18px;
     }
 
-    .rsvp-section > .section-heading {
-        margin-bottom: 25px;
+    .rsvp-box,
+    .guestbook-box {
+        padding: 24px 18px;
     }
 
-    .rsvp-form {
-        padding: 22px 17px;
-        border-radius: 13px;
+    .rsvp-box-heading {
+        margin-bottom: 20px;
     }
 
-    .rsvp-form .form-group {
-        gap: 8px;
-        margin-bottom: 18px;
+    .rsvp-box-icon {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 12px;
     }
 
-    .rsvp-form label {
-        font-size: 0.85rem;
+    .rsvp-box-heading h3 {
+        font-size: 1.65rem;
     }
 
-    .rsvp-form input,
-    .rsvp-form select,
-    .rsvp-form textarea {
+    .rsvp-box-heading p {
+        font-size: 0.72rem;
+        line-height: 1.75;
+    }
+
+    .rsvp-form-box .form-group {
+        margin-bottom: 17px;
+        gap: 7px;
+    }
+
+    .rsvp-form-box .rsvp-form label {
+        font-size: 0.75rem;
+    }
+
+    .rsvp-form-box .rsvp-form input,
+    .rsvp-form-box .rsvp-form select,
+    .rsvp-form-box .rsvp-form textarea {
         padding: 12px;
         font-size: 16px;
     }
 
-    .rsvp-form textarea {
-        min-height: 125px;
+    .rsvp-form-box .rsvp-form textarea {
+        min-height: 115px;
     }
 
-    .rsvp-button {
+    .rsvp-form-box .rsvp-button {
         min-height: 47px;
-        font-size: 0.9rem;
+        font-size: 0.68rem;
     }
 
-    .guestbook-section {
-        margin-top: 45px;
+    .guestbook-scroll-container {
+        max-height: 400px;
+        padding-right: 6px;
     }
 
-    .guestbook-section > .section-heading {
-        margin-bottom: 23px;
-    }
-
+    .guestbook-scroll-container #guestbookHistory,
     #guestbookHistory {
-        gap: 13px;
+        gap: 12px;
     }
 
-    .guestbook-message {
-        padding: 18px 16px;
-        border-radius: 10px;
+    #guestbookHistory .guestbook-message {
+        padding: 16px 14px;
     }
 
-    .guestbook-message h3 {
-        font-size: 1.3rem;
+    #guestbookHistory .guestbook-message h3 {
+        font-size: 1.2rem;
     }
 
-    .guestbook-message p {
-        font-size: 0.88rem;
-        line-height: 1.75;
-    }
-
-    .guestbook-message p:first-of-type {
+    #guestbookHistory .guestbook-message p {
         font-size: 0.75rem;
+        line-height: 1.8;
     }
 
-    .guestbook-message small {
-        font-size: 0.73rem;
+    #guestbookHistory .guestbook-message small {
+        font-size: 0.63rem;
     }
 
+    .guestbook-box #loadMoreMessages,
     #loadMoreMessages {
-        width: 100%;
-        max-width: 260px;
-        margin-top: 20px;
-        padding: 11px 16px;
-        font-size: 0.84rem;
+        max-width: 100%;
+        min-height: 44px;
+        font-size: 0.68rem;
     }
 }
 
-/* AKSESIBILITAS: KURANGI ANIMASI */
+/* ------------------------------------------------------------
+   12. AKSESIBILITAS
+   ------------------------------------------------------------ */
+
 @media (prefers-reduced-motion: reduce) {
-    .rsvp-form input,
-    .rsvp-form select,
-    .rsvp-form textarea,
-    .rsvp-button,
-    .guestbook-message,
+    .rsvp-form-box .rsvp-form input,
+    .rsvp-form-box .rsvp-form select,
+    .rsvp-form-box .rsvp-form textarea,
+    .rsvp-form-box .rsvp-button,
+    #guestbookHistory .guestbook-message,
     #loadMoreMessages {
         transition: none;
     }
 
-    .guestbook-message:hover,
-    .rsvp-button:hover {
+    .rsvp-form-box .rsvp-button:hover {
         transform: none;
     }
 }
-
 
 /* ============================================================
    FOOTER
@@ -3063,3 +3307,5 @@ main {
         display: none;
     }
 }
+
+

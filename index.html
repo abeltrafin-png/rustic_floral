@@ -596,12 +596,26 @@
 
                 <!-- KARTU REKENING BCA -->
                 <div class="gift-card">
-                    <div class="gift-icon">♡</div>
+                    
                     <p class="gift-bank">BANK BCA</p>
 
                     <p class="gift-account" id="accountBCA">1234 5678 90</p>
 
                     <p class="gift-name">a.n. Andi Prasetyo</p>
+
+                    <button
+                        type="button"
+                        class="gift-button"
+                        onclick="salinRekening()">
+                        Salin Rekening
+                    </button>
+
+                    <div class="gift-icon">♡</div>
+                    <p class="gift-bank">BANK BCA</p>
+
+                    <p class="gift-account" id="accountBCA">4567 5678 21</p>
+
+                    <p class="gift-name">a.n. Sari Wulandari</p>
 
                     <button
                         type="button"
@@ -649,70 +663,93 @@
         </section>
 
         
-        <!-- 8. RSVP & KIRIM UCAPAN (#rsvp) -->
+        <!-- 8. RSVP & KIRIM UCAPAN -->
         <section class="section rsvp-section" id="rsvp">
+
             <div class="section-heading">
                 <p class="section-eyebrow">Kehadiran & Doa</p>
                 <h2>RSVP & Kirim Ucapan</h2>
                 <div class="heading-flower">✿</div>
+                <p>Bagikan konfirmasi kehadiran serta doa terbaik untuk Andi & Sari.</p>
             </div>
 
-            <form class="rsvp-form" id="rsvpForm">
-                <div class="form-group">
-                    <label for="guestName">Nama Lengkap</label>
-                    <input
-                        type="text"
-                        id="guestName"
-                        placeholder="Nama Lengkap Anda"
-                        required
-                    >
+            <!-- DUA BOX DALAM SATU SECTION -->
+            <div class="rsvp-container">
+
+                <!-- BOX 1: FORM KIRIM UCAPAN -->
+                <div class="rsvp-box rsvp-form-box">
+
+                    <div class="rsvp-box-heading">
+                        <span class="rsvp-box-icon">♡</span>
+                        <h3>Kirim Ucapan & Doa</h3>
+                        <p>Sampaikan doa dan harapan terbaik Anda.</p>
+                    </div>
+
+                    <form class="rsvp-form" id="rsvpForm">
+
+                        <div class="form-group">
+                            <label for="guestName">Nama Lengkap</label>
+                            <input
+                                type="text"
+                                id="guestName"
+                                placeholder="Nama Lengkap Anda"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="attendance">Konfirmasi Kehadiran</label>
+                            <select id="attendance" required>
+                                <option value="">Pilih konfirmasi</option>
+                                <option value="Hadir">Hadir</option>
+                                <option value="Tidak Hadir">Tidak Hadir</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Ucapan & Doa</label>
+                            <textarea
+                                id="message"
+                                placeholder="Tuliskan ucapan dan doa terbaik Anda..."
+                                required
+                            ></textarea>
+                        </div>
+
+                        <button type="submit" class="rsvp-button">
+                            ♡ Kirim Ucapan
+                        </button>
+
+                        <p class="form-status" id="formStatus" aria-live="polite"></p>
+
+                    </form>
                 </div>
 
-                <div class="form-group">
-                    <label for="attendance">Konfirmasi Kehadiran</label>
-                    <select id="attendance" required>
-                        <option value="">Pilih konfirmasi</option>
-                        <option value="Hadir">Hadir</option>
-                        <option value="Tidak Hadir">Tidak Hadir</option>
-                    </select>
+                <!-- BOX 2: RIWAYAT UCAPAN -->
+                <div class="rsvp-box guestbook-box" id="guestbook">
+
+                    <div class="rsvp-box-heading">
+                        <span class="rsvp-box-icon">❀</span>
+                        <h3>Ucapan & Doa dari Tamu</h3>
+                        <p>Doa dan ucapan hangat dari keluarga serta sahabat.</p>
+                    </div>
+
+                    <!-- HANYA AREA INI YANG BISA DI-SCROLL -->
+                    <div class="guestbook-scroll-container">
+
+                        <div id="guestbookHistory" aria-live="polite">
+                            <p>Memuat ucapan dan doa...</p>
+                        </div>
+
+                    </div>
+
+                    <button type="button" id="loadMoreMessages" hidden>
+                        Lihat Ucapan Lainnya
+                    </button>
+
                 </div>
 
-                <div class="form-group">
-                    <label for="message">Ucapan & Doa</label>
-                    <textarea
-                        id="message"
-                        placeholder="Tuliskan ucapan dan doa terbaik Anda..."
-                        required
-                    ></textarea>
-                </div>
-
-                <button type="submit" class="rsvp-button">
-                    ♡ Kirim Ucapan
-                </button>
-
-                <p class="form-status" id="formStatus"></p>
-            </form>
-
-            <!-- RIWAYAT UCAPAN TAMU -->
-            <div class="guestbook-section" id="guestbook">
-                <div class="section-heading">
-                    <p class="section-eyebrow">Buku Tamu</p>
-                    <h2>Ucapan & Doa dari Tamu</h2>
-                    <div class="heading-flower">✿</div>
-                </div>
-
-                <div id="guestbookHistory" aria-live="polite">
-                    <p>Memuat ucapan dan doa...</p>
-                </div>
-
-                <button type="button" id="loadMoreMessages" hidden>
-                    Lihat Ucapan Lainnya
-                </button>
             </div>
         </section>
-
-
-    </main>
 
     <footer class="footer">
         <div class="footer-flower">❀</div>
