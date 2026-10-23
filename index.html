@@ -64,20 +64,54 @@
             <button type="button" class="open-button" id="openInvitation">Buka Undangan</button>
         </div>
     </div>
+    <!-- NAVBAR DESKTOP -->
+    <header class="dnav" id="dnav">
+        <button type="button" class="dnav-logo pulse" id="dnavToggle"
+            aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="dnavMenu">
+            A<span>&</span>S
+        </button>
 
-    <!-- HEADER -->
-    <header class="site-header" id="siteHeader">
-        <a href="#hero" class="brand">A<span>&</span>S</a>
-        <nav class="nav-links">
-            <a href="#couple">Mempelai</a>
-            <a href="#events">Acara</a>
-            <a href="#location">Lokasi</a>
-            <a href="#countdown">Countdown</a>
-            <a href="#story">Kisah</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#wedding-quote">Doa</a>
-            <a href="#gift">Hadiah</a>
-            <a href="#rsvp">RSVP</a>
+        <nav class="dnav-menu" id="dnavMenu" aria-label="Navigasi utama">
+            <a href="#hero" data-label="Home">
+                <svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+                <small>Home</small>
+            </a>
+            <a href="#couple" data-label="Mempelai">
+                <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>
+                <small>Mempelai</small>
+            </a>
+            <a href="#events" data-label="Acara">
+                <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                <small>Acara</small>
+            </a>
+            <a href="#location" data-label="Lokasi">
+                <svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                <small>Lokasi</small>
+            </a>
+            <a href="#live" data-label="Live">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z"/></svg>
+                <small>Live</small>
+            </a>
+            <a href="#story" data-label="Kisah">
+                <svg viewBox="0 0 24 24"><path d="M12 6c-2-1.5-5-2-8-1.5v14c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-14C17 4 14 4.5 12 6z"/><path d="M12 6v14"/></svg>
+                <small>Kisah</small>
+            </a>
+            <a href="#gallery" data-label="Galeri">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-9 9"/></svg>
+                <small>Galeri</small>
+            </a>
+            <a href="#wedding-quote" data-label="Doa">
+                <svg viewBox="0 0 24 24"><path d="M12 3l2.2 5.6 5.8.9-4.4 3.9L17 19l-5-3-5 3 1.4-5.6L4 9.5l5.8-.9z"/></svg>
+                <small>Doa</small>
+            </a>
+            <a href="#gift" data-label="Hadiah">
+                <svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v13M12 8C10 4 6 4.5 7 8M12 8c2-4 6-3.5 5 0"/></svg>
+                <small>Hadiah</small>
+            </a>
+            <a href="#rsvp" data-label="RSVP">
+                <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                <small>RSVP</small>
+            </a>
         </nav>
     </header>
 
@@ -323,9 +357,6 @@
             </div>
         </section>
 
-        </section>
-
-
         <!-- ==================================================
             4. LIVE STREAMING
             ================================================== -->
@@ -403,11 +434,7 @@
 
         </section>
 
-
         <!-- 5. LOVE STORY -->
-        <section class="section story-section" id="story">
-
-        <!-- 4. LOVE STORY -->
         <section class="section story-section" id="story">
             <div class="section-heading">
                 <p class="section-eyebrow">Kisah Kami</p>
@@ -596,34 +623,38 @@
 
                 <!-- KARTU REKENING BCA -->
                 <div class="gift-card">
-                    
-                    <p class="gift-bank">BANK BCA</p>
 
-                    <p class="gift-account" id="accountBCA">1234 5678 90</p>
+                <!-- REKENING ANDI -->
+                <p class="gift-bank">BANK BCA</p>
 
-                    <p class="gift-name">a.n. Andi Prasetyo</p>
+                <p class="gift-account" id="accountBCAAndi">1234 5678 90</p>
 
-                    <button
-                        type="button"
-                        class="gift-button"
-                        onclick="salinRekening()">
-                        Salin Rekening
-                    </button>
+                <p class="gift-name">a.n. Andi Prasetyo</p>
 
-                    <div class="gift-icon">♡</div>
-                    <p class="gift-bank">BANK BCA</p>
+                <button
+                    type="button"
+                    class="gift-button"
+                    onclick="salinRekening('accountBCAAndi')">
+                    Salin Rekening
+                </button>
 
-                    <p class="gift-account" id="accountBCA">4567 5678 21</p>
+                <div class="gift-icon">♡</div>
 
-                    <p class="gift-name">a.n. Sari Wulandari</p>
-                    
-                    <button
-                        type="button"
-                        class="gift-button"
-                        onclick="salinRekening()">
-                        Salin Rekening
-                    </button>
-                </div>
+                <!-- REKENING SARI -->
+                <p class="gift-bank">BANK BCA</p>
+
+                <p class="gift-account" id="accountBCASari">4567 5678 21</p>
+
+                <p class="gift-name">a.n. Sari Wulandari</p>
+
+                <button
+                    type="button"
+                    class="gift-button"
+                    onclick="salinRekening('accountBCASari')">
+                    Salin Rekening
+                </button>
+
+            </div>
 
                 <!-- KARTU KIRIM KADO -->
                 <div class="gift-card gift-delivery-card">
@@ -750,6 +781,7 @@
 
             </div>
         </section>
+    </main>
 
     <footer class="footer">
         <div class="footer-flower">❀</div>
@@ -757,33 +789,6 @@
         <h2>Andi & Sari</h2>
         <p>21 Februari 2027</p>
     </footer>
-
-    <!-- NAVBAR MOBILE -->
-
-        <nav class="mobile-nav" aria-label="Navigasi undangan">
-        <a href="#home" class="active">
-            <span>⌂</span>
-            <small>Home</small>
-        </a>
-        <a href="#couple">
-            <span>♡</span>
-            <small>Mempelai</small>
-        </a>
-        <a href="#event">
-            <span>♧</span>
-            <small>Acara</small>
-        </a>
-        <a href="#gallery">
-            <span>▧</span>
-            <small>Galeri</small>
-        </a>
-        <a href="#gift">
-            <span>♧</span>
-            <small>Hadiah</small>
-        </a>
-    </nav>
-    
-
 
     <script src="assets/js/script.js"></script>
 </body>

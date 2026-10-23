@@ -1,13 +1,18 @@
 /* ============================================================
    WEDDING INVITATION — ANDI & SARI
-   RUSTIC FLORAL DIGITAL INVITATION
+   Rustic Floral — versi bersih (tanpa aturan ganda / bentrok)
+
+   Breakpoint tunggal:
+   - Desktop  : > 768px
+   - Mobile   : <= 768px   (sama dengan JS: window.innerWidth <= 768)
+   - Kecil    : <= 480px
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@400;500;600&display=swap');
 
 
 /* ============================================================
-   VARIABLES
+   1. VARIABLES
    ============================================================ */
 
 :root {
@@ -32,6 +37,7 @@
 
     --ink: #4a4642;
     --muted: #837b75;
+    --text-muted: #837b75;      /* dipakai oleh inline style di HTML */
 
     --white: #ffffff;
 
@@ -44,7 +50,7 @@
 
 
 /* ============================================================
-   RESET
+   2. RESET & BASE
    ============================================================ */
 
 * {
@@ -86,9 +92,14 @@ textarea {
     font: inherit;
 }
 
+main {
+    position: relative;
+    z-index: 1;
+}
+
 
 /* ============================================================
-   BACKGROUND ORNAMENT
+   3. BACKGROUND ORNAMENT
    ============================================================ */
 
 .rustic-bg-ornaments {
@@ -124,24 +135,18 @@ textarea {
     font-family: var(--serif);
 }
 
-.flower {
-    color: var(--rose-dark);
-    font-size: 4rem;
-}
+.flower { color: var(--rose-dark); font-size: 4rem; }
+.leaf   { color: var(--sage-deep); font-size: 5rem; }
 
-.leaf {
-    color: var(--sage-deep);
-    font-size: 5rem;
-}
-
-.flower-1 { top: 30px; left: 60px; }
+.flower-1 { top: 30px;  left: 60px; }
 .flower-2 { top: 110px; left: 15px; color: var(--gold); font-size: 2.8rem; }
-.leaf-1 { top: 50px; left: 100px; transform: rotate(25deg); }
-.leaf-2 { top: 135px; left: 75px; transform: rotate(-30deg); }
-.flower-3 { top: 20px; left: 70px; color: var(--rose); }
+.flower-3 { top: 20px;  left: 70px; color: var(--rose); }
 .flower-4 { top: 100px; left: 20px; color: var(--gold); font-size: 3rem; }
-.leaf-3 { top: 55px; left: 110px; transform: rotate(25deg); }
-.leaf-4 { top: 135px; left: 75px; transform: rotate(-25deg); }
+
+.leaf-1 { top: 50px;  left: 100px; transform: rotate(25deg); }
+.leaf-2 { top: 135px; left: 75px;  transform: rotate(-30deg); }
+.leaf-3 { top: 55px;  left: 110px; transform: rotate(25deg); }
+.leaf-4 { top: 135px; left: 75px;  transform: rotate(-25deg); }
 
 .floating-botanical {
     position: absolute;
@@ -150,13 +155,13 @@ textarea {
     opacity: 0.08;
 }
 
-.botanical-1 { top: 35%; left: 3%; font-size: 7rem; transform: rotate(-20deg); }
-.botanical-2 { top: 55%; right: 3%; color: var(--rose-dark); font-size: 6rem; transform: rotate(25deg); }
-.botanical-3 { bottom: 18%; left: 8%; color: var(--gold); font-size: 4rem; }
+.botanical-1 { top: 35%;    left: 3%;  font-size: 7rem; transform: rotate(-20deg); }
+.botanical-2 { top: 55%;    right: 3%; font-size: 6rem; transform: rotate(25deg); color: var(--rose-dark); }
+.botanical-3 { bottom: 18%; left: 8%;  font-size: 4rem; color: var(--gold); }
 
 
 /* ============================================================
-   OPENING SCREEN
+   4. OPENING SCREEN
    ============================================================ */
 
 .opening-screen {
@@ -198,8 +203,8 @@ textarea {
     opacity: 0.16;
 }
 
-.opening-card::before { top: -30px; left: -15px; }
-.opening-card::after { right: -15px; bottom: -35px; }
+.opening-card::before { top: -30px;  left: -15px; }
+.opening-card::after  { right: -15px; bottom: -35px; }
 
 .opening-floral {
     margin-bottom: 10px;
@@ -224,9 +229,7 @@ textarea {
     line-height: 0.9;
 }
 
-.opening-card h1 span {
-    color: var(--rose);
-}
+.opening-card h1 span { color: var(--rose); }
 
 .opening-line {
     width: 100px;
@@ -272,82 +275,272 @@ textarea {
 
 
 /* ============================================================
-   HEADER
+   5. NAVBAR DESKTOP — vertikal di kiri (klik logo A&S untuk membuka)
    ============================================================ */
 
-.site-header {
+.dnav {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 22px;
+    left: 28px;
     z-index: 1000;
-    width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    padding: 16px 7%;
-    background: rgba(255, 253, 249, 0.94);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(185, 147, 88, 0.15);
+    gap: 16px;
+    pointer-events: none;
 }
 
-.brand {
-    width: 42px;
-    height: 42px;
+.dnav > * { pointer-events: auto; }
+
+/* ---------- Logo ---------- */
+.dnav-logo {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 1px;
+    white-space: nowrap;
     border: 1px solid var(--gold-light);
     border-radius: 50%;
+    background: var(--paper);
     color: var(--sage-deep);
     font-family: var(--serif);
-    font-size: 1rem;
-}
-
-.brand span {
-    color: var(--rose);
-}
-
-.nav-links {
-    display: flex;
-    gap: 28px;
-}
-
-.nav-links a {
-    position: relative;
-    color: var(--muted);
-    font-size: 0.68rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1;
     letter-spacing: 0.5px;
-    transition: 0.25s ease;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(70, 55, 45, 0.16);
+    transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-.nav-links a::after {
+.dnav-logo span {
+    color: var(--rose-dark);
+    font-size: 0.95em;
+    font-style: italic;
+    transition: color 0.3s ease;
+}
+
+.dnav-logo::after {
     content: "";
     position: absolute;
-    left: 0;
-    bottom: -7px;
-    width: 0;
-    height: 1px;
-    background: var(--rose);
-    transition: 0.25s ease;
+    inset: -6px;
+    border: 1px dashed rgba(185, 147, 88, 0.55);
+    border-radius: 50%;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.nav-links a:hover {
+.dnav-logo:hover { transform: scale(1.06); }
+
+.dnav-logo:focus-visible {
+    outline: 2px solid var(--rose);
+    outline-offset: 8px;
+}
+
+.dnav-logo.pulse::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--rose);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: dnavPulse 2.2s ease-out infinite;
+}
+
+@keyframes dnavPulse {
+    0%   { transform: scale(1);   opacity: 0.8; }
+    100% { transform: scale(1.7); opacity: 0; }
+}
+
+.dnav.open .dnav-logo {
+    background: var(--sage-deep);
+    border-color: var(--sage-deep);
+    color: #fff;
+}
+
+.dnav.open .dnav-logo span { color: var(--rose-light); }
+.dnav.open .dnav-logo::after { transform: rotate(180deg); }
+
+/* ---------- Menu (kapsul vertikal) ---------- */
+.dnav-menu {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 8px 6px;
+    border: 1px solid rgba(185, 147, 88, 0.35);
+    border-radius: 999px;
+    background: var(--paper);
+    box-shadow: 0 12px 32px rgba(70, 55, 45, 0.15);
+
+    /* tertutup: terpotong dari bawah; sisi kanan dilebarkan agar tooltip tidak terpotong */
+    clip-path: inset(-60px -240px 100% -60px);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    transition:
+        clip-path 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.3s ease,
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 0s linear 0.6s;
+}
+
+/* garis emas tipis di dalam kapsul */
+.dnav-menu::before {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border: 1px solid rgba(185, 147, 88, 0.18);
+    border-radius: 999px;
+    pointer-events: none;
+}
+
+.dnav.open .dnav-menu {
+    clip-path: inset(-60px -240px -60px -60px);
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition-delay: 0s;
+}
+
+/* ---------- Item menu (ikon bulat) ---------- */
+.dnav-menu a {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--muted);
+    opacity: 0;
+    transform: translateY(-8px);
+    transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+.dnav.open .dnav-menu a {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0s, 0s, calc(var(--i, 0) * 45ms + 150ms), calc(var(--i, 0) * 45ms + 150ms);
+}
+
+.dnav-menu svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* label ditampilkan sebagai tooltip, bukan di dalam kapsul */
+.dnav-menu small { display: none; }
+
+.dnav-menu a:hover {
     color: var(--rose-dark);
+    background: var(--rose-light);
 }
 
-.nav-links a:hover::after {
-    width: 100%;
+.dnav-menu a.active {
+    color: var(--sage-deep);
+    background: var(--sage);
+}
+
+.dnav-menu a:focus-visible {
+    outline: 2px solid var(--sage-dark);
+    outline-offset: 1px;
+}
+
+/* ---------- Tooltip label di sisi kanan ---------- */
+.dnav-menu a::before {
+    content: attr(data-label);
+    position: absolute;
+    left: calc(100% + 16px);
+    top: 50%;
+    padding: 5px 13px;
+    border-radius: 20px;
+    background: var(--sage-deep);
+    color: #fff;
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-6px, -50%);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* segitiga kecil penunjuk */
+.dnav-menu a::after {
+    content: "";
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 50%;
+    border: 5px solid transparent;
+    border-right-color: var(--sage-deep);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-6px, -50%);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.dnav-menu a:hover::before,
+.dnav-menu a:focus-visible::before,
+.dnav-menu a:hover::after,
+.dnav-menu a:focus-visible::after {
+    opacity: 1;
+    transform: translate(0, -50%);
+}
+
+/* ---------- Layar pendek (laptop kecil): kapsul dirapatkan agar muat ---------- */
+@media (min-width: 769px) and (max-height: 720px) {
+    .dnav { top: 14px; gap: 12px; }
+
+    .dnav-logo {
+        width: 48px;
+        height: 48px;
+        font-size: 1rem;
+    }
+
+    .dnav-menu { padding: 6px 5px; gap: 1px; }
+
+    .dnav-menu a {
+        width: 38px;
+        height: 38px;
+    }
+
+    .dnav-menu svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* ============================================================
+   6. NAVBAR MOBILE (melayang di bawah)
+   ============================================================ */
+
+.mobile-nav {
+    display: none;
 }
 
 
 /* ============================================================
-   MAIN & HERO
+   7. HERO
    ============================================================ */
-
-main {
-    position: relative;
-    z-index: 1;
-}
 
 .hero {
     position: relative;
@@ -371,17 +564,12 @@ main {
     border-radius: 50%;
 }
 
-.hero::before {
-    top: 18%;
-    left: 8%;
-}
-
-.hero::after {
-    right: 8%;
-    bottom: 14%;
-}
+.hero::before { top: 18%;    left: 8%; }
+.hero::after  { right: 8%; bottom: 14%; }
 
 .hero-content {
+    position: relative;
+    z-index: 1;
     width: min(850px, 100%);
 }
 
@@ -401,9 +589,7 @@ main {
     line-height: 0.85;
 }
 
-.hero-names span {
-    color: var(--rose);
-}
+.hero-names span { color: var(--rose); }
 
 .hero-divider {
     display: flex;
@@ -461,16 +647,8 @@ main {
     opacity: 0.10;
 }
 
-.hero-flower-left {
-    left: 3%;
-    bottom: 10%;
-}
-
-.hero-flower-right {
-    top: 18%;
-    right: 3%;
-    color: var(--sage-deep);
-}
+.hero-flower-left  { left: 3%;  bottom: 10%; }
+.hero-flower-right { right: 3%; top: 18%; color: var(--sage-deep); }
 
 .scroll-down {
     display: flex;
@@ -491,24 +669,20 @@ main {
 
 
 /* ============================================================
-   GENERAL SECTION
+   8. SECTION UMUM
+   Semua <section> di HTML memakai class "section", jadi
+   padding hanya diatur di SATU tempat ini.
    ============================================================ */
 
-.section,
-.couple-section,
-.story-section,
-.gift-section,
-.events-section,
-.rsvp-section,
-.countdown-section,
-.gallery-section,
-.prayer-section,
-.location-section,
-.quote-section,
-.video-section {
+.section {
     position: relative;
     width: 100%;
-    padding: 100px 7%;
+    min-height: 100vh;
+    min-height: 100svh;            /* tinggi layar yang akurat di browser HP */
+    padding: 72px 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;       /* isi di tengah → atas & bawah seimbang */
     overflow: hidden;
     background: var(--cream);
 }
@@ -539,15 +713,12 @@ main {
     pointer-events: none;
 }
 
-
-/* ============================================================
-   STANDARD SECTION HEADING
-   ============================================================ */
+.live-section { text-align: center; }
 
 .section-heading {
     position: relative;
     z-index: 2;
-    margin-bottom: 55px;
+    margin-bottom: 40px;
     text-align: center;
 }
 
@@ -587,238 +758,99 @@ main {
 
 
 /* ============================================================
-   BACKGROUND MUSIC CONTROL
+   9. MUSIC CONTROL
    ============================================================ */
 
 .music-control {
     position: fixed;
     right: 22px;
     bottom: 22px;
-
+    z-index: 9998;
     width: 52px;
     height: 52px;
-
-    border: 1px solid rgba(96, 118, 90, 0.35);
-    border-radius: 50%;
-
-    background: rgba(251, 249, 244, 0.95);
-    color: var(--sage-deep);
-
     display: flex;
     align-items: center;
     justify-content: center;
-
-    cursor: pointer;
-    z-index: 9998;
-
-    box-shadow:
-        0 8px 25px rgba(48, 51, 45, 0.15);
-
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        background 0.3s ease;
-
     overflow: hidden;
+    border: 1px solid rgba(96, 118, 90, 0.35);
+    border-radius: 50%;
+    background: rgba(251, 249, 244, 0.95);
+    color: var(--sage-deep);
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(48, 51, 45, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .music-control:hover {
     transform: scale(1.08);
-
-    box-shadow:
-        0 10px 30px rgba(48, 51, 45, 0.22);
+    box-shadow: 0 10px 30px rgba(48, 51, 45, 0.22);
 }
+
+.music-waves { display: none; }   /* elemen sisa di HTML, tidak dipakai */
 
 .music-icon {
     position: relative;
     z-index: 2;
-
     width: 30px;
     height: 30px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     font-size: 0;
     line-height: 1;
-
-    transform-origin: center center;
+    transform-origin: center;
 }
 
-/*
-   NOTE MUSIK SAAT BERHENTI
-   Tetap menggunakan simbol ♫.
-   Garis merah menandakan mute/paused.
-*/
-
+/* Berhenti: note + garis coret */
 .music-icon::before {
     content: "♫";
-
     color: var(--sage-deep);
-
     font-family: var(--serif);
     font-size: 25px;
     font-weight: 600;
-
     line-height: 1;
-
-    transform: rotate(0deg);
 }
 
 .music-icon::after {
     content: "";
-
     position: absolute;
-
     width: 27px;
     height: 2px;
-
-    background: var(--rose-dark);
-
     border-radius: 2px;
-
+    background: var(--rose-dark);
     transform: rotate(-45deg);
-
-    transition: opacity 0.25s ease;
 }
 
-
-/*
-   ============================================================
-   SAAT MUSIK BERJALAN
-   ============================================================
-
-   Tidak lagi berubah menjadi piringan hitam.
-
-   Note musik ♫ akan berputar secara terus-menerus.
-*/
+/* Berjalan: note berputar, garis hilang */
+.music-control.playing {
+    border-color: rgba(189, 119, 123, 0.45);
+    animation: musicPulse 2s ease-in-out infinite;
+}
 
 .music-control.playing .music-icon {
-    width: 30px;
-    height: 30px;
-
-    background: transparent;
-
-    border-radius: 0;
-
-    box-shadow: none;
-
-    animation:
-        musicNoteSpin 2.4s linear infinite;
+    animation: musicNoteSpin 2.4s linear infinite;
 }
 
 .music-control.playing .music-icon::before {
-    content: "♫";
-
-    position: absolute;
-
     color: var(--rose-dark);
-
-    font-family: var(--serif);
-
     font-size: 27px;
-    font-weight: 600;
-
-    line-height: 1;
-
-    transform: none;
 }
 
-.music-control.playing .music-icon::after {
-    display: none;
-}
-
-
-/*
-   Efek lingkaran lembut ketika musik sedang berjalan.
-*/
-
-.music-control.playing {
-    border-color: rgba(189, 119, 123, 0.45);
-
-    animation:
-        musicPulse 2s ease-in-out infinite;
-}
-
-
-/* ============================================================
-   MUSIC NOTE ROTATION
-   ============================================================ */
+.music-control.playing .music-icon::after { display: none; }
 
 @keyframes musicNoteSpin {
-
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
 }
-
-
-/* ============================================================
-   MUSIC BUTTON PULSE
-   ============================================================ */
 
 @keyframes musicPulse {
-
-    0%,
-    100% {
-        box-shadow:
-            0 8px 25px rgba(48, 51, 45, 0.15);
-    }
-
-    50% {
-        box-shadow:
-            0 8px 30px rgba(189, 119, 123, 0.28);
-    }
-
+    0%, 100% { box-shadow: 0 8px 25px rgba(48, 51, 45, 0.15); }
+    50%      { box-shadow: 0 8px 30px rgba(189, 119, 123, 0.28); }
 }
 
 
 /* ============================================================
-   MOBILE MUSIC CONTROL
-   ============================================================ */
-
-@media (max-width: 600px) {
-
-    .music-control {
-        width: 46px;
-        height: 46px;
-
-        right: 16px;
-        bottom: 75px;
-    }
-
-    .music-icon {
-        width: 25px;
-        height: 25px;
-    }
-
-    .music-icon::before {
-        font-size: 21px;
-    }
-
-    .music-icon::after {
-        width: 23px;
-    }
-
-    .music-control.playing .music-icon {
-        width: 26px;
-        height: 26px;
-    }
-
-    .music-control.playing .music-icon::before {
-        font-size: 23px;
-    }
-}
-
-
-/* ============================================================
-   COUPLE
+   10. COUPLE
    ============================================================ */
 
 .couple-wrapper {
@@ -830,9 +862,7 @@ main {
     gap: 45px;
 }
 
-.person {
-    text-align: center;
-}
+.person { text-align: center; }
 
 .person-image {
     width: 230px;
@@ -878,117 +908,19 @@ main {
 .couple-heart {
     width: 70px;
     height: 70px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border: 1px solid var(--rose);
     border-radius: 50%;
-
     color: var(--rose-dark);
-
     font-family: var(--serif);
     font-size: 2rem;
 }
 
 
 /* ============================================================
-   QUOTE / DOA
-   ============================================================ */
-
-.quote-section {
-    position: relative;
-    text-align: center;
-}
-
-.quote-decoration {
-    margin-bottom: 15px;
-    color: var(--rose);
-    font-size: 1.5rem;
-}
-
-.quote-content {
-    width: min(750px, 100%);
-    margin: auto;
-}
-
-.quote-intro {
-    color: var(--sage-deep);
-    font-family: var(--serif);
-    font-size: clamp(1.7rem, 4vw, 2.5rem);
-    font-style: italic;
-    line-height: 1.35;
-}
-
-.quote-line {
-    width: 70px;
-    height: 1px;
-    margin: 25px auto;
-    background: var(--gold);
-}
-
-.quote-source {
-    color: var(--gold);
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-}
-
-
-/* ============================================================
-   COUNTDOWN
-   ============================================================ */
-
-.countdown-wrapper {
-    width: min(850px, calc(100% - 40px));
-    margin: 30px auto 0;
-    padding-top: 50px;
-    border-top: 1px solid var(--border);
-}
-
-.countdown-heading {
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-.countdown {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    background: var(--gold-light);
-    border: 1px solid var(--gold-light);
-}
-
-.count-item {
-    min-width: 0;
-    padding: 30px 10px;
-    text-align: center;
-    background: var(--paper);
-}
-
-.count-item strong {
-    display: block;
-    color: var(--rose-dark);
-    font-family: var(--serif);
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
-    font-weight: 500;
-    line-height: 1;
-}
-
-.count-item span {
-    display: block;
-    margin-top: 8px;
-    color: var(--sage-deep);
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-}
-
-
-/* ============================================================
-   EVENTS
+   11. EVENTS
    ============================================================ */
 
 .events-wrapper {
@@ -1013,8 +945,8 @@ main {
     justify-content: space-between;
     color: var(--gold);
     font-size: 0.65rem;
-    letter-spacing: 2px;
     font-weight: 600;
+    letter-spacing: 2px;
 }
 
 .event-top span {
@@ -1072,6 +1004,8 @@ main {
     line-height: 1.7;
 }
 
+/* HTML memakai inline style: flex-direction column + margin-top 20px.
+   Lebar dibatasi di sini agar tombol tidak terlalu lebar. */
 .event-actions {
     width: min(100%, 360px);
     margin: 20px auto 0;
@@ -1084,10 +1018,10 @@ main {
     flex: 1;
     min-width: 0;
     height: 42px;
+    padding: 10px 12px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 12px;
     border: 1px solid var(--sage-deep);
     border-radius: 20px;
     background: var(--sage-deep);
@@ -1099,6 +1033,7 @@ main {
     line-height: 1.2;
     text-align: center;
     text-transform: uppercase;
+    cursor: pointer;
     transition: 0.25s ease;
 }
 
@@ -1110,13 +1045,13 @@ main {
 
 
 /* ============================================================
-   LOCATION / MAP
+   12. LOCATION / MAP SLIDER
    ============================================================ */
 
 .map-slider {
+    position: relative;
     width: min(900px, calc(100% - 40px));
     margin: 35px auto 0;
-    position: relative;
     overflow: hidden;
 }
 
@@ -1170,14 +1105,13 @@ main {
 }
 
 .map-title h3 {
-    margin: 0;
     color: var(--sage-deep);
     font-family: var(--serif);
     font-size: 1.75rem;
 }
 
 .map-title p {
-    margin: 5px 0 0;
+    margin-top: 5px;
     color: var(--muted);
     font-size: 0.82rem;
     line-height: 1.6;
@@ -1220,7 +1154,6 @@ main {
     transform: translateY(-2px);
 }
 
-.slider-arrow,
 .map-arrow {
     position: absolute;
     top: 50%;
@@ -1241,24 +1174,15 @@ main {
     transition: 0.25s ease;
 }
 
-.slider-prev,
-.map-prev {
-    left: 8px;
-}
+.map-prev { left: 8px; }
+.map-next { right: 8px; }
 
-.slider-next,
-.map-next {
-    right: 8px;
-}
-
-.slider-arrow:hover,
 .map-arrow:hover {
     background: var(--sage-deep);
     color: white;
     transform: translateY(-50%) scale(1.05);
 }
 
-.slider-dots,
 .map-dots {
     position: relative;
     z-index: 10;
@@ -1266,10 +1190,9 @@ main {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    margin-top: 20px;
+    margin: 0 0 10px;
 }
 
-.slider-dot,
 .map-dot {
     width: 8px;
     height: 8px;
@@ -1281,7 +1204,6 @@ main {
     transition: width 0.3s ease, background 0.3s ease;
 }
 
-.slider-dot.active,
 .map-dot.active {
     width: 26px;
     background: var(--rose);
@@ -1289,17 +1211,56 @@ main {
 
 
 /* ============================================================
-   LIVE STREAMING
+   13. COUNTDOWN
    ============================================================ */
 
-.live-section {
-    position: relative;
-    width: 100%;
-    padding: 100px 7%;
-    background: var(--cream);
-    text-align: center;
-    overflow: hidden;
+.countdown-wrapper {
+    width: min(850px, calc(100% - 40px));
+    margin: 30px auto 0;
+    padding-top: 50px;
+    border-top: 1px solid var(--border);
 }
+
+.countdown-heading { margin-bottom: 30px; }
+
+.countdown {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--gold-light);
+    border: 1px solid var(--gold-light);
+}
+
+.count-item {
+    min-width: 0;
+    padding: 30px 10px;
+    text-align: center;
+    background: var(--paper);
+}
+
+.count-item strong {
+    display: block;
+    color: var(--rose-dark);
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 500;
+    line-height: 1;
+}
+
+.count-item span {
+    display: block;
+    margin-top: 8px;
+    color: var(--sage-deep);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+
+/* ============================================================
+   14. LIVE STREAMING
+   ============================================================ */
 
 .live-wrapper {
     width: min(900px, 100%);
@@ -1321,14 +1282,14 @@ main {
     gap: 7px;
     margin-bottom: 18px;
     padding: 6px 14px;
-    border: 1px solid rgba(184, 117, 125, .25);
+    border: 1px solid rgba(184, 117, 125, 0.25);
     border-radius: 30px;
+    background: rgba(242, 223, 224, 0.45);
     color: var(--rose-dark);
-    font-size: .65rem;
+    font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    background: rgba(242, 223, 224, .45);
 }
 
 .live-dot {
@@ -1340,16 +1301,8 @@ main {
 }
 
 @keyframes livePulse {
-    0%,
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    50% {
-        opacity: .35;
-        transform: scale(.75);
-    }
+    0%, 100% { opacity: 1;    transform: scale(1); }
+    50%      { opacity: 0.35; transform: scale(0.75); }
 }
 
 .live-frame {
@@ -1358,7 +1311,7 @@ main {
     overflow: hidden;
     border: 6px solid white;
     background: #1f211e;
-    box-shadow: 0 10px 28px rgba(0, 0, 0, .08);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
     aspect-ratio: 16 / 9;
 }
 
@@ -1372,7 +1325,6 @@ main {
 .live-content {
     width: min(650px, 100%);
     margin: 25px auto 0;
-    text-align: center;
 }
 
 .live-content h3 {
@@ -1385,7 +1337,7 @@ main {
 .live-content p {
     margin-top: 10px;
     color: var(--muted);
-    font-size: .75rem;
+    font-size: 0.75rem;
     line-height: 1.8;
 }
 
@@ -1400,11 +1352,11 @@ main {
     border-radius: 25px;
     background: var(--sage-deep);
     color: white;
-    font-size: .65rem;
+    font-size: 0.65rem;
     font-weight: 600;
-    letter-spacing: .8px;
+    letter-spacing: 0.8px;
     text-transform: uppercase;
-    transition: .25s ease;
+    transition: 0.25s ease;
 }
 
 .live-button:hover {
@@ -1415,13 +1367,13 @@ main {
 
 
 /* ============================================================
-   LOVE STORY
+   15. LOVE STORY
    ============================================================ */
 
 .story {
+    position: relative;
     width: min(1000px, 100%);
     margin: auto;
-    position: relative;
 }
 
 .story::before {
@@ -1462,15 +1414,13 @@ main {
     width: 18px;
     height: 18px;
     margin: auto;
+    z-index: 2;
     background: var(--paper);
     border: 2px solid var(--rose);
     border-radius: 50%;
-    z-index: 2;
 }
 
-.story-content {
-    padding: 25px;
-}
+.story-content { padding: 25px; }
 
 .story-item:nth-child(even) .story-content {
     grid-column: 1;
@@ -1481,19 +1431,14 @@ main {
 .story-image {
     width: 220px;
     height: 270px;
-    overflow: hidden;
     margin-bottom: 18px;
+    overflow: hidden;
     border: 6px solid white;
     box-shadow: var(--shadow);
 }
 
-.story-item:nth-child(odd) .story-image {
-    margin-left: auto;
-}
-
-.story-item:nth-child(even) .story-image {
-    margin-left: 0;
-}
+/* item genap: konten di kiri → gambar rapat ke kanan (dekat garis) */
+.story-item:nth-child(even) .story-image { margin-left: auto; }
 
 .story-image img {
     width: 100%;
@@ -1502,9 +1447,7 @@ main {
     transition: transform 0.6s ease;
 }
 
-.story-image:hover img {
-    transform: scale(1.05);
-}
+.story-image:hover img { transform: scale(1.05); }
 
 .story-label {
     color: var(--gold);
@@ -1529,15 +1472,8 @@ main {
 
 
 /* ============================================================
-   VIDEO
+   16. VIDEO + GALLERY (satu section #gallery)
    ============================================================ */
-
-.video-section {
-    position: relative;
-    width: 100%;
-    background: var(--cream);
-    text-align: center;
-}
 
 .video-wrapper {
     width: min(900px, calc(100% - 40px));
@@ -1545,7 +1481,6 @@ main {
 }
 
 .video-card {
-    position: relative;
     width: 100%;
     padding: 25px 45px;
     background: var(--paper);
@@ -1554,20 +1489,16 @@ main {
     box-shadow: 0 18px 45px rgba(60, 70, 50, 0.10);
 }
 
-.video-frame {
-    overflow: hidden;
-    border: 6px solid white;
-    border-radius: 18px;
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
-}
-
+.video-card iframe,
 .wedding-video {
     display: block;
     width: 100%;
-    aspect-ratio: 16 / 9;
     height: auto;
-    object-fit: cover;
+    aspect-ratio: 16 / 9;
+    border: 6px solid white;
+    border-radius: 18px;
     background: #1f211e;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
 }
 
 .video-caption {
@@ -1582,21 +1513,8 @@ main {
     text-align: center;
 }
 
-
-/* ============================================================
-   GALLERY
-   ============================================================ */
-
-.gallery-section {
-    position: relative;
-    width: 100%;
-    padding: 70px 7% 100px;
-    background: var(--cream);
-    overflow: hidden;
-}
-
 .gallery-heading {
-    margin-top: 0;
+    margin-top: 80px;
     margin-bottom: 45px;
 }
 
@@ -1613,13 +1531,16 @@ main {
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
+    padding: 0 10px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    padding: 0 10px;
 }
 
+/* Kemiringan memakai variabel → hover tidak butuh selector berlapis */
 .gallery-item {
+    --tilt: 0deg;
+    --lift: 0px;
     position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -1628,7 +1549,21 @@ main {
     border: 6px solid white;
     box-shadow: 0 12px 30px rgba(80, 65, 55, 0.10);
     cursor: pointer;
+    transform: translateY(var(--lift)) rotate(var(--tilt));
     transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.gallery-item:nth-child(1) { --tilt: -1deg; }
+.gallery-item:nth-child(2) { --tilt: 0.7deg; }
+.gallery-item:nth-child(3) { --tilt: -0.5deg; }
+.gallery-item:nth-child(4) { --tilt: 0.8deg; }
+.gallery-item:nth-child(5) { --tilt: -0.7deg; }
+.gallery-item:nth-child(6) { --tilt: 1deg; }
+
+.gallery-item:hover {
+    --lift: -5px;
+    --tilt: 0deg;
+    box-shadow: 0 18px 40px rgba(80, 65, 55, 0.15);
 }
 
 .gallery-item::after {
@@ -1641,61 +1576,26 @@ main {
     transition: 0.35s ease;
 }
 
-.gallery-item img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease, filter 0.4s ease;
-}
-
-.gallery-item:hover {
-    transform: translateY(-5px) rotate(0deg);
-    box-shadow: 0 18px 40px rgba(80, 65, 55, 0.15);
-}
-
-.gallery-item:hover img {
-    transform: scale(1.06);
-}
-
 .gallery-item:hover::after {
     inset: 8px;
     border-color: rgba(217, 160, 165, 0.55);
 }
 
-.gallery-item:nth-child(1) {
-    transform: rotate(-1deg);
+.gallery-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
 }
 
-.gallery-item:nth-child(2) {
-    transform: rotate(0.7deg);
-}
+.gallery-item:hover img { transform: scale(1.06); }
 
-.gallery-item:nth-child(3) {
-    transform: rotate(-0.5deg);
-}
+/* Kontrol slider hanya untuk mobile */
+.gallery-arrow,
+.gallery-dots { display: none; }
 
-.gallery-item:nth-child(4) {
-    transform: rotate(0.8deg);
-}
-
-.gallery-item:nth-child(5) {
-    transform: rotate(-0.7deg);
-}
-
-.gallery-item:nth-child(6) {
-    transform: rotate(1deg);
-}
-
-.gallery-item:nth-child(1):hover,
-.gallery-item:nth-child(2):hover,
-.gallery-item:nth-child(3):hover,
-.gallery-item:nth-child(4):hover,
-.gallery-item:nth-child(5):hover,
-.gallery-item:nth-child(6):hover {
-    transform: translateY(-5px) rotate(0deg);
-}
-
+/* Lightbox */
 .gallery-modal {
     position: fixed;
     inset: 0;
@@ -1718,22 +1618,18 @@ main {
 
 .gallery-modal-content {
     position: relative;
-    width: auto;
     max-width: min(1000px, 90vw);
     max-height: 90vh;
     padding: 8px;
-    background: white;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
 }
 
 .gallery-modal-content img {
-    display: block;
     width: auto;
     height: auto;
     max-width: calc(90vw - 16px);
@@ -1765,14 +1661,9 @@ main {
     transform: scale(1.1);
 }
 
-.gallery-arrow,
-.gallery-dots {
-    display: none;
-}
-
 
 /* ============================================================
-   PRAYER
+   17. PRAYER
    ============================================================ */
 
 .prayer-card {
@@ -1817,7 +1708,7 @@ main {
 
 
 /* ============================================================
-   GIFT / AMPLOP DIGITAL & KIRIM KADO
+   18. GIFT / AMPLOP DIGITAL
    ============================================================ */
 
 .gift-intro {
@@ -1855,14 +1746,11 @@ main {
     width: 42px;
     height: 42px;
     margin: 32px auto 18px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border: 1px solid var(--gold);
     border-radius: 50%;
-
     color: var(--rose-dark);
     font-family: var(--serif);
     font-size: 1.5rem;
@@ -1886,7 +1774,6 @@ main {
 }
 
 .gift-name {
-    margin: 0;
     color: var(--muted);
     font-size: 0.75rem;
 }
@@ -1898,11 +1785,11 @@ main {
     border-radius: 15px;
     background: transparent;
     color: var(--sage-deep);
-    cursor: pointer;
     font-family: inherit;
     font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 0.5px;
+    cursor: pointer;
     transition: 0.25s ease;
 }
 
@@ -1911,16 +1798,11 @@ main {
     color: white;
 }
 
-/* Detail penerima kado */
-
-.gift-delivery-card {
-    text-align: left;
-}
+/* Kartu kirim kado */
+.gift-delivery-card { text-align: left; }
 
 .gift-delivery-card .gift-icon,
-.gift-delivery-card .gift-bank {
-    text-align: center;
-}
+.gift-delivery-card .gift-bank { text-align: center; }
 
 .gift-detail {
     margin-top: 18px;
@@ -1928,9 +1810,7 @@ main {
     border-bottom: 1px solid var(--border);
 }
 
-.gift-detail:last-of-type {
-    border-bottom: none;
-}
+.gift-detail:last-of-type { border-bottom: none; }
 
 .gift-label {
     display: block;
@@ -1943,15 +1823,10 @@ main {
 }
 
 .gift-value {
-    margin: 0;
     color: var(--sage-deep);
     font-size: 0.78rem;
     line-height: 1.8;
     overflow-wrap: anywhere;
-}
-
-.gift-address {
-    white-space: normal;
 }
 
 .gift-delivery-card .gift-button {
@@ -1959,54 +1834,10 @@ main {
     margin: 22px auto 0;
 }
 
-/* Tampilan HP */
-
-@media (max-width: 600px) {
-    .gift-intro {
-        margin: -15px auto 28px;
-        padding: 0 8px;
-        font-size: 0.72rem;
-    }
-
-    .gift-wrapper {
-        grid-template-columns: 1fr;
-        gap: 18px;
-    }
-
-    .gift-card {
-        padding: 28px 22px;
-    }
-
-    .gift-account {
-        font-size: 1.7rem;
-    }
-
-    .gift-delivery-card {
-        text-align: left;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .gift-card,
-    .gift-button {
-        transition: none;
-    }
-
-    .gift-card:hover {
-        transform: none;
-    }
-}
-
-
 
 /* ============================================================
-   RSVP & GUESTBOOK — FINAL RESPONSIVE DESIGN
-   Tema: Rustic Floral — Cream, Sage, Rose, Gold
+   19. RSVP & GUESTBOOK
    ============================================================ */
-
-/* ------------------------------------------------------------
-   1. CONTAINER UTAMA
-   ------------------------------------------------------------ */
 
 .rsvp-container {
     width: 100%;
@@ -2018,31 +1849,18 @@ main {
     gap: 28px;
 }
 
-/* ------------------------------------------------------------
-   2. BOX UTAMA
-   Kedua box sejajar dengan tinggi konsisten di desktop
-   ------------------------------------------------------------ */
-
 .rsvp-box {
     width: 100%;
-    height: 540px;
+    height: auto;
     min-width: 0;
-    min-height: 0;
     padding: 30px 26px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    box-sizing: border-box;
-
     background: var(--paper);
     border: 1px solid var(--border);
-    border-radius: 0;
     box-shadow: var(--shadow);
 }
-
-/* ------------------------------------------------------------
-   3. JUDUL BOX
-   ------------------------------------------------------------ */
 
 .rsvp-box-heading {
     flex-shrink: 0;
@@ -2057,8 +1875,6 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-sizing: border-box;
-
     border: 1px solid var(--gold-light);
     border-radius: 50%;
     color: var(--rose-dark);
@@ -2067,7 +1883,6 @@ main {
 }
 
 .rsvp-box-heading h3 {
-    margin: 0;
     color: var(--sage-deep);
     font-family: var(--serif);
     font-size: 1.8rem;
@@ -2080,189 +1895,137 @@ main {
     max-width: 340px;
     margin: 8px auto 0;
     color: var(--muted);
-    font-family: var(--sans);
     font-size: 0.74rem;
-    font-weight: 400;
     line-height: 1.75;
 }
 
-/* ------------------------------------------------------------
-   4. FORM RSVP
-   ------------------------------------------------------------ */
-
-.rsvp-form-box .rsvp-form {
+/* ---------- Form ---------- */
+.rsvp-form {
     width: 100%;
-    max-width: none;
     min-height: 0;
-    margin: 0;
-    padding: 0;
-
-    display: flex;
     flex: 1;
+    display: flex;
     flex-direction: column;
-    gap: 0;
-
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-
-    box-sizing: border-box;
 }
 
-.rsvp-form-box .form-group {
+.rsvp-form .form-group {
     width: 100%;
     min-width: 0;
-    margin: 0 0 15px;
+    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
     gap: 7px;
 }
 
-.rsvp-form-box .rsvp-form label {
+.rsvp-form label {
     color: var(--sage-deep);
-    font-family: var(--sans);
     font-size: 0.74rem;
     font-weight: 600;
     line-height: 1.5;
 }
 
-.rsvp-form-box .rsvp-form input,
-.rsvp-form-box .rsvp-form select,
-.rsvp-form-box .rsvp-form textarea {
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form textarea {
     width: 100%;
-    max-width: 100%;
     min-width: 0;
     padding: 11px 13px;
-    box-sizing: border-box;
-
     color: var(--ink);
     background: var(--paper);
     border: 1px solid var(--border);
     border-radius: 0;
     outline: none;
-
-    font-family: var(--sans);
     font-size: 0.78rem;
-    font-weight: 400;
     line-height: 1.6;
-
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.rsvp-form-box .rsvp-form input,
-.rsvp-form-box .rsvp-form select {
-    min-height: 44px;
-}
+.rsvp-form input,
+.rsvp-form select { min-height: 44px; }
 
-.rsvp-form-box .rsvp-form textarea {
+.rsvp-form textarea {
     min-height: 90px;
     flex: 1;
     resize: vertical;
 }
 
-.rsvp-form-box .rsvp-form input::placeholder,
-.rsvp-form-box .rsvp-form textarea::placeholder {
+.rsvp-form input::placeholder,
+.rsvp-form textarea::placeholder {
     color: var(--muted);
     opacity: 0.75;
 }
 
-.rsvp-form-box .rsvp-form input:focus,
-.rsvp-form-box .rsvp-form select:focus,
-.rsvp-form-box .rsvp-form textarea:focus {
+.rsvp-form input:focus,
+.rsvp-form select:focus,
+.rsvp-form textarea:focus {
     border-color: var(--sage-dark);
-    background: #fffdf9;
     box-shadow: 0 0 0 3px rgba(112, 131, 111, 0.1);
 }
 
-/* ------------------------------------------------------------
-   5. TOMBOL KIRIM
-   ------------------------------------------------------------ */
-
-.rsvp-form-box .rsvp-button {
+.rsvp-button {
     width: 100%;
     min-height: 44px;
     flex-shrink: 0;
     margin-top: auto;
     padding: 11px 18px;
-
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-sizing: border-box;
-
     border: 1px solid var(--sage-deep);
     border-radius: 24px;
     background: var(--sage-deep);
     color: white;
-
-    font-family: var(--sans);
     font-size: 0.67rem;
     font-weight: 600;
     letter-spacing: 0.8px;
     text-transform: uppercase;
-
     cursor: pointer;
     transition: background 0.2s ease, border-color 0.2s ease;
 }
 
-.rsvp-form-box .rsvp-button:hover {
+.rsvp-button:hover {
     background: var(--rose-dark);
     border-color: var(--rose-dark);
 }
 
-.rsvp-form-box .rsvp-button:disabled {
+.rsvp-button:disabled {
     opacity: 0.65;
     cursor: not-allowed;
 }
 
-/* Pesan status formulir */
-
-.rsvp-form-box .form-status {
+.form-status {
     flex-shrink: 0;
     margin: 9px 0 0;
     color: var(--muted);
-    font-family: var(--sans);
     font-size: 0.72rem;
     line-height: 1.6;
     overflow-wrap: anywhere;
 }
 
-/* ------------------------------------------------------------
-   6. BOX RIWAYAT UCAPAN
-   ------------------------------------------------------------ */
-
-.guestbook-box {
-    min-height: 0;
+/* ---------- Guestbook ---------- */
+.guestbook-box .rsvp-box-heading { margin-bottom: 16px; }
+    /* Desktop: tinggi kotak ucapan ikut kotak form, isinya yang di-scroll */
+@media (min-width: 769px) {
+    .guestbook-box {
+        contain: size;
+    }
 }
-
-.guestbook-box .rsvp-box-heading {
-    margin-bottom: 16px;
-}
-
-/* Area daftar ucapan mengambil ruang tersisa */
 
 .guestbook-scroll-container {
     width: 100%;
     min-width: 0;
     min-height: 0;
     flex: 1;
-
+    padding: 2px 8px 2px 2px;
     overflow-x: hidden;
     overflow-y: auto;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
-
-    padding: 2px 8px 2px 2px;
-    box-sizing: border-box;
-
     scrollbar-width: thin;
     scrollbar-color: var(--sage-dark) var(--cream-dark);
 }
 
-.guestbook-scroll-container::-webkit-scrollbar {
-    width: 5px;
-}
+.guestbook-scroll-container::-webkit-scrollbar { width: 5px; }
 
 .guestbook-scroll-container::-webkit-scrollbar-track {
     background: var(--cream-dark);
@@ -2274,114 +2037,67 @@ main {
     border-radius: 10px;
 }
 
-/* Daftar ucapan */
-
-.guestbook-scroll-container #guestbookHistory,
 #guestbookHistory {
     width: 100%;
     min-width: 0;
-    margin: 0;
-    padding: 0;
-
     display: flex;
     flex-direction: column;
     gap: 12px;
-
-    box-sizing: border-box;
 }
-
-/* ------------------------------------------------------------
-   7. KARTU UCAPAN TAMU
-   ------------------------------------------------------------ */
 
 #guestbookHistory .guestbook-message {
     width: 100%;
     min-width: 0;
-    margin: 0;
     padding: 17px;
     flex-shrink: 0;
-
     background: var(--paper);
     border: 1px solid var(--border);
-    border-radius: 0;
-    box-shadow: none;
-
     overflow-wrap: anywhere;
-    box-sizing: border-box;
-
     transition: border-color 0.2s ease;
 }
 
-#guestbookHistory .guestbook-message:hover {
-    border-color: var(--gold-light);
-}
+#guestbookHistory .guestbook-message:hover { border-color: var(--gold-light); }
 
 #guestbookHistory .guestbook-message h3 {
-    margin: 0 0 7px;
+    margin-bottom: 7px;
     color: var(--sage-deep);
     font-family: var(--serif);
     font-size: 1.25rem;
     font-weight: 600;
     line-height: 1.4;
-    overflow-wrap: anywhere;
 }
 
 #guestbookHistory .guestbook-message p {
-    margin: 0 0 8px;
+    margin-bottom: 8px;
     color: var(--muted);
-    font-family: var(--sans);
     font-size: 0.73rem;
-    font-weight: 400;
     line-height: 1.75;
-
     white-space: pre-wrap;
-    overflow-wrap: anywhere;
 }
 
-#guestbookHistory .guestbook-message p:last-of-type {
-    margin-bottom: 0;
-}
+#guestbookHistory .guestbook-message p:last-of-type { margin-bottom: 0; }
 
 #guestbookHistory .guestbook-message small {
     display: block;
     margin-top: 11px;
     padding-top: 9px;
-
     color: var(--gold);
     border-top: 1px solid var(--border);
-
-    font-family: var(--sans);
     font-size: 0.63rem;
     line-height: 1.6;
-    overflow-wrap: anywhere;
 }
 
-/* Pesan kosong atau status loading */
-
-#guestbookHistory:empty {
-    display: none;
-}
-
-.guestbook-scroll-container #guestbookHistory > p,
+/* Pesan status (loading / kosong) berupa <p> langsung di dalam #guestbookHistory */
 #guestbookHistory > p {
-    margin: 0;
     padding: 20px 10px;
-
     color: var(--muted);
     font-family: var(--serif);
     font-size: 0.95rem;
     font-style: italic;
     line-height: 1.8;
     text-align: center;
-
-    overflow-wrap: anywhere;
 }
 
-/* ------------------------------------------------------------
-   8. TOMBOL MUAT UCAPAN BERIKUTNYA
-   ------------------------------------------------------------ */
-
-.guestbook-box #loadMoreMessages,
 #loadMoreMessages {
     width: 100%;
     max-width: 240px;
@@ -2389,20 +2105,14 @@ main {
     flex-shrink: 0;
     margin: 13px auto 0;
     padding: 10px 15px;
-
     display: block;
-    box-sizing: border-box;
-
     color: var(--sage-deep);
     background: transparent;
     border: 1px solid var(--sage-deep);
     border-radius: 24px;
-
-    font-family: var(--sans);
     font-size: 0.66rem;
     font-weight: 600;
     letter-spacing: 0.4px;
-
     cursor: pointer;
     transition: background 0.2s ease, color 0.2s ease;
 }
@@ -2412,210 +2122,11 @@ main {
     background: var(--sage-deep);
 }
 
-#loadMoreMessages[hidden] {
-    display: none !important;
-}
-
-/* ------------------------------------------------------------
-   9. TABLET
-   ------------------------------------------------------------ */
-
-@media (min-width: 769px) and (max-width: 1000px) {
-    .rsvp-container {
-        gap: 18px;
-    }
-
-    .rsvp-box {
-        height: 550px;
-        padding: 26px 20px;
-    }
-
-    .rsvp-box-heading h3 {
-        font-size: 1.65rem;
-    }
-
-    .rsvp-form-box .form-group {
-        margin-bottom: 13px;
-    }
-
-    #guestbookHistory .guestbook-message {
-        padding: 14px;
-    }
-}
-
-/* ------------------------------------------------------------
-   10. MOBILE
-   ------------------------------------------------------------ */
-
-@media (max-width: 768px) {
-    .rsvp-container {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 20px;
-    }
-
-    .rsvp-box {
-        height: auto;
-        min-height: 0;
-        padding: 27px 23px;
-        overflow: visible;
-    }
-
-    .rsvp-box-heading {
-        margin-bottom: 21px;
-    }
-
-    .rsvp-box-heading h3 {
-        font-size: 1.8rem;
-    }
-
-    .rsvp-form-box .rsvp-form {
-        flex: initial;
-    }
-
-    .rsvp-form-box .rsvp-form textarea {
-        min-height: 115px;
-        flex: initial;
-    }
-
-    .rsvp-form-box .rsvp-button {
-        margin-top: 3px;
-    }
-
-    .guestbook-box {
-        height: 470px;
-        overflow: hidden;
-    }
-
-    .guestbook-box .rsvp-box-heading {
-        margin-bottom: 15px;
-    }
-
-    .guestbook-scroll-container {
-        flex: 1;
-        min-height: 0;
-        max-height: none;
-    }
-
-    .guestbook-box #loadMoreMessages {
-        margin-top: 12px;
-    }
-}
-
-/* ------------------------------------------------------------
-   11. SMALL MOBILE
-   ------------------------------------------------------------ */
-
-@media (max-width: 480px) {
-    .rsvp-container {
-        gap: 17px;
-    }
-
-    .rsvp-box {
-        padding: 23px 17px;
-    }
-
-    .rsvp-box-heading {
-        margin-bottom: 19px;
-    }
-
-    .rsvp-box-icon {
-        width: 39px;
-        height: 39px;
-        margin-bottom: 11px;
-    }
-
-    .rsvp-box-heading h3 {
-        font-size: 1.6rem;
-    }
-
-    .rsvp-box-heading p {
-        font-size: 0.71rem;
-        line-height: 1.7;
-    }
-
-    .rsvp-form-box .form-group {
-        margin-bottom: 15px;
-        gap: 7px;
-    }
-
-    .rsvp-form-box .rsvp-form label {
-        font-size: 0.73rem;
-    }
-
-    .rsvp-form-box .rsvp-form input,
-    .rsvp-form-box .rsvp-form select,
-    .rsvp-form-box .rsvp-form textarea {
-        padding: 11px 12px;
-        font-size: 16px;
-    }
-
-    .rsvp-form-box .rsvp-form textarea {
-        min-height: 110px;
-    }
-
-    .rsvp-form-box .rsvp-button {
-        min-height: 45px;
-        font-size: 0.65rem;
-    }
-
-    .guestbook-box {
-        height: 430px;
-        padding: 22px 17px;
-    }
-
-    .guestbook-scroll-container {
-        padding-right: 6px;
-    }
-
-    .guestbook-scroll-container #guestbookHistory,
-    #guestbookHistory {
-        gap: 10px;
-    }
-
-    #guestbookHistory .guestbook-message {
-        padding: 14px 12px;
-    }
-
-    #guestbookHistory .guestbook-message h3 {
-        font-size: 1.15rem;
-    }
-
-    #guestbookHistory .guestbook-message p {
-        font-size: 0.72rem;
-        line-height: 1.7;
-    }
-
-    #guestbookHistory .guestbook-message small {
-        font-size: 0.62rem;
-    }
-
-    .guestbook-box #loadMoreMessages,
-    #loadMoreMessages {
-        max-width: 100%;
-        min-height: 41px;
-        font-size: 0.65rem;
-    }
-}
-
-/* ------------------------------------------------------------
-   12. AKSESIBILITAS
-   ------------------------------------------------------------ */
-
-@media (prefers-reduced-motion: reduce) {
-    .rsvp-form-box .rsvp-form input,
-    .rsvp-form-box .rsvp-form select,
-    .rsvp-form-box .rsvp-form textarea,
-    .rsvp-form-box .rsvp-button,
-    #guestbookHistory .guestbook-message,
-    #loadMoreMessages {
-        transition: none;
-    }
-}
-
+#loadMoreMessages[hidden] { display: none; }
 
 
 /* ============================================================
-   FOOTER
+   20. FOOTER
    ============================================================ */
 
 .footer {
@@ -2657,108 +2168,108 @@ main {
     font-size: 0.7rem;
 }
 
-.footer-line {
-    width: 70px;
-    height: 1px;
-    margin: 20px auto;
-    background: var(--gold-light);
-}
-
-.footer small {
-    color: var(--muted);
-    font-size: 0.62rem;
-}
-
 
 /* ============================================================
-   MOBILE NAV
+   21. TABLET (769px – 1000px)
    ============================================================ */
 
-.mobile-nav {
-    display: none;
-}
+@media (min-width: 769px) and (max-width: 1000px) {
+    .section { padding: 64px 5%; }
 
-
-/* ============================================================
-   TABLET RESPONSIVE
-   ============================================================ */
-
-@media (max-width: 900px) {
-
-    .nav-links {
-        gap: 16px;
-    }
-
-    .nav-links a {
-        font-size: 0.6rem;
-    }
-
-    .section {
-        padding: 90px 5%;
-    }
-
-    .couple-wrapper {
-        gap: 20px;
-    }
+    .couple-wrapper { gap: 20px; }
 
     .person-image {
         width: 200px;
         height: 270px;
     }
 
-    .events-wrapper {
-        gap: 20px;
+    .events-wrapper { gap: 20px; }
+    .event { padding: 35px 25px; }
+
+    .gallery-grid { gap: 18px; }
+
+    .rsvp-container { gap: 18px; }
+
+    .rsvp-box {
+        padding: 26px 20px;
     }
 
-    .event {
-        padding: 35px 25px;
-    }
-
-    .gallery-section {
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-
-    .gallery-grid {
-        gap: 18px;
-    }
+    .rsvp-box-heading h3 { font-size: 1.65rem; }
+    .rsvp-form .form-group { margin-bottom: 13px; }
+    #guestbookHistory .guestbook-message { padding: 14px; }
 }
 
 
 /* ============================================================
-   MOBILE RESPONSIVE
+   22. MOBILE (<= 768px)
    ============================================================ */
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
 
-    body {
-        padding-bottom: 65px;
+    /* ---------- Dasar ---------- */
+    body { padding-bottom: 0; }
+
+    .section { padding: 56px 20px; }
+    /* ---------- Navbar mobile: sama seperti desktop, logo di atas tombol musik ---------- */
+    .dnav {
+        top: auto;
+        left: auto;
+        right: 16px;                                   /* sejajar tengah dengan tombol musik */
+        bottom: calc(78px + env(safe-area-inset-bottom));  /* 20px + 46px musik + 12px jarak */
+        flex-direction: column-reverse;                /* logo di bawah, kapsul di atas logo */
+        align-items: center;
+        gap: 14px;
     }
 
-    .site-header {
-        display: none;
+    .dnav-logo {
+        width: 50px;
+        height: 50px;
+        font-size: 1rem;
     }
 
-    .section,
-    .quote-section,
-    .countdown-section,
-    .couple-section,
-    .story-section,
-    .events-section,
-    .gallery-section,
-    .prayer-section,
-    .location-section,
-    .gift-section,
-    .rsvp-section,
-    .video-section {
-        width: 100%;
-        min-height: auto;
-        display: block;
-        padding: 58px 20px;
+    /* kapsul ikon: bentuk sama dengan desktop, terbuka ke atas */
+    .dnav-menu {
+        padding: 7px 5px;
+        gap: 2px;
+        clip-path: inset(100% -60px -60px -60px);
+        transform: translateY(12px);
+    }
+
+    .dnav.open .dnav-menu {
+        clip-path: inset(-60px -60px -60px -60px);
+        transform: none;
+    }
+
+    .dnav-menu a {
+        width: 38px;
+        height: 38px;
+        transform: translateY(8px);
+    }
+
+    .dnav.open .dnav-menu a {
+        transform: none;
+        /* ikon paling bawah muncul lebih dulu, naik ke atas */
+        transition-delay: 0s, 0s, calc((10 - var(--i, 0)) * 35ms + 100ms), calc((10 - var(--i, 0)) * 35ms + 100ms);
+    }
+
+    .dnav-menu svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* tidak ada hover di layar sentuh → tooltip dimatikan */
+    .dnav-menu a::before,
+    .dnav-menu a::after { display: none; }
+
+    /* HP berlayar pendek: ikon dirapatkan agar 10 menu tetap muat */
+    @media (max-height: 640px) {
+        .dnav { gap: 10px; }
+        .dnav-menu { padding: 5px 4px; gap: 0; }
+        .dnav-menu a { width: 32px; height: 32px; }
+        .dnav-menu svg { width: 16px; height: 16px; }
     }
 
     .section-heading {
-        width: 100%;
         margin-bottom: 25px;
     }
 
@@ -2767,16 +2278,25 @@ main {
         line-height: 1.65;
     }
 
-    .section-eyebrow {
-        font-size: 1.2rem;
+    .section-eyebrow { font-size: 1.2rem; }
+    .section-heading h2 { font-size: 2.4rem; }
+
+    /* ---------- Musik: paling bawah, logo A&S di atasnya ---------- */
+    .music-control {
+        width: 46px;
+        height: 46px;
+        right: 18px;
+        bottom: calc(20px + env(safe-area-inset-bottom));
     }
 
-    .section-heading h2 {
-        font-size: 2.4rem;
-    }
+    .music-icon { width: 25px; height: 25px; }
+    .music-icon::before { font-size: 21px; }
+    .music-icon::after { width: 23px; }
+    .music-control.playing .music-icon { width: 26px; height: 26px; }
+    .music-control.playing .music-icon::before { font-size: 23px; }
 
+    /* ---------- Couple ---------- */
     .couple-wrapper {
-        width: 100%;
         display: flex;
         flex-direction: column;
         gap: 25px;
@@ -2795,10 +2315,9 @@ main {
         height: 240px;
     }
 
-    .person h3 {
-        font-size: 1.8rem;
-    }
+    .person h3 { font-size: 1.8rem; }
 
+    /* ---------- Countdown ---------- */
     .countdown-wrapper {
         width: 100%;
         max-width: 360px;
@@ -2811,75 +2330,80 @@ main {
         gap: 1px;
     }
 
-    .count-item {
-        padding: 22px 6px;
-    }
+    .count-item { padding: 22px 6px; }
+    .count-item strong { font-size: 2.5rem; }
+    .count-item span { font-size: 0.55rem; }
 
-    .count-item strong {
-        font-size: 2.5rem;
-    }
-
-    .count-item span {
-        font-size: 0.55rem;
-    }
-
+    /* ---------- Events ---------- */
     .events-wrapper {
-        width: 100%;
         grid-template-columns: 1fr;
         gap: 18px;
     }
 
-    .event {
-        padding: 32px 24px;
-    }
-
-    .event-actions {
-        flex-direction: column;
-        gap: 8px;
-    }
+    .event { padding: 32px 24px; }
 
     .event-detail {
         margin-top: 22px;
         gap: 17px;
     }
 
-    .event-button {
+    .event-actions {
         width: 100%;
+        flex-direction: column;
+        gap: 8px;
     }
 
-    .gallery-slide,
-    .map-slide {
-        padding: 5px 25px 35px;
-    }
+    .event-button { width: 100%; }
 
-    .gallery-card,
-    .map-card,
-    .video-card {
+    /* ---------- Map ---------- */
+    .map-slide { padding: 5px 25px 35px; }
+
+    .map-card {
         padding: 6px;
         border-radius: 11px;
     }
 
-    .map-frame iframe {
-        height: 280px;
-    }
+    .map-title { padding: 10px 8px 0; }
 
-    .slider-arrow,
+    .map-frame iframe { height: 280px; }
+
     .map-arrow {
         width: 36px;
         height: 36px;
         font-size: 1.5rem;
     }
 
-    .slider-prev,
-    .map-prev {
-        left: -5px;
+    .map-prev { left: -5px; }
+    .map-next { right: -5px; }
+
+    /* ---------- Live ---------- */
+    .live-section { padding: 56px 10px; }
+
+    .live-card {
+        padding: 15px;
+        border-radius: 14px;
     }
 
-    .slider-next,
-    .map-next {
-        right: -5px;
+    .live-status {
+        margin-bottom: 14px;
+        font-size: 0.58rem;
     }
 
+    .live-frame {
+        border-width: 4px;
+        border-radius: 10px;
+    }
+
+    .live-content { padding: 0 5px; }
+    .live-content h3 { font-size: 1.5rem; }
+    .live-content p { font-size: 0.68rem; }
+
+    .live-button {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    /* ---------- Story (garis di kiri) ---------- */
     .story::before {
         left: 20px;
         transform: none;
@@ -2905,8 +2429,8 @@ main {
         grid-column: 2;
         grid-row: 1;
         padding: 0;
-        text-align: left;
         font-size: 1.8rem;
+        text-align: left;
     }
 
     .story-content,
@@ -2918,7 +2442,6 @@ main {
     }
 
     .story-image,
-    .story-item:nth-child(odd) .story-image,
     .story-item:nth-child(even) .story-image {
         width: 100%;
         max-width: 280px;
@@ -2926,35 +2449,8 @@ main {
         margin: 12px 0;
     }
 
-    .gift-wrapper {
-        grid-template-columns: 1fr;
-        gap: 18px;
-    }
-
-    .gift-card {
-        padding: 30px 20px;
-    }
-
-    .rsvp-form {
-        padding: 25px 20px;
-    }
-
-    .prayer-card {
-        padding: 35px 20px;
-    }
-
-    .arabic {
-        font-size: 1.35rem;
-    }
-
-    .translation,
-    .quote-intro {
-        font-size: 1.15rem;
-    }
-
-    .video-section {
-        padding: 52px 10px 58px;
-    }
+    /* ---------- Video & galeri (slider) ---------- */
+    .gallery-section { padding: 56px 20px; }
 
     .video-wrapper {
         width: 100%;
@@ -2962,41 +2458,24 @@ main {
     }
 
     .video-card {
-        width: 100%;
-        padding: 0;
+        padding: 8px;
         border-radius: 12px;
     }
 
-    .video-frame {
-        width: 100%;
-        border-width: 4px;
-        border-radius: 12px;
-    }
-
+    .video-card iframe,
     .wedding-video {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 16 / 9;
+        border-width: 4px;
+        border-radius: 10px;
     }
 
     .video-caption {
-        width: 100%;
         margin-top: 14px;
-        padding: 0 10px;
-        text-align: center;
         font-size: 0.95rem;
     }
 
-    .gallery-section {
-        padding: 52px 20px 58px;
-    }
-
-    .gallery-heading {
-        margin-top: 20px;
-    }
+    .gallery-heading { margin-top: 50px; }
 
     .gallery-slider-wrapper {
-        width: 100%;
         overflow: hidden;
         padding-bottom: 25px;
     }
@@ -3004,44 +2483,47 @@ main {
     .gallery-grid.gallery-track {
         display: flex;
         width: 100%;
+        max-width: none;
         gap: 0;
+        padding: 0;
         transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .gallery-item.gallery-slide {
+        --tilt: 0deg;
+        --lift: 0px;
         min-width: 100%;
         flex-shrink: 0;
         aspect-ratio: auto;
         padding: 0 5px;
         border: none;
-        box-shadow: none;
-        transform: none !important;
         background: transparent;
+        box-shadow: none;
     }
 
+    .gallery-item.gallery-slide:hover {
+        --lift: 0px;
+        box-shadow: none;
+    }
+
+    .gallery-item.gallery-slide::after { display: none; }
+
     .gallery-item.gallery-slide img {
-        display: block;
-        width: 100%;
         height: 360px;
-        object-fit: cover;
-        border-radius: 12px;
         border: 6px solid white;
+        border-radius: 12px;
         box-shadow: 0 12px 30px rgba(80, 65, 55, 0.12);
     }
 
-    .gallery-item.gallery-slide::after {
-        display: none;
-    }
-
     .gallery-arrow {
+        position: absolute;
+        top: 50%;
+        z-index: 5;
+        width: 38px;
+        height: 38px;
         display: flex;
         align-items: center;
         justify-content: center;
-        position: absolute;
-        top: 50%;
-        width: 38px;
-        height: 38px;
-        transform: translateY(-50%);
         border: 1px solid rgba(185, 147, 88, 0.25);
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.92);
@@ -3049,18 +2531,13 @@ main {
         font-family: var(--serif);
         font-size: 1.5rem;
         cursor: pointer;
-        z-index: 5;
         box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+        transform: translateY(-50%);
         transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
     }
 
-    .gallery-prev {
-        left: 10px;
-    }
-
-    .gallery-next {
-        right: 10px;
-    }
+    .gallery-prev { left: 10px; }
+    .gallery-next { right: 10px; }
 
     .gallery-arrow:hover {
         background: var(--sage-deep);
@@ -3070,8 +2547,8 @@ main {
 
     .gallery-dots {
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
         gap: 8px;
         margin-top: 15px;
     }
@@ -3093,103 +2570,99 @@ main {
         background: var(--rose);
     }
 
-    .gallery-modal {
-        padding: 20px;
-    }
+    .gallery-modal { padding: 20px; }
 
     .gallery-modal-content {
-        width: 100%;
         max-width: 95vw;
         max-height: 85vh;
         padding: 6px;
-        border-radius: 8px;
     }
 
     .gallery-modal-content img {
-        width: auto;
         max-width: calc(95vw - 12px);
         max-height: calc(80vh - 12px);
-        object-fit: contain;
         border-radius: 4px;
     }
 
     .gallery-modal-close {
         top: -42px;
-        right: 0;
         font-size: 1.8rem;
     }
 
-    .live-section {
-        padding: 80px 10px 90px;
+    /* ---------- Doa ---------- */
+    .prayer-card { padding: 35px 20px; }
+    .arabic { font-size: 1.35rem; }
+    .translation { font-size: 1.15rem; }
+
+    /* ---------- Gift ---------- */
+    .gift-intro {
+        margin: -15px auto 28px;
+        padding: 0 8px;
+        font-size: 0.72rem;
     }
 
-    .live-wrapper {
-        width: 100%;
+    .gift-wrapper {
+        grid-template-columns: 1fr;
+        gap: 18px;
     }
 
-    .live-card {
-        width: 100%;
-        padding: 15px;
-        border-radius: 14px;
+    .gift-card { padding: 28px 22px; }
+    .gift-account { font-size: 1.7rem; }
+
+    /* ---------- RSVP ---------- */
+    .rsvp-container {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
     }
 
-    .live-status {
-        margin-bottom: 14px;
-        font-size: .58rem;
+    .rsvp-box {
+        height: auto;
+        padding: 27px 23px;
+        overflow: visible;
     }
 
-    .live-frame {
-        width: 100%;
-        border-width: 4px;
-        border-radius: 10px;
+    .rsvp-box-heading { margin-bottom: 21px; }
+
+    .rsvp-form { flex: initial; }
+
+    .rsvp-form textarea {
+        min-height: 115px;
+        flex: initial;
     }
 
-    .live-content {
-        width: 100%;
-        padding: 0 5px;
+    .rsvp-button { margin-top: 3px; }
+
+    .guestbook-box {
+        height: 470px;
+        overflow: hidden;
     }
 
-    .live-content h3 {
-        font-size: 1.5rem;
-    }
+    .guestbook-box .rsvp-box-heading { margin-bottom: 15px; }
 
-    .live-content p {
-        font-size: .68rem;
-    }
+    #loadMoreMessages { margin-top: 12px; }
 
-    .live-button {
-        width: 100%;
-        max-width: 250px;
-    }
+    /* ---------- Footer ---------- */
+    .footer { padding-bottom: 60px; }
 }
 
 
 /* ============================================================
-   SMALL MOBILE
+   23. HP KECIL (<= 480px)
    ============================================================ */
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
 
-    .opening-card {
-        padding: 45px 20px 35px;
-    }
+    .opening-card { padding: 45px 20px 35px; }
+    .opening-card h1 { font-size: 3.2rem; }
 
-    .opening-card h1 {
-        font-size: 3.2rem;
-    }
-
-    .hero-names {
-        font-size: 3.8rem;
-    }
+    .hero-names { font-size: 3.8rem; }
 
     .gallery-section {
         padding-left: 15px;
         padding-right: 15px;
     }
 
-    .gallery-item.gallery-slide img {
-        height: 320px;
-    }
+    .gallery-item.gallery-slide img { height: 320px; }
 
     .gallery-arrow {
         width: 34px;
@@ -3197,107 +2670,131 @@ main {
         font-size: 1.3rem;
     }
 
-    .gallery-prev {
-        left: 7px;
+    .gallery-prev { left: 7px; }
+    .gallery-next { right: 7px; }
+
+    .rsvp-container { gap: 17px; }
+
+    .rsvp-box { padding: 23px 17px; }
+
+    .rsvp-box-heading { margin-bottom: 19px; }
+
+    .rsvp-box-icon {
+        width: 39px;
+        height: 39px;
+        margin-bottom: 11px;
     }
 
-    .gallery-next {
-        right: 7px;
-    }
-}
+    .rsvp-box-heading h3 { font-size: 1.6rem; }
 
-/* =========================================================
-   FLOATING NAVBAR — MOBILE
-   ========================================================= */
-
-.mobile-nav {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    .mobile-nav {
-        position: fixed;
-        left: 50%;
-        bottom: calc(18px + env(safe-area-inset-bottom));
-        transform: translateX(-50%);
-        z-index: 2000;
-
-        width: calc(100% - 32px);
-        max-width: 420px;
-        box-sizing: border-box;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        gap: 4px;
-
-        padding: 9px 8px;
-
-        background: rgba(255, 253, 249, 0.96);
-        border: 1px solid rgba(185, 147, 88, 0.25);
-        border-radius: 24px;
-
-        box-shadow: 0 8px 28px rgba(70, 55, 45, 0.16);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
+    .rsvp-box-heading p {
+        font-size: 0.71rem;
+        line-height: 1.7;
     }
 
-    .mobile-nav a {
-        flex: 1;
-        min-width: 0;
-        min-height: 48px;
+    .rsvp-form .form-group { gap: 7px; }
+    .rsvp-form label { font-size: 0.73rem; }
 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 4px;
-
-        color: var(--muted);
-        text-decoration: none;
-        border-radius: 16px;
-
-        transition:
-            color 0.25s ease,
-            background 0.25s ease,
-            transform 0.25s ease;
+    /* 16px mencegah iOS otomatis zoom saat input difokus */
+    .rsvp-form input,
+    .rsvp-form select,
+    .rsvp-form textarea {
+        padding: 11px 12px;
+        font-size: 16px;
     }
 
-    .mobile-nav a span {
-        font-family: var(--serif);
-        font-size: 1.25rem;
-        line-height: 1;
+    .rsvp-form textarea { min-height: 110px; }
+
+    .rsvp-button {
+        min-height: 45px;
+        font-size: 0.65rem;
     }
 
-    .mobile-nav a small {
-        font-family: var(--sans, sans-serif);
-        font-size: 0.58rem;
-        line-height: 1.2;
-        white-space: nowrap;
+    .guestbook-box {
+        height: 430px;
+        padding: 22px 17px;
     }
 
-    .mobile-nav a.active {
-        color: var(--sage-deep);
-        background: rgba(223, 232, 223, 0.75);
+    .guestbook-scroll-container { padding-right: 6px; }
+
+    #guestbookHistory { gap: 10px; }
+
+    #guestbookHistory .guestbook-message { padding: 14px 12px; }
+    #guestbookHistory .guestbook-message h3 { font-size: 1.15rem; }
+
+    #guestbookHistory .guestbook-message p {
+        font-size: 0.72rem;
+        line-height: 1.7;
     }
 
-    .mobile-nav a:hover {
-        color: var(--rose-dark);
-    }
+    #guestbookHistory .guestbook-message small { font-size: 0.62rem; }
 
-    .mobile-nav a:active {
-        transform: scale(0.94);
-    }
-
-    /* Beri ruang agar navbar tidak menutupi konten terakhir */
-    body {
-        padding-bottom: 95px;
-    }
-
-    /* Sembunyikan navbar desktop di HP jika diperlukan */
-    .site-header .nav-links {
-        display: none;
+    #loadMoreMessages {
+        max-width: 100%;
+        font-size: 0.65rem;
     }
 }
 
+/* ============================================================
+   DESKTOP BERLAYAR PENDEK — rapatkan agar 1 section ≈ 1 layar
+   ============================================================ */
 
+@media (min-width: 769px) and (max-height: 900px) {
+    .section { padding: 56px 7%; }
+
+    .section-heading { margin-bottom: 28px; }
+    .section-heading h2 { font-size: clamp(2.2rem, 5vw, 3.2rem); }
+
+    /* Mempelai */
+    .person-image { width: 190px; height: 250px; }
+    .person h3 { font-size: 1.8rem; }
+
+    /* Acara */
+    .event { padding: 28px 32px; }
+    .event-flower { margin-top: 12px; }
+    .event h3 { font-size: 1.9rem; }
+    .event-detail { margin-top: 18px; gap: 14px; }
+    .event-actions { margin-top: 16px; }
+
+    /* Lokasi */
+    .map-slide { padding-bottom: 35px; }
+    .map-frame iframe { height: 300px; }
+
+    /* Doa, hadiah, RSVP */
+    .prayer-card { padding: 40px 40px; }
+    .gift-card { padding: 28px 22px; }
+}
+
+/* ============================================================
+   24. AKSESIBILITAS — kurangi animasi
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    .dnav-logo,
+    .dnav-logo::after,
+    .dnav-menu,
+    .dnav-menu a,
+    .gift-card,
+    .gift-button,
+    .gallery-item,
+    .gallery-item img,
+    .rsvp-form input,
+    .rsvp-form select,
+    .rsvp-form textarea,
+    .rsvp-button,
+    #loadMoreMessages,
+    .map-track {
+        transition: none;
+    }
+
+    .dnav-logo.pulse::before,
+    .live-dot,
+    .music-control.playing,
+    .music-control.playing .music-icon {
+        animation: none;
+    }
+
+    .gift-card:hover { transform: none; }
+}

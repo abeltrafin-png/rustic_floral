@@ -176,25 +176,63 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================================
-    3. NAVBAR & MOBILE MENU
+    3. NAVBAR DESKTOP (toggle via logo) + SCROLL SPY
     ========================================================= */
 
-    window.addEventListener("scroll", () => {
-        if (openingScreen && openingScreen.classList.contains("is-hidden")) {
-            if (siteHeader) siteHeader.classList.add("visible");
-        }
-    }, { passive: true });
+    const brandToggle = document.getElementById("brandToggle");
+    const deskNav = document.getElementById("deskNav");
 
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener("click", () => {
-            navLinks.classList.toggle("open");
+    function setNavOpen(open) {
+        if (!siteHeader || !brandToggle) return;
+        siteHeader.classList.toggle("nav-open", open);
+        brandToggle.setAttribute("aria-expanded", String(open));
+        brandToggle.setAttribute("aria-label", open ? "Tutup menu navigasi" : "Buka menu navigasi");
+    }
+
+    if (brandToggle) {
+        brandToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            setNavOpen(!siteHeader.classList.contains("nav-open"));
         });
+    }
 
-        navLinks.querySelectorAll("a").forEach((link) => {
-            link.addEventListener("click", () => {
-                navLinks.classList.remove("open");
+    if (deskNav) {
+        // Tutup setelah memilih menu
+        deskNav.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => setNavOpen(false));
+        });
+    }
+
+    // Klik di luar navbar menutupnya
+    document.addEventListener("click", (e) => {
+        if (siteHeader && !siteHeader.contains(e.target)) setNavOpen(false);
+    });
+
+    // Escape menutup navbar
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") setNavOpen(false);
+    });
+
+    // Scroll spy: tandai menu aktif di navbar desktop & mobile
+    const spyLinks = document.querySelectorAll(".desk-nav a, .mobile-nav a");
+    const spySections = [...new Set(
+        [...spyLinks].map((a) => a.getAttribute("href").slice(1))
+    )].map((id) => document.getElementById(id)).filter(Boolean);
+
+    function setActiveNav(id) {
+        spyLinks.forEach((a) => {
+            a.classList.toggle("active", a.getAttribute("href") === "#" + id);
+        });
+    }
+
+    if ("IntersectionObserver" in window) {
+        const spy = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) setActiveNav(entry.target.id);
             });
-        });
+        }, { rootMargin: "-45% 0px -50% 0px" });
+
+        spySections.forEach((section) => spy.observe(section));
     }
 
 
@@ -818,20 +856,53 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function salinRekening() {
-        const accountElement = document.getElementById("accountBCA");
+    function salinRekening(accountId) {
+        const accountElement = document.getElementById(accountId);
 
         if (!accountElement) {
+            console.error("Rekening tidak ditemukan:", accountId);
             alert("Nomor rekening tidak ditemukan.");
             return;
         }
 
         const nomorRekening = accountElement.textContent.trim().replace(/\s+/g, "");
 
-        salinTeksGift(
-            nomorRekening,
-            "Nomor rekening berhasil disalin!"
-        );
+        if (!nomorRekening) {
+            alert("Nomor rekening kosong.");
+            return;
+        }
+
+        navigator.clipboard.writeText(nomorRekening)
+            .then(() => {
+                alert("Nomor rekening berhasil disalin: " + nomorRekening);
+            })
+            .catch((error) => {
+                console.error("Gagal menyalin rekening:", error);
+
+                // Fallback jika Clipboard API tidak tersedia
+                const tempInput = document.createElement("textarea");
+                tempInput.value = nomorRekening;
+                tempInput.style.position = "fixed";
+                tempInput.style.opacity = "0";
+
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                tempInput.setSelectionRange(0, tempInput.value.length);
+
+                try {
+                    const berhasil = document.execCommand("copy");
+
+                    if (berhasil) {
+                        alert("Nomor rekening berhasil disalin: " + nomorRekening);
+                    } else {
+                        alert("Gagal menyalin rekening. Silakan salin manual.");
+                    }
+                } catch (err) {
+                    alert("Gagal menyalin rekening. Silakan salin manual.");
+                } finally {
+                    tempInput.remove();
+                }
+            });
     }
 
     function salinAlamatKado() {
@@ -864,3 +935,72 @@ document.addEventListener("DOMContentLoaded", () => {
     window.salinAlamatKado = salinAlamatKado;
 
 });
+
+/* =========================================================
+   NAVBAR DESKTOP (klik logo) + SCROLL SPY (desktop & mobile)
+========================================================= */
+(function () {
+    const root = document.getElementById("dnav");
+    const toggle = document.getElementById("dnavToggle");
+    const menu = document.getElementById("dnavMenu");
+    if (!root || !toggle || !menu) return;
+
+    const links = [...menu.querySelectorAll("a")];
+    links.forEach((a, i) => a.style.setProperty("--i", i));
+
+    function setOpen(open) {
+        root.classList.toggle("open", open);
+        toggle.setAttribute("aria-expanded", String(open));
+        toggle.setAttribute("aria-label", open ? "Tutup menu navigasi" : "Buka menu navigasi");
+        if (open) toggle.classList.remove("pulse");
+    }
+
+    toggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        setOpen(!root.classList.contains("open"));
+    });
+
+    links.forEach((a) => a.addEventListener("click", () => setOpen(false)));
+
+    document.addEventListener("click", (e) => {
+        if (!root.contains(e.target)) setOpen(false);
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") setOpen(false);
+    });
+
+    /* ---------- Scroll spy ---------- */
+    const allLinks = [...document.querySelectorAll(".dnav-menu a, .mobile-nav a")];
+    const ids = [...new Set(allLinks.map((a) => a.getAttribute("href").slice(1)))];
+    const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
+
+    function setActive(id) {
+        allLinks.forEach((a) => {
+            a.classList.toggle("active", a.getAttribute("href") === "#" + id);
+        });
+    }
+
+    let ticking = false;
+
+    function onScroll() {
+        if (ticking) return;
+        ticking = true;
+
+        requestAnimationFrame(() => {
+            const line = window.innerHeight * 0.4;
+            let current = sections[0];
+
+            sections.forEach((s) => {
+                if (s.getBoundingClientRect().top <= line) current = s;
+            });
+
+            if (current) setActive(current.id);
+            ticking = false;
+        });
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+})();
