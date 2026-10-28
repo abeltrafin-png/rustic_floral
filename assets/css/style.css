@@ -2766,6 +2766,24 @@ main {
 }
 
 /* ============================================================
+   JARAK JUDUL → KONTEN KONSISTEN
+   Margin vertikal "auto" di dalam flex menyerap sisa ruang
+   dan mendorong konten menjauh dari judul. Dinolkan di sini.
+   ============================================================ */
+
+.section > .couple-wrapper,
+.section > .events-wrapper,
+.section > .story,
+.section > .live-wrapper,
+.section > .prayer-card,
+.section > .gift-wrapper,
+.section > .video-wrapper,
+.section > .rsvp-container {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* ============================================================
    24. AKSESIBILITAS — kurangi animasi
    ============================================================ */
 
