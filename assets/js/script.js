@@ -1,6 +1,13 @@
 /* ============================================================
-WEDDING INVITATION — JAVASCRIPT
+WEDDING INVITATION — JAVASCRIPT (INTERAKSI & FITUR)
 File: script.js
+
+Seluruh data klien dibaca dari window.WEDDING_DATA yang
+disiapkan oleh template-engine.js (sumber: config.js).
+Tidak ada nama, tanggal, URL, atau nomor rekening yang
+ditulis langsung (hardcode) di berkas ini.
+
+Urutan muat: config.js → template-engine.js → script.js
 ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -9,13 +16,22 @@ document.addEventListener("DOMContentLoaded", () => {
     1. KONFIGURASI & ELEMENT
     ========================================================= */
 
-    const WEDDING_DATE = "2027-02-21T08:00:00+07:00";
+    // Data klien (hasil olahan template-engine.js dari config.js)
+    const DATA = window.WEDDING_DATA || {};
+
+    if (!window.WEDDING_DATA) {
+        console.error("WEDDING_DATA tidak ditemukan. Pastikan config.js dan template-engine.js dimuat sebelum script.js.");
+    }
+
+    // Ambil nilai bersarang dari DATA, mis. dataAt("acara.akad.tempat")
+    const dataAt = (path) => {
+        return path.split(".").reduce((acc, part) => {
+            return acc !== null && acc !== undefined ? acc[part] : undefined;
+        }, DATA);
+    };
 
     const openingScreen = document.getElementById("openingScreen");
     const openInvitation = document.getElementById("openInvitation");
-    const siteHeader = document.getElementById("siteHeader");
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.querySelector(".nav-links");
 
     const daysEl = document.getElementById("days");
     const hoursEl = document.getElementById("hours");
@@ -31,19 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const galleryModalImg = document.getElementById("galleryModalImg");
     const galleryModalClose = document.getElementById("galleryModalClose");
 
-    /* FLOATING NAVBAR — ACTIVE LINK */
-    const mobileNavLinks = document.querySelectorAll(".mobile-nav a");
-
-    mobileNavLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-            mobileNavLinks.forEach((item) => {
-                item.classList.remove("active");
-            });
-
-            link.classList.add("active");
-        });
-    });
-
     /* ============================================================
     WEDDING BACKGROUND MUSIC
     ============================================================ */
@@ -54,8 +57,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (music && musicControl) {
 
-        // Volume awal
-        music.volume = 0.45;
+        // Volume awal (dari config.musik.volume, default 0.45)
+        const configuredVolume = Number(dataAt("musik.volume"));
+        music.volume =
+            Number.isFinite(configuredVolume) && configuredVolume >= 0 && configuredVolume <= 1
+                ? configuredVolume
+                : 0.45;
 
         /* ------------------------------------------------------------
         UPDATE TOMBOL MUSIK
@@ -147,10 +154,6 @@ document.addEventListener("DOMContentLoaded", () => {
         openingScreen.classList.add("is-hidden");
         document.body.classList.remove("locked");
 
-        if (siteHeader) {
-            siteHeader.classList.add("visible");
-        }
-
         setTimeout(() => {
             openingScreen.style.display = "none";
         }, 700);
@@ -176,64 +179,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================================
-    3. NAVBAR DESKTOP (toggle via logo) + SCROLL SPY
+    3. NAVBAR & SCROLL SPY
+    → ditangani oleh modul di bagian paling bawah berkas ini.
     ========================================================= */
-
-    const brandToggle = document.getElementById("brandToggle");
-    const deskNav = document.getElementById("deskNav");
-
-    function setNavOpen(open) {
-        if (!siteHeader || !brandToggle) return;
-        siteHeader.classList.toggle("nav-open", open);
-        brandToggle.setAttribute("aria-expanded", String(open));
-        brandToggle.setAttribute("aria-label", open ? "Tutup menu navigasi" : "Buka menu navigasi");
-    }
-
-    if (brandToggle) {
-        brandToggle.addEventListener("click", (e) => {
-            e.stopPropagation();
-            setNavOpen(!siteHeader.classList.contains("nav-open"));
-        });
-    }
-
-    if (deskNav) {
-        // Tutup setelah memilih menu
-        deskNav.querySelectorAll("a").forEach((link) => {
-            link.addEventListener("click", () => setNavOpen(false));
-        });
-    }
-
-    // Klik di luar navbar menutupnya
-    document.addEventListener("click", (e) => {
-        if (siteHeader && !siteHeader.contains(e.target)) setNavOpen(false);
-    });
-
-    // Escape menutup navbar
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") setNavOpen(false);
-    });
-
-    // Scroll spy: tandai menu aktif di navbar desktop & mobile
-    const spyLinks = document.querySelectorAll(".desk-nav a, .mobile-nav a");
-    const spySections = [...new Set(
-        [...spyLinks].map((a) => a.getAttribute("href").slice(1))
-    )].map((id) => document.getElementById(id)).filter(Boolean);
-
-    function setActiveNav(id) {
-        spyLinks.forEach((a) => {
-            a.classList.toggle("active", a.getAttribute("href") === "#" + id);
-        });
-    }
-
-    if ("IntersectionObserver" in window) {
-        const spy = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) setActiveNav(entry.target.id);
-            });
-        }, { rootMargin: "-45% 0px -50% 0px" });
-
-        spySections.forEach((section) => spy.observe(section));
-    }
 
 
     /* =========================================================
@@ -243,7 +191,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateCountdown() {
         if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
 
-        const target = new Date(WEDDING_DATE).getTime();
+        // Target dihitung engine dari config.acara.akad (tanggal + jam mulai)
+        const target = new Date(dataAt("turunan.countdownTarget")).getTime();
+        if (Number.isNaN(target)) return;
+
         const now = Date.now();
         const difference = target - now;
 
@@ -275,21 +226,47 @@ document.addEventListener("DOMContentLoaded", () => {
     5. SAVE TO CALENDAR
     ========================================================= */
 
+    // Format tanggal ISO → format iCalendar UTC (YYYYMMDDTHHMMSSZ)
+    function toICSDate(iso) {
+        return new Date(iso).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+    }
+
+    // Escape karakter khusus iCalendar
+    function escapeICS(text) {
+        return String(text || "")
+            .replace(/\\/g, "\\\\")
+            .replace(/;/g, "\\;")
+            .replace(/,/g, "\\,")
+            .replace(/\n/g, "\\n");
+    }
+
     if (calendarButton) {
         calendarButton.addEventListener("click", () => {
+            const akad = dataAt("acara.akad") || {};
+            const turunanAkad = dataAt("turunan.akad") || {};
+            const pasangan = dataAt("turunan.nama.pasangan") || "";
+            const pasanganLengkap = dataAt("turunan.nama.pasanganLengkap") || "";
+
+            if (!turunanAkad.mulaiISO || !turunanAkad.selesaiISO) {
+                console.error("Data waktu akad belum lengkap di config.js.");
+                return;
+            }
+
+            const slug = pasangan.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "wedding";
+
             const icsContent = [
                 "BEGIN:VCALENDAR",
                 "VERSION:2.0",
-                "PRODID:-//Andi & Sari Wedding//ID",
+                `PRODID:-//${escapeICS(pasangan)} Wedding//ID`,
                 "CALSCALE:GREGORIAN",
                 "BEGIN:VEVENT",
-                "UID:andi-sari-wedding-2027@example.com",
-                "DTSTAMP:20260919T000000Z",
-                "DTSTART:20270221T010000Z",
-                "DTEND:20270221T030000Z",
-                "SUMMARY:Akad Nikah Andi & Sari",
-                "LOCATION:Masjid Jami' Al-Ikhlas, Jl. Raya Ragunan No. 11A, Jati Padang, Pasar Minggu, Jakarta Selatan",
-                "DESCRIPTION:Akad Nikah Andi & Sari.",
+                `UID:${slug}-${akad.tanggal}@wedding-invitation`,
+                `DTSTAMP:${toICSDate(new Date().toISOString())}`,
+                `DTSTART:${toICSDate(turunanAkad.mulaiISO)}`,
+                `DTEND:${toICSDate(turunanAkad.selesaiISO)}`,
+                `SUMMARY:${escapeICS(`${akad.judul} ${pasangan}`)}`,
+                `LOCATION:${escapeICS(`${akad.tempat}, ${akad.alamat}`)}`,
+                `DESCRIPTION:${escapeICS(`${akad.judul} ${pasanganLengkap}.`)}`,
                 "END:VEVENT",
                 "END:VCALENDAR"
             ].join("\r\n");
@@ -299,7 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const link = document.createElement("a");
 
             link.href = url;
-            link.download = "andi-sari-akad.ics";
+            link.download = `${slug}-akad.ics`;
             document.body.appendChild(link);
             link.click();
             link.remove();
@@ -317,8 +294,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const mapSlider = document.getElementById("mapSlider");
     const mapTrack = document.querySelector(".map-track");
-    const mapSlides = document.querySelectorAll(".map-slide");
-    const mapDots = document.querySelectorAll(".map-dot");
+    // Slide yang disembunyikan engine (data kosong) tidak ikut dihitung
+    const mapSlides = document.querySelectorAll(".map-slide:not([hidden])");
+    const mapDots = document.querySelectorAll(".map-dot:not([hidden])");
     const mapPrev = document.getElementById("mapPrev");
     const mapNext = document.getElementById("mapNext");
 
@@ -356,6 +334,13 @@ document.addEventListener("DOMContentLoaded", () => {
         showMap(0);
     }
 
+    // Hanya satu lokasi → sembunyikan kontrol slider
+    if (mapSlides.length < 2) {
+        [mapPrev, mapNext, document.querySelector(".map-dots")].forEach((el) => {
+            if (el) el.hidden = true;
+        });
+    }
+
     // Touch Swipe Map
     let touchStartX = 0;
     let touchEndX = 0;
@@ -381,11 +366,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const gallerySlider = document.getElementById("gallerySlider");
     const galleryTrack = document.querySelector(".gallery-track");
-    const gallerySlides = document.querySelectorAll(".gallery-slide");
+    const gallerySlides = document.querySelectorAll(".gallery-slide:not([hidden])");
     const galleryPrev = document.getElementById("galleryPrev");
     const galleryNext = document.getElementById("galleryNext");
     const galleryDotsContainer = document.getElementById("galleryDots");
-    const galleryItems = document.querySelectorAll(".gallery-item");
+    const galleryItems = document.querySelectorAll(".gallery-item:not([hidden])");
 
     let currentGalleryIndex = 0;
     let isMobileView = window.innerWidth <= 768;
@@ -511,8 +496,8 @@ document.addEventListener("DOMContentLoaded", () => {
     8. RSVP / UCAPAN — GOOGLE SHEETS + RIWAYAT UCAPAN
     ========================================================= */
 
-    const GOOGLE_SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycby0ijLbTlRvzkjtySPbHRTmf0CxJhSezpaPzvY8mIDeP53kLFg50IM91dqGvsj4U7befw/exec";
+    // Endpoint Google Apps Script (dari config.rsvp.googleScriptUrl)
+    const GOOGLE_SCRIPT_URL = dataAt("rsvp.googleScriptUrl") || "";
 
     const guestbookHistory = document.getElementById("guestbookHistory");
     const loadMoreMessages = document.getElementById("loadMoreMessages");
@@ -605,6 +590,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function loadGuestbook() {
         if (!guestbookHistory) return;
+
+        if (!GOOGLE_SCRIPT_URL) {
+            guestbookHistory.textContent = "Fitur ucapan belum dikonfigurasi.";
+            return;
+        }
 
         const requestId = ++guestbookRequestId;
         const callbackName =
@@ -721,6 +711,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (submitButton?.disabled) return;
 
+            if (!GOOGLE_SCRIPT_URL) {
+                if (formStatus) {
+                    formStatus.textContent = "Fitur ucapan belum dikonfigurasi.";
+                }
+                return;
+            }
+
             const rsvpData = {
                 name: guestName.slice(0, 100),
                 attendance,
@@ -796,8 +793,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             event.preventDefault();
 
-            const headerHeight = siteHeader ? siteHeader.offsetHeight : 0;
-            const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+            const targetPosition = target.getBoundingClientRect().top + window.scrollY;
 
             window.scrollTo({
                 top: targetPosition,
@@ -813,10 +809,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!openingScreen) {
         document.body.classList.remove("locked");
-    }
-
-    if (openingScreen && openingScreen.classList.contains("is-hidden") && siteHeader) {
-        siteHeader.classList.add("visible");
     }
 
     /* =========================================================
@@ -856,11 +848,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function salinRekening(accountId) {
-        const accountElement = document.getElementById(accountId);
+    function salinRekening(selector) {
+        const accountElement = document.querySelector(selector);
 
         if (!accountElement) {
-            console.error("Rekening tidak ditemukan:", accountId);
+            console.error("Rekening tidak ditemukan:", selector);
             alert("Nomor rekening tidak ditemukan.");
             return;
         }
@@ -930,9 +922,21 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     }   
     
-    // Agar dapat dipanggil oleh atribut onclick pada HTML.
-    window.salinRekening = salinRekening;
-    window.salinAlamatKado = salinAlamatKado;
+    // Event delegation: tombol memakai atribut data-*, bukan onclick inline.
+    //   data-copy-account="#rekening0"  → salin nomor rekening
+    //   data-copy-gift-address          → salin info penerima kado
+    document.addEventListener("click", (event) => {
+        const accountButton = event.target.closest("[data-copy-account]");
+
+        if (accountButton) {
+            salinRekening(accountButton.getAttribute("data-copy-account"));
+            return;
+        }
+
+        if (event.target.closest("[data-copy-gift-address]")) {
+            salinAlamatKado();
+        }
+    });
 
 });
 
@@ -991,7 +995,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const line = window.innerHeight * 0.4;
             let current = sections[0];
 
-            sections.forEach((s) => {
+            // Seksi yang disembunyikan (data kosong) dilewati
+            const visibleSections = sections.filter((s) => !s.hidden);
+            current = visibleSections[0];
+
+            visibleSections.forEach((s) => {
                 if (s.getBoundingClientRect().top <= line) current = s;
             });
 

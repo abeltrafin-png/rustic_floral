@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html lang="id">
 
+<!--
+    ============================================================
+    INDEX.HTML — TEMPLATE UNDANGAN (DATA DIPISAH DARI TAMPILAN)
+    ------------------------------------------------------------
+    Seluruh data klien ada di: assets/js/config.js
+    Mesin injeksi data      : assets/js/modules/template-engine.js
+
+    ATRIBUT PENANDA (TAGGING)
+      data-template="path"         → isi teks
+      data-template-src="path"     → atribut src   (img, iframe, source)
+      data-template-href="path"    → atribut href  (a)
+      data-template-alt="path"     → atribut alt
+      data-template-title="path"   → atribut title (iframe)
+      data-template-content="path" → atribut content (meta)
+      data-template-if="path"      → elemen disembunyikan bila data kosong
+    Contoh path: mempelai.pria.namaLengkap | cerita.0.judul
+    ============================================================
+-->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Undangan Pernikahan Andi Prasetyo & Sari Wulandari">
-    <title>Undangan Pernikahan — Andi & Sari</title>
+    <meta name="description" content="Undangan Pernikahan Digital" data-template-content="meta.deskripsi">
+    <title data-template="meta.judulHalaman">Undangan Pernikahan</title>
 
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -31,12 +50,17 @@
         <div class="floating-botanical botanical-2">❧</div>
         <div class="floating-botanical botanical-3">✿</div>
     </div>
-    
+
     <!-- BACKGROUND MUSIC -->
+    <!-- ============================================ -->
+        <!-- TEMPLATE TAGGING BOUNDARY MARKER: MUSIK -->
+        <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (musik.*) -->
+        <!-- ============================================ -->
     <audio id="weddingMusic" loop preload="auto">
-        <source src="assets/music/wedding-song.mp3" type="audio/mpeg">
+        <source data-template-src="musik.file" type="audio/mpeg">
         Browser Anda tidak mendukung audio HTML5.
     </audio>
+    <!-- END TEMPLATE TAGGING BOUNDARY MARKER: MUSIK -->
 
     <!-- MUSIC CONTROL -->
     <button
@@ -44,7 +68,8 @@
         class="music-control"
         id="musicControl"
         aria-label="Putar musik"
-        aria-pressed="false">
+        aria-pressed="false"
+        data-template-if="musik.file">
         <span class="music-icon">♫</span>
         <span class="music-waves">
             <i></i>
@@ -52,23 +77,30 @@
             <i></i>
         </span>
     </button>
+
     <!-- OPENING SCREEN -->
+    <!-- ============================================ -->
+        <!-- TEMPLATE TAGGING BOUNDARY MARKER: OPENING SCREEN -->
+        <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (mempelai.*, sambutan.*, turunan.tanggalUtama.*) -->
+        <!-- ============================================ -->
     <div class="opening-screen" id="openingScreen">
         <div class="opening-card">
             <div class="opening-floral">❀</div>
             <div class="opening-label">The Wedding Of</div>
-            <h1>Andi <span>&</span> Sari</h1>
+            <h1><span data-template="mempelai.pria.namaPanggilan"></span> <span class="amp">&amp;</span> <span data-template="mempelai.wanita.namaPanggilan"></span></h1>
             <div class="opening-line"></div>
-            <p class="opening-to">Kepada Yth.<br>Bapak/Ibu/Saudara/i</p>
-            <div class="opening-date">MINGGU, 21 FEBRUARI 2027</div>
+            <p class="opening-to" data-template="sambutan.pembukaTamu"></p>
+            <div class="opening-date" data-template="turunan.tanggalUtama.lengkapKapital"></div>
             <button type="button" class="open-button" id="openInvitation">Buka Undangan</button>
         </div>
     </div>
+    <!-- END TEMPLATE TAGGING BOUNDARY MARKER: OPENING SCREEN -->
+
     <!-- NAVBAR DESKTOP -->
     <header class="dnav" id="dnav">
         <button type="button" class="dnav-logo pulse" id="dnavToggle"
             aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="dnavMenu">
-            A<span>&</span>S
+            <span data-template="turunan.inisial.pria"></span><span class="amp">&amp;</span><span data-template="turunan.inisial.wanita"></span>
         </button>
 
         <nav class="dnav-menu" id="dnavMenu" aria-label="Navigasi utama">
@@ -88,7 +120,7 @@
                 <svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
                 <small>Lokasi</small>
             </a>
-            <a href="#live" data-label="Live">
+            <a href="#live" data-label="Live" data-template-if="live.aktif">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z"/></svg>
                 <small>Live</small>
             </a>
@@ -100,7 +132,7 @@
                 <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-9 9"/></svg>
                 <small>Galeri</small>
             </a>
-            <a href="#wedding-quote" data-label="Doa">
+            <a href="#wedding-quote" data-label="Doa" data-template-if="quote.kutipan">
                 <svg viewBox="0 0 24 24"><path d="M12 3l2.2 5.6 5.8.9-4.4 3.9L17 19l-5-3-5 3 1.4-5.6L4 9.5l5.8-.9z"/></svg>
                 <small>Doa</small>
             </a>
@@ -118,23 +150,25 @@
     <main>
 
         <!-- HERO / COVER -->
+        <!-- ============================================ -->
+        <!-- TEMPLATE TAGGING BOUNDARY MARKER: HERO -->
+        <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (mempelai.*, sambutan.pesanHero, turunan.tanggalUtama.*) -->
+        <!-- ============================================ -->
         <section class="hero" id="hero">
             <div class="hero-flower hero-flower-left">❀</div>
             <div class="hero-flower hero-flower-right">✿</div>
             <div class="hero-content">
                 <p class="hero-eyebrow">The Wedding Invitation Of</p>
-                <h1 class="hero-names">Andi <span>&</span> Sari</h1>
+                <h1 class="hero-names"><span data-template="mempelai.pria.namaPanggilan"></span> <span class="amp">&amp;</span> <span data-template="mempelai.wanita.namaPanggilan"></span></h1>
                 <div class="hero-divider">
                     <span></span>❀<span></span>
                 </div>
-                <p class="hero-message">
-                    Dengan penuh kebahagiaan, kami mengundang Anda untuk menjadi bagian dari hari istimewa kami.
-                </p>
+                <p class="hero-message" data-template="sambutan.pesanHero"></p>
                 <div class="hero-date">
-                    <span>MINGGU</span>
-                    <strong>21</strong>
-                    <span>FEBRUARI</span>
-                    <span>2027</span>
+                    <span data-template="turunan.tanggalUtama.hariKapital"></span>
+                    <strong data-template="turunan.tanggalUtama.tanggal"></strong>
+                    <span data-template="turunan.tanggalUtama.bulanKapital"></span>
+                    <span data-template="turunan.tanggalUtama.tahun"></span>
                 </div>
                 <a href="#couple" class="scroll-down">
                     <span>Scroll untuk melihat undangan</span>
@@ -142,8 +176,13 @@
                 </a>
             </div>
         </section>
+        <!-- END TEMPLATE TAGGING BOUNDARY MARKER: HERO -->
 
         <!-- 1. MEMPELAI (#couple) -->
+        <!-- ============================================ -->
+        <!-- TEMPLATE TAGGING BOUNDARY MARKER: MEMPELAI -->
+        <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (mempelai.*) -->
+        <!-- ============================================ -->
         <section class="section couple-section" id="couple">
             <div class="section-heading">
                 <p class="section-eyebrow">Kami Yang Berbahagia</p>
@@ -154,27 +193,32 @@
             <div class="couple-wrapper">
                 <div class="person">
                     <div class="person-image">
-                        <img src="assets/images/man.jpg" alt="Andi Prasetyo, S.T.">
+                        <img data-template-src="mempelai.pria.foto" data-template-alt="mempelai.pria.fotoAlt">
                     </div>
                     <p class="person-label">The Groom</p>
-                    <h3>Andi Prasetyo, S.T.</h3>
-                    <p class="person-family">Putra dari<br>Bapak H. Ahmad & Ibu Hj. Fatimah</p>
+                    <h3 data-template="mempelai.pria.namaLengkap"></h3>
+                    <p class="person-family" data-template="mempelai.pria.orangTua"></p>
                 </div>
 
                 <div class="couple-heart"><span>♡</span></div>
 
                 <div class="person">
                     <div class="person-image">
-                        <img src="assets/images/woman.jpg" alt="Sari Wulandari, S.Pd.">
+                        <img data-template-src="mempelai.wanita.foto" data-template-alt="mempelai.wanita.fotoAlt">
                     </div>
                     <p class="person-label">The Bride</p>
-                    <h3>Sari Wulandari, S.Pd.</h3>
-                    <p class="person-family">Putri dari<br>Bapak H. Budi & Ibu Hj. Rahayu</p>
+                    <h3 data-template="mempelai.wanita.namaLengkap"></h3>
+                    <p class="person-family" data-template="mempelai.wanita.orangTua"></p>
                 </div>
             </div>
         </section>
+        <!-- END TEMPLATE TAGGING BOUNDARY MARKER: MEMPELAI -->
 
         <!-- 2. RANGKAIAN ACARA (#events) -->
+        <!-- ============================================ -->
+        <!-- TEMPLATE TAGGING BOUNDARY MARKER: ACARA -->
+        <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (acara.*, turunan.akad.*, turunan.resepsi.*) -->
+        <!-- ============================================ -->
         <section class="section events-section" id="events">
             <div class="section-heading">
                 <p class="section-eyebrow">Rangkaian Pernikahan</p>
@@ -184,70 +228,71 @@
 
             <div class="events-wrapper">
                 <!-- AKAD NIKAH -->
-                <article class="event">
+                <article class="event" data-template-if="acara.akad.aktif">
                     <div class="event-top">
                         <span>01</span>
-                        <p>AKAD NIKAH</p>
+                        <p data-template="acara.akad.label"></p>
                     </div>
                     <div class="event-flower">❀</div>
-                    <h3>Akad Nikah</h3>
+                    <h3 data-template="acara.akad.judul"></h3>
                     <div class="event-detail">
-                        <div>
-                            <span class="detail-label">Hari & Tanggal</span>
-                            <strong>Minggu, 21 Februari 2027</strong>
+                        <div data-template-if="turunan.akad.tanggalLengkap">
+                            <span class="detail-label">Hari &amp; Tanggal</span>
+                            <strong data-template="turunan.akad.tanggalLengkap"></strong>
                         </div>
-                        <div>
+                        <div data-template-if="turunan.akad.waktu">
                             <span class="detail-label">Waktu</span>
-                            <strong>08.00 — 10.00 WIB</strong>
+                            <strong data-template="turunan.akad.waktu"></strong>
                         </div>
-                        <div>
+                        <div data-template-if="acara.akad.tempat">
                             <span class="detail-label">Tempat</span>
-                            <strong>Masjid Jami' Al-Ikhlas</strong>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">
-                                Jl. Raya Ragunan No. 11A, Jati Padang, Pasar Minggu, Jakarta Selatan
-                            </p>
+                            <strong data-template="acara.akad.tempat"></strong>
+                            <p class="event-address" data-template="acara.akad.alamat"></p>
                         </div>
                     </div>
-                    <div class="event-actions" style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
-                        <a href="https://maps.google.com/?q=Masjid+Jami'+Al-Ikhlas+Jl.+Raya+Ragunan+No.+11A+Jati+Padang" target="_blank" class="event-button">🗺️ Lokasi Akad</a>
+                    <div class="event-actions">
+                        <a data-template-href="acara.akad.mapsUrl" target="_blank" rel="noopener noreferrer" class="event-button">🗺️ Lokasi Akad</a>
                         <button type="button" class="event-button" id="calendarButton">📅 Save The Date</button>
                     </div>
                 </article>
 
                 <!-- RESEPSI -->
-                <article class="event">
+                <article class="event" data-template-if="acara.resepsi.aktif">
                     <div class="event-top">
                         <span>02</span>
-                        <p>RESEPSI</p>
+                        <p data-template="acara.resepsi.label"></p>
                     </div>
                     <div class="event-flower">❀</div>
-                    <h3>Resepsi Pernikahan</h3>
+                    <h3 data-template="acara.resepsi.judul"></h3>
                     <div class="event-detail">
-                        <div>
-                            <span class="detail-label">Hari & Tanggal</span>
-                            <strong>Minggu, 21 Februari 2027</strong>
+                        <div data-template-if="turunan.resepsi.tanggalLengkap">
+                            <span class="detail-label">Hari &amp; Tanggal</span>
+                            <strong data-template="turunan.resepsi.tanggalLengkap"></strong>
                         </div>
-                        <div>
+                        <div data-template-if="turunan.resepsi.waktu">
                             <span class="detail-label">Waktu</span>
-                            <strong>14.00 — 16.00 WIB</strong>
+                            <strong data-template="turunan.resepsi.waktu"></strong>
                         </div>
-                        <div>
+                        <div data-template-if="acara.resepsi.tempat">
                             <span class="detail-label">Tempat</span>
-                            <strong>Gedung Pertemuan PERTAMINA</strong>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">
-                                Jl. Cemp. Putih Tengah XX B No.20B, Kota Jakarta Pusat
-                            </p>
+                            <strong data-template="acara.resepsi.tempat"></strong>
+                            <p class="event-address" data-template="acara.resepsi.alamat"></p>
                         </div>
                     </div>
-                    <div class="event-actions" style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
-                        <a href="https://maps.google.com/?q=Gedung+Pertemuan+PERTAMINA" target="_blank" class="event-button">🗺️ Lokasi Resepsi</a>
-                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Resepsi+Pernikahan+Andi+%26+Sari&dates=20270221T070000Z/20270221T090000Z&details=Resepsi+Pernikahan+Andi+Prasetyo+%26+Sari+Wulandari&location=Gedung+Pertemuan+PERTAMINA" target="_blank" class="event-button">📅 Save The Date</a>
+                    <div class="event-actions">
+                        <a data-template-href="acara.resepsi.mapsUrl" target="_blank" rel="noopener noreferrer" class="event-button">🗺️ Lokasi Resepsi</a>
+                        <a data-template-href="turunan.resepsi.kalenderUrl" target="_blank" rel="noopener noreferrer" class="event-button">📅 Save The Date</a>
                     </div>
                 </article>
             </div>
         </section>
+        <!-- END TEMPLATE TAGGING BOUNDARY MARKER: ACARA -->
 
         <!-- 3. LOKASI & COUNTDOWN -->
+        <!-- ============================================ -->
+        <!-- TEMPLATE TAGGING BOUNDARY MARKER: LOKASI -->
+        <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (acara.*.tempat, alamat, mapsUrl, mapsEmbedUrl) -->
+        <!-- ============================================ -->
         <section class="section location-section" id="location">
             <div class="section-heading">
                 <p class="section-eyebrow">Lokasi Acara</p>
@@ -259,28 +304,28 @@
             <div class="map-slider" id="mapSlider">
                 <div class="map-track">
                     <!-- MAP AKAD -->
-                    <div class="map-slide active">
+                    <div class="map-slide active" data-template-if="acara.akad.aktif">
                         <div class="map-card">
                             <div class="map-title">
                                 <span class="map-number">01</span>
                                 <div>
-                                    <small>AKAD NIKAH</small>
-                                    <h3>Masjid Jami' Al-Ikhlas</h3>
-                                    <p>Jl. Raya Ragunan No. 11A, Jati Padang, Pasar Minggu, Jakarta Selatan</p>
+                                    <small data-template="acara.akad.label"></small>
+                                    <h3 data-template="acara.akad.tempat"></h3>
+                                    <p data-template="acara.akad.alamat"></p>
                                 </div>
                             </div>
                             <div class="map-frame">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.7362024147047!2d106.8286915!3d-6.2983804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f2307bdcdd03%3A0x6b9bfd3b48f654b1!2sMasjid%20Jami&#39;%20Al-Ikhlas!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+                                    data-template-src="acara.akad.mapsEmbedUrl"
+                                    data-template-title="acara.akad.tempat"
                                     width="100%"
                                     height="360"
-                                    style="border:0;"
                                     allowfullscreen=""
                                     loading="lazy"
                                     referrerpolicy="no-referrer-when-downgrade">
                                 </iframe>
                             </div>
-                            <a href="https://maps.google.com/?q=Masjid+Jami'+Al-Ikhlas+Jl.+Raya+Ragunan+No.+11A+Jati+Padang"
+                            <a data-template-href="acara.akad.mapsUrl"
                                 target="_blank" rel="noopener noreferrer" class="map-button">
                                 Buka Google Maps
                             </a>
@@ -288,28 +333,28 @@
                     </div>
 
                     <!-- MAP RESEPSI -->
-                    <div class="map-slide">
+                    <div class="map-slide" data-template-if="acara.resepsi.aktif">
                         <div class="map-card">
                             <div class="map-title">
                                 <span class="map-number">02</span>
                                 <div>
-                                    <small>RESEPSI</small>
-                                    <h3>Gedung Pertemuan PERTAMINA</h3>
-                                    <p>Jl. Cempaka Putih Tengah XX B No. 20B, Jakarta Pusat</p>
+                                    <small data-template="acara.resepsi.label"></small>
+                                    <h3 data-template="acara.resepsi.tempat"></h3>
+                                    <p data-template="acara.resepsi.alamat"></p>
                                 </div>
                             </div>
                             <div class="map-frame">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2737668615796!2d106.8329618!3d-6.2275811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3ebd03c9233%3A0x3344692eb3f57262!2sGedung%20Pertemuan%20Pertamina!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+                                    data-template-src="acara.resepsi.mapsEmbedUrl"
+                                    data-template-title="acara.resepsi.tempat"
                                     width="100%"
                                     height="360"
-                                    style="border:0;"
                                     allowfullscreen=""
                                     loading="lazy"
                                     referrerpolicy="no-referrer-when-downgrade">
                                 </iframe>
                             </div>
-                            <a href="https://maps.google.com/?q=Gedung+Pertemuan+PERTAMINA"
+                            <a data-template-href="acara.resepsi.mapsUrl"
                                 target="_blank" rel="noopener noreferrer" class="map-button">
                                 Buka Google Maps
                             </a>
@@ -323,12 +368,12 @@
 
                 <!-- DOT INDICATOR -->
                 <div class="map-dots">
-                    <button type="button" class="map-dot active" data-slide="0" aria-label="Lihat lokasi akad"></button>
-                    <button type="button" class="map-dot" data-slide="1" aria-label="Lihat lokasi resepsi"></button>
+                    <button type="button" class="map-dot active" data-slide="0" aria-label="Lihat lokasi akad" data-template-if="acara.akad.aktif"></button>
+                    <button type="button" class="map-dot" data-slide="1" aria-label="Lihat lokasi resepsi" data-template-if="acara.resepsi.aktif"></button>
                 </div>
             </div>
 
-            <!-- COUNTDOWN -->
+            <!-- COUNTDOWN (target waktu dihitung di script.js dari config) -->
             <div class="countdown-wrapper" id="countdown">
                 <div class="section-heading countdown-heading">
                     <p class="section-eyebrow">Menuju Hari Bahagia</p>
@@ -356,85 +401,58 @@
                 </div>
             </div>
         </section>
+        <!-- END TEMPLATE TAGGING BOUNDARY MARKER: LOKASI -->
 
-        <!-- ==================================================
-            4. LIVE STREAMING
-            ================================================== -->
-
-        <section class="section live-section" id="live">
-
+        <!-- 4. LIVE STREAMING -->
+        <!-- ============================================ -->
+        <!-- TEMPLATE TAGGING BOUNDARY MARKER: LIVE STREAMING -->
+        <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (live.*) -->
+        <!-- ============================================ -->
+        <section class="section live-section" id="live" data-template-if="live.aktif">
             <div class="section-heading">
-
-                <p class="section-eyebrow">
-                    Saksikan Bersama
-                </p>
-
-                <h2>
-                    Live Streaming
-                </h2>
-
-                <div class="heading-flower">
-                    ✿
-                </div>
-
+                <p class="section-eyebrow">Saksikan Bersama</p>
+                <h2>Live Streaming</h2>
+                <div class="heading-flower">✿</div>
             </div>
 
-
             <div class="live-wrapper">
-
                 <div class="live-card">
-
                     <div class="live-status">
                         <span class="live-dot"></span>
                         LIVE
                     </div>
 
-
                     <div class="live-frame">
-
                         <iframe
-                            src="https://www.youtube.com/embed/YOUR_LIVE_VIDEO_ID"
-                            title="Live Streaming Pernikahan Andi & Sari"
+                            data-template-src="live.embedUrl"
+                            data-template-title="live.judulIframe"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen>
                         </iframe>
-
                     </div>
 
-
                     <div class="live-content">
-
-                        <h3>
-                            Saksikan Pernikahan Kami Secara Live
-                        </h3>
-
-                        <p>
-                            Bagi keluarga dan sahabat yang tidak dapat hadir
-                            secara langsung, kami mengundang Anda untuk
-                            menyaksikan momen bahagia ini melalui live streaming.
-                        </p>
-
-
+                        <h3 data-template="live.judul"></h3>
+                        <p data-template="live.deskripsi"></p>
                         <a
-                            href="https://www.youtube.com/"
+                            data-template-href="live.tautanYoutube"
                             target="_blank"
                             rel="noopener noreferrer"
                             class="live-button">
-
                             Tonton di YouTube
-
                         </a>
-
                     </div>
-
                 </div>
-
             </div>
-
         </section>
+        <!-- END TEMPLATE TAGGING BOUNDARY MARKER: LIVE STREAMING -->
 
         <!-- 5. LOVE STORY -->
+        <!-- ============================================ -->
+        <!-- TEMPLATE TAGGING BOUNDARY MARKER: LOVE STORY -->
+        <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (cerita[0..3]) -->
+        <!-- ============================================ -->
         <section class="section story-section" id="story">
             <div class="section-heading">
                 <p class="section-eyebrow">Kisah Kami</p>
@@ -443,102 +461,93 @@
             </div>
 
             <div class="story">
-                <div class="story-item">
+                <div class="story-item" data-template-if="cerita.0.judul">
                     <div class="story-year">01</div>
                     <div class="story-dot"></div>
                     <div class="story-content">
                         <div class="story-image">
-                            <img src="assets/images/story-1.jpg" alt="Awal pertemuan Andi dan Sari">
+                            <img data-template-src="cerita.0.foto" data-template-alt="cerita.0.fotoAlt">
                         </div>
                         <div class="story-text">
-                            <span class="story-label">AWAL PERTEMUAN</span>
-                            <h3>Pertama Bertemu</h3>
-                            <p>
-                                Kami pertama kali bertemu di bangku kuliah saat mengikuti kegiatan organisasi kampus.
-                                Dari sebuah pertemuan sederhana, perlahan tumbuh cerita yang begitu berarti.
-                            </p>
+                            <span class="story-label" data-template="cerita.0.label"></span>
+                            <h3 data-template="cerita.0.judul"></h3>
+                            <p data-template="cerita.0.deskripsi"></p>
                         </div>
                     </div>
                 </div>
 
-                <div class="story-item">
+                <div class="story-item" data-template-if="cerita.1.judul">
                     <div class="story-year">02</div>
                     <div class="story-dot"></div>
                     <div class="story-content">
                         <div class="story-image">
-                            <img src="assets/images/story-2.jpg" alt="Kisah Andi dan Sari">
+                            <img data-template-src="cerita.1.foto" data-template-alt="cerita.1.fotoAlt">
                         </div>
                         <div class="story-text">
-                            <span class="story-label">KOMITMEN</span>
-                            <h3>Berkomitmen</h3>
-                            <p>
-                                Setelah melalui berbagai cerita bersama, kami memutuskan untuk melangkah lebih jauh,
-                                saling mendukung dan tumbuh bersama.
-                            </p>
+                            <span class="story-label" data-template="cerita.1.label"></span>
+                            <h3 data-template="cerita.1.judul"></h3>
+                            <p data-template="cerita.1.deskripsi"></p>
                         </div>
                     </div>
                 </div>
 
-                <div class="story-item">
+                <div class="story-item" data-template-if="cerita.2.judul">
                     <div class="story-year">03</div>
                     <div class="story-dot"></div>
                     <div class="story-content">
                         <div class="story-image">
-                            <img src="assets/images/story-3.jpg" alt="Lamaran Andi dan Sari">
+                            <img data-template-src="cerita.2.foto" data-template-alt="cerita.2.fotoAlt">
                         </div>
                         <div class="story-text">
-                            <span class="story-label">MENUJU PERNIKAHAN</span>
-                            <h3>Lamaran & Pernikahan</h3>
-                            <p>
-                                Dengan restu kedua keluarga, kami memantapkan hati untuk mengikat janji suci dan memulai
-                                perjalanan baru sebagai satu keluarga.
-                            </p>
+                            <span class="story-label" data-template="cerita.2.label"></span>
+                            <h3 data-template="cerita.2.judul"></h3>
+                            <p data-template="cerita.2.deskripsi"></p>
                         </div>
                     </div>
                 </div>
 
-                <div class="story-item">
+                <div class="story-item" data-template-if="cerita.3.judul">
                     <div class="story-year">04</div>
                     <div class="story-dot"></div>
                     <div class="story-content">
                         <div class="story-image">
-                            <img src="assets/images/story-4.jpg" alt="Kisah Andi dan Sari">
+                            <img data-template-src="cerita.3.foto" data-template-alt="cerita.3.fotoAlt">
                         </div>
                         <div class="story-text">
-                            <span class="story-label">PERNIKAHAN</span>
-                            <h3>Pernikahan</h3>
-                            <p>
-                                Hari di mana janji suci diucapkan di hadapan Tuhan dan para saksi, mengawali kehidupan
-                                bahtera rumah tangga yang penuh kehangatan.
-                            </p>
+                            <span class="story-label" data-template="cerita.3.label"></span>
+                            <h3 data-template="cerita.3.judul"></h3>
+                            <p data-template="cerita.3.deskripsi"></p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- END TEMPLATE TAGGING BOUNDARY MARKER: LOVE STORY -->
 
         <!-- 5. GALLERY & VIDEO -->
+        <!-- ============================================ -->
+        <!-- TEMPLATE TAGGING BOUNDARY MARKER: GALERI & VIDEO -->
+        <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (galeri.*) -->
+        <!-- ============================================ -->
         <section class="section gallery-section" id="gallery">
-            <div class="section-heading">
+            <div class="section-heading" data-template-if="galeri.videoEmbedUrl">
                 <p class="section-eyebrow">Our Moments</p>
                 <h2>Wedding Video</h2>
                 <div class="heading-flower">✿</div>
             </div>
 
-            <div class="video-wrapper">
+            <div class="video-wrapper" data-template-if="galeri.videoEmbedUrl">
                 <div class="video-card">
-                    <iframe 
-                        class="wedding-video" 
-                        src="https://www.youtube.com/embed/CglBdEdY2T4" 
-                        title="Wedding Video Andi & Sari" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    <iframe
+                        class="wedding-video"
+                        data-template-src="galeri.videoEmbedUrl"
+                        data-template-title="galeri.videoJudul"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen>
                     </iframe>
                 </div>
-                <p class="video-caption">
-                    Sebuah cerita, sebuah perjalanan, dan sebuah momen yang akan selalu kami kenang.
-                </p>
+                <p class="video-caption" data-template="galeri.videoCaption"></p>
             </div>
 
             <div class="section-heading gallery-heading">
@@ -550,23 +559,23 @@
             <!-- CONTAINER GALERI (Desktop: Grid, Mobile: Slider) -->
             <div class="gallery-slider-wrapper" id="gallerySlider">
                 <div class="gallery-grid gallery-track">
-                    <div class="gallery-item gallery-slide">
-                        <img src="assets/images/foto1.jpg" alt="Foto Andi dan Sari 1">
+                    <div class="gallery-item gallery-slide" data-template-if="galeri.foto.0.src">
+                        <img data-template-src="galeri.foto.0.src" data-template-alt="galeri.foto.0.alt">
                     </div>
-                    <div class="gallery-item gallery-slide">
-                        <img src="assets/images/foto2.jpg" alt="Foto Andi dan Sari 2">
+                    <div class="gallery-item gallery-slide" data-template-if="galeri.foto.1.src">
+                        <img data-template-src="galeri.foto.1.src" data-template-alt="galeri.foto.1.alt">
                     </div>
-                    <div class="gallery-item gallery-slide">
-                        <img src="assets/images/foto3.jpg" alt="Foto Andi dan Sari 3">
+                    <div class="gallery-item gallery-slide" data-template-if="galeri.foto.2.src">
+                        <img data-template-src="galeri.foto.2.src" data-template-alt="galeri.foto.2.alt">
                     </div>
-                    <div class="gallery-item gallery-slide">
-                        <img src="assets/images/foto4.jpg" alt="Foto Andi dan Sari 4">
+                    <div class="gallery-item gallery-slide" data-template-if="galeri.foto.3.src">
+                        <img data-template-src="galeri.foto.3.src" data-template-alt="galeri.foto.3.alt">
                     </div>
-                    <div class="gallery-item gallery-slide">
-                        <img src="assets/images/foto5.jpg" alt="Foto Andi dan Sari 5">
+                    <div class="gallery-item gallery-slide" data-template-if="galeri.foto.4.src">
+                        <img data-template-src="galeri.foto.4.src" data-template-alt="galeri.foto.4.alt">
                     </div>
-                    <div class="gallery-item gallery-slide">
-                        <img src="assets/images/foto6.jpg" alt="Foto Andi dan Sari 6">
+                    <div class="gallery-item gallery-slide" data-template-if="galeri.foto.5.src">
+                        <img data-template-src="galeri.foto.5.src" data-template-alt="galeri.foto.5.alt">
                     </div>
                 </div>
 
@@ -585,28 +594,34 @@
                 </div>
             </div>
         </section>
+        <!-- END TEMPLATE TAGGING BOUNDARY MARKER: GALERI & VIDEO -->
 
         <!-- 6. DOA & HARAPAN (#wedding-quote) -->
-        <section class="section prayer-section" id="wedding-quote">
+        <!-- ============================================ -->
+        <!-- TEMPLATE TAGGING BOUNDARY MARKER: DOA & KUTIPAN -->
+        <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (quote.*) -->
+        <!-- ============================================ -->
+        <section class="section prayer-section" id="wedding-quote" data-template-if="quote.kutipan">
             <div class="section-heading">
-                <p class="section-eyebrow">Doa & Harapan</p>
+                <p class="section-eyebrow">Doa &amp; Harapan</p>
                 <h2>Sebuah Doa Untuk Kami</h2>
                 <div class="heading-flower">✿</div>
             </div>
 
             <div class="prayer-card">
-                <div class="arabic">
-                    رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا
-                </div>
+                <div class="arabic" lang="ar" dir="rtl" data-template="quote.teksArab"></div>
                 <div class="prayer-divider">❀</div>
-                <div class="translation">
-                    “Ya Tuhan kami, anugerahkanlah kepada kami pasangan dan keturunan yang menjadi penyejuk hati...”
-                </div>
-                <div class="prayer-source">— QS. Al-Furqan: 74 —</div>
+                <div class="translation">“<span data-template="quote.kutipan"></span>”</div>
+                <div class="prayer-source" data-template-if="quote.sumber">— <span data-template="quote.sumber"></span> —</div>
             </div>
         </section>
+        <!-- END TEMPLATE TAGGING BOUNDARY MARKER: DOA & KUTIPAN -->
 
         <!-- 7. AMPLOP DIGITAL / HADIAH (#gift) -->
+        <!-- ============================================ -->
+        <!-- TEMPLATE TAGGING BOUNDARY MARKER: AMPLOP DIGITAL -->
+        <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (amplop.*) -->
+        <!-- ============================================ -->
         <section class="section gift-section" id="gift">
             <div class="section-heading">
                 <p class="section-eyebrow">Tanda Kasih</p>
@@ -614,94 +629,73 @@
                 <div class="heading-flower">✿</div>
             </div>
 
-            <p class="gift-intro">
-                Doa restu Anda merupakan hadiah terindah. Namun jika ingin memberi hadiah,
-                Anda dapat menggunakan fitur di bawah ini:
-            </p>
+            <p class="gift-intro" data-template="amplop.pengantar"></p>
 
             <div class="gift-wrapper">
 
-                <!-- KARTU REKENING BCA -->
-                <div class="gift-card">
+                <!-- KARTU REKENING -->
+                <div class="gift-card" data-template-if="amplop.rekening.0.noRek">
+                    <div class="gift-account-block" data-template-if="amplop.rekening.0.noRek">
+                        <p class="gift-bank" data-template="amplop.rekening.0.bank"></p>
+                        <p class="gift-account" id="rekening0" data-template="amplop.rekening.0.noRek"></p>
+                        <p class="gift-name">a.n. <span data-template="amplop.rekening.0.atasNama"></span></p>
+                        <button type="button" class="gift-button" data-copy-account="#rekening0">Salin Rekening</button>
+                    </div>
+                    <div class="gift-account-block" data-template-if="amplop.rekening.1.noRek">
+                    <div class="gift-icon">♡</div>
+                        <p class="gift-bank" data-template="amplop.rekening.1.bank"></p>
+                        <p class="gift-account" id="rekening1" data-template="amplop.rekening.1.noRek"></p>
+                        <p class="gift-name">a.n. <span data-template="amplop.rekening.1.atasNama"></span></p>
+                        <button type="button" class="gift-button" data-copy-account="#rekening1">Salin Rekening</button>
+                    </div>
 
-                <!-- REKENING ANDI -->
-                <p class="gift-bank">BANK BCA</p>
-
-                <p class="gift-account" id="accountBCAAndi">1234 5678 90</p>
-
-                <p class="gift-name">a.n. Andi Prasetyo</p>
-
-                <button
-                    type="button"
-                    class="gift-button"
-                    onclick="salinRekening('accountBCAAndi')">
-                    Salin Rekening
-                </button>
-
-                <div class="gift-icon">♡</div>
-
-                <!-- REKENING SARI -->
-                <p class="gift-bank">BANK BCA</p>
-
-                <p class="gift-account" id="accountBCASari">4567 5678 21</p>
-
-                <p class="gift-name">a.n. Sari Wulandari</p>
-
-                <button
-                    type="button"
-                    class="gift-button"
-                    onclick="salinRekening('accountBCASari')">
-                    Salin Rekening
-                </button>
-
-            </div>
+                    <!-- QRIS (opsional: kosongkan amplop.qrisUrl untuk menyembunyikan) -->
+                    <div class="gift-qris" data-template-if="amplop.qrisUrl">
+                        <img data-template-src="amplop.qrisUrl" alt="QRIS">
+                    </div>
+                </div>
 
                 <!-- KARTU KIRIM KADO -->
-                <div class="gift-card gift-delivery-card">
+                <div class="gift-card gift-delivery-card" data-template-if="amplop.kirimKado.penerima">
                     <div class="gift-icon">♡</div>
                     <p class="gift-bank">KIRIM KADO</p>
 
-                    <div class="gift-detail">
+                    <div class="gift-detail" data-template-if="amplop.kirimKado.penerima">
                         <span class="gift-label">Nama Penerima</span>
-                        <p class="gift-value" id="giftRecipient">
-                            Andi Prasetyo
-                        </p>
+                        <p class="gift-value" id="giftRecipient" data-template="amplop.kirimKado.penerima"></p>
                     </div>
 
-                    <div class="gift-detail">
+                    <div class="gift-detail" data-template-if="amplop.kirimKado.noHp">
                         <span class="gift-label">Nomor HP</span>
-                        <p class="gift-value" id="giftPhone">
-                            0812-3456-7890
-                        </p>
+                        <p class="gift-value" id="giftPhone" data-template="amplop.kirimKado.noHp"></p>
                     </div>
 
-                    <div class="gift-detail">
+                    <div class="gift-detail" data-template-if="amplop.kirimKado.alamat">
                         <span class="gift-label">Alamat Penerima</span>
-                        <p class="gift-value gift-address" id="giftAddress">
-                            Masukkan alamat lengkap penerima kado di sini
-                        </p>
+                        <p class="gift-value gift-address" id="giftAddress" data-template="amplop.kirimKado.alamat"></p>
                     </div>
 
-                    <button
-                        type="button"
-                        class="gift-button"
-                        onclick="salinAlamatKado()">
+                    <button type="button" class="gift-button" data-copy-gift-address>
                         Salin Alamat Kado
                     </button>
                 </div>
 
             </div>
         </section>
+        <!-- END TEMPLATE TAGGING BOUNDARY MARKER: AMPLOP DIGITAL -->
 
-        
         <!-- 8. RSVP & KIRIM UCAPAN -->
+        <!-- ============================================ -->
+        <!-- TEMPLATE TAGGING BOUNDARY MARKER: RSVP -->
+        <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (rsvp.subjudul (endpoint: rsvp.googleScriptUrl)) -->
+        <!-- ============================================ -->
         <section class="section rsvp-section" id="rsvp">
 
             <div class="section-heading">
-                <p class="section-eyebrow">Kehadiran & Doa</p>
-                <h2>RSVP & Kirim Ucapan</h2>
+                <p class="section-eyebrow">Kehadiran &amp; Doa</p>
+                <h2>RSVP &amp; Kirim Ucapan</h2>
                 <div class="heading-flower">✿</div>
-                <p>Bagikan konfirmasi kehadiran serta doa terbaik untuk Andi & Sari.</p>
+                <p data-template="rsvp.subjudul"></p>
             </div>
 
             <!-- DUA BOX DALAM SATU SECTION -->
@@ -712,7 +706,7 @@
 
                     <div class="rsvp-box-heading">
                         <span class="rsvp-box-icon">♡</span>
-                        <h3>Kirim Ucapan & Doa</h3>
+                        <h3>Kirim Ucapan &amp; Doa</h3>
                         <p>Sampaikan doa dan harapan terbaik Anda.</p>
                     </div>
 
@@ -738,7 +732,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="message">Ucapan & Doa</label>
+                            <label for="message">Ucapan &amp; Doa</label>
                             <textarea
                                 id="message"
                                 placeholder="Tuliskan ucapan dan doa terbaik Anda..."
@@ -760,7 +754,7 @@
 
                     <div class="rsvp-box-heading">
                         <span class="rsvp-box-icon">❀</span>
-                        <h3>Ucapan & Doa dari Tamu</h3>
+                        <h3>Ucapan &amp; Doa dari Tamu</h3>
                         <p>Doa dan ucapan hangat dari keluarga serta sahabat.</p>
                     </div>
 
@@ -781,15 +775,25 @@
 
             </div>
         </section>
+        <!-- END TEMPLATE TAGGING BOUNDARY MARKER: RSVP -->
     </main>
 
+    <!-- FOOTER -->
+    <!-- ============================================ -->
+        <!-- TEMPLATE TAGGING BOUNDARY MARKER: FOOTER -->
+        <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (turunan.nama.*, turunan.tanggalUtama.*) -->
+        <!-- ============================================ -->
     <footer class="footer">
         <div class="footer-flower">❀</div>
         <p class="footer-small">With love</p>
-        <h2>Andi & Sari</h2>
-        <p>21 Februari 2027</p>
+        <h2 data-template="turunan.nama.pasangan"></h2>
+        <p data-template="turunan.tanggalUtama.lengkap"></p>
     </footer>
+    <!-- END TEMPLATE TAGGING BOUNDARY MARKER: FOOTER -->
 
+    <!-- URUTAN MUAT: config → engine → script -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/modules/template-engine.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
 

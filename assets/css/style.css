@@ -37,7 +37,7 @@
 
     --ink: #4a4642;
     --muted: #837b75;
-    --text-muted: #837b75;      /* dipakai oleh inline style di HTML */
+    --text-muted: #837b75;
 
     --white: #ffffff;
 
@@ -78,6 +78,12 @@ body.locked {
 img {
     display: block;
     width: 100%;
+}
+
+/* Elemen yang disembunyikan template-engine.js (data kosong).
+   !important agar menang atas display:flex/grid pada kelas komponen. */
+[hidden] {
+    display: none !important;
 }
 
 a {
@@ -229,7 +235,7 @@ main {
     line-height: 0.9;
 }
 
-.opening-card h1 span { color: var(--rose); }
+.opening-card h1 .amp { color: var(--rose); }
 
 .opening-line {
     width: 100px;
@@ -239,6 +245,7 @@ main {
 }
 
 .opening-to {
+    white-space: pre-line;      /* baris baru ("\n") dari config.js */
     color: var(--muted);
     font-family: var(--serif);
     font-size: 1.15rem;
@@ -318,7 +325,7 @@ main {
     transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-.dnav-logo span {
+.dnav-logo .amp {
     color: var(--rose-dark);
     font-size: 0.95em;
     font-style: italic;
@@ -362,7 +369,7 @@ main {
     color: #fff;
 }
 
-.dnav.open .dnav-logo span { color: var(--rose-light); }
+.dnav.open .dnav-logo .amp { color: var(--rose-light); }
 .dnav.open .dnav-logo::after { transform: rotate(180deg); }
 
 /* ---------- Menu (kapsul vertikal) ---------- */
@@ -589,7 +596,7 @@ main {
     line-height: 0.85;
 }
 
-.hero-names span { color: var(--rose); }
+.hero-names .amp { color: var(--rose); }
 
 .hero-divider {
     display: flex;
@@ -898,6 +905,7 @@ main {
 }
 
 .person-family {
+    white-space: pre-line;      /* baris baru ("\n") dari config.js */
     margin-top: 7px;
     color: var(--muted);
     font-family: var(--serif);
@@ -1004,12 +1012,18 @@ main {
     line-height: 1.7;
 }
 
-/* HTML memakai inline style: flex-direction column + margin-top 20px.
-   Lebar dibatasi di sini agar tombol tidak terlalu lebar. */
+.event-detail .event-address {
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* Lebar dibatasi agar tombol tidak terlalu lebar. */
 .event-actions {
     width: min(100%, 360px);
     margin: 20px auto 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     gap: 10px;
 }
@@ -1776,6 +1790,18 @@ main {
 .gift-name {
     color: var(--muted);
     font-size: 0.75rem;
+}
+
+/* QRIS opsional (config.amplop.qrisUrl) */
+.gift-qris {
+    margin-top: 28px;
+}
+
+.gift-qris img {
+    width: min(100%, 220px);
+    margin: 0 auto;
+    border: 6px solid white;
+    box-shadow: 0 8px 20px rgba(80, 65, 55, 0.10);
 }
 
 .gift-button {
