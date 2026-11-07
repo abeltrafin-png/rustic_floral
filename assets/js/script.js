@@ -10,6 +10,20 @@ ditulis langsung (hardcode) di berkas ini.
 Urutan muat: config.js → template-engine.js → script.js
 ============================================================ */
 
+/* ------------------------------------------------------------
+   KONVENSI MARKER COMMENT  →  // TAG(lingkup): keterangan
+   TODO      pekerjaan yang harus dilakukan sebelum rilis / belum ada
+   FIXME     perilaku salah yang diketahui, perlu diperbaiki
+   BUG       kesalahan nyata yang bisa dipicu pengguna
+   REFACTOR  perilaku benar, struktur kode perlu dirapikan (DRY, dll.)
+   SECURITY  catatan keamanan / batas kepercayaan data
+   PERF      catatan kinerja
+   CLEANUP   sisa debug atau kode yang boleh dibuang
+   NOTE      konteks penting agar tidak salah ubah (angka sihir, kontrak)
+   Anotasi tipe memakai JSDoc (@param, @returns, @typedef).
+   Indeks seluruh marker: lihat ANNOTATION_INDEX.md
+   ------------------------------------------------------------ */
+
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================================================
@@ -17,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ========================================================= */
 
     // Data klien (hasil olahan template-engine.js dari config.js)
+    // NOTE(data): DATA bersifat read-only. Seluruh teks klien harus lewat WEDDING_DATA.
     const DATA = window.WEDDING_DATA || {};
 
     if (!window.WEDDING_DATA) {
@@ -24,6 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Ambil nilai bersarang dari DATA, mis. dataAt("acara.akad.tempat")
+    // REFACTOR(dry): duplikat TemplateEngine.getNestedValue. Ganti dengan
+    //   (p) => window.TemplateEngine.getNestedValue(DATA, p).
+    /** @param {string} path @returns {*} nilai dari DATA, atau undefined */
     const dataAt = (path) => {
         return path.split(".").reduce((acc, part) => {
             return acc !== null && acc !== undefined ? acc[part] : undefined;
@@ -53,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const music = document.getElementById("weddingMusic");
     const musicControl = document.getElementById("musicControl");
+    // REFACTOR(dup): elemen yang sama dengan `openInvitation` di atas; pakai satu variabel.
     const openInvitationButton = document.getElementById("openInvitation");
 
     if (music && musicControl) {
@@ -86,9 +105,14 @@ document.addEventListener("DOMContentLoaded", () => {
         PLAY MUSIC
         ------------------------------------------------------------ */
 
+        /**
+         * Putar musik latar. Browser hanya mengizinkan play() setelah gestur pengguna,
+         * jadi fungsi ini harus dipanggil dari handler klik.
+         */
         function playMusic() {
             music.play()
                 .then(() => {
+                    // CLEANUP(debug): hapus console.log sebelum rilis produksi.
                     console.log("Musik berhasil diputar.");
                     updateMusicButton();
                 })
@@ -148,6 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
     2. PEMBUKA UNDANGAN
     ========================================================= */
 
+    /** Tutup layar sampul dan buka kunci scroll halaman. */
     function openWeddingInvitation() {
         if (!openingScreen) return;
 
@@ -156,6 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
             openingScreen.style.display = "none";
+        // NOTE(anim): 700ms harus sama dengan durasi transisi .is-hidden di style.css.
         }, 700);
     }
 
@@ -188,6 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
     4. COUNTDOWN
     ========================================================= */
 
+    /** Perbarui angka hitung mundur ke waktu mulai akad (turunan.countdownTarget). */
     function updateCountdown() {
         if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
 
@@ -219,6 +246,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     updateCountdown();
+    // PERF(timer): interval tidak pernah dihentikan, bahkan setelah acara lewat
+    //   (selalu 00). Simpan id-nya dan clearInterval saat difference <= 0.
     setInterval(updateCountdown, 1000);
 
 
@@ -227,11 +256,13 @@ document.addEventListener("DOMContentLoaded", () => {
     ========================================================= */
 
     // Format tanggal ISO → format iCalendar UTC (YYYYMMDDTHHMMSSZ)
+    // REFACTOR(dry): sama dengan keFormatKalenderUTC() di template-engine.js.
     function toICSDate(iso) {
         return new Date(iso).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
     }
 
     // Escape karakter khusus iCalendar
+    /** Escape karakter khusus iCalendar (RFC 5545 §3.3.11). @param {string} text @returns {string} */
     function escapeICS(text) {
         return String(text || "")
             .replace(/\\/g, "\\\\")
@@ -240,6 +271,8 @@ document.addEventListener("DOMContentLoaded", () => {
             .replace(/\n/g, "\\n");
     }
 
+    // TODO(kalender): hanya akad yang diekspor. Resepsi (turunan.resepsi) belum masuk .ics
+    //   — tambahkan VEVENT kedua atau buat tombol terpisah.
     if (calendarButton) {
         calendarButton.addEventListener("click", () => {
             const akad = dataAt("acara.akad") || {};
@@ -266,6 +299,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 `DTEND:${toICSDate(turunanAkad.selesaiISO)}`,
                 `SUMMARY:${escapeICS(`${akad.judul} ${pasangan}`)}`,
                 `LOCATION:${escapeICS(`${akad.tempat}, ${akad.alamat}`)}`,
+                // FIXME(ics): RFC 5545 mewajibkan line folding (maks. 75 oktet per baris). Teks
+                //   panjang (LOCATION/DESCRIPTION) bisa ditolak oleh sebagian aplikasi kalender.
                 `DESCRIPTION:${escapeICS(`${akad.judul} ${pasanganLengkap}.`)}`,
                 "END:VEVENT",
                 "END:VCALENDAR"
@@ -503,6 +538,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const loadMoreMessages = document.getElementById("loadMoreMessages");
 
     let guestbookMessages = [];
+    // REFACTOR(const): angka 5 muncul 3x (awal, reset, tombol "lainnya"). Jadikan PAGE_SIZE.
     let visibleMessages = 5;
     let guestbookRequestId = 0;
 
@@ -588,6 +624,9 @@ document.addEventListener("DOMContentLoaded", () => {
     AMBIL RIWAYAT DARI GOOGLE SHEETS MELALUI JSONP
     ========================================================= */
 
+    // SECURITY(jsonp): JSONP mengeksekusi skrip dari URL Apps Script di halaman ini.
+    //   Aman hanya bila endpoint dipercaya. Lebih baik pindah ke fetch() + CORS di Apps Script.
+    // NOTE(jsonp): callback global sekali pakai dibersihkan oleh finish().
     function loadGuestbook() {
         if (!guestbookHistory) return;
 
@@ -615,6 +654,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 guestbookHistory.textContent =
                     "Riwayat ucapan gagal dimuat. Periksa konfigurasi Apps Script.";
             }
+        // NOTE(timeout): batas tunggu 15 detik sebelum pesan gagal muat ditampilkan.
         }, 15000);
 
         function finish() {
@@ -700,6 +740,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (
                 !guestName ||
                 !message ||
+                // NOTE(validasi): nilai harus sama persis dengan <option value> di index.html dan
+                //   validasi di Apps Script. Validasi klien ini mudah dilewati, jadi bukan pengaman.
                 !["Hadir", "Tidak Hadir"].includes(attendance)
             ) {
                 if (formStatus) {
@@ -739,6 +781,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 * Karena itu, kirim data lalu muat ulang riwayat
                 * setelah memberi waktu untuk penyimpanan.
                 */
+                // FIXME(rsvp): mode no-cors → respons tidak terbaca, jadi "Ucapan dikirim" selalu
+                //   tampil walau server gagal menyimpan. Pertimbangkan verifikasi lewat loadGuestbook().
                 await fetch(GOOGLE_SCRIPT_URL, {
                     method: "POST",
                     mode: "no-cors",
@@ -757,6 +801,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 setTimeout(() => {
                     loadGuestbook();
+                // NOTE(rsvp): jeda 2,5 dtk = perkiraan waktu tulis Apps Script ke Sheets (heuristik).
                 }, 2500);
 
             } catch (error) {
@@ -769,6 +814,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } finally {
                 if (submitButton) {
                     submitButton.disabled = false;
+                    // REFACTOR(label): label tombol di-hardcode di sini. Simpan teks asli sebelum diubah.
                     submitButton.textContent = "♡ Kirim Ucapan";
                 }
             }
@@ -815,6 +861,13 @@ document.addEventListener("DOMContentLoaded", () => {
        11. AMPLOP DIGITAL / SALIN REKENING & ALAMAT KADO
        ========================================================= */
 
+    /**
+     * Salin teks ke clipboard (Clipboard API, fallback execCommand).
+     * @param {string} teks  isi yang disalin
+     * @param {string} pesan pesan sukses untuk pengguna
+     */
+    // REFACTOR(dry): salinRekening() menulis ulang logika yang sama. Gabungkan keduanya.
+    // TODO(ux): ganti alert() dengan toast non-blokir.
     async function salinTeksGift(teks, pesan) {
         try {
             if (navigator.clipboard && window.isSecureContext) {
@@ -864,6 +917,9 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        // BUG(clipboard): di konteks non-aman (http:// / file://) navigator.clipboard = undefined,
+        //   sehingga baris ini melempar TypeError SEBELUM .catch() — fallback tak pernah jalan.
+        //   Perbaikan: cek `navigator.clipboard && window.isSecureContext` seperti salinTeksGift().
         navigator.clipboard.writeText(nomorRekening)
             .then(() => {
                 alert("Nomor rekening berhasil disalin: " + nomorRekening);
@@ -1009,6 +1065,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     window.addEventListener("scroll", onScroll, { passive: true });
+    // PERF(resize): handler berat dipanggil di tiap event resize tanpa throttle/debounce.
     window.addEventListener("resize", onScroll);
     onScroll();
 })();

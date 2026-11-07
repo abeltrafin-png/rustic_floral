@@ -31,6 +31,12 @@
 
     // Ambil nilai properti bersarang: "mempelai.pria.namaLengkap",
     // juga mendukung indeks array: "cerita.0.judul"
+    /**
+     * Ambil nilai bersarang dari objek berdasarkan path bertitik.
+     * @param {Object} obj  sumber data
+     * @param {string} path mis. "cerita.0.judul"
+     * @returns {*} nilai, atau undefined bila path putus
+     */
     const getNestedValue = (obj, path) => {
         return path.split(".").reduce((acc, part) => {
             return acc !== null && acc !== undefined ? acc[part] : undefined;
@@ -45,6 +51,8 @@
         return false;
     };
 
+    // NOTE(clone): JSON clone membuang undefined/function/Date. Aman selama config
+    //   hanya berisi data murni. Pertimbangkan structuredClone() bila nanti perlu.
     const deepClone = (obj) => JSON.parse(JSON.stringify(obj));
 
     const pad2 = (n) => String(n).padStart(2, "0");
@@ -61,6 +69,11 @@
     ];
 
     // "2027-02-21" → { hari, tanggal, bulan, tahun, lengkap, ... }
+    /**
+     * Ubah tanggal ISO menjadi bagian-bagian berbahasa Indonesia.
+     * @param {string} isoDate format "YYYY-MM-DD"
+     * @returns {?Object} null bila format salah atau tanggal tidak ada (mis. 2027-02-31)
+     */
     function formatTanggal(isoDate) {
         const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(isoDate || "");
         if (!match) return null;
@@ -90,6 +103,8 @@
     }
 
     // Konversi waktu lokal + offset → format UTC Google Calendar (YYYYMMDDTHHMMSSZ)
+    // REFACTOR(dry): logika sama dengan toICSDate() di script.js. Ekspor lewat
+    //   window.TemplateEngine agar hanya ada satu implementasi konversi UTC.
     function keFormatKalenderUTC(tanggal, jam, offset) {
         const time = Date.parse(`${tanggal}T${jam}:00${offset}`);
         if (Number.isNaN(time)) return "";
@@ -101,6 +116,8 @@
 
         const tgl = formatTanggal(acara.tanggal);
         const zona = config.acara.zonaWaktu || "";
+        // REFACTOR(const): default "+07:00" ditulis dua kali (di sini & countdownTarget).
+        //   Jadikan satu konstanta DEFAULT_OFFSET.
         const offset = config.acara.offsetUTC || "+07:00";
         const jamTitik = (jam) => String(jam || "").replace(":", ".");
 
@@ -175,6 +192,8 @@
        Dijalankan beberapa putaran agar referensi berantai terselesaikan.
     ========================================================= */
 
+    // NOTE(placeholder): hanya karakter [\w.] — cukup untuk path & indeks array,
+    //   tidak mendukung spasi atau tanda hubung pada nama kunci.
     const PLACEHOLDER = /\{\{\s*([\w.]+)\s*\}\}/g;
 
     function resolvePlaceholders(node, root) {
@@ -206,6 +225,9 @@
         data.turunan = buatDataTurunan(data);
 
         let resolved = data;
+        // NOTE(placeholder): 3 putaran = kedalaman maksimum referensi berantai.
+        // FIXME(placeholder): referensi melingkar (a→b→a) tidak dideteksi; hasilnya hanya
+        //   berhenti setelah 3 putaran dengan teks setengah jadi.
         for (let pass = 0; pass < 3; pass++) {
             resolved = resolvePlaceholders(resolved, resolved);
         }
@@ -232,6 +254,11 @@
         return value;
     }
 
+    /**
+     * Injeksi data ke DOM. Urutan: [if] → teks → atribut → muat ulang <source>.
+     * @param {Object} data view data (hasil buildViewData)
+     * @param {ParentNode} [root=document] cakupan pencarian elemen
+     */
     function render(data, root = document) {
         // 1) Kondisi tampil / sembunyi seksi
         root.querySelectorAll("[data-template-if]").forEach((el) => {
@@ -262,6 +289,8 @@
                     return;
                 }
 
+                // SECURITY(url): nilai href/src dari config tidak divalidasi skemanya. Aman selama
+                //   config ditulis admin; bila kelak berasal dari input pengguna, tolak javascript:.
                 el.setAttribute(attr, String(value));
             });
         });
@@ -291,6 +320,7 @@
         document.dispatchEvent(new CustomEvent("template:ready", { detail: data }));
     }
 
+    // NOTE(api): kontrak publik modul. Hindari mengubah nama tanpa memeriksa script.js.
     window.TemplateEngine = { getNestedValue, isEmpty, buildViewData, render, init };
 
     if (document.readyState === "loading") {
@@ -298,4 +328,5 @@
     } else {
         init();
     }
-})();
+})(
+);

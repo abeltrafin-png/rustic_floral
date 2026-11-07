@@ -14,6 +14,15 @@
      (nama pasangan, tanggal terformat, jam, tautan kalender, dll).
    ============================================================ */
 
+/**
+ * @typedef {Object} WeddingConfig
+ * @property {Object} meta      judul & deskripsi halaman
+ * @property {Object} mempelai  data pria & wanita
+ * @property {Object} acara     akad, resepsi, zona waktu
+ * @property {Array}  cerita    love story (urutan = urutan tampil)
+ * @property {Object} rsvp      endpoint Google Apps Script
+ * @type {WeddingConfig}
+ */
 const WEDDING_CONFIG = {
 
     /* ---------- Metadata halaman ---------- */
@@ -54,6 +63,8 @@ const WEDDING_CONFIG = {
         offsetUTC: "+07:00",
 
         // Tanggal utama dipakai di sampul, hero, countdown, footer.
+        // NOTE(acara): tanggalUtama dipakai tampilan; tanggal akad/resepsi dipakai kalender.
+        //   Jika berbeda hari, ubah KEDUANYA (belum ada validasi silang).
         tanggalUtama: "2027-02-21",
 
         akad: {
@@ -66,6 +77,8 @@ const WEDDING_CONFIG = {
             tempat: "Masjid Jami' Al-Ikhlas",
             alamat: "Jl. Raya Ragunan No. 11A, Jati Padang, Pasar Minggu, Jakarta Selatan",
             mapsUrl: "https://maps.google.com/?q=Masjid+Jami'+Al-Ikhlas+Jl.+Raya+Ragunan+No.+11A+Jati+Padang",
+            // TODO(maps): parameter pb= pada embed ini template contoh; ganti dengan hasil
+            //   Google Maps → Bagikan → Sematkan peta untuk lokasi klien yang sebenarnya.
             mapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.7362024147047!2d106.8286915!3d-6.2983804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f2307bdcdd03%3A0x6b9bfd3b48f654b1!2sMasjid%20Jami'%20Al-Ikhlas!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
         },
 
@@ -86,6 +99,8 @@ const WEDDING_CONFIG = {
     /* ---------- Live streaming ---------- */
     live: {
         aktif: true,
+        // TODO(live): embedUrl masih placeholder. Selama aktif:true, iframe akan error.
+        //   Isi ID video asli atau set aktif:false sebelum undangan dikirim.
         // Ganti YOUR_LIVE_VIDEO_ID dengan ID video YouTube live sebenarnya.
         embedUrl: "https://www.youtube.com/embed/YOUR_LIVE_VIDEO_ID",
         tautanYoutube: "https://www.youtube.com/",
@@ -152,14 +167,17 @@ const WEDDING_CONFIG = {
     amplop: {
         pengantar: "Doa restu Anda merupakan hadiah terindah. Namun jika ingin memberi hadiah, Anda dapat menggunakan fitur di bawah ini:",
         // Kosongkan qrisUrl ("") bila tidak memakai QRIS.
+        // NOTE(amplop): qrisUrl kosong → blok QRIS disembunyikan otomatis oleh engine.
         qrisUrl: "",
         rekening: [
+            // TODO(amplop): data rekening di bawah masih contoh — ganti dengan data klien.
             { bank: "BANK BCA", noRek: "1234 5678 90", atasNama: "Andi Prasetyo" },
             { bank: "BANK BCA", noRek: "4567 5678 21", atasNama: "Sari Wulandari" }
         ],
         kirimKado: {
             penerima: "Andi Prasetyo",
             noHp: "0812-3456-7890",
+            // TODO(kado): placeholder alamat — wajib diganti agar tombol salin berguna.
             alamat: "Masukkan alamat lengkap penerima kado di sini"
         }
     },
@@ -167,12 +185,16 @@ const WEDDING_CONFIG = {
     /* ---------- RSVP & buku tamu ---------- */
     rsvp: {
         subjudul: "Bagikan konfirmasi kehadiran serta doa terbaik untuk {{turunan.nama.pasangan}}.",
+        // SECURITY(rsvp): URL ini publik (terlihat di sumber halaman). Pastikan Apps Script
+        //   memvalidasi input, membatasi panjang, dan tidak memberi akses tulis ke sheet lain.
+        // TODO(rsvp): tiap klien butuh deployment Apps Script sendiri; jangan pakai ulang URL ini.
         googleScriptUrl: "https://script.google.com/macros/s/AKfycby0ijLbTlRvzkjtySPbHRTmf0CxJhSezpaPzvY8mIDeP53kLFg50IM91dqGvsj4U7befw/exec"
     },
 
     /* ---------- Musik latar ---------- */
     musik: {
         file: "assets/music/wedding-song.mp3",
+        // NOTE(musik): rentang valid 0–1; di luar itu script.js memakai fallback 0.45.
         volume: 0.45
     }
 };
