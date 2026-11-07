@@ -39,14 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Ambil nilai bersarang dari DATA, mis. dataAt("acara.akad.tempat")
-    // REFACTOR(dry): duplikat TemplateEngine.getNestedValue. Ganti dengan
-    //   (p) => window.TemplateEngine.getNestedValue(DATA, p).
     /** @param {string} path @returns {*} nilai dari DATA, atau undefined */
-    const dataAt = (path) => {
-        return path.split(".").reduce((acc, part) => {
-            return acc !== null && acc !== undefined ? acc[part] : undefined;
-        }, DATA);
-    };
+    const dataAt = (path) => window.TemplateEngine.getNestedValue(DATA, path);
 
     const openingScreen = document.getElementById("openingScreen");
     const openInvitation = document.getElementById("openInvitation");
@@ -71,9 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const music = document.getElementById("weddingMusic");
     const musicControl = document.getElementById("musicControl");
-    // REFACTOR(dup): elemen yang sama dengan `openInvitation` di atas; pakai satu variabel.
-    const openInvitationButton = document.getElementById("openInvitation");
-
+    
     if (music && musicControl) {
 
         // Volume awal (dari config.musik.volume, default 0.45)
@@ -112,9 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         function playMusic() {
             music.play()
                 .then(() => {
-                    // CLEANUP(debug): hapus console.log sebelum rilis produksi.
-                    console.log("Musik berhasil diputar.");
-                    updateMusicButton();
+                                        updateMusicButton();
                 })
                 .catch((error) => {
                     console.error("Musik gagal diputar:", error);
@@ -135,8 +125,8 @@ document.addEventListener("DOMContentLoaded", () => {
         BUKA UNDANGAN
         ------------------------------------------------------------ */
 
-        if (openInvitationButton) {
-            openInvitationButton.addEventListener("click", function () {
+        if (openInvitation) {
+            openInvitation.addEventListener("click", function () {
 
                 // Jalankan musik setelah user klik tombol
                 playMusic();
@@ -181,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
             openingScreen.style.display = "none";
-        // NOTE(anim): 700ms harus sama dengan durasi transisi .is-hidden di style.css.
+        // NOTE(anim): 700ms = token --duration-700 yang dipakai transisi .opening-screen di style.css.
         }, 700);
     }
 
@@ -214,6 +204,8 @@ document.addEventListener("DOMContentLoaded", () => {
     4. COUNTDOWN
     ========================================================= */
 
+    let countdownTimer = null;
+
     /** Perbarui angka hitung mundur ke waktu mulai akad (turunan.countdownTarget). */
     function updateCountdown() {
         if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
@@ -230,6 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
             hoursEl.textContent = "00";
             minutesEl.textContent = "00";
             secondsEl.textContent = "00";
+            clearInterval(countdownTimer);
             return;
         }
 
@@ -246,9 +239,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     updateCountdown();
-    // PERF(timer): interval tidak pernah dihentikan, bahkan setelah acara lewat
-    //   (selalu 00). Simpan id-nya dan clearInterval saat difference <= 0.
-    setInterval(updateCountdown, 1000);
+    // Berhenti berdetak setelah acara lewat (updateCountdown memanggil clearInterval)
+    countdownTimer = setInterval(updateCountdown, 1000);
 
 
     /* =========================================================
@@ -256,10 +248,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ========================================================= */
 
     // Format tanggal ISO → format iCalendar UTC (YYYYMMDDTHHMMSSZ)
-    // REFACTOR(dry): sama dengan keFormatKalenderUTC() di template-engine.js.
-    function toICSDate(iso) {
-        return new Date(iso).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-    }
+    /** Format tanggal ISO → iCalendar UTC (logika bersama di TemplateEngine). */
+    const toICSDate = (iso) => window.TemplateEngine.formatUTCStamp(iso);
 
     // Escape karakter khusus iCalendar
     /** Escape karakter khusus iCalendar (RFC 5545 §3.3.11). @param {string} text @returns {string} */
@@ -408,6 +398,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const galleryItems = document.querySelectorAll(".gallery-item:not([hidden])");
 
     let currentGalleryIndex = 0;
+    // NOTE(breakpoint): 768 harus sama dengan @media (max-width: 768px) di style.css.
     let isMobileView = window.innerWidth <= 768;
 
     // Inisialisasi Dots Slider Foto untuk Mobile
@@ -538,8 +529,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const loadMoreMessages = document.getElementById("loadMoreMessages");
 
     let guestbookMessages = [];
-    // REFACTOR(const): angka 5 muncul 3x (awal, reset, tombol "lainnya"). Jadikan PAGE_SIZE.
-    let visibleMessages = 5;
+    // Jumlah ucapan per halaman (awal, setelah muat ulang, dan tiap "lihat lainnya")
+    const PAGE_SIZE = 5;
+    let visibleMessages = PAGE_SIZE;
     let guestbookRequestId = 0;
 
     /* =========================================================
@@ -679,7 +671,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             guestbookMessages = data;
-            visibleMessages = 5;
+            visibleMessages = PAGE_SIZE;
             renderGuestbook();
         };
 
@@ -711,7 +703,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (loadMoreMessages) {
         loadMoreMessages.addEventListener("click", () => {
-            visibleMessages += 5;
+            visibleMessages += PAGE_SIZE;
             renderGuestbook();
         });
     }
@@ -766,6 +758,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 message: message.slice(0, 2000)
             };
 
+const defaultSubmitLabel = submitButton ? submitButton.textContent : "";
+
             if (submitButton) {
                 submitButton.disabled = true;
                 submitButton.textContent = "Mengirim...";
@@ -814,8 +808,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } finally {
                 if (submitButton) {
                     submitButton.disabled = false;
-                    // REFACTOR(label): label tombol di-hardcode di sini. Simpan teks asli sebelum diubah.
-                    submitButton.textContent = "♡ Kirim Ucapan";
+                    submitButton.textContent = defaultSubmitLabel;
                 }
             }
         });
@@ -862,45 +855,53 @@ document.addEventListener("DOMContentLoaded", () => {
        ========================================================= */
 
     /**
-     * Salin teks ke clipboard (Clipboard API, fallback execCommand).
-     * @param {string} teks  isi yang disalin
-     * @param {string} pesan pesan sukses untuk pengguna
+     * Salin teks ke clipboard: Clipboard API bila tersedia & konteks aman,
+     * selain itu fallback ke execCommand("copy").
+     * @param {string} teks isi yang disalin
+     * @returns {Promise<boolean>} true bila berhasil
      */
-    // REFACTOR(dry): salinRekening() menulis ulang logika yang sama. Gabungkan keduanya.
-    // TODO(ux): ganti alert() dengan toast non-blokir.
-    async function salinTeksGift(teks, pesan) {
+    async function copyToClipboard(teks) {
         try {
             if (navigator.clipboard && window.isSecureContext) {
                 await navigator.clipboard.writeText(teks);
-                alert(pesan);
-                return;
-            }
-
-            // Fallback untuk browser yang tidak mendukung Clipboard API
-            const area = document.createElement("textarea");
-            area.value = teks;
-            area.setAttribute("readonly", "");
-            area.style.position = "fixed";
-            area.style.opacity = "0";
-            area.style.pointerEvents = "none";
-
-            document.body.appendChild(area);
-            area.select();
-
-            const berhasil = document.execCommand("copy");
-            area.remove();
-
-            if (berhasil) {
-                alert(pesan);
-            } else {
-                alert("Gagal menyalin. Silakan salin secara manual.");
+                return true;
             }
         } catch (error) {
-            console.error("Gagal menyalin informasi hadiah:", error);
-            alert("Gagal menyalin. Silakan salin secara manual.");
+            console.error("Clipboard API gagal, memakai fallback:", error);
+        }
+
+        const area = document.createElement("textarea");
+        area.value = teks;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        area.style.pointerEvents = "none";
+        document.body.appendChild(area);
+        area.select();
+        area.setSelectionRange(0, area.value.length);
+
+        try {
+            return document.execCommand("copy");
+        } catch (error) {
+            console.error("Fallback salin gagal:", error);
+            return false;
+        } finally {
+            area.remove();
         }
     }
 
+    // TODO(ux): ganti alert() dengan toast non-blokir.
+    /**
+     * Salin teks lalu beri tahu pengguna.
+     * @param {string} teks  isi yang disalin
+     * @param {string} pesan pesan sukses
+     * @param {string} [pesanGagal] pesan bila gagal
+     */
+    async function salinTeksGift(teks, pesan, pesanGagal = "Gagal menyalin. Silakan salin secara manual.") {
+        alert((await copyToClipboard(teks)) ? pesan : pesanGagal);
+    }
+
+    /** Salin nomor rekening (spasi dibuang) dari elemen yang ditunjuk selector. */
     function salinRekening(selector) {
         const accountElement = document.querySelector(selector);
 
@@ -917,40 +918,11 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // BUG(clipboard): di konteks non-aman (http:// / file://) navigator.clipboard = undefined,
-        //   sehingga baris ini melempar TypeError SEBELUM .catch() — fallback tak pernah jalan.
-        //   Perbaikan: cek `navigator.clipboard && window.isSecureContext` seperti salinTeksGift().
-        navigator.clipboard.writeText(nomorRekening)
-            .then(() => {
-                alert("Nomor rekening berhasil disalin: " + nomorRekening);
-            })
-            .catch((error) => {
-                console.error("Gagal menyalin rekening:", error);
-
-                // Fallback jika Clipboard API tidak tersedia
-                const tempInput = document.createElement("textarea");
-                tempInput.value = nomorRekening;
-                tempInput.style.position = "fixed";
-                tempInput.style.opacity = "0";
-
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                tempInput.setSelectionRange(0, tempInput.value.length);
-
-                try {
-                    const berhasil = document.execCommand("copy");
-
-                    if (berhasil) {
-                        alert("Nomor rekening berhasil disalin: " + nomorRekening);
-                    } else {
-                        alert("Gagal menyalin rekening. Silakan salin manual.");
-                    }
-                } catch (err) {
-                    alert("Gagal menyalin rekening. Silakan salin manual.");
-                } finally {
-                    tempInput.remove();
-                }
-            });
+        salinTeksGift(
+            nomorRekening,
+            "Nomor rekening berhasil disalin: " + nomorRekening,
+            "Gagal menyalin rekening. Silakan salin manual."
+        );
     }
 
     function salinAlamatKado() {

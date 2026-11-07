@@ -14,6 +14,11 @@
    ============================================================ */
 
 /* ============================================ */
+/* REFACTOR(tokens): header di atas melarang nilai hardcoded, tetapi masih ada ±234 baris
+   ber-px (ukuran ornamen, offset, min()). Pindahkan ke variables.css bertahap. */
+/* NOTE(breakpoint): 768px & 480px tidak bisa memakai var(). 768px juga dipakai script.js
+   (window.innerWidth <= 768) — ubah keduanya bersamaan. */
+
 /* DESIGN TOKENS BOUNDARY MARKER                */
 /* AREA INI AMAN DIEDIT OLEH TIM OPERASIONAL    */
 /* ============================================ */
@@ -148,6 +153,7 @@ main {
 .opening-screen {
     position: fixed;
     inset: 0;
+    /* REFACTOR(z-index): angka sihir; susun skala --z-* di variables.css. */
     z-index: 9999;
     display: flex;
     align-items: center;
@@ -157,6 +163,8 @@ main {
     transition: opacity var(--duration-700) var(--ease-standard), visibility var(--duration-700) var(--ease-standard);
 }
 
+/* NOTE(anim): transisi memakai --duration-700; script.js menunggu 700ms lalu display:none.
+   Ubah token dan setTimeout di openWeddingInvitation() bersama-sama. */
 .opening-screen.is-hidden {
     opacity: 0;
     visibility: hidden;
@@ -264,6 +272,7 @@ main {
     position: fixed;
     top: 22px;
     left: 28px;
+    /* REFACTOR(z-index): .dnav (navbar desktop); angka sihir, jadikan token. */
     z-index: 1000;
     display: flex;
     flex-direction: column;
@@ -747,6 +756,7 @@ main {
     position: fixed;
     right: 22px;
     bottom: 22px;
+    /* REFACTOR(z-index): .music-control; bagian dari skala yang sama dengan 9999/99999/1000. */
     z-index: 9998;
     width: 52px;
     height: 52px;
@@ -1588,6 +1598,7 @@ main {
 .gallery-modal {
     position: fixed;
     inset: 0;
+    /* REFACTOR(z-index): .gallery-modal (99999) sengaja di atas layar sampul (9999) & .music-control (9998). */
     z-index: 99999;
     display: flex;
     align-items: center;
@@ -2123,6 +2134,7 @@ main {
     background: var(--color-primary-800);
 }
 
+/* CLEANUP(css): redundan — aturan global [hidden] { display: none !important } sudah mencakup ini. */
 #loadMoreMessages[hidden] { display: none; }
 
 

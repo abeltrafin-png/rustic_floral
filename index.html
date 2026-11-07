@@ -23,6 +23,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- TODO(seo): belum ada <meta property="og:title|og:description|og:image"> statis.
+         Crawler WhatsApp/Facebook tidak menjalankan JS, jadi pratinjau tautan memakai teks
+         bawaan ini (lihat README, kendala #5). Isi manual per klien atau gunakan build step. -->
     <meta name="description" content="Undangan Pernikahan Digital" data-template-content="meta.deskripsi">
     <title data-template="meta.judulHalaman">Undangan Pernikahan</title>
 
@@ -57,6 +60,8 @@
         <!-- TEMPLATE TAGGING BOUNDARY MARKER: MUSIK -->
         <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (musik.*) -->
         <!-- ============================================ -->
+    <!-- PERF(audio): preload="auto" mengunduh ±4 MB mp3 sebelum tamu menekan "Buka Undangan".
+         Pertimbangkan preload="none": play() tetap berjalan dari klik dan engine memanggil load(). -->
     <audio id="weddingMusic" loop preload="auto">
         <source data-template-src="musik.file" type="audio/mpeg">
         Browser Anda tidak mendukung audio HTML5.
@@ -194,6 +199,9 @@
             <div class="couple-wrapper">
                 <div class="person">
                     <div class="person-image">
+                        <!-- PERF(img): seluruh <img> bertanda data-template-src belum punya width/height dan
+                             loading="lazy" → pergeseran layout (CLS) dan semua foto diunduh sekaligus.
+                             Atribut statis boleh ditambah langsung di HTML; engine hanya mengisi src/alt. -->
                         <img data-template-src="mempelai.pria.foto" data-template-alt="mempelai.pria.fotoAlt">
                     </div>
                     <p class="person-label">The Groom</p>
@@ -454,6 +462,9 @@
         <!-- TEMPLATE TAGGING BOUNDARY MARKER: LOVE STORY -->
         <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (cerita[0..3]) -->
         <!-- ============================================ -->
+        <!-- NOTE(template): slot cerita bersifat tetap (cerita.0–3). Item config ke-5 tidak tampil;
+             mengosongkan satu item menyembunyikan slotnya. -->
+        <!-- REFACTOR(loop): jika jumlah cerita/foto harus dinamis, render dari <template> + array. -->
         <section class="section story-section" id="story">
             <div class="section-heading">
                 <p class="section-eyebrow">Kisah Kami</p>
@@ -525,11 +536,12 @@
         </section>
         <!-- END TEMPLATE TAGGING BOUNDARY MARKER: LOVE STORY -->
 
-        <!-- 5. GALLERY & VIDEO -->
+        <!-- 6. GALLERY & VIDEO -->
         <!-- ============================================ -->
         <!-- TEMPLATE TAGGING BOUNDARY MARKER: GALERI & VIDEO -->
         <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (galeri.*) -->
         <!-- ============================================ -->
+        <!-- NOTE(template): galeri memakai 6 slot tetap (galeri.foto.0–5), sama seperti cerita. -->
         <section class="section gallery-section" id="gallery">
             <div class="section-heading" data-template-if="galeri.videoEmbedUrl">
                 <p class="section-eyebrow">Our Moments</p>
@@ -538,6 +550,8 @@
             </div>
 
             <div class="video-wrapper" data-template-if="galeri.videoEmbedUrl">
+                <!-- PERF(iframe): iframe video (dan live) belum memakai loading="lazy" seperti iframe peta.
+                     CLEANUP(html): atribut frameborder sudah usang → gunakan CSS border: 0. -->
                 <div class="video-card">
                     <iframe
                         class="wedding-video"
@@ -597,7 +611,7 @@
         </section>
         <!-- END TEMPLATE TAGGING BOUNDARY MARKER: GALERI & VIDEO -->
 
-        <!-- 6. DOA & HARAPAN (#wedding-quote) -->
+        <!-- 7. DOA & HARAPAN (#wedding-quote) -->
         <!-- ============================================ -->
         <!-- TEMPLATE TAGGING BOUNDARY MARKER: DOA & KUTIPAN -->
         <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (quote.*) -->
@@ -618,7 +632,7 @@
         </section>
         <!-- END TEMPLATE TAGGING BOUNDARY MARKER: DOA & KUTIPAN -->
 
-        <!-- 7. AMPLOP DIGITAL / HADIAH (#gift) -->
+        <!-- 8. AMPLOP DIGITAL / HADIAH (#gift) -->
         <!-- ============================================ -->
         <!-- TEMPLATE TAGGING BOUNDARY MARKER: AMPLOP DIGITAL -->
         <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (amplop.*) -->
@@ -685,7 +699,7 @@
         </section>
         <!-- END TEMPLATE TAGGING BOUNDARY MARKER: AMPLOP DIGITAL -->
 
-        <!-- 8. RSVP & KIRIM UCAPAN -->
+        <!-- 9. RSVP & KIRIM UCAPAN -->
         <!-- ============================================ -->
         <!-- TEMPLATE TAGGING BOUNDARY MARKER: RSVP -->
         <!-- AREA INI MENGGUNAKAN DYNAMIC INJECTION CONFIG (rsvp.subjudul (endpoint: rsvp.googleScriptUrl)) -->
@@ -725,6 +739,8 @@
 
                         <div class="form-group">
                             <label for="attendance">Konfirmasi Kehadiran</label>
+                            <!-- NOTE(rsvp): value option harus sama persis dengan daftar valid di script.js
+                                 (["Hadir", "Tidak Hadir"]) dan validasi di Apps Script. -->
                             <select id="attendance" required>
                                 <option value="">Pilih konfirmasi</option>
                                 <option value="Hadir">Hadir</option>

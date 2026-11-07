@@ -57,6 +57,9 @@
 
     const pad2 = (n) => String(n).padStart(2, "0");
 
+    // Zona waktu bawaan (WIB) bila config.acara.offsetUTC kosong
+    const DEFAULT_OFFSET = "+07:00";
+
     /* =========================================================
        2. DATA TURUNAN (dihitung otomatis dari config)
        Supaya nama & tanggal tidak perlu ditulis berulang kali.
@@ -103,12 +106,19 @@
     }
 
     // Konversi waktu lokal + offset → format UTC Google Calendar (YYYYMMDDTHHMMSSZ)
-    // REFACTOR(dry): logika sama dengan toICSDate() di script.js. Ekspor lewat
-    //   window.TemplateEngine agar hanya ada satu implementasi konversi UTC.
-    function keFormatKalenderUTC(tanggal, jam, offset) {
-        const time = Date.parse(`${tanggal}T${jam}:00${offset}`);
+    /**
+     * Ubah tanggal-waktu ISO (dengan offset) ke stempel UTC iCalendar/Google Calendar.
+     * @param {string|number|Date} value mis. "2027-02-21T08:00:00+07:00"
+     * @returns {string} "YYYYMMDDTHHMMSSZ", atau "" bila tidak valid
+     */
+    function formatUTCStamp(value) {
+        const time = new Date(value).getTime();
         if (Number.isNaN(time)) return "";
         return new Date(time).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+    }
+
+    function keFormatKalenderUTC(tanggal, jam, offset) {
+        return formatUTCStamp(`${tanggal}T${jam}:00${offset}`);
     }
 
     function turunanAcara(acara, config, nama) {
@@ -116,9 +126,7 @@
 
         const tgl = formatTanggal(acara.tanggal);
         const zona = config.acara.zonaWaktu || "";
-        // REFACTOR(const): default "+07:00" ditulis dua kali (di sini & countdownTarget).
-        //   Jadikan satu konstanta DEFAULT_OFFSET.
-        const offset = config.acara.offsetUTC || "+07:00";
+        const offset = config.acara.offsetUTC || DEFAULT_OFFSET;
         const jamTitik = (jam) => String(jam || "").replace(":", ".");
 
         const waktuParts = [jamTitik(acara.mulai)];
@@ -182,7 +190,7 @@
         // Target countdown: mulai akad; jika tidak ada, tengah malam tanggal utama.
         turunan.countdownTarget =
             turunan.akad.mulaiISO ||
-            (acara.tanggalUtama ? `${acara.tanggalUtama}T00:00:00${acara.offsetUTC || "+07:00"}` : "");
+            (acara.tanggalUtama ? `${acara.tanggalUtama}T00:00:00${acara.offsetUTC || DEFAULT_OFFSET}` : "");
 
         return turunan;
     }
@@ -321,12 +329,11 @@
     }
 
     // NOTE(api): kontrak publik modul. Hindari mengubah nama tanpa memeriksa script.js.
-    window.TemplateEngine = { getNestedValue, isEmpty, buildViewData, render, init };
+    window.TemplateEngine = { getNestedValue, isEmpty, formatUTCStamp, buildViewData, render, init };
 
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", init);
     } else {
         init();
     }
-})(
-);
+})();

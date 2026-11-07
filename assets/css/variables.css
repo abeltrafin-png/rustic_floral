@@ -12,6 +12,8 @@
    memakai var(), jadi tetap ditulis langsung di style.css.
    ============================================================ */
 
+/* PERF(fonts): @import membuat rantai blocking HTML → variables.css → CSS font → file font.
+   Pindahkan ke <link rel="preconnect"> + <link rel="stylesheet"> di <head> index.html. */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@400;500;600&display=swap');
 
 /* ============================================ */
@@ -285,6 +287,7 @@
     --duration-2000: 2000ms;
     --duration-1400: 1400ms;
     --duration-800:  800ms;
+    /* NOTE(anim): dipakai layar sampul; sinkron dengan setTimeout(700) di script.js. */
     --duration-700:  700ms;
     --duration-600:  600ms;
     --duration-550:  550ms;
