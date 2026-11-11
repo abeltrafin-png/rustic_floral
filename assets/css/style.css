@@ -13,12 +13,6 @@
    - Kecil    : <= 480px
    ============================================================ */
 
-/* ============================================ */
-/* REFACTOR(tokens): header di atas melarang nilai hardcoded, tetapi masih ada ±234 baris
-   ber-px (ukuran ornamen, offset, min()). Pindahkan ke variables.css bertahap. */
-/* NOTE(breakpoint): 768px & 480px tidak bisa memakai var(). 768px juga dipakai script.js
-   (window.innerWidth <= 768) — ubah keduanya bersamaan. */
-
 /* DESIGN TOKENS BOUNDARY MARKER                */
 /* AREA INI AMAN DIEDIT OLEH TIM OPERASIONAL    */
 /* ============================================ */
@@ -2780,8 +2774,6 @@ main {
 
 /* ============================================================
    JARAK JUDUL → KONTEN KONSISTEN
-   Margin vertikal "auto" di dalam flex menyerap sisa ruang
-   dan mendorong konten menjauh dari judul. Dinolkan di sini.
    ============================================================ */
 
 .section > .couple-wrapper,
