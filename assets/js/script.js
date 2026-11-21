@@ -758,7 +758,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 message: message.slice(0, 2000)
             };
 
-const defaultSubmitLabel = submitButton ? submitButton.textContent : "";
+            const defaultSubmitLabel = submitButton ? submitButton.textContent : "";
 
             if (submitButton) {
                 submitButton.disabled = true;
